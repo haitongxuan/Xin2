@@ -8,3 +8,4 @@ services:
       dockerfile: Xin.WebApi/Dockerfile
     ports:
       - "8916:80"
+    network_mode: "host"

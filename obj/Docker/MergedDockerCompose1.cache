@@ -1,0 +1,38 @@
+services:
+  xin.webapi:
+    build:
+      context: D:\Project\Xin
+      dockerfile: Xin.WebApi/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: Xin.WebApi
+      target: base
+    container_name: Xin.WebApi
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: xinwebapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "bin/Debug/netcoreapp2.2/Xin.WebApi.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    network_mode: host
+    ports:
+    - published: 8916
+      target: 80
+    - target: 80
+    tty: true
+    volumes:
+    - D:\Project\Xin\Xin.WebApi:/app:rw
+    - C:\Users\haitx\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\haitx\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\haitx\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+    - C:\Users\haitx\.nuget\packages:/root/.nuget/packages:ro
+    - D:\Project\Xin:/src:rw
+version: '3.4'

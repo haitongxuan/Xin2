@@ -9,6 +9,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>D:\Project\Xin\Xin.WebApi\Xin.WebApi.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
+    <WarningLevel>1</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,7 +38,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
-    <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="2.0.37" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +46,12 @@
     <ProjectReference Include="..\Xin.Entity\Xin.Entites.csproj" />
     <ProjectReference Include="..\Xin.Repository\Xin.Repository.csproj" />
     <ProjectReference Include="..\Xin.Service\Xin.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Xin.WebApi.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

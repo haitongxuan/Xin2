@@ -6,6 +6,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     image: xinwebapi
+    network_mode: host
     ports:
     - published: 8916
       target: 80

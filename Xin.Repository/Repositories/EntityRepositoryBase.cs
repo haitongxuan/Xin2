@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace Xin.Repository
 {
@@ -252,6 +253,7 @@ namespace Xin.Repository
         }
         protected IQueryable<TEntity> QueryDb(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes)
         {
+            string DockerHostMachineIpAddress = Dns.GetHostAddresses(new Uri("http://docker.for.win.localhost").Host)[0].ToString();
             IQueryable<TEntity> query = Context.Set<TEntity>();
             if (filter != null)
             {

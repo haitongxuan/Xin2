@@ -5494,6 +5494,7 @@
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "2.2.6",
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
           "Xin.Common": "1.0.0"
         },
         "compile": {
@@ -15436,7 +15437,6 @@
       "Xin.Job.Service >= 1.0.0",
       "Xin.Repository >= 1.0.0",
       "Xin.Service >= 1.0.0",
-      "Z.EntityFramework.Plus.EFCore >= 2.0.37",
       "log4net >= 2.0.8"
     ]
   },
@@ -15526,10 +15526,6 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[4.0.1, )"
-          },
-          "Z.EntityFramework.Plus.EFCore": {
-            "target": "Package",
-            "version": "[2.0.37, )"
           },
           "log4net": {
             "target": "Package",

@@ -1,0 +1,8 @@
+D:\Project\Xin\Xin.Common\bin\Debug\netcoreapp2.2\Xin.Common.deps.json
+D:\Project\Xin\Xin.Common\bin\Debug\netcoreapp2.2\Xin.Common.dll
+D:\Project\Xin\Xin.Common\bin\Debug\netcoreapp2.2\Xin.Common.pdb
+D:\Project\Xin\Xin.Common\obj\Debug\netcoreapp2.2\Xin.Common.csprojAssemblyReference.cache
+D:\Project\Xin\Xin.Common\obj\Debug\netcoreapp2.2\Xin.Common.AssemblyInfoInputs.cache
+D:\Project\Xin\Xin.Common\obj\Debug\netcoreapp2.2\Xin.Common.AssemblyInfo.cs
+D:\Project\Xin\Xin.Common\obj\Debug\netcoreapp2.2\Xin.Common.dll
+D:\Project\Xin\Xin.Common\obj\Debug\netcoreapp2.2\Xin.Common.pdb

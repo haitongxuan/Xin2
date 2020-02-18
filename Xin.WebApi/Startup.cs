@@ -60,13 +60,13 @@ namespace Xin.WebApi
             //services.AddScoped<Service.Context.XinDBContext>(options => options.Use)
             services.AddTransient<IUowProvider, UowProvider>();
             services.AddTransient<IResUserRepository, ResUserRepository>();
-            services.AddTransient(typeof(IDataPager<>), typeof(DataPager<>));
+            //services.AddTransient(typeof(IDataPager<>), typeof(DataPager<>));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient<IClaimsTransformation, XinClaimsTransformer>();
             services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
             services.AddTransient<IJobListener, JobListener>();
-            
+
             //1.全局异常 2.Json 日期格式化
             services
                 .AddMvc(o => { o.Filters.Add(typeof(WebApiExceptionAttribute)); })
@@ -150,7 +150,7 @@ namespace Xin.WebApi
                 builder.AllowAnyHeader();
                 builder.AllowAnyMethod();
                 builder.AllowAnyOrigin();
-            }); 
+            });
             app.UseSignalR(routes =>
             {
                 routes.MapHub<ChatHub>("/chathub");
