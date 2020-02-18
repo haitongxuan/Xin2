@@ -1,0 +1,17 @@
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.SignalR.deps.json
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.SignalR.dll
+D:\Project\Xin.SignalR\obj\Debug\netcoreapp3.1\Xin.SignalR.AssemblyInfoInputs.cache
+D:\Project\Xin.SignalR\obj\Debug\netcoreapp3.1\Xin.SignalR.AssemblyInfo.cs
+D:\Project\Xin.SignalR\obj\Debug\netcoreapp3.1\Xin.SignalR.csprojAssemblyReference.cache
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.SignalR.pdb
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.Common.dll
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.Entites.dll
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.Repository.dll
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.Service.dll
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.Common.pdb
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.Entites.pdb
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.Repository.pdb
+D:\Project\Xin.SignalR\bin\Debug\netcoreapp3.1\Xin.Service.pdb
+D:\Project\Xin.SignalR\obj\Debug\netcoreapp3.1\Xin.SignalR.csproj.CopyComplete
+D:\Project\Xin.SignalR\obj\Debug\netcoreapp3.1\Xin.SignalR.dll
+D:\Project\Xin.SignalR\obj\Debug\netcoreapp3.1\Xin.SignalR.pdb

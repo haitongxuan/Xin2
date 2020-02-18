@@ -1,0 +1,7 @@
+D:\Project\Xin\Xin.Common\bin\Debug\netcoreapp3.1\Xin.Common.deps.json
+D:\Project\Xin\Xin.Common\bin\Debug\netcoreapp3.1\Xin.Common.dll
+D:\Project\Xin\Xin.Common\bin\Debug\netcoreapp3.1\Xin.Common.pdb
+D:\Project\Xin\Xin.Common\obj\Debug\netcoreapp3.1\Xin.Common.AssemblyInfoInputs.cache
+D:\Project\Xin\Xin.Common\obj\Debug\netcoreapp3.1\Xin.Common.AssemblyInfo.cs
+D:\Project\Xin\Xin.Common\obj\Debug\netcoreapp3.1\Xin.Common.dll
+D:\Project\Xin\Xin.Common\obj\Debug\netcoreapp3.1\Xin.Common.pdb

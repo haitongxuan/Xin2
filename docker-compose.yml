@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  xin.webapi:
+    image: ${DOCKER_REGISTRY-}xinwebapi
+    build:
+      context: .
+      dockerfile: Xin.WebApi/Dockerfile
