@@ -8,7 +8,7 @@ services:
     image: xinwebapi
     network_mode: host
     ports:
-    - published: 8916
-      target: 80
     - target: 80
+    - published: 8916
+      target: 8080
 version: '3.4'
