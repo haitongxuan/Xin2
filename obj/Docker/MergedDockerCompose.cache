@@ -7,5 +7,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
     image: xinwebapi
     ports:
+    - published: 8916
+      target: 80
     - target: 80
 version: '3.4'

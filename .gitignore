@@ -3,3 +3,16 @@
 ################################################################################
 
 /Xin.WebApi/log
+/Xin.Entity/obj/Xin.Entites.csproj.nuget.cache
+/Xin.Job/obj/Xin.Job.csproj.nuget.cache
+/Xin.Job.Service/obj/Xin.Job.Service.csproj.nuget.cache
+/Xin.Service/obj/Xin.Service.csproj.nuget.cache
+/Xin.Common/obj/Xin.Common.csproj.nuget.cache
+/Xin.Repository/obj/Xin.Repository.csproj.nuget.cache
+/Xin.Repository.Test/obj/Xin.Repository.Test.csproj.nuget.cache
+/Xin.SignalR/obj/Xin.SignalR.csproj.nuget.cache
+/Xin.WebApi/obj/Debug/netcoreapp2.2/Xin.WebApi.RazorAssemblyInfo.cs
+/Xin.WebApi/obj/Debug/netcoreapp2.2/Xin.WebApi.RazorAssemblyInfo.cache
+/Xin.WebApi/obj/Debug/netcoreapp2.2/Xin.WebApi.csprojAssemblyReference.cache
+/Xin.WebApi/obj/Debug/netcoreapp2.2/Xin.WebApi.AssemblyInfo.cs
+/Xin.WebApi/obj/Debug/netcoreapp2.2/Xin.WebApi.AssemblyInfoInputs.cache

@@ -30,6 +30,7 @@ using Quartz;
 using Xin.SignalR;
 using Xin;
 using Xin.WebApi.Extension;
+using Microsoft.AspNetCore.Http;
 
 namespace Xin.WebApi
 {
@@ -60,6 +61,7 @@ namespace Xin.WebApi
             services.AddTransient<IUowProvider, UowProvider>();
             services.AddTransient<IResUserRepository, ResUserRepository>();
             services.AddTransient(typeof(IDataPager<>), typeof(DataPager<>));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient<IClaimsTransformation, XinClaimsTransformer>();
             services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
@@ -76,7 +78,7 @@ namespace Xin.WebApi
 
             //参考 https://www.cnblogs.com/aishangyipiyema/p/9262642.html
             JWTConfig(services);
-
+            services.AddSignalR();
             //注册Swagger生成器，定义一个和多个Swagger 文档
             services.AddSwaggerGen(c =>
             {
