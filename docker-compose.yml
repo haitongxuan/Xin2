@@ -7,4 +7,4 @@ services:
       context: .
       dockerfile: Xin.WebApi/Dockerfile
     ports:
-      - "8980:80"
+      - "8916:80"
