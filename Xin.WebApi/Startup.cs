@@ -57,10 +57,9 @@ namespace Xin.WebApi
             });
             services.AddDataAccess<Service.Context.XinDBContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("XinConnectionString")));
-            //services.AddScoped<Service.Context.XinDBContext>(options => options.Use)
             services.AddTransient<IUowProvider, UowProvider>();
             services.AddTransient<IResUserRepository, ResUserRepository>();
-            //services.AddTransient(typeof(IDataPager<>), typeof(DataPager<>));
+            services.AddTransient(typeof(IDataPager<>), typeof(DataPager<>));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient<IClaimsTransformation, XinClaimsTransformer>();
