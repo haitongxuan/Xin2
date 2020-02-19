@@ -103,7 +103,7 @@ namespace Xin.WebApi
                 c.IncludeXmlComments(xmlPath);
             });
 
-            //services.AddJobService();
+            services.AddJobService();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
