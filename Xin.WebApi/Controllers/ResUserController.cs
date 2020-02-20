@@ -192,7 +192,7 @@ namespace Xin.WebApi.Controllers
         [HttpPost]
         [Route("GetUserPermissions")]
         [PermissionFilter("User.Edit")]
-        public async Task<ActionResult<DataRes<List<ResPermission>>>> GetUserPermissionsAsync(int userId)
+        public async Task<DataRes<List<ResPermission>>> GetUserPermissionsAsync(int userId)
         {
             using (var uow = _uowProvider.CreateUnitOfWork())
             {

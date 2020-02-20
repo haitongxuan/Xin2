@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Xin.Repository;
 using Xin.Entities;
 using Microsoft.EntityFrameworkCore;
-using Z.EntityFramework.Plus;
 using System.Collections;
 
 namespace Xin.WebApi.Permission

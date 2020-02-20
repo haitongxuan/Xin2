@@ -39,7 +39,6 @@ namespace Xin.Service.Context
                  !optionsBuilder.Options.Extensions.Any(ext => !(ext is RelationalOptionsExtension) && !(ext is CoreOptionsExtension))))
             {
                 optionsBuilder.UseSqlServer(GetConnectionString("XinConnectionString"));
-                optionsBuilder.UseLazyLoadingProxies();
             }
             CustomizeConfiguration(ref optionsBuilder);
             base.OnConfiguring(optionsBuilder);
