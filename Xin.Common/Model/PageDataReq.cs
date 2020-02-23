@@ -12,9 +12,9 @@ namespace Xin.Common.Model
         //  int pageNum = 1, int pageSize = 20, string field = "id", string order = " desc "
         public int pageNum { get; set; } = 1;
         public int pageSize { get; set; } = 20;
-        public string order { get; set; }
+        public string order { get; set; } = "Id";
 
-        public List<ConditionNode> query { get; set; }
+        public virtual List<ConditionNode> query { get; set; } = new List<ConditionNode>();
     }
 
 }

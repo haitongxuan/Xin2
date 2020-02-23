@@ -5,18 +5,17 @@ using Quartz;
 using Microsoft.AspNetCore.SignalR;
 using Xin.SignalR;
 using Xin.Repository;
+using Xin.Common;
 
 namespace Xin.Job.Server
 {
     public class JobListener : IJobListener
     {
         private readonly IUowProvider _uowProvider;
-        private readonly string _hubUrl;
 
-        public JobListener(IUowProvider uowProvider, string hubUrl)
+        public JobListener(IUowProvider uowProvider)
         {
             _uowProvider = uowProvider;
-            _hubUrl = hubUrl;
         }
 
         public string Name => "JobListener";

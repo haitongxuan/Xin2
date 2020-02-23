@@ -59,7 +59,7 @@ namespace Xin.WebApi.Controllers
                     var user = users.First();
                     var name = new Claim(ClaimTypes.Name, user.UserName);
                     var sid = new Claim(ClaimTypes.Sid, user.Id.ToString());
-                    var nameIdentitifier = new Claim(ClaimTypes.NameIdentifier, user.UserCode);
+                    var giveName = new Claim(ClaimTypes.GivenName, user.UserCode);
                     var mobilePhone = new Claim(ClaimTypes.MobilePhone, user.Phone);
                     var dept = user.ResDepartment;
                     var groupSid = new Claim(ClaimTypes.GroupSid, dept.Id.ToString());
@@ -67,9 +67,9 @@ namespace Xin.WebApi.Controllers
                     var claims = new List<Claim>();
                     claims.Add(name);
                     claims.Add(sid);
-                    claims.Add(nameIdentitifier);
                     claims.Add(mobilePhone);
                     claims.Add(groupSid);
+                    claims.Add(giveName);
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSeetings.SecretKey));
                     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

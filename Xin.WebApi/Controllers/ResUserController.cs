@@ -13,6 +13,7 @@ using Xin.Common.Model;
 using System;
 using System.Linq;
 using Xin.WebApi.Helper;
+using System.Security.Claims;
 
 namespace Xin.WebApi.Controllers
 {
@@ -27,6 +28,22 @@ namespace Xin.WebApi.Controllers
         {
             _uowProvider = uowProvider;
             _dataPager = dataPager;
+        }
+
+
+        [HttpGet, Route("GetAccess")]
+        public dynamic GetAccess()
+        {
+            var userName = User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Name)).Value;
+            var userCode = User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.GivenName)).Value;
+            var userId = User.Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Sid)).Value;
+            return new
+            {
+                avatar = "https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png",
+                name = userName,
+                user_id = userId,
+                user_code = userCode
+            };
         }
 
         /// <summary>
@@ -48,10 +65,14 @@ namespace Xin.WebApi.Controllers
                     andorop = "and",
                     key = "StopFlag",
                     binaryop = "eq",
-                    value = "true"
+                    value = false
                 });
                 var fuc = conHelper.GetExpression(query);
                 var filter = new Repository.Filter<ResUser>(fuc);
+                if (string.IsNullOrEmpty(pageReq.order))
+                {
+                    pageReq.order = "Id";
+                }
                 var orderBy = new Repository.OrderBy<ResUser>(pageReq.order, false);
                 try
                 {

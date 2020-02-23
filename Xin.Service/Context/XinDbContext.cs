@@ -119,6 +119,72 @@ namespace Xin.Service.Context
             set;
         }
 
+        public virtual DbSet<ECOrderConfigData> ECOrderConfigDatas
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<ECProduct> ECProducts
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<ECProductBox> ECProductBoxes
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<ECProductCombination> ECProductCombinations
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<ECProductCustomCategory> ECProductCustomCategories
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<ECProductProperty> ECProductProperties
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<ECSalesOrder> ECSalesOrders
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<ECSalesOrderAddress> ECSalesOrderAddresses
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<ECSubProduct> ECSubProducts
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<ECWarehouse> ECWarehouses
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<ECSalesOrderDetail> ECSalesOrderDetails
+        {
+            get;
+            set;
+        }
+
         #region Methods
 
         public void GetAutoCode(string fixHeader, int? length, ref string code)
@@ -320,6 +386,39 @@ namespace Xin.Service.Context
 
             this.ResOperateLogMapping(modelBuilder);
             this.CustomizeResOperateLogMapping(modelBuilder);
+
+            this.ECOrderConfigDataMapping(modelBuilder);
+            this.CustomizeECOrderConfigDataMapping(modelBuilder);
+
+            this.ECProductMapping(modelBuilder);
+            this.CustomizeECProductMapping(modelBuilder);
+
+            this.ECProductBoxMapping(modelBuilder);
+            this.CustomizeECProductBoxMapping(modelBuilder);
+
+            this.ECProductCombinationMapping(modelBuilder);
+            this.CustomizeECProductCombinationMapping(modelBuilder);
+
+            this.ECProductCustomCategoryMapping(modelBuilder);
+            this.CustomizeECProductCustomCategoryMapping(modelBuilder);
+
+            this.ECProductPropertyMapping(modelBuilder);
+            this.CustomizeECProductPropertyMapping(modelBuilder);
+
+            this.ECSalesOrderMapping(modelBuilder);
+            this.CustomizeECSalesOrderMapping(modelBuilder);
+
+            this.ECSalesOrderAddressMapping(modelBuilder);
+            this.CustomizeECSalesOrderAddressMapping(modelBuilder);
+
+            this.ECSubProductMapping(modelBuilder);
+            this.CustomizeECSubProductMapping(modelBuilder);
+
+            this.ECWarehouseMapping(modelBuilder);
+            this.CustomizeECWarehouseMapping(modelBuilder);
+
+            this.ECSalesOrderDetailMapping(modelBuilder);
+            this.CustomizeECSalesOrderDetailMapping(modelBuilder);
 
             RelationshipsMapping(modelBuilder);
             CustomizeMapping(ref modelBuilder);
@@ -566,6 +665,317 @@ namespace Xin.Service.Context
 
         #endregion
 
+        #region ECOrderConfigData Mapping
+
+        private void ECOrderConfigDataMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECOrderConfigData>().ToTable(@"EC_OrderConfigDatas", @"dbo");
+            modelBuilder.Entity<ECOrderConfigData>().Property<string>(x => x.OriginalOrderId).HasColumnName(@"OriginalOrderId").HasColumnType(@"nvarchar(64)").IsRequired().ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECOrderConfigData>().Property<string>(x => x.OriginalAccount).HasColumnName(@"OriginalAccount").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECOrderConfigData>().Property<string>(x => x.EbayOrders).HasColumnName(@"EbayOrders").HasColumnType(@"text").ValueGeneratedNever().HasMaxLength(2147483647);
+            modelBuilder.Entity<ECOrderConfigData>().Property<string>(x => x.EbayOrderDetail).HasColumnName(@"EbayOrderDetail").HasColumnType(@"text").ValueGeneratedNever().HasMaxLength(2147483647);
+            modelBuilder.Entity<ECOrderConfigData>().HasKey(@"OriginalOrderId");
+        }
+
+        partial void CustomizeECOrderConfigDataMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
+        #region ECProduct Mapping
+
+        private void ECProductMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECProduct>().ToTable(@"EC_Product", @"dbo");
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProductSku).HasColumnName(@"ProductSku").HasColumnType(@"nvarchar(64)").IsRequired().ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProductTitle).HasColumnName(@"ProductTitle").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProductTitleEn).HasColumnName(@"ProductTitleEn").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProductSpu).HasColumnName(@"ProductSpu").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<decimal?>(x => x.ProductDeclaredValue).HasColumnName(@"ProductDeclaredValue").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.PdDeclareCurrencyCode).HasColumnName(@"PdDeclareCurrencyCode").HasColumnType(@"nvarchar(10)").ValueGeneratedNever().HasMaxLength(10);
+            modelBuilder.Entity<ECProduct>().Property<decimal?>(x => x.ProductWeight).HasColumnName(@"ProductWeight").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<decimal?>(x => x.ProductNetWeight).HasColumnName(@"ProductNetWeight").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.DefaultSupplierCode).HasColumnName(@"DefaultSupplierCode").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.ProductStatus).HasColumnName(@"ProductStatus").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.SaleStatus).HasColumnName(@"SaleStatus").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<bool?>(x => x.IsQc).HasColumnName(@"IsQc").HasColumnType(@"bit").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<bool?>(x => x.IsExpDate).HasColumnName(@"IsExpDate").HasColumnType(@"bit").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<bool?>(x => x.IsGift).HasColumnName(@"IsGift").HasColumnType(@"bit").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.WarehouseBarcode).HasColumnName(@"WarehouseBarcode").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<decimal?>(x => x.ProductLength).HasColumnName(@"ProductLength").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<decimal?>(x => x.ProductWidth).HasColumnName(@"ProductWidth").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<decimal?>(x => x.ProductHeight).HasColumnName(@"ProductHeight").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.DesignerId).HasColumnName(@"DesignerId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.PersonOpraterId).HasColumnName(@"PersonOpraterId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.PersonSellerId).HasColumnName(@"PersonSellerId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.PersonDevelopId).HasColumnName(@"PersonDevelopId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<System.DateTime?>(x => x.ProductAddTime).HasColumnName(@"ProductAddTime").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<System.DateTime?>(x => x.ProductUpdateTime).HasColumnName(@"ProductUpdateTime").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<System.DateTime?>(x => x.PpnReleaseDate).HasColumnName(@"PpnReleaseDate").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.IsCombination).HasColumnName(@"IsCombination").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.ProductColorId).HasColumnName(@"ProductColorId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.ProductSizeId).HasColumnName(@"ProductSizeId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.PuName).HasColumnName(@"PuName").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.UserOrganizationId).HasColumnName(@"UserOrganizationId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.DefaultWarehouseId).HasColumnName(@"DefaultWarehouseId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.EanCode).HasColumnName(@"EanCode").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProcutCategoryCode1).HasColumnName(@"ProcutCategoryCode1").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProcutCategoryCode2).HasColumnName(@"ProcutCategoryCode2").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProcutCategoryCode3).HasColumnName(@"ProcutCategoryCode3").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProcutCategoryName1).HasColumnName(@"ProcutCategoryName1").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProcutCategoryName2).HasColumnName(@"ProcutCategoryName2").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProcutCategoryName3).HasColumnName(@"ProcutCategoryName3").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<int?>(x => x.OprationType).HasColumnName(@"OprationType").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.BrandCode).HasColumnName(@"BrandCode").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.BrandName).HasColumnName(@"BrandName").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.PrlCode).HasColumnName(@"PrlCode").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.PrlName).HasColumnName(@"PrlName").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.CurrencyCode).HasColumnName(@"CurrencyCode").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.SpUnitPrice).HasColumnName(@"SpUnitPrice").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProduct>().Property<string>(x => x.ProductImages).HasColumnName(@"ProductImages").HasColumnType(@"nvarchar(500)").ValueGeneratedNever().HasMaxLength(500);
+            modelBuilder.Entity<ECProduct>().HasKey(@"ProductSku");
+        }
+
+        partial void CustomizeECProductMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
+        #region ECProductBox Mapping
+
+        private void ECProductBoxMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECProductBox>().ToTable(@"EC_ProductBox", @"dbo");
+            modelBuilder.Entity<ECProductBox>().Property<int>(x => x.Id).HasColumnName(@"Id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
+            modelBuilder.Entity<ECProductBox>().Property<string>(x => x.BoxName).HasColumnName(@"BoxName").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECProductBox>().Property<string>(x => x.BoxNameEn).HasColumnName(@"boxNameEn").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECProductBox>().Property<decimal?>(x => x.BoxWidth).HasColumnName(@"boxWidth").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProductBox>().Property<decimal?>(x => x.BoxHeight).HasColumnName(@"boxHeight").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProductBox>().Property<decimal?>(x => x.BoxWeight).HasColumnName(@"boxWeight").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProductBox>().Property<decimal?>(x => x.BoxLength).HasColumnName(@"boxLength").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProductBox>().Property<int?>(x => x.Quantity).HasColumnName(@"quantity").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProductBox>().Property<int?>(x => x.BoxStatus).HasColumnName(@"boxStatus").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECProductBox>().Property<string>(@"ProductSku").HasColumnName(@"ProductSku").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProductBox>().HasKey(@"Id");
+        }
+
+        partial void CustomizeECProductBoxMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
+        #region ECProductCombination Mapping
+
+        private void ECProductCombinationMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECProductCombination>().ToTable(@"EC_ProductCombination", @"dbo");
+            modelBuilder.Entity<ECProductCombination>().Property<int>(x => x.Id).HasColumnName(@"Id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
+            modelBuilder.Entity<ECProductCombination>().Property<string>(x => x.PcrFnsku).HasColumnName(@"PcrFnsku").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECProductCombination>().Property<string>(x => x.PcrFbaAsin).HasColumnName(@"PcrFbaAsin").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECProductCombination>().Property<string>(x => x.WarehouseId).HasColumnName(@"WarehouseId").HasColumnType(@"nvarchar(10)").ValueGeneratedNever().HasMaxLength(10);
+            modelBuilder.Entity<ECProductCombination>().Property<System.DateTime?>(x => x.PcrAddTime).HasColumnName(@"PcrAddTime").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECProductCombination>().Property<System.DateTime?>(x => x.PcrUpdateTime).HasColumnName(@"PcrUpdateTime").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECProductCombination>().Property<string>(@"ProductSku").HasColumnName(@"ProductSku").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProductCombination>().HasKey(@"Id");
+        }
+
+        partial void CustomizeECProductCombinationMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
+        #region ECProductCustomCategory Mapping
+
+        private void ECProductCustomCategoryMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECProductCustomCategory>().ToTable(@"EC_ProductCustomCategory", @"dbo");
+            modelBuilder.Entity<ECProductCustomCategory>().Property<int>(x => x.Id).HasColumnName(@"Id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
+            modelBuilder.Entity<ECProductCustomCategory>().Property<string>(x => x.PucName).HasColumnName(@"PucName").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECProductCustomCategory>().Property<string>(@"ProductSku").HasColumnName(@"ProductSku").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProductCustomCategory>().HasKey(@"Id");
+        }
+
+        partial void CustomizeECProductCustomCategoryMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
+        #region ECProductProperty Mapping
+
+        private void ECProductPropertyMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECProductProperty>().ToTable(@"EC_ProductProperty", @"dbo");
+            modelBuilder.Entity<ECProductProperty>().Property<int>(x => x.Id).HasColumnName(@"Id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
+            modelBuilder.Entity<ECProductProperty>().Property<string>(x => x.AttrName).HasColumnName(@"AttrName").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECProductProperty>().Property<string>(x => x.AttrNameEn).HasColumnName(@"AttrNameEn").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECProductProperty>().Property<decimal?>(x => x.AttrValue).HasColumnName(@"AttrValue").HasColumnType(@"decimal(12,4)").ValueGeneratedNever();
+            modelBuilder.Entity<ECProductProperty>().Property<string>(@"ProductSku").HasColumnName(@"ProductSku").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECProductProperty>().HasKey(@"Id");
+        }
+
+        partial void CustomizeECProductPropertyMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
+        #region ECSalesOrder Mapping
+
+        private void ECSalesOrderMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECSalesOrder>().ToTable(@"EC_SalesOrder", @"dbo");
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.OrderId).HasColumnName(@"OrderId").HasColumnType(@"nvarchar(20)").IsRequired().ValueGeneratedNever().HasMaxLength(20);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.Plateform).HasColumnName(@"Plateform").HasColumnType(@"nvarchar(20)").ValueGeneratedNever().HasMaxLength(20);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.OrderType).HasColumnName(@"OrderType").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<int?>(x => x.Status).HasColumnName(@"Status").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<int?>(x => x.ProcessAgain).HasColumnName(@"ProcessAgain").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.RefNo).HasColumnName(@"RefNo").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.SaleOrderCode).HasColumnName(@"SaleOrderCode").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.SysOrderCode).HasColumnName(@"SysOrderCode").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.WarehouseOrderCode).HasColumnName(@"WarehouseOrderCode").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.CompanyCode).HasColumnName(@"CompanyCode").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.UserAccount).HasColumnName(@"UserAccount").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.PlatformUserName).HasColumnName(@"PlatformUserName").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.ShippingMethod).HasColumnName(@"ShippingMethod").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.ShippingMethodNo).HasColumnName(@"ShippingMethodNo").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.ShippingMethodPlatform).HasColumnName(@"ShippingMethodPlatform").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<int?>(@"WarehouseId").HasColumnName(@"WarehouseId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.WarehouseCode).HasColumnName(@"WarehouseCode").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<System.DateTime?>(x => x.CreatedDate).HasColumnName(@"CreatedDate").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<System.DateTime?>(x => x.UpdateDate).HasColumnName(@"UpdateDate").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<System.DateTime?>(x => x.DatePaidPlatform).HasColumnName(@"DatePaidPlatform").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<int?>(x => x.PlatformShipStatus).HasColumnName(@"PlatformShipStatus").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<System.DateTime?>(x => x.PlatformShipTime).HasColumnName(@"PlatformShipTime").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<System.DateTime?>(x => x.DateWarehouseShipping).HasColumnName(@"DateWarehouseShipping").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<System.DateTime?>(x => x.DateLatestShip).HasColumnName(@"DateLatestShip").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.Currency).HasColumnName(@"Currency").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<decimal?>(x => x.Amountpaid).HasColumnName(@"Amountpaid").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<decimal?>(x => x.Subtotal).HasColumnName(@"Subtotal").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<decimal?>(x => x.ShipFee).HasColumnName(@"ShipFee").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<decimal?>(x => x.PlatformFeeTotal).HasColumnName(@"PlatformFeeTotal").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<decimal?>(x => x.FinalvaluefeeTotal).HasColumnName(@"FinalvaluefeeTotal").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<decimal?>(x => x.OtherFee).HasColumnName(@"OtherFee").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<decimal?>(x => x.CostShipFee).HasColumnName(@"CostShipFee").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.BuyerId).HasColumnName(@"BuyerId").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.BuyerName).HasColumnName(@"BuyerName").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.BuyerMail).HasColumnName(@"BuyerMail").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.Site).HasColumnName(@"Site").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.CountryCode).HasColumnName(@"CountryCode").HasColumnType(@"nvarchar(2)").ValueGeneratedNever().HasMaxLength(2);
+            modelBuilder.Entity<ECSalesOrder>().Property<int?>(x => x.ProductCount).HasColumnName(@"ProductCount").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<decimal?>(x => x.OrderWeight).HasColumnName(@"OrderWeight").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.OrderDesc).HasColumnName(@"OrderDesc").HasColumnType(@"nvarchar(1500)").ValueGeneratedNever().HasMaxLength(1500);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.PaypalTransactionId).HasColumnName(@"PaypalTransactionId").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.PaymentMethod).HasColumnName(@"PaymentMethod").HasColumnType(@"nvarchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<ECSalesOrder>().Property<byte?>(x => x.AbnormalType).HasColumnName(@"AbnormalType").HasColumnType(@"tinyint").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.AbnormalReason).HasColumnName(@"AbnormalReason").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(@"ShippingAddressId").HasColumnName(@"ShippingAddressId").HasColumnType(@"nvarchar(11)").ValueGeneratedNever().HasMaxLength(11);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(@"OriginalOrderId").HasColumnName(@"OriginalOrderId").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECSalesOrder>().Property<string>(x => x.SyncCode).HasColumnName(@"SyncCode").HasColumnType(@"nvarchar(20)").ValueGeneratedNever().HasMaxLength(20);
+            modelBuilder.Entity<ECSalesOrder>().HasKey(@"OrderId");
+        }
+
+        partial void CustomizeECSalesOrderMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
+        #region ECSalesOrderAddress Mapping
+
+        private void ECSalesOrderAddressMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECSalesOrderAddress>().ToTable(@"EC_SalesOrderAddress", @"dbo");
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.ShippingAddressId).HasColumnName(@"ShippingAddressId").HasColumnType(@"nvarchar(11)").IsRequired().ValueGeneratedNever().HasMaxLength(11);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.Name).HasColumnName(@"Name").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.CompanyName).HasColumnName(@"CompanyName").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.CountryCode).HasColumnName(@"CountryCode").HasColumnType(@"nvarchar(2)").ValueGeneratedNever().HasMaxLength(2);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.CountryName).HasColumnName(@"CountryName").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.CityName).HasColumnName(@"CityName").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.PostalCode).HasColumnName(@"PostalCode").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.Line1).HasColumnName(@"Line1").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.Line2).HasColumnName(@"Line2").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.Line3).HasColumnName(@"Line3").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.District).HasColumnName(@"District").HasColumnType(@"nvarchar(60)").ValueGeneratedNever().HasMaxLength(60);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.State).HasColumnName(@"State").HasColumnType(@"nvarchar(20)").ValueGeneratedNever().HasMaxLength(20);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.Doorplate).HasColumnName(@"Doorplate").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<string>(x => x.Phone).HasColumnName(@"Phone").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<System.DateTime?>(x => x.CreatedDate).HasColumnName(@"CreatedDate").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrderAddress>().Property<System.DateTime?>(x => x.UpdateDate).HasColumnName(@"UpdateDate").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrderAddress>().HasKey(@"ShippingAddressId");
+        }
+
+        partial void CustomizeECSalesOrderAddressMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
+        #region ECSubProduct Mapping
+
+        private void ECSubProductMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECSubProduct>().ToTable(@"EC_SubProducts", @"dbo");
+            modelBuilder.Entity<ECSubProduct>().Property<int>(x => x.Id).HasColumnName(@"Id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
+            modelBuilder.Entity<ECSubProduct>().Property<string>(x => x.PcrProductSku).HasColumnName(@"pcrProductSku").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECSubProduct>().Property<int?>(x => x.PcrQty).HasColumnName(@"pcrQty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECSubProduct>().Property<int?>(@"PrudoctCombinationId").HasColumnName(@"PrudoctCombinationId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECSubProduct>().HasKey(@"Id");
+        }
+
+        partial void CustomizeECSubProductMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
+        #region ECWarehouse Mapping
+
+        private void ECWarehouseMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECWarehouse>().ToTable(@"EC_Warehouse", @"dbo");
+            modelBuilder.Entity<ECWarehouse>().Property<int>(x => x.WarehouseId).HasColumnName(@"WarehouseId").HasColumnType(@"int").IsRequired().ValueGeneratedNever();
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.WarehouseCode).HasColumnName(@"WarehouseCode").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.WarehouseDesc).HasColumnName(@"WarehouseDesc").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECWarehouse>().Property<int?>(x => x.WarehouseType).HasColumnName(@"WarehouseType").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECWarehouse>().Property<int?>(x => x.WarehouseStatus).HasColumnName(@"WarehouseStatus").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECWarehouse>().Property<int?>(x => x.WarehouseVirtual).HasColumnName(@"WarehouseVirtual").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.WarehouseService).HasColumnName(@"WarehouseService").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECWarehouse>().Property<int?>(x => x.IsTransfer).HasColumnName(@"IsTransfer").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.CountryCode).HasColumnName(@"CountryCode").HasColumnType(@"nvarchar(2)").ValueGeneratedNever().HasMaxLength(2);
+            modelBuilder.Entity<ECWarehouse>().Property<int?>(x => x.CountryId).HasColumnName(@"CountryId").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.State).HasColumnName(@"State").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.City).HasColumnName(@"City").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.Contacter).HasColumnName(@"Contacter").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.Company).HasColumnName(@"Company").HasColumnType(@"nvarchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.PhoneNo).HasColumnName(@"PhoneNo").HasColumnType(@"nvarchar(64)").ValueGeneratedNever().HasMaxLength(64);
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.StreetAddress1).HasColumnName(@"StreetAddress1").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.StreetAddress2).HasColumnName(@"StreetAddress2").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.Postcode).HasColumnName(@"Postcode").HasColumnType(@"nvarchar(32)").ValueGeneratedNever().HasMaxLength(32);
+            modelBuilder.Entity<ECWarehouse>().Property<string>(x => x.StreetNumber).HasColumnName(@"StreetNumber").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECWarehouse>().Property<System.DateTime?>(x => x.WarehouseAddTime).HasColumnName(@"WarehouseAddTime").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECWarehouse>().Property<System.DateTime?>(x => x.WarehouseUpdateTime).HasColumnName(@"WarehouseUpdateTime").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECWarehouse>().HasKey(@"WarehouseId");
+        }
+
+        partial void CustomizeECWarehouseMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
+        #region ECSalesOrderDetail Mapping
+
+        private void ECSalesOrderDetailMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECSalesOrderDetail>().ToTable(@"EC_SalesOrderDetail", @"dbo");
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(x => x.OpId).HasColumnName(@"OpId").HasColumnType(@"nvarchar(20)").IsRequired().ValueGeneratedNever().HasMaxLength(20);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(@"OrderId").HasColumnName(@"OrderId").HasColumnType(@"nvarchar(20)").ValueGeneratedNever().HasMaxLength(20);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(x => x.ProductSku).HasColumnName(@"ProductSku").HasColumnType(@"nvarchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(x => x.Sku).HasColumnName(@"Sku").HasColumnType(@"nvarchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(x => x.WarehouseSku).HasColumnName(@"WarehouseSku").HasColumnType(@"nvarchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<decimal?>(x => x.UnitPrice).HasColumnName(@"UnitPrice").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<int?>(x => x.Qty).HasColumnName(@"Qty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(x => x.ProductTitle).HasColumnName(@"ProductTitle").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(x => x.Pic).HasColumnName(@"Pic").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(x => x.OpSite).HasColumnName(@"OpSite").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(x => x.ProductUrl).HasColumnName(@"ProductUrl").HasColumnType(@"nvarchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(x => x.RefItemId).HasColumnName(@"RefItemId").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<string>(x => x.OpRefItemLocation).HasColumnName(@"OpRefItemLocation").HasColumnType(@"nvarchar(128)").ValueGeneratedNever().HasMaxLength(128);
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<decimal?>(x => x.UnitFinalValueFee).HasColumnName(@"UnitFinalValueFee").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<decimal?>(x => x.TransactionPrice).HasColumnName(@"TransactionPrice").HasColumnType(@"decimal(12,2)").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrderDetail>().Property<System.DateTime?>(x => x.OperTime).HasColumnName(@"OperTime").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<ECSalesOrderDetail>().HasKey(@"OpId");
+        }
+
+        partial void CustomizeECSalesOrderDetailMapping(ModelBuilder modelBuilder);
+
+        #endregion
+
         private void RelationshipsMapping(ModelBuilder modelBuilder)
         {
 
@@ -624,6 +1034,79 @@ namespace Xin.Service.Context
 
             modelBuilder.Entity<ResUserPermission>().HasOne(x => x.ResUser).WithMany(op => op.ResUserPermissions).IsRequired(true).HasForeignKey(@"UserId");
             modelBuilder.Entity<ResUserPermission>().HasOne(x => x.ResPermission).WithMany(op => op.ResUserPermissions).IsRequired(true).HasForeignKey(@"PermissionId");
+
+            #endregion
+
+            #region ECOrderConfigData Navigation properties
+
+            modelBuilder.Entity<ECOrderConfigData>().HasMany(x => x.ECSalesOrders).WithOne(op => op.ECOrderConfigData).IsRequired(false).HasForeignKey(@"OriginalOrderId");
+
+            #endregion
+
+            #region ECProduct Navigation properties
+
+            modelBuilder.Entity<ECProduct>().HasMany(x => x.ECProductBoxes).WithOne(op => op.ECProduct).IsRequired(false).HasForeignKey(@"ProductSku");
+            modelBuilder.Entity<ECProduct>().HasMany(x => x.ECProductCombinations).WithOne(op => op.ECProduct).IsRequired(false).HasForeignKey(@"ProductSku");
+            modelBuilder.Entity<ECProduct>().HasMany(x => x.ECProductCustomCategories).WithOne(op => op.ECProduct).IsRequired(false).HasForeignKey(@"ProductSku");
+            modelBuilder.Entity<ECProduct>().HasMany(x => x.ECProductProperties).WithOne(op => op.ECProduct).IsRequired(false).HasForeignKey(@"ProductSku");
+
+            #endregion
+
+            #region ECProductBox Navigation properties
+
+            modelBuilder.Entity<ECProductBox>().HasOne(x => x.ECProduct).WithMany(op => op.ECProductBoxes).IsRequired(false).HasForeignKey(@"ProductSku");
+
+            #endregion
+
+            #region ECProductCombination Navigation properties
+
+            modelBuilder.Entity<ECProductCombination>().HasOne(x => x.ECProduct).WithMany(op => op.ECProductCombinations).IsRequired(false).HasForeignKey(@"ProductSku");
+            modelBuilder.Entity<ECProductCombination>().HasMany(x => x.ECSubProducts).WithOne(op => op.ECProductCombination).IsRequired(false).HasForeignKey(@"PrudoctCombinationId");
+
+            #endregion
+
+            #region ECProductCustomCategory Navigation properties
+
+            modelBuilder.Entity<ECProductCustomCategory>().HasOne(x => x.ECProduct).WithMany(op => op.ECProductCustomCategories).IsRequired(false).HasForeignKey(@"ProductSku");
+
+            #endregion
+
+            #region ECProductProperty Navigation properties
+
+            modelBuilder.Entity<ECProductProperty>().HasOne(x => x.ECProduct).WithMany(op => op.ECProductProperties).IsRequired(false).HasForeignKey(@"ProductSku");
+
+            #endregion
+
+            #region ECSalesOrder Navigation properties
+
+            modelBuilder.Entity<ECSalesOrder>().HasOne(x => x.ECSalesOrderAddress).WithMany(op => op.ECSalesOrders).IsRequired(false).HasForeignKey(@"ShippingAddressId");
+            modelBuilder.Entity<ECSalesOrder>().HasOne(x => x.ECOrderConfigData).WithMany(op => op.ECSalesOrders).IsRequired(false).HasForeignKey(@"OriginalOrderId");
+            modelBuilder.Entity<ECSalesOrder>().HasOne(x => x.ECWarehouse).WithMany(op => op.ECSalesOrders).IsRequired(false).HasForeignKey(@"WarehouseId");
+            modelBuilder.Entity<ECSalesOrder>().HasMany(x => x.ECSalesOrderDetails).WithOne(op => op.ECSalesOrder).IsRequired(false).HasForeignKey(@"OrderId");
+
+            #endregion
+
+            #region ECSalesOrderAddress Navigation properties
+
+            modelBuilder.Entity<ECSalesOrderAddress>().HasMany(x => x.ECSalesOrders).WithOne(op => op.ECSalesOrderAddress).IsRequired(false).HasForeignKey(@"ShippingAddressId");
+
+            #endregion
+
+            #region ECSubProduct Navigation properties
+
+            modelBuilder.Entity<ECSubProduct>().HasOne(x => x.ECProductCombination).WithMany(op => op.ECSubProducts).IsRequired(false).HasForeignKey(@"PrudoctCombinationId");
+
+            #endregion
+
+            #region ECWarehouse Navigation properties
+
+            modelBuilder.Entity<ECWarehouse>().HasMany(x => x.ECSalesOrders).WithOne(op => op.ECWarehouse).IsRequired(false).HasForeignKey(@"WarehouseId");
+
+            #endregion
+
+            #region ECSalesOrderDetail Navigation properties
+
+            modelBuilder.Entity<ECSalesOrderDetail>().HasOne(x => x.ECSalesOrder).WithMany(op => op.ECSalesOrderDetails).IsRequired(false).HasForeignKey(@"OrderId");
 
             #endregion
         }

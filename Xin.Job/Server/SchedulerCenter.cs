@@ -8,6 +8,7 @@ using Xin.Common;
 using System.Reflection;
 using System.Collections.Generic;
 using Quartz.Impl.Matchers;
+using Quartz.Spi;
 
 namespace Xin.Job.Server
 {
@@ -17,18 +18,20 @@ namespace Xin.Job.Server
 	public class SchedulerCenter : ISchedulerCenter
     {
         private readonly IJobListener _listener;
-        public SchedulerCenter(IJobListener listener)
+        private readonly IJobFactory _jobFactory;
+        private StdSchedulerFactory _schedulerFactory;
+        private IScheduler _scheduler;
+        public SchedulerCenter(IJobListener listener, IJobFactory jobFactory)
         {
             _listener = listener;
+            _jobFactory = jobFactory;
         }
-
-        private Task<IScheduler> _scheduler;
 
         /// <summary>
         /// 返回任务计划（调度器）
         /// </summary>
         /// <returns></returns>
-        private Task<IScheduler> Scheduler
+        private IScheduler Scheduler
         {
             get
             {
@@ -40,7 +43,7 @@ namespace Xin.Job.Server
                 NameValueCollection props = new NameValueCollection
                 {
                     { "quartz.serializer.type", "binary" },
-                    //以下配置需要数据库表配合使用，表结构sql地址：https://github.com/quartznet/quartznet/tree/master/database/tables
+                    //以下配置需要数据库表配合使用
                     //{ "quartz.jobStore.type","Quartz.Impl.AdoJobStore.JobStoreTX, Quartz"},
                     //{ "quartz.jobStore.driverDelegateType","Quartz.Impl.AdoJobStore.StdAdoDelegate, Quartz"},
                     //{ "quartz.jobStore.tablePrefix","QRTZ_"},
@@ -50,8 +53,11 @@ namespace Xin.Job.Server
                     //{ "quartz.jobStore.usePropert ies","true"}
 
                 };
-                StdSchedulerFactory factory = new StdSchedulerFactory(props);
-                return this._scheduler = factory.GetScheduler();
+                //罪恶的new了个对象
+                _schedulerFactory = new StdSchedulerFactory(props);
+                _scheduler = _schedulerFactory.GetScheduler().Result;
+                _scheduler.JobFactory = _jobFactory;
+                return _scheduler;
             }
         }
         /// <summary>
@@ -64,7 +70,7 @@ namespace Xin.Job.Server
         {
             BaseQuartzNetResult result;
             //开启调度器
-            await this.Scheduler.Result.Start();
+            await this.Scheduler.Start();
             //创建指定泛型类型参数指定的类型实例
             T t = Activator.CreateInstance<T>();
             //获取任务实例
@@ -76,7 +82,7 @@ namespace Xin.Job.Server
                 scheduleModel.Status = EnumType.JobStatus.Started;
                 t.UpdateScheduleStatus(scheduleModel);
                 //用给定的密钥恢复（取消暂停）IJobDetail
-                await this.Scheduler.Result.ResumeJob(new JobKey(jobName, jobGroup));
+                await this.Scheduler.ResumeJob(new JobKey(jobName, jobGroup));
 
                 result = new BaseQuartzNetResult
                 {
@@ -105,7 +111,7 @@ namespace Xin.Job.Server
         {
             BaseQuartzNetResult result;
             //开启调度器
-            await this.Scheduler.Result.Start();
+            await this.Scheduler.Start();
             //创建指定泛型类型参数指定的类型实例
             T t = Activator.CreateInstance<T>();
             //获取任务实例
@@ -117,7 +123,7 @@ namespace Xin.Job.Server
                 scheduleModel.Status = EnumType.JobStatus.Started;
                 t.UpdateScheduleStatus(scheduleModel);
                 //用给定的密钥恢复（取消暂停）IJobDetail
-                await this.Scheduler.Result.ResumeJob(new JobKey(jobName, jobGroup));
+                await this.Scheduler.ResumeJob(new JobKey(jobName, jobGroup));
                 result = new BaseQuartzNetResult
                 {
                     Code = 1000,
@@ -146,16 +152,16 @@ namespace Xin.Job.Server
 
                 //检查任务是否已存在
                 var jk = new JobKey(m.JobName, m.JobGroup);
-                if (await this.Scheduler.Result.CheckExists(jk))
+                if (await this.Scheduler.CheckExists(jk))
                 {
                     //删除已经存在任务
-                    await this.Scheduler.Result.DeleteJob(jk);
+                    await this.Scheduler.DeleteJob(jk);
                 }
                 //反射获取任务执行类
                 var jobType = FileHelper.GetAbsolutePath(m.AssemblyName, m.AssemblyName + "." + m.ClassName);
                 // 定义这个工作，并将其绑定到我们的IJob实现类
                 IJobDetail job = new JobDetailImpl(m.JobName, m.JobGroup, jobType);
-                //IJobDetail job = JobBuilder.CreateForAsync<T>().WithIdentity(m.JobName, m.JobGroup).Build();
+                //IJobDetail job = JobBuilder.Create().WithIdentity(m.JobName, m.JobGroup).Build();
                 // 创建触发器
                 ITrigger trigger;
                 //校验是否正确的执行周期表达式
@@ -168,9 +174,9 @@ namespace Xin.Job.Server
                     trigger = CreateSimpleTrigger(m);
                 }
                 // 设置监听器
-                this.Scheduler.Result.ListenerManager.AddJobListener(_listener, GroupMatcher<JobKey>.AnyGroup());
+                this.Scheduler.ListenerManager.AddJobListener(_listener, GroupMatcher<JobKey>.AnyGroup());
                 // 告诉Quartz使用我们的触发器来安排作业
-                await this.Scheduler.Result.ScheduleJob(job, trigger);
+                await this.Scheduler.ScheduleJob(job, trigger);
 
                 result.Code = 1000;
             }
@@ -196,10 +202,10 @@ namespace Xin.Job.Server
 
                 //检查任务是否已存在
                 var jk = new JobKey(m.JobName, m.JobGroup);
-                if (await this.Scheduler.Result.CheckExists(jk))
+                if (await this.Scheduler.CheckExists(jk))
                 {
                     //删除已经存在任务
-                    await this.Scheduler.Result.DeleteJob(jk);
+                    await this.Scheduler.DeleteJob(jk);
                 }
                 // 定义这个工作，并将其绑定到我们的IJob实现类
                 IJobDetail job = JobBuilder.CreateForAsync<T>().WithIdentity(m.JobName, m.JobGroup).Build();
@@ -215,9 +221,9 @@ namespace Xin.Job.Server
                     trigger = CreateSimpleTrigger(m);
                 }
                 // 设置监听器
-                this.Scheduler.Result.ListenerManager.AddJobListener(_listener, GroupMatcher<JobKey>.AnyGroup());
+                this.Scheduler.ListenerManager.AddJobListener(_listener, GroupMatcher<JobKey>.AnyGroup());
                 // 告诉Quartz使用我们的触发器来安排作业
-                await this.Scheduler.Result.ScheduleJob(job, trigger);
+                await this.Scheduler.ScheduleJob(job, trigger);
 
                 result.Code = 1000;
             }
@@ -243,7 +249,7 @@ namespace Xin.Job.Server
             {
                 //检查任务是否存在
                 var jk = new JobKey(jobName, jobGroup);
-                if (!await Scheduler.Result.CheckExists(jk))
+                if (!await Scheduler.CheckExists(jk))
                 {
                     return new BaseQuartzNetResult
                     {
@@ -251,7 +257,7 @@ namespace Xin.Job.Server
                         Msg = jobName + "任务未运行"
                     };
                 }
-                await this.Scheduler.Result.PauseJob(jk);
+                await this.Scheduler.PauseJob(jk);
                 if (isDelete)
                 {
                     Activator.CreateInstance<T>().RemoveScheduleModel(jobGroup, jobName);
@@ -284,7 +290,7 @@ namespace Xin.Job.Server
             {
                 //检查任务是否存在
                 var jk = new JobKey(jobName, jobGroup);
-                if (!await Scheduler.Result.CheckExists(jk))
+                if (!await Scheduler.CheckExists(jk))
                 {
                     return new BaseQuartzNetResult
                     {
@@ -293,7 +299,7 @@ namespace Xin.Job.Server
                     };
                 }
                 //任务已经存在则恢复运行暂停任务
-                await this.Scheduler.Result.ResumeJob(jk);
+                await this.Scheduler.ResumeJob(jk);
                 await Console.Out.WriteLineAsync(string.Format("任务“{0}”恢复运行", jobName));
                 result = new BaseQuartzNetResult
                 {
@@ -321,10 +327,10 @@ namespace Xin.Job.Server
             try
             {
                 //判断调度是否已经关闭
-                if (!this.Scheduler.Result.IsShutdown)
+                if (!this.Scheduler.IsShutdown)
                 {
                     //等待任务运行完成
-                    await this.Scheduler.Result.Shutdown();
+                    await this.Scheduler.Shutdown();
                     await Console.Out.WriteLineAsync("任务调度停止！");
                 }
             }

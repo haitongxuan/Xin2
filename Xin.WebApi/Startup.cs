@@ -30,6 +30,7 @@ using Xin.SignalR;
 using Xin;
 using Xin.WebApi.Extension;
 using Microsoft.AspNetCore.Http;
+using Quartz.Spi;
 
 namespace Xin.WebApi
 {
@@ -60,14 +61,17 @@ namespace Xin.WebApi
             services.AddTransient<IResUserRepository, ResUserRepository>();
             services.AddTransient(typeof(IDataPager<>), typeof(DataPager<>));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IJobListener, JobListener>();
+            services.AddTransient<IJobFactory, XinIocJobFactory>();
+            services.AddTransient<ISchedulerCenter, SchedulerCenter>();
 
             services.AddTransient<IClaimsTransformation, XinClaimsTransformer>();
             services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
-            services.AddTransient<IJobListener, JobListener>();
 
             //1.全局异常 2.Json 日期格式化
             services
-                .AddMvc(o => { o.Filters.Add(typeof(WebApiExceptionAttribute)); })
+                .AddMvc()
+                //.AddMvc(o => { o.Filters.Add(typeof(WebApiExceptionAttribute)); })
                 .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";

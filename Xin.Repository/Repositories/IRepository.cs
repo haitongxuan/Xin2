@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Z.BulkOperations;
 
 namespace Xin.Repository
 {
-    public interface IRepository<TEntity>
+    public interface IRepository<TEntity> where TEntity : class, new()
     {
         IEnumerable<TEntity> GetAll(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null);
         Task<IEnumerable<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null);
@@ -97,5 +98,21 @@ namespace Xin.Repository
 
         void SetUnchanged(TEntity entity);
         void Attach(TEntity entity);
+
+        void BulkInsert(IEnumerable<TEntity> entities);
+
+        void BulkInsert(IEnumerable<TEntity> entities, Action<BulkOperation<TEntity>> bulkOperationFactory);
+        Task BulkInsertAsync(IEnumerable<TEntity> entities);
+
+        Task BulkInsertAsync(IEnumerable<TEntity> entities, Action<BulkOperation<TEntity>> bulkOperationFactory);
+        void BulkUpdate(IEnumerable<TEntity> entities, Action<BulkOperation<TEntity>> bulkOperationFactory);
+        void BulkUpdate(IEnumerable<TEntity> entities);
+        Task BulkUpdateAsync(IEnumerable<TEntity> entities);
+        Task BulkUpdateAsync(IEnumerable<TEntity> entities, Action<BulkOperation<TEntity>> bulkOperationFactory);
+        void BulkRemvoe(IEnumerable<TEntity> entities);
+        void BulkRemvoe(IEnumerable<TEntity> entities, Action<BulkOperation<TEntity>> bulkOperationFactory);
+        Task BulkRemveoAsync(IEnumerable<TEntity> entities);
+        Task BulkRemveoAsync(IEnumerable<TEntity> entities, Action<BulkOperation<TEntity>> bulkOperationFactory);
+
     }
 }

@@ -12,5 +12,8 @@ namespace Xin.Repository
 
         IRepository<TEntity> GetRepository<TEntity>() where TEntity : class, new();
         TRepository GetCustomRepository<TRepository>();
+
+        void BulkSaveChanges();
+        Task BulkSaveChangesAsync();
     }
 }

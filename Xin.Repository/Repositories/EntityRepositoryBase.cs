@@ -9,6 +9,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Net;
+using Z.BulkOperations;
 
 namespace Xin.Repository
 {
@@ -155,6 +156,13 @@ namespace Xin.Repository
             if (entity == null) throw new InvalidOperationException("Unable to add a null entity to the repository.");
             Context.Set<TEntity>().Add(entity);
         }
+
+        public virtual async Task BulkDelete(IEnumerable<TEntity> entities)
+        {
+            var set = Context.Set<TEntity>();
+            await set.BulkDeleteAsync(entities);
+        }
+
         public virtual TEntity Update(object entity)
         {
             List<object> keyValues = new List<object>();
@@ -253,7 +261,6 @@ namespace Xin.Repository
         }
         protected IQueryable<TEntity> QueryDb(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes)
         {
-            string DockerHostMachineIpAddress = Dns.GetHostAddresses(new Uri("http://docker.for.win.localhost").Host)[0].ToString();
             IQueryable<TEntity> query = Context.Set<TEntity>();
             if (filter != null)
             {
@@ -308,6 +315,85 @@ namespace Xin.Repository
             var body = Expression.Equal(Expression.Property(param, property),
                 Expression.Constant(value));
             return Expression.Lambda<Func<TItem, bool>>(body, param);
+        }
+
+        public virtual void BulkInsert(IEnumerable<TEntity> entities)
+        {
+            var set = Context.Set<TEntity>();
+            set.BulkInsert(entities);
+        }
+
+        public virtual void BulkInsert(IEnumerable<TEntity> entities,
+            Action<BulkOperation<TEntity>> bulkOperationFactory)
+        {
+            var set = Context.Set<TEntity>();
+            set.BulkInsert(entities, bulkOperationFactory);
+        }
+
+
+        public virtual async Task BulkInsertAsync(IEnumerable<TEntity> entities)
+        {
+            var set = Context.Set<TEntity>();
+            await set.BulkInsertAsync(entities);
+        }
+
+        public virtual async Task BulkInsertAsync(IEnumerable<TEntity> entities
+            , Action<BulkOperation<TEntity>> bulkOperationFactory)
+        {
+            var set = Context.Set<TEntity>();
+            await set.BulkInsertAsync(entities, bulkOperationFactory);
+        }
+
+        public virtual void BulkUpdate(IEnumerable<TEntity> entities)
+        {
+            var set = Context.Set<TEntity>();
+            set.BulkUpdate(entities);
+        }
+
+        public virtual void BulkUpdate(IEnumerable<TEntity> entities,
+            Action<BulkOperation<TEntity>> bulkOperationFactory)
+        {
+            var set = Context.Set<TEntity>();
+            set.BulkUpdate(entities, bulkOperationFactory);
+        }
+
+        public virtual async Task BulkUpdateAsync(IEnumerable<TEntity> entities)
+        {
+            var set = Context.Set<TEntity>();
+            await set.BulkUpdateAsync(entities);
+        }
+
+        public virtual async Task BulkUpdateAsync(IEnumerable<TEntity> entities,
+            Action<BulkOperation<TEntity>> bulkOperationFactory)
+        {
+            var set = Context.Set<TEntity>();
+            await set.BulkUpdateAsync(entities, bulkOperationFactory);
+        }
+
+        public virtual void BulkRemvoe(IEnumerable<TEntity> entities)
+        {
+            var set = Context.Set<TEntity>();
+            set.BulkDelete(entities);
+        }
+
+        public virtual void BulkRemvoe(IEnumerable<TEntity> entities,
+            Action<BulkOperation<TEntity>> bulkOperationFactory)
+        {
+            var set = Context.Set<TEntity>();
+            set.BulkDelete(entities, bulkOperationFactory);
+        }
+
+        public virtual async Task BulkRemveoAsync(IEnumerable<TEntity> entities)
+        {
+            var set = Context.Set<TEntity>();
+            await set.BulkDeleteAsync(entities);
+        }
+
+        public virtual async Task BulkRemveoAsync(IEnumerable<TEntity> entities,
+            Action<BulkOperation<TEntity>> bulkOperationFactory)
+        {
+            var set = Context.Set<TEntity>();
+            await set.BulkDeleteAsync(entities, bulkOperationFactory);
         }
     }
 }

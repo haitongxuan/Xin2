@@ -53,35 +53,42 @@ namespace Xin.Common
             ParameterExpression p = parameter;
             Expression key = Expression.Property(p, condition.key);
             Expression value = Expression.Constant(condition.value);
-            switch (condition.binaryop)
+            try
             {
-                case "like":
-                    return Expression.Call(key, typeof(string).GetMethod("Contains", new Type[] { typeof(string) }), value);
-                case "eq":
-                    return Expression.Equal(key, Expression.Convert(value, key.Type));
-                case "gt":
-                    return Expression.GreaterThan(key, Expression.Convert(value, key.Type));
-                case "gte":
-                    return Expression.GreaterThanOrEqual(key, Expression.Convert(value, key.Type));
-                case "lt":
-                    return Expression.LessThan(key, Expression.Convert(value, key.Type));
-                case "lte":
-                    return Expression.LessThanOrEqual(key, Expression.Convert(value, key.Type));
-                case "neq":
-                    return Expression.NotEqual(key, Expression.Convert(value, key.Type));
-                case "in":
-                    return ParaseIn(p, condition);
-                case "between":
-                    return ParaseBetween(p, condition);
-                default:
-                    throw new NotImplementedException("不支持此操作");
+                switch (condition.binaryop)
+                {
+                    case "like":
+                        return Expression.Call(key, typeof(string).GetMethod("Contains", new Type[] { typeof(string) }), value);
+                    case "eq":
+                        return Expression.Equal(key, Expression.Convert(value, key.Type));
+                    case "gt":
+                        return Expression.GreaterThan(key, Expression.Convert(value, key.Type));
+                    case "gte":
+                        return Expression.GreaterThanOrEqual(key, Expression.Convert(value, key.Type));
+                    case "lt":
+                        return Expression.LessThan(key, Expression.Convert(value, key.Type));
+                    case "lte":
+                        return Expression.LessThanOrEqual(key, Expression.Convert(value, key.Type));
+                    case "neq":
+                        return Expression.NotEqual(key, Expression.Convert(value, key.Type));
+                    case "in":
+                        return ParaseIn(p, condition);
+                    case "between":
+                        return ParaseBetween(p, condition);
+                    default:
+                        throw new NotImplementedException("不支持此操作");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
         private Expression ParaseBetween(ParameterExpression parameter, ConditionNode conditions)
         {
             ParameterExpression p = parameter;
             Expression key = Expression.Property(p, conditions.key);
-            var valueArr = conditions.value.Split(',');
+            var valueArr = conditions.value.ToString().Split(',');
             if (valueArr.Length != 2)
             {
                 throw new NotImplementedException("ParaseBetween参数错误");
@@ -108,7 +115,7 @@ namespace Xin.Common
         {
             ParameterExpression p = parameter;
             Expression key = Expression.Property(p, conditions.key);
-            var valueArr = conditions.value.Split(',');
+            var valueArr = conditions.value.ToString().Split(',');
             Expression expression = Expression.Constant(true, typeof(bool));
             foreach (var itemVal in valueArr)
             {

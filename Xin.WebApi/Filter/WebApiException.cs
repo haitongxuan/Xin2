@@ -16,10 +16,10 @@ namespace Xin.WebApi.Filter
     /// </summary>
     public class WebApiExceptionAttribute : ExceptionFilterAttribute
     {
-       
+
         public override void OnException(ExceptionContext context)
         {
-            Task.Run(()=>WriteErrorLog(context));
+            Task.Run(() => WriteErrorLog(context));
             base.OnException(context);
         }
 
@@ -28,21 +28,19 @@ namespace Xin.WebApi.Filter
 
             var request = context.HttpContext.Request;
             var body = request.Body;
-            var path= request.Path+request.QueryString;
+            var path = request.Path + request.QueryString;
             var postData = "";
-            if (request.Method.ToUpper()=="POST"&& request.ContentLength > 0)
+            if (request.Method.ToUpper() == "POST" && request.ContentLength > 0)
             {
                 //application / json; charset = utf - 8
-                if (request.ContentType.IndexOf("application/json")>=0)
+                if (request.ContentType.IndexOf("application/json") >= 0)
                 {
-                    //Microsoft.AspNetCore.Http.Internal 
-                    //  Request.EnableRewind();
-                    body.Position = 0;//body.Position = 0;才能读到数据
+                    body.Position = 0;//读到数据
                     var bytes = new byte[body.Length];
                     body.Read(bytes, 0, bytes.Length);
                     postData = System.Text.Encoding.UTF8.GetString(bytes);
                 }
-               
+
             }
 
             var log = LogFactory.GetLogger(path);

@@ -67,13 +67,13 @@ namespace Xin.Common
         }
 
         /// <summary>
-        /// BaiWang日志写入
+        /// 定时任务日志写入
         /// </summary>
-        public static void WrtieBaiWangLog(LogLevel logLevel, string message)
+        public static void WrtieQuartzLog(LogLevel logLevel, string message)
         {
             Task.Run(() =>
             {
-                LogHelper m_Log = LogFactory.GetLogger(LogType.BaiWangLog);
+                LogHelper m_Log = LogFactory.GetLogger(LogType.QuartzLog);
                 switch (logLevel)
                 {
                     case LogLevel.Debug:
@@ -125,7 +125,6 @@ namespace Xin.Common
     public enum LogType
     {
         InfoLog,
-        BaiWangLog,
         QuartzLog
     }
 

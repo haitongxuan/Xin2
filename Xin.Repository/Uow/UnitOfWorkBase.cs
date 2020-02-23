@@ -42,7 +42,7 @@ namespace Xin.Repository
         {
             CheckDisposed();
             var repositoryType = typeof(IRepository<TEntity>);
-            var repository = _serviceProvider==null? new GenericEntityRepository<TEntity>() : (IRepository<TEntity>)_serviceProvider.GetService(repositoryType);
+            var repository = _serviceProvider == null ? new GenericEntityRepository<TEntity>() : (IRepository<TEntity>)_serviceProvider.GetService(repositoryType);
             if (repository == null)
             {
                 throw new RepositoryNotFoundException(repositoryType.Name, String.Format("Repository {0} not found in the IOC container. Check if it is registered during startup.", repositoryType.Name));
@@ -64,6 +64,16 @@ namespace Xin.Repository
 
             ((IRepositoryInjection)repository).SetContext(_context);
             return repository;
+        }
+
+        public void BulkSaveChanges()
+        {
+            _context.BulkSaveChanges();
+        }
+
+        public async Task BulkSaveChangesAsync()
+        {
+            await _context.BulkSaveChangesAsync();
         }
 
         #region IDisposable Implementation

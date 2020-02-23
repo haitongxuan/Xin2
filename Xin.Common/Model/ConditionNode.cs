@@ -17,7 +17,7 @@ namespace Xin.Common.Model
         /// <summary>
         /// 值
         /// </summary>
-        public string value { get; set; }
+        public object value { get; set; }
         /// <summary>
         /// 条件运算符
         /// </summary>

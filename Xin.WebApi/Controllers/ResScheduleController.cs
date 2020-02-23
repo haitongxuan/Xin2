@@ -53,15 +53,12 @@ namespace Xin.WebApi.Controllers
             {
                 var conHelper = new ConditionHeler<ResSchedule>("schedulegetpage");
                 var query = pageReq.query;
-                query.Add(new ConditionNode
+                Filter<ResSchedule> filter = null;
+                if (query.Count > 0)
                 {
-                    andorop = "and",
-                    key = "StopFlag",
-                    binaryop = "eq",
-                    value = "true"
-                });
-                var fuc = conHelper.GetExpression(query);
-                var filter = new Repository.Filter<ResSchedule>(fuc);
+                    var fuc = conHelper.GetExpression(query);
+                    filter = new Repository.Filter<ResSchedule>(fuc);
+                }
                 var orderBy = new Repository.OrderBy<ResSchedule>(pageReq.order, false);
                 try
                 {
