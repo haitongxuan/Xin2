@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Xin.Repository")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Xin.ExternalService.EC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("Xin.Repository")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Xin.Repository")]
+[assembly: System.Reflection.AssemblyProductAttribute("Xin.ExternalService.EC")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Xin.ExternalService.EC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。

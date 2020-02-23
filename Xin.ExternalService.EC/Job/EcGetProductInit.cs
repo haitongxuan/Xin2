@@ -33,20 +33,34 @@ namespace Xin.ExternalService.EC.Job
         {
             var models = new List<ECProduct>();
             var reqModel = new Reqeust.Model.WMSGetProductListReqModel();
-            reqModel.Page = 1;
-            reqModel.PageSize = 50;
-            reqModel.GetProductBox = IsOrNotEnum.是;
-            reqModel.GetProductCombination = IsOrNotEnum.是;
-            reqModel.GetProductCustomCategory = IsOrNotEnum.是;
-            reqModel.GetProperty = IsOrNotEnum.是;
-            reqModel.IsCombination = IsOrNotEnum.是;
-            Reqeust.WMSGetProductListRequest req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
-            var resp = await req.Request();
-            foreach (var i in resp.Body)
+            bool finish = false;
+            int pageIndex = 1;
+            while (finish)
             {
-                var m = DataMapper.Mapper<ECProduct, EC_Product>(i);
-                models.Add(m);
+                reqModel.Page = pageIndex;
+                reqModel.PageSize = 50;
+                reqModel.GetProductBox = IsOrNotEnum.Yes;
+                reqModel.GetProductCombination = IsOrNotEnum.Yes;
+                reqModel.GetProductCustomCategory = IsOrNotEnum.Yes;
+                reqModel.GetProperty = IsOrNotEnum.Yes;
+                reqModel.IsCombination = IsOrNotEnum.Yes;
+                Reqeust.WMSGetProductListRequest req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
+                var resp = await req.Request();
+                if (resp.Body.Count == 50)
+                {
+                    foreach (var i in resp.Body)
+                    {
+                        var m = DataMapper.Mapper<ECProduct, EC_Product>(i);
+                        models.Add(m);
+                    }
+                    pageIndex++;
+                }
+                else
+                {
+                    finish = true;
+                }
             }
+
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ECProduct>();

@@ -188,12 +188,12 @@ namespace Xin.ExternalService.EC.Reqeust.Model
         开发产品 = 2
     }
     /// <summary>
-    /// 是否质检
+    /// YesOrNo
     /// </summary>
     public enum IsOrNotEnum
     {
 
-        否 = 0,
-        是 = 1
+        No = 0,
+        Yes = 1
     }
 }

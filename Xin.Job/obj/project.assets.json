@@ -2697,7 +2697,7 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xin.EFCore.Extension/1.0.5": {
+      "Xin.EFCore.Extension/1.0.7": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.5.0",
@@ -2713,10 +2713,7 @@
         },
         "runtime": {
           "lib/netstandard2.0/Xin.EFCore.Extension.dll": {}
-        },
-        "frameworkReferences": [
-          ".NETStandard,Version=v2.0"
-        ]
+        }
       },
       "Xin.Common/1.0.0": {
         "type": "project",
@@ -2744,10 +2741,7 @@
         },
         "runtime": {
           "bin/placeholder/Xin.Entites.dll": {}
-        },
-        "frameworkReferences": [
-          ".NETStandard,Version=v2.0"
-        ]
+        }
       },
       "Xin.Repository/1.0.0": {
         "type": "project",
@@ -2756,17 +2750,14 @@
           "Microsoft.EntityFrameworkCore.Relational": "2.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.0.0",
           "Xin.Common": "1.0.0",
-          "Xin.EFCore.Extension": "1.0.5"
+          "Xin.EFCore.Extension": "1.0.7"
         },
         "compile": {
           "bin/placeholder/Xin.Repository.dll": {}
         },
         "runtime": {
           "bin/placeholder/Xin.Repository.dll": {}
-        },
-        "frameworkReferences": [
-          ".NETStandard,Version=v2.0"
-        ]
+        }
       },
       "Xin.Service/1.0.0": {
         "type": "project",
@@ -8913,16 +8904,16 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "Xin.EFCore.Extension/1.0.5": {
-      "sha512": "sr2TEGB5sakxgW6o998DXA/lkFlN76Mh2CqtW6xq1KEsxWSUXLxoO3RXkVq4trmPo7Hx4/sHjKz1f0GCj5eI7A==",
+    "Xin.EFCore.Extension/1.0.7": {
+      "sha512": "EGx109SC+P9iyt0+XsAZ7BgsLb+wRl5dYvkDmUvB4/ynjNA1cTYrTn3I4qGBWEjnfAVfEwHh+TKvo4AWIxVfbg==",
       "type": "package",
-      "path": "xin.efcore.extension/1.0.5",
+      "path": "xin.efcore.extension/1.0.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Xin.EFCore.Extension.dll",
         "lib/netstandard2.0/Xin.EFCore.Extension.xml",
-        "xin.efcore.extension.1.0.5.nupkg.sha512",
+        "xin.efcore.extension.1.0.7.nupkg.sha512",
         "xin.efcore.extension.nuspec"
       ]
     },
