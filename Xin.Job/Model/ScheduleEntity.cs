@@ -12,7 +12,7 @@ namespace Xin.Job.Model
         /// <summary>
         /// 任务编号
         /// </summary>
-        public int JobId { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// 任务分组
         /// </summary>
@@ -32,7 +32,7 @@ namespace Xin.Job.Model
         /// <summary>
         /// 任务状态
         /// </summary>
-        public EnumType.JobStatus Status { get; set; }
+        public EnumType.JobStatus JobStatus { get; set; }
         /// <summary>
         /// 任务运行状态
         /// </summary>

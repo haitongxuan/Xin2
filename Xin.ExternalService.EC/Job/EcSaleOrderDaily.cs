@@ -14,7 +14,7 @@ namespace Xin.ExternalService.EC.Job
             var service = new Reqeust.EBGetOrderListRequest(login.Username, login.Password, reqModel);
         }
 
-        public override Task Job()
+        public override Task Job(DateTime? datetime = null)
         {
             throw new NotImplementedException();
         }

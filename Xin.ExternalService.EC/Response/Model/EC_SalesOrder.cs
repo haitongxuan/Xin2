@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -19,239 +20,243 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 订单ID
         /// </summary>
-
+        [JsonProperty(PropertyName = "order_id")]
         public string OrderId { get; set; }
         /// <summary>
         /// 平台代码
         /// </summary>
 
+        [JsonProperty(PropertyName = "platform")]
         public string Plateform { get; set; }
         /// <summary>
         /// 订单类型，sale：正常销售订单，resend：重发订单，line：线下订单
         /// </summary>
-
+        [JsonProperty(PropertyName = "orderType")]
         public string OrderType { get; set; }
         /// <summary>
         /// 订单状态
         /// </summary>
-
+        [JsonProperty(PropertyName = "status")]
         public int? Status { get; set; }
         /// <summary>
         /// 待发货下的处理状态，1:已处理,2:未处理，3：处理异常
         /// </summary>
-
+        [JsonProperty(PropertyName = "processAgain")]
         public int? ProcessAgain { get; set; }
         /// <summary>
         /// 参考单号
         /// </summary>
-
+        [JsonProperty(PropertyName = "refNo")]
         public string RefNo { get; set; }
         /// <summary>
         /// 销售单号
         /// </summary>
-
+        [JsonProperty(PropertyName = "saleOrderCode")]
         public string SaleOrderCode { get; set; }
         /// <summary>
         /// 系统单号
         /// </summary>
-
+        [JsonProperty(PropertyName = "sysOrderCode")]
         public string SysOrderCode { get; set; }
         /// <summary>
         /// 仓库单号
         /// </summary>
-
+        [JsonProperty(PropertyName = "warehouseOrderCode")]
         public string WarehouseOrderCode { get; set; }
         /// <summary>
         /// 公司代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "companyCode")]
         public string CompanyCode { get; set; }
         /// <summary>
         /// 账号
         /// </summary>
-
+        [JsonProperty(PropertyName = "userAccount")]
         public string UserAccount { get; set; }
         /// <summary>
         /// 账号别名
         /// </summary>
-
+        [JsonProperty(PropertyName = "platformUserName")]
         public string PlatformUserName { get; set; }
         /// <summary>
         /// 仓库运输方式代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "shippingMethod")]
         public string ShippingMethod { get; set; }
         /// <summary>
         /// 跟踪号
         /// </summary>
-
+        [JsonProperty(PropertyName = "shippingMethodNo")]
         public string ShippingMethodNo { get; set; }
         /// <summary>
         /// 平台运输方式代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "shippingMethodPlatform")]
         public string ShippingMethodPlatform { get; set; }
         /// <summary>
         /// 仓库Id
         /// </summary>
+        [JsonProperty(PropertyName = "warehouseId")]
         public string WarehouseId { get; set; }
         /// <summary>
         /// 仓库代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "warehouseCode")]
         public string WarehouseCode { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "createdDate")]
         public DateTime? CreatedDate { get; set; }
         /// <summary>
         /// 更新时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "updateDate")]
         public DateTime? UpdateDate { get; set; }
         /// <summary>
         /// 平台付款时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "datePaidPlatform")]
         public DateTime? DatePaidPlatform { get; set; }
         /// <summary>
         /// 平台发货状态，0：未发货，1：已发货
         /// </summary>
-
+        [JsonProperty(PropertyName = "platformShipStatus")]
         public int? PlatformShipStatus { get; set; }
         /// <summary>
         /// 平台发货时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "platformShipTime")]
         public DateTime? PlatformShipTime { get; set; }
         /// <summary>
         /// 仓库发货时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "dateWarehouseShipping")]
         public DateTime? DateWarehouseShipping { get; set; }
         /// <summary>
         /// 最晚发货时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "dateLatestShip")]
         public DateTime? DateLatestShip { get; set; }
         /// <summary>
         /// 币种
         /// </summary>
-
+        [JsonProperty(PropertyName = "currency")]
         public string Currency { get; set; }
         /// <summary>
         /// 总金额
         /// </summary>
-
+        [JsonProperty(PropertyName = "amountpaid")]
         public decimal? Amountpaid { get; set; }
         /// <summary>
         /// 销售额
         /// </summary>
-
+        [JsonProperty(PropertyName = "subtotal")]
         public decimal? Subtotal { get; set; }
         /// <summary>
         /// 运费
         /// </summary>
-
+        [JsonProperty(PropertyName = "shipFee")]
         public decimal? ShipFee { get; set; }
         /// <summary>
         /// 总手续费
         /// </summary>
-
+        [JsonProperty(PropertyName = "platformFeeTotal")]
         public decimal? PlatformFeeTotal { get; set; }
         /// <summary>
         /// 总交易费
         /// </summary>
-
+        [JsonProperty(PropertyName = "finalvaluefeeTotal")]
         public decimal? FinalvaluefeeTotal { get; set; }
         /// <summary>
         /// 其他费用
         /// </summary>
-
+        [JsonProperty(PropertyName = "otherFee")]
         public decimal? OtherFee { get; set; }
         /// <summary>
         /// 试算运费
         /// </summary>
-
+        [JsonProperty(PropertyName = "costShipFee")]
         public decimal? CostShipFee { get; set; }
         /// <summary>
         /// 买家ID
         /// </summary>
-
+        [JsonProperty(PropertyName = "buyerId")]
         public string BuyerId { get; set; }
         /// <summary>
         /// 买家名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "buyerName")]
         public string BuyerName { get; set; }
         /// <summary>
         /// 买家邮箱
         /// </summary>
-
+        [JsonProperty(PropertyName = "buyerMail")]
         public string BuyerMail { get; set; }
         /// <summary>
         /// 订单站点
         /// </summary>
-
+        [JsonProperty(PropertyName = "site")]
         public string Site { get; set; }
         /// <summary>
         /// 收件人国家二字码
         /// </summary>
-
+        [JsonProperty(PropertyName = "countryCode")]
         public string CountryCode { get; set; }
         /// <summary>
         /// 订单出库数量
         /// </summary>
-
+        [JsonProperty(PropertyName = "productCount")]
         public int? ProductCount { get; set; }
         /// <summary>
         /// 订单重量
         /// </summary>
-
+        [JsonProperty(PropertyName = "orderWeight")]
         public decimal? OrderWeight { get; set; }
         /// <summary>
         /// 买家留言
         /// </summary>
-
+        [JsonProperty(PropertyName = "orderDesc")]
         public string OrderDesc { get; set; }
         /// <summary>
         /// paypal交易号
         /// </summary>
-
+        [JsonProperty(PropertyName = "paypalTransactionId")]
         public string PaypalTransactionId { get; set; }
         /// <summary>
         /// 付款方式/支付方式（仅Shopee平台可用）
         /// </summary>
-
+        [JsonProperty(PropertyName = "paymentMethod")]
         public string PaymentMethod { get; set; }
         /// <summary>
         /// 异常类型：1:换地址,2:退货取消,3:换SKU,4:其他，5：同步服务商失败，6:断货,7：SKU未找到, 11:无门牌号, 12:计费失败, 21:账户未设置FBA/FBC订单分配规则，22:表示仓库缺货的问题类型，23:表示仓库未找到SKU信息的问题类型,30:仓库拦截中
         /// </summary>
-
+        [JsonProperty(PropertyName = "abnormalType")]
         public byte? AbnormalType { get; set; }
         /// <summary>
         /// 异常信息
         /// </summary>
-
+        [JsonProperty(PropertyName = "abnormalReason")]
         public string AbnormalReason { get; set; }
         /// <summary>
         /// 同步代码
         /// </summary>
-
         public string SyncCode { get; set; }
 
         /// <summary>
         /// 订单地址， getAddress=1时返回
         /// </summary>
+        [JsonProperty(PropertyName = "orderAddress")]
         public List<EC_SalesOrderAddress> SalesOrderAddress { get; set; }
         /// <summary>
         /// 原始订单信息
         /// </summary>
+        [JsonProperty(PropertyName = "orderConfigDatas")]
         public List<EC_OrderConfigDatas> OrderConfigDatas { get; set; }
         /// <summary>
         /// 订单明细，getDetail=1时返回
         /// </summary>
+        [JsonProperty(PropertyName = "orderDetails")]
         public List<EC_SalesOrderDetail> OrderDetails { get; set; }
     }
 }

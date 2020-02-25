@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 using System;
 
 namespace Xin.ExternalService.EC.Response.Model
@@ -17,17 +18,19 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 属性名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "attrName")]
         public string AttrName { get; set; }
         /// <summary>
         /// 属性英文名称
         /// </summary>
 
+        [JsonProperty(PropertyName = "attrNameEn")]
         public string AttrNameEn { get; set; }
         /// <summary>
         /// 属性值
         /// </summary>
 
+        [JsonProperty(PropertyName = "attrValue")]
         public decimal? AttrValue { get; set; }
 
     }

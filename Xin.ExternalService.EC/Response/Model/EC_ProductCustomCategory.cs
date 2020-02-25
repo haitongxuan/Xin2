@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 using System;
 
 namespace Xin.ExternalService.EC.Response.Model
@@ -18,7 +19,7 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 自定义分类名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "pucName")]
         public string PucName { get; set; }
         /// <summary>
         /// 

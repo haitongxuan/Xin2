@@ -215,11 +215,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            ".NETStandard,Version=v2.0": {
-              "privateAssets": "none"
-            }
-          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
@@ -287,7 +282,7 @@
             },
             "Xin.EFCore.Extension": {
               "target": "Package",
-              "version": "[1.0.7, )"
+              "version": "[1.0.8, )"
             }
           },
           "imports": [

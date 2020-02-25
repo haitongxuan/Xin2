@@ -395,5 +395,12 @@ namespace Xin.Repository
             var set = Context.Set<TEntity>();
             await set.BulkDeleteAsync(entities, bulkOperationFactory);
         }
+
+        public virtual async Task<int> DeleteAll()
+        {
+            var set = Context.Set<TEntity>();
+            int reslut = await set.DeleteFromQueryAsync();
+            return reslut;
+        }
     }
 }

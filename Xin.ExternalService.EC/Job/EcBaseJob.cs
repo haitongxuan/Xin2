@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using Quartz;
 using Xin.Common;
 using Newtonsoft.Json;
+using Xin.Job;
 
 namespace Xin.ExternalService.EC.Job
 {
-    public abstract class EcBaseJob : IJob
+    public abstract class EcBaseJob : BaseJob
     {
         protected readonly EC.LoginModel login;
+        protected readonly DateTime now = DateTime.Now;
 
         public EcBaseJob()
         {
@@ -23,8 +25,7 @@ namespace Xin.ExternalService.EC.Job
             };
         }
 
-        public abstract Task Execute(IJobExecutionContext context);
-        public abstract Task Job();
+        public abstract Task Job(DateTime? datetime = null);
     }
 
 }

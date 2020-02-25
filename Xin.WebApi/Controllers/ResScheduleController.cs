@@ -16,6 +16,7 @@ using Xin.Job.Service;
 using log4net;
 using log4net.Repository;
 using log4net.Core;
+using System.Security.Claims;
 
 namespace Xin.WebApi.Controllers
 {
@@ -97,7 +98,7 @@ namespace Xin.WebApi.Controllers
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
                     var repository = uow.GetRepository<ResSchedule>();
-                    string us = User.Claims.FirstOrDefault(p => p.Type.Equals("Sid")).Value;
+                    string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
                     int userid = Convert.ToInt32(us);
                     model.CreateUid = userid;
                     model.WriteUid = userid;
@@ -110,7 +111,7 @@ namespace Xin.WebApi.Controllers
             catch (Exception ex)
             {
                 res.code = ResCode.Error;
-                res.msg = ex.Message;
+                res.msg = $"{ex.Message}:{ex.InnerException.Message}";
             }
             return res;
         }
@@ -131,7 +132,7 @@ namespace Xin.WebApi.Controllers
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
                     var repository = uow.GetRepository<ResSchedule>();
-                    string us = User.Claims.FirstOrDefault(p => p.Type.Equals("Sid")).Value;
+                    string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
                     int userid = Convert.ToInt32(us);
                     model.WriteUid = userid;
                     model.WriteDate = DateTime.Now;
@@ -142,7 +143,7 @@ namespace Xin.WebApi.Controllers
             catch (Exception ex)
             {
                 res.code = ResCode.Error;
-                res.msg = ex.Message;
+                res.msg = $"{ex.Message}:{ex.InnerException.Message}";
             }
             return res;
         }
@@ -162,7 +163,7 @@ namespace Xin.WebApi.Controllers
             {
                 var repository = uow.GetRepository<ResSchedule>();
                 var model = repository.Get(id);
-                var scheduleEntity = DataMapper.MapperToModel(new ScheduleEntity(), model);
+                var scheduleEntity = Mapper<ResSchedule, ScheduleEntity>.Map(model);
                 //给IJob设置参数
                 scheduleEntity.Agrs = new Dictionary<string, object> { { "orderId", id } };
                 ScheduleManage.Instance.AddScheduleList(scheduleEntity);

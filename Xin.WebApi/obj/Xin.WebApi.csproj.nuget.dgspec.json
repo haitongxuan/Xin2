@@ -193,11 +193,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            ".NETStandard,Version=v2.0": {
-              "privateAssets": "none"
-            }
-          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
@@ -228,12 +223,6 @@
         "frameworks": {
           "netcoreapp2.0": {
             "projectReferences": {
-              "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj"
-              },
-              "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj"
-              },
               "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj": {
                 "projectPath": "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj"
               },
@@ -273,11 +262,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            ".NETStandard,Version=v2.0": {
-              "privateAssets": "none"
-            }
-          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
@@ -345,7 +329,7 @@
             },
             "Xin.EFCore.Extension": {
               "target": "Package",
-              "version": "[1.0.7, )"
+              "version": "[1.0.8, )"
             }
           },
           "imports": [
@@ -509,11 +493,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            ".NETStandard,Version=v2.0": {
-              "privateAssets": "none"
-            }
-          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
@@ -544,17 +523,8 @@
         "frameworks": {
           "netcoreapp2.0": {
             "projectReferences": {
-              "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj"
-              },
               "D:\\Project\\Xin\\Xin.Job.Service\\Xin.Job.Service.csproj": {
                 "projectPath": "D:\\Project\\Xin\\Xin.Job.Service\\Xin.Job.Service.csproj"
-              },
-              "D:\\Project\\Xin\\Xin.Job\\Xin.Job.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Job\\Xin.Job.csproj"
-              },
-              "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj"
               },
               "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj": {
                 "projectPath": "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj"
@@ -614,11 +584,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            ".NETStandard,Version=v2.0": {
-              "privateAssets": "none"
-            }
-          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }

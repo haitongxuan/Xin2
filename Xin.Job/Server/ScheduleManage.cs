@@ -101,7 +101,7 @@ namespace Xin.Job.Server
         /// <param name="entity"></param>
         public virtual void UpdateScheduleStatus(ScheduleEntity entity)
         {
-            ScheduleList.Where(w => w.JobName == entity.JobName && w.JobGroup == entity.JobGroup).FirstOrDefault().Status = entity.Status;
+            ScheduleList.Where(w => w.JobName == entity.JobName && w.JobGroup == entity.JobGroup).FirstOrDefault().JobStatus = entity.JobStatus;
         }
     }
 }

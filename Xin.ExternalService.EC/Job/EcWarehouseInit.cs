@@ -27,7 +27,7 @@ namespace Xin.ExternalService.EC.Job
             await Job();
         }
 
-        public override async Task Job()
+        public override async Task Job(DateTime? datetime = null)
         {
 
             var request = new Reqeust.WMSGetWarehouseRequest(login.Username, login.Password);
@@ -42,7 +42,7 @@ namespace Xin.ExternalService.EC.Job
                         //删除表中原有数据
                         var oldEntities = await repository.GetAllAsync();
                         if (oldEntities != null && oldEntities.Count() > 0)
-                            await repository.BulkRemveoAsync(oldEntities);
+                            await repository.DeleteAll();
                         //批量写入新数据
                         var models = response.Body;
                         var entities = new List<ECWarehouse>();
@@ -51,7 +51,7 @@ namespace Xin.ExternalService.EC.Job
                             var entity = DataMapper.Mapper<ECWarehouse, Response.Model.EC_Warehouse>(m);
                             entities.Add(entity);
                         }
-                        await repository.BulkInsertAsync(entities);
+                        await repository.BulkInsertAsync(entities, x => x.IncludeGraph = true);
                         await uow.BulkSaveChangesAsync();
                     }
                 }

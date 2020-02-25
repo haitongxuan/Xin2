@@ -10,8 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Xin.SignalR\Xin.SignalR.csproj" />
-    <ProjectReference Include="..\Xin.Common\Xin.Common.csproj" />
-    <ProjectReference Include="..\Xin.Entity\Xin.Entites.csproj" />
     <ProjectReference Include="..\Xin.Service\Xin.Service.csproj" />
   </ItemGroup>
 

@@ -14,6 +14,7 @@ using Xin.Common;
 using Xin.WebApi;
 using Xin.WebApi.Helper;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace LQExtension.Api.Controllers
 {
@@ -123,7 +124,7 @@ namespace LQExtension.Api.Controllers
             DataRes<bool> res = new DataRes<bool>() { code = ResCode.Success, data = true };
 
             model.WriteDate = DateTime.Now;
-            model.WriteUid = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Sid").Value);
+            model.WriteUid = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid).Value);
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ResRole>();

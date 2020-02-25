@@ -2697,7 +2697,7 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xin.EFCore.Extension/1.0.7": {
+      "Xin.EFCore.Extension/1.0.8": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.5.0",
@@ -2709,10 +2709,10 @@
           "System.Reflection.TypeExtensions": "4.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/Xin.EFCore.Extension.dll": {}
+          "lib/netstandard2.0/Z.EntityFramework.Extensions.EFCore.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Xin.EFCore.Extension.dll": {}
+          "lib/netstandard2.0/Z.EntityFramework.Extensions.EFCore.dll": {}
         }
       },
       "Xin.Common/1.0.0": {
@@ -2748,8 +2748,6 @@
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
           "Quartz": "3.0.7",
-          "Xin.Common": "1.0.0",
-          "Xin.Entites": "1.0.0",
           "Xin.Service": "1.0.0",
           "Xin.SignalR": "1.0.0"
         },
@@ -2758,10 +2756,7 @@
         },
         "runtime": {
           "bin/placeholder/Xin.Job.dll": {}
-        },
-        "frameworkReferences": [
-          ".NETStandard,Version=v2.0"
-        ]
+        }
       },
       "Xin.Repository/1.0.0": {
         "type": "project",
@@ -2770,7 +2765,7 @@
           "Microsoft.EntityFrameworkCore.Relational": "2.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.0.0",
           "Xin.Common": "1.0.0",
-          "Xin.EFCore.Extension": "1.0.7"
+          "Xin.EFCore.Extension": "1.0.8"
         },
         "compile": {
           "bin/placeholder/Xin.Repository.dll": {}
@@ -2793,10 +2788,7 @@
         },
         "runtime": {
           "bin/placeholder/Xin.Service.dll": {}
-        },
-        "frameworkReferences": [
-          ".NETStandard,Version=v2.0"
-        ]
+        }
       },
       "Xin.SignalR/1.0.0": {
         "type": "project",
@@ -2814,10 +2806,7 @@
         },
         "runtime": {
           "bin/placeholder/Xin.SignalR.dll": {}
-        },
-        "frameworkReferences": [
-          ".NETStandard,Version=v2.0"
-        ]
+        }
       }
     }
   },
@@ -8924,16 +8913,16 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "Xin.EFCore.Extension/1.0.7": {
-      "sha512": "EGx109SC+P9iyt0+XsAZ7BgsLb+wRl5dYvkDmUvB4/ynjNA1cTYrTn3I4qGBWEjnfAVfEwHh+TKvo4AWIxVfbg==",
+    "Xin.EFCore.Extension/1.0.8": {
+      "sha512": "pFEfh1ilPhGrmgV9IccfyAQtu/zyK3090GTh+bNU3+cyiXYTtllCogTR73jWJpREmzS8x9q7T/p4lo8K923qjg==",
       "type": "package",
-      "path": "xin.efcore.extension/1.0.7",
+      "path": "xin.efcore.extension/1.0.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/netstandard2.0/Xin.EFCore.Extension.dll",
-        "lib/netstandard2.0/Xin.EFCore.Extension.xml",
-        "xin.efcore.extension.1.0.7.nupkg.sha512",
+        "lib/netstandard2.0/Z.EntityFramework.Extensions.EFCore.dll",
+        "lib/netstandard2.0/Z.EntityFramework.Extensions.EFCore.xml",
+        "xin.efcore.extension.1.0.8.nupkg.sha512",
         "xin.efcore.extension.nuspec"
       ]
     },
@@ -9036,11 +9025,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "frameworkReferences": {
-          ".NETStandard,Version=v2.0": {
-            "privateAssets": "none"
-          }
-        },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }

@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -19,239 +20,241 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 产品SKU代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "productSku")]
         public string ProductSku { get; set; }
         /// <summary>
         /// 名称CN
         /// </summary>
-
+        [JsonProperty(PropertyName = "productTitle")]
         public string ProductTitle { get; set; }
         /// <summary>
         /// 名称EN
         /// </summary>
-
+        [JsonProperty(PropertyName = "productTitleEn")]
         public string ProductTitleEn { get; set; }
         /// <summary>
         /// 产品款式代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "productSpu")]
         public string ProductSpu { get; set; }
         /// <summary>
         /// 申报价值
         /// </summary>
-
+        [JsonProperty(PropertyName = "productDeclaredValue")]
         public decimal? ProductDeclaredValue { get; set; }
         /// <summary>
         /// 申报币种：例如USD
         /// </summary>
-
+        [JsonProperty(PropertyName = "pdDeclareCurrencyCode")]
         public string PdDeclareCurrencyCode { get; set; }
         /// <summary>
         /// 重量，单位Kg
         /// </summary>
-
+        [JsonProperty(PropertyName = "productWeight")]
         public decimal? ProductWeight { get; set; }
         /// <summary>
         /// 净重，单位Kg
         /// </summary>
-
+        [JsonProperty(PropertyName = "productNetWeight")]
         public decimal? ProductNetWeight { get; set; }
         /// <summary>
         /// 默认供应商代码。提供接口getAllSupplier查询
-
         /// </summary>
-
+        [JsonProperty(PropertyName = "defaultSupplierCode")]
         public string DefaultSupplierCode { get; set; }
         /// <summary>
         /// 产品状态: 0:不可用,1:可用,2:开发产品
         /// </summary>
-
+        [JsonProperty(PropertyName = "productStatus")]
         public int? ProductStatus { get; set; }
         /// <summary>
         /// 产品销售状态Id，数据可自定义。提供接口getSaleStatus查询
         /// </summary>
-
+        [JsonProperty(PropertyName = "saleStatus")]
         public int? SaleStatus { get; set; }
         /// <summary>
         /// 是否质检 0否 1是
         /// </summary>
-
+        [JsonProperty(PropertyName = "isQc")]
         public int? IsQc { get; set; }
         /// <summary>
         /// 是否存在有效期 0否 1是
         /// </summary>
-
+        [JsonProperty(PropertyName = "isExpDate")]
         public int? IsExpDate { get; set; }
         /// <summary>
         /// 是否赠品 0否 1是
         /// </summary>
-
+        [JsonProperty(PropertyName = "isGift")]
         public int? IsGift { get; set; }
         /// <summary>
         /// 仓库条码
         /// </summary>
-
+        [JsonProperty(PropertyName = "warehouseBarcode")]
         public string WarehouseBarcode { get; set; }
         /// <summary>
         /// 产品长度，单位CM
         /// </summary>
-
+        [JsonProperty(PropertyName = "productLength")]
         public decimal? ProductLength { get; set; }
         /// <summary>
         /// 产品宽度，单位CM
         /// </summary>
-
+        [JsonProperty(PropertyName = "productWidth")]
         public decimal? ProductWidth { get; set; }
         /// <summary>
         /// 产品高度，单位CM
         /// </summary>
-
+        [JsonProperty(PropertyName = "productHeight")]
         public decimal? ProductHeight { get; set; }
         /// <summary>
         /// 设计师Id
         /// </summary>
-
+        [JsonProperty(PropertyName = "designerId")]
         public int? DesignerId { get; set; }
         /// <summary>
         /// 采购负责人Id
         /// </summary>
-
+        [JsonProperty(PropertyName = "personOpraterId")]
         public int? PersonOpraterId { get; set; }
         /// <summary>
         /// 销售负责人Id
         /// </summary>
-
+        [JsonProperty(PropertyName = "personSellerId")]
         public int? PersonSellerId { get; set; }
         /// <summary>
         /// 开发负责人Id
         /// </summary>
-
+        [JsonProperty(PropertyName = "personDevelopId")]
         public int? PersonDevelopId { get; set; }
         /// <summary>
         /// 产品创建时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "productAddTime")]
         public DateTime? ProductAddTime { get; set; }
         /// <summary>
         /// 产品更新时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "productUpdateTime")]
         public DateTime? ProductUpdateTime { get; set; }
         /// <summary>
         /// 审核时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "ppnReleaseDate")]
         public DateTime? PpnReleaseDate { get; set; }
         /// <summary>
         /// 是否是组合产品 ， 0否 1是
         /// </summary>
-
+        [JsonProperty(PropertyName = "isCombination")]
         public int? IsCombination { get; set; }
         /// <summary>
         /// 产品颜色Id，数据可自定义。提供接口getProductColor查询
         /// </summary>
-
+        [JsonProperty(PropertyName = "productColorId")]
         public int? ProductColorId { get; set; }
         /// <summary>
         /// 产品尺寸Id，数据可自定义。提供接口getProductSize查询
         /// </summary>
-
+        [JsonProperty(PropertyName = "productSizeId")]
         public int? ProductSizeId { get; set; }
         /// <summary>
         /// 单位名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "puName")]
         public string PuName { get; set; }
         /// <summary>
         /// 组织机构ID
         /// </summary>
-
+        [JsonProperty(PropertyName = "userOrganizationId")]
         public int? UserOrganizationId { get; set; }
         /// <summary>
         /// 默认发货仓库ID
         /// </summary>
-
+        [JsonProperty(PropertyName = "defaultWarehouseId")]
         public int? DefaultWarehouseId { get; set; }
         /// <summary>
         /// EAN码
         /// </summary>
-
+        [JsonProperty(PropertyName = "eanCode")]
         public string EanCode { get; set; }
         /// <summary>
         /// 一级品类代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "procutCategoryCode1")]
         public string ProcutCategoryCode1 { get; set; }
         /// <summary>
         /// 二级品类代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "procutCategoryCode2")]
         public string ProcutCategoryCode2 { get; set; }
         /// <summary>
         /// 三级品类代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "procutCategoryCode3")]
         public string ProcutCategoryCode3 { get; set; }
         /// <summary>
         /// 一级品类名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "procutCategoryName1")]
         public string ProcutCategoryName1 { get; set; }
         /// <summary>
         /// 二级品类名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "procutCategoryName2")]
         public string ProcutCategoryName2 { get; set; }
         /// <summary>
         /// 三级品类名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "procutCategoryName3")]
         public string ProcutCategoryName3 { get; set; }
         /// <summary>
         /// 运营方式：1代运营、2自运营
         /// </summary>
-
+        [JsonProperty(PropertyName = "oprationType")]
         public int? OprationType { get; set; }
         /// <summary>
         /// 品牌代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "brandCode")]
         public string BrandCode { get; set; }
         /// <summary>
         /// 品牌名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "brandName")]
         public string BrandName { get; set; }
         /// <summary>
         /// 产品级别代码
         /// </summary>
-
+        [JsonProperty(PropertyName = "prl_id")]
         public string PrlCode { get; set; }
         /// <summary>
         /// 产品级别名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "prl_name")]
         public string PrlName { get; set; }
         /// <summary>
         /// 供应商产品币种
         /// </summary>
-
+        [JsonProperty(PropertyName = "currency_code")]
         public string CurrencyCode { get; set; }
         /// <summary>
         /// 供应商产品单价
         /// </summary>
-
+        [JsonProperty(PropertyName = "sp_unit_price")]
         public string SpUnitPrice { get; set; }
         /// <summary>
         /// 图片链接
         /// </summary>
-
+        [JsonProperty(PropertyName = "productImages")]
         public string ProductImages { get; set; }
-
+        [JsonProperty(PropertyName = "productBox")]
         public List<EC_ProductBox> ProductBoxs { get; set; }
+        [JsonProperty(PropertyName = "productCombination")]
         public List<EC_ProductCombination> ProductCombinations { get; set; }
+        [JsonProperty(PropertyName = "productCustomCategory")]
         public List<EC_ProductCustomCategory> ProductCustomCategories { get; set; }
-        public List<EC_ProductProperty> ProductProperties { get; set; }
+        [JsonProperty(PropertyName = "property")]
+        public List<EC_ProductProperty> ProductProperties { get; set; } 
     }
 }
 

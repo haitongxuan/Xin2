@@ -79,7 +79,7 @@ namespace Xin.Job.Server
             var addResult = AddScheduleJob<V>(scheduleModel).Result;
             if (addResult.Code == 1000)
             {
-                scheduleModel.Status = EnumType.JobStatus.Started;
+                scheduleModel.JobStatus = EnumType.JobStatus.Started;
                 t.UpdateScheduleStatus(scheduleModel);
                 //用给定的密钥恢复（取消暂停）IJobDetail
                 await this.Scheduler.ResumeJob(new JobKey(jobName, jobGroup));
@@ -120,7 +120,7 @@ namespace Xin.Job.Server
             var addResult = AddScheduleJob(scheduleModel).Result;
             if (addResult.Code == 1000)
             {
-                scheduleModel.Status = EnumType.JobStatus.Started;
+                scheduleModel.JobStatus = EnumType.JobStatus.Started;
                 t.UpdateScheduleStatus(scheduleModel);
                 //用给定的密钥恢复（取消暂停）IJobDetail
                 await this.Scheduler.ResumeJob(new JobKey(jobName, jobGroup));

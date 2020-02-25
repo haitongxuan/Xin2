@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 using System;
 
 namespace Xin.ExternalService.EC.Response.Model
@@ -17,82 +18,82 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 主键
         /// </summary>
-
+        [JsonProperty(PropertyName = "ShippingAddress_Id")]
         public string ShippingAddressId { get; set; }
         /// <summary>
         /// 收件人名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
         /// <summary>
         /// 公司名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "companyName")]
         public string CompanyName { get; set; }
         /// <summary>
         /// 国家二字码
         /// </summary>
-
+        [JsonProperty(PropertyName = "countryCode")]
         public string CountryCode { get; set; }
         /// <summary>
         /// 国家名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "countryName")]
         public string CountryName { get; set; }
         /// <summary>
         /// 城市名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "cityName")]
         public string CityName { get; set; }
         /// <summary>
         /// 邮编
         /// </summary>
-
+        [JsonProperty(PropertyName = "postalCode")]
         public string PostalCode { get; set; }
         /// <summary>
         /// 地址第一行
         /// </summary>
-
+        [JsonProperty(PropertyName = "line1")]
         public string Line1 { get; set; }
         /// <summary>
         /// 地址第二行
         /// </summary>
-
+        [JsonProperty(PropertyName = "line2")]
         public string Line2 { get; set; }
         /// <summary>
         /// 地址第三行
         /// </summary>
-
+        [JsonProperty(PropertyName = "line3")]
         public string Line3 { get; set; }
         /// <summary>
         /// 区
         /// </summary>
-
+        [JsonProperty(PropertyName = "district")]
         public string District { get; set; }
         /// <summary>
         /// 州或省
         /// </summary>
-
+        [JsonProperty(PropertyName = "state")]
         public string State { get; set; }
         /// <summary>
         /// 门牌号
         /// </summary>
-
+        [JsonProperty(PropertyName = "doorplate")]
         public string Doorplate { get; set; }
         /// <summary>
         /// 电话
         /// </summary>
-
+        [JsonProperty(PropertyName = "phone")]
         public string Phone { get; set; }
         /// <summary>
         /// 添加时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "createdDate")]
         public DateTime? CreatedDate { get; set; }
         /// <summary>
         /// 更新时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "updateDate")]
         public DateTime? UpdateDate { get; set; }
 
     }

@@ -114,5 +114,6 @@ namespace Xin.Repository
         Task BulkRemveoAsync(IEnumerable<TEntity> entities);
         Task BulkRemveoAsync(IEnumerable<TEntity> entities, Action<BulkOperation<TEntity>> bulkOperationFactory);
 
+        Task<int> DeleteAll();
     }
 }

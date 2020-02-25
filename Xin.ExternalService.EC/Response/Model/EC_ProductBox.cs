@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 using System;
 
 namespace Xin.ExternalService.EC.Response.Model
@@ -18,7 +19,7 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "boxName")]
         public string BoxName { get; set; }
         /// <summary>
         /// 英文名称
@@ -62,7 +63,6 @@ namespace Xin.ExternalService.EC.Response.Model
         /// </summary>
 
         public string ProductSku { get; set; }
-        public EC_Product EC_ProductE { get; set; }
 
     }
 }

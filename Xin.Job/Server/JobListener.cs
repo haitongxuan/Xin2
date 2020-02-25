@@ -42,7 +42,7 @@ namespace Xin.Job.Server
             if (model.RunTimes != 0 && count == model.RunTimes)
             {
                 count = 0;
-                new ClientManage(_uowProvider).ClientSend(model.JobId);
+                new ClientManage(_uowProvider).ClientSend(model.Id);
             }
 
         }

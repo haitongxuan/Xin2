@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 using System;
 
 namespace Xin.ExternalService.EC.Response.Model
@@ -17,7 +18,7 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 原系统主键
         /// </summary>
-
+        [JsonProperty(PropertyName = "op_id")]
         public string OpId { get; set; }
         /// <summary>
         /// 易仓订单主键
@@ -27,72 +28,72 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 销售sku
         /// </summary>
-
+        [JsonProperty(PropertyName = "productSku")]
         public string ProductSku { get; set; }
         /// <summary>
         /// 仓库sku对应关系 ：sku数量费用比例
         /// </summary>
-
+        [JsonProperty(PropertyName = "sku")]
         public string Sku { get; set; }
         /// <summary>
         /// 仓库sku
         /// </summary>
-
+        [JsonProperty(PropertyName = "warehouseSku")]
         public string WarehouseSku { get; set; }
         /// <summary>
         /// 单价
         /// </summary>
-
+        [JsonProperty(PropertyName = "unitPrice")]
         public decimal? UnitPrice { get; set; }
         /// <summary>
         /// 数量
         /// </summary>
-
+        [JsonProperty(PropertyName = "qty")]
         public int? Qty { get; set; }
         /// <summary>
         /// 产品名称
         /// </summary>
-
+        [JsonProperty(PropertyName = "productTitle")]
         public string ProductTitle { get; set; }
         /// <summary>
         /// 产品封面图片
         /// </summary>
-
+        [JsonProperty(PropertyName = "pic")]
         public string Pic { get; set; }
         /// <summary>
         /// 产品站点
         /// </summary>
-
+        [JsonProperty(PropertyName = "opSite")]
         public string OpSite { get; set; }
         /// <summary>
         /// 产品url
         /// </summary>
-
+        [JsonProperty(PropertyName = "productUrl")]
         public string ProductUrl { get; set; }
         /// <summary>
         /// 跟踪明细id，产品明细唯一标识
         /// </summary>
-
+        [JsonProperty(PropertyName = "refItemId")]
         public string RefItemId { get; set; }
         /// <summary>
         /// ebay Item产地,Amazon商品ASIN值
         /// </summary>
-
+        [JsonProperty(PropertyName = "opRefItemLocation")]
         public string OpRefItemLocation { get; set; }
         /// <summary>
         /// 单个交易费
         /// </summary>
-
+        [JsonProperty(PropertyName = "unitFinalValueFee")]
         public decimal? UnitFinalValueFee { get; set; }
         /// <summary>
         /// 单个手续费
         /// </summary>
-
+        [JsonProperty(PropertyName = "transactionPrice")]
         public decimal? TransactionPrice { get; set; }
         /// <summary>
         /// 最后更新时间
         /// </summary>
-
+        [JsonProperty(PropertyName = "operTime")]
         public DateTime? OperTime { get; set; }
 
     }

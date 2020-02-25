@@ -31,14 +31,9 @@ namespace Xin.WebApi.Extension
                 var schedule = repository.Query(x => x.JobStatus.Equals(1));
                 foreach (var item in schedule)
                 {
-                    if (!string.IsNullOrEmpty(item.Url))
+                    if (!string.IsNullOrEmpty(item.AssemblyName))
                     {
-                        item.AssemblyName = "Five.QuartzNetJob.ExecuteJobTask.Service";
-                        item.ClassName = "HttpJobTask";
-                    }
-                    if (!string.IsNullOrEmpty(item.Url) || !string.IsNullOrEmpty(item.AssemblyName))
-                    {
-                        var scheduleEntity = DataMapper.MapperToModel(new ScheduleEntity(), item);
+                        var scheduleEntity = Mapper<ResSchedule, ScheduleEntity>.Map(item);
                         ScheduleManage.Instance.AddScheduleList(scheduleEntity);
                         var result = jobCenter.RunScheduleJob<ScheduleManage>(item.JobGroup, item.JobName).Result;
                     }

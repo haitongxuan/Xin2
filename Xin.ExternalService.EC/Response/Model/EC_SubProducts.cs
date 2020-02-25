@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 using System;
 
 namespace Xin.ExternalService.EC.Response.Model
@@ -17,13 +18,13 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 组合子产品SKU
         /// </summary>
-
-        public string pcrProductSku { get; set; }
+        [JsonProperty(PropertyName = "pcrProductSku")]
+        public string PcrProductSku { get; set; }
         /// <summary>
         /// 组合子产品数量
         /// </summary>
-
-        public int? pcrQty { get; set; }
+        [JsonProperty(PropertyName = "pcrQty")]
+        public int? PcrQty { get; set; }
     }
 }
 

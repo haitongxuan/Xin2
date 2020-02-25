@@ -42,9 +42,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Xin.Job.Service\Xin.Job.Service.csproj" />
-    <ProjectReference Include="..\Xin.Job\Xin.Job.csproj" />
-    <ProjectReference Include="..\Xin.Entity\Xin.Entites.csproj" />
-    <ProjectReference Include="..\Xin.Repository\Xin.Repository.csproj" />
     <ProjectReference Include="..\Xin.Service\Xin.Service.csproj" />
   </ItemGroup>
 

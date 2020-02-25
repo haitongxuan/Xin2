@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -19,29 +20,33 @@ namespace Xin.ExternalService.EC.Response.Model
         /// FNSKU
 
         /// </summary>
-
+        [JsonProperty(PropertyName = "pcrFnsku")]
         public string PcrFnsku { get; set; }
         /// <summary>
         /// FBA-ASIN
         /// </summary>
 
+        [JsonProperty(PropertyName = "pcrFbaAsin")]
         public string PcrFbaAsin { get; set; }
         /// <summary>
         /// 仓库Id，0为全部仓库
         /// </summary>
 
+        [JsonProperty(PropertyName = "warehouseId")]
         public string WarehouseId { get; set; }
         /// <summary>
         /// 创建时间
 
         /// </summary>
 
+        [JsonProperty(PropertyName = "pcrAddTime")]
         public DateTime? PcrAddTime { get; set; }
         /// <summary>
         /// 更新时间
 
         /// </summary>
 
+        [JsonProperty(PropertyName = "pcrUpdateTime")]
         public DateTime? PcrUpdateTime { get; set; }
         /// <summary>
         /// 产品Sku
@@ -49,6 +54,7 @@ namespace Xin.ExternalService.EC.Response.Model
 
         public string ProductSku { get; set; }
 
+        [JsonProperty(PropertyName = "subProducts")]
         public List<EC_SubProducts> SubProducts { get; set; }
 
     }

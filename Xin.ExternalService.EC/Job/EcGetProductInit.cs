@@ -26,46 +26,85 @@ namespace Xin.ExternalService.EC.Job
         }
         public override async Task Execute(IJobExecutionContext context)
         {
-            await Job();
+            await Job(DateTime.Now);
         }
 
-        public override async Task Job()
+        public override async Task Job(DateTime? datetime = null)
         {
             var models = new List<ECProduct>();
             var reqModel = new Reqeust.Model.WMSGetProductListReqModel();
-            bool finish = false;
+            reqModel.PageSize = 50;
+            reqModel.GetProductBox = IsOrNotEnum.Yes;
+            reqModel.GetProductCombination = IsOrNotEnum.Yes;
+            reqModel.GetProductCustomCategory = IsOrNotEnum.Yes;
+            reqModel.IsCombination = IsOrNotEnum.Yes;
+            reqModel.GetProperty = IsOrNotEnum.Yes;
+            bool finish = true;
             int pageIndex = 1;
-            while (finish)
-            {
-                reqModel.Page = pageIndex;
-                reqModel.PageSize = 50;
-                reqModel.GetProductBox = IsOrNotEnum.Yes;
-                reqModel.GetProductCombination = IsOrNotEnum.Yes;
-                reqModel.GetProductCustomCategory = IsOrNotEnum.Yes;
-                reqModel.GetProperty = IsOrNotEnum.Yes;
-                reqModel.IsCombination = IsOrNotEnum.Yes;
-                Reqeust.WMSGetProductListRequest req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
-                var resp = await req.Request();
-                if (resp.Body.Count == 50)
-                {
-                    foreach (var i in resp.Body)
-                    {
-                        var m = DataMapper.Mapper<ECProduct, EC_Product>(i);
-                        models.Add(m);
-                    }
-                    pageIndex++;
-                }
-                else
-                {
-                    finish = true;
-                }
-            }
 
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ECProduct>();
-                await repository.BulkInsertAsync(models, x => x.IncludeGraph = true);
-                uow.BulkSaveChanges();
+                try
+                {
+                    await repository.DeleteAll();
+                    await uow.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    log.Error($"初始化产品信息,删除产品信息异常:{ex.Message}");
+                    throw ex;
+                }
+                while (finish)
+                {
+                    reqModel.Page = pageIndex;
+                    Reqeust.WMSGetProductListRequest req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
+                    Response.WMSGetProductListResponse resp = null;
+                    try
+                    {
+                        resp = await req.Request();
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error($"初始化产品信息,获取数据错误:{ex.Message}");
+                        throw ex;
+                    }
+                    if (resp.Body.Count == 50)
+                    {
+                        foreach (var i in resp.Body)
+                        {                          
+                            try
+                            {
+                                var m = Mapper<EC_Product, ECProduct>.Map(i);
+                                models.Add(m);
+                            }
+                            catch (Exception ex)
+                            {
+                                throw ex;
+                            }
+                        }
+                        if (pageIndex % 20 == 0)
+                        {
+                            try
+                            {
+                                await repository.BulkInsertAsync(models, x => x.IncludeGraph = true);
+                                uow.BulkSaveChanges();
+                                models.Clear();
+                            }
+                            catch (Exception ex)
+                            {
+                                log.Error($"初始化产品信息,批量导入产品异常:第{pageIndex}页,{ex.Message}");
+                                throw ex;
+                            }
+                        }
+                        pageIndex++;
+                    }
+                    else
+                    {
+                        finish = false;
+                    }
+                }
+
             }
         }
     }

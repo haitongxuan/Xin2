@@ -9,6 +9,7 @@ using Xin.Repository;
 using Xin.Entities;
 using Xin.Service;
 using Xin.Common.Model;
+using System.Security.Claims;
 
 namespace LQExtension.Api.Controllers
 {
@@ -70,7 +71,7 @@ namespace LQExtension.Api.Controllers
             using (var uow = _uowProvicer.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ResDepartment>();
-                string us = User.Claims.FirstOrDefault(p => p.Type.Equals("Sid")).Value;
+                string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
                 if (us != null)
                 {
                     int userid = Convert.ToInt32(us);
@@ -104,7 +105,7 @@ namespace LQExtension.Api.Controllers
             using (var uow = _uowProvicer.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ResDepartment>();
-                string us = User.Claims.FirstOrDefault(p => p.Type.Equals("Sid")).Value;
+                string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
                 if (us != null)
                 {
                     int userid = Convert.ToInt32(us);
@@ -137,7 +138,7 @@ namespace LQExtension.Api.Controllers
             {
                 var repository = uow.GetRepository<ResDepartment>();
                 var model = repository.Get(id);
-                string us = User.Claims.FirstOrDefault(p => p.Type.Equals("Sid")).Value;
+                string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
                 if (us != null)
                 {
                     int userid = Convert.ToInt32(us);
