@@ -83,13 +83,13 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 单个交易费
         /// </summary>
-        [JsonProperty(PropertyName = "unitFinalValueFee")]
-        public decimal? UnitFinalValueFee { get; set; }
+        [JsonProperty(PropertyName = "unitFinalValueFee", NullValueHandling = NullValueHandling.Ignore)]
+        public decimal? UnitFinalValueFee { get; set; } = 0;
         /// <summary>
         /// 单个手续费
         /// </summary>
-        [JsonProperty(PropertyName = "transactionPrice")]
-        public decimal? TransactionPrice { get; set; }
+        [JsonProperty(PropertyName = "transactionPrice", NullValueHandling = NullValueHandling.Ignore)]
+        public decimal? TransactionPrice { get; set; } = 0;
         /// <summary>
         /// 最后更新时间
         /// </summary>

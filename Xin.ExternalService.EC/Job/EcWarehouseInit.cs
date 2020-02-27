@@ -48,7 +48,7 @@ namespace Xin.ExternalService.EC.Job
                         var entities = new List<ECWarehouse>();
                         foreach (var m in models)
                         {
-                            var entity = DataMapper.Mapper<ECWarehouse, Response.Model.EC_Warehouse>(m);
+                            var entity = Mapper<Response.Model.EC_Warehouse, ECWarehouse>.Map(m);
                             entities.Add(entity);
                         }
                         await repository.BulkInsertAsync(entities, x => x.IncludeGraph = true);

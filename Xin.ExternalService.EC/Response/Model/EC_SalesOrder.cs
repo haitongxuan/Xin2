@@ -36,12 +36,12 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 订单状态
         /// </summary>
-        [JsonProperty(PropertyName = "status")]
+        [JsonProperty(PropertyName = "status",NullValueHandling =0)]
         public int? Status { get; set; }
         /// <summary>
         /// 待发货下的处理状态，1:已处理,2:未处理，3：处理异常
         /// </summary>
-        [JsonProperty(PropertyName = "processAgain")]
+        [JsonProperty(PropertyName = "processAgain", NullValueHandling = NullValueHandling.Ignore)]
         public int? ProcessAgain { get; set; }
         /// <summary>
         /// 参考单号
@@ -121,7 +121,7 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 平台发货状态，0：未发货，1：已发货
         /// </summary>
-        [JsonProperty(PropertyName = "platformShipStatus")]
+        [JsonProperty(PropertyName = "platformShipStatus", NullValueHandling = NullValueHandling.Ignore)]
         public int? PlatformShipStatus { get; set; }
         /// <summary>
         /// 平台发货时间
@@ -146,37 +146,37 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 总金额
         /// </summary>
-        [JsonProperty(PropertyName = "amountpaid")]
+        [JsonProperty(PropertyName = "amountpaid", NullValueHandling = NullValueHandling.Ignore)]
         public decimal? Amountpaid { get; set; }
         /// <summary>
         /// 销售额
         /// </summary>
-        [JsonProperty(PropertyName = "subtotal")]
+        [JsonProperty(PropertyName = "subtotal", NullValueHandling = NullValueHandling.Ignore)]
         public decimal? Subtotal { get; set; }
         /// <summary>
         /// 运费
         /// </summary>
-        [JsonProperty(PropertyName = "shipFee")]
+        [JsonProperty(PropertyName = "shipFee", NullValueHandling = NullValueHandling.Ignore)]
         public decimal? ShipFee { get; set; }
         /// <summary>
         /// 总手续费
         /// </summary>
-        [JsonProperty(PropertyName = "platformFeeTotal")]
+        [JsonProperty(PropertyName = "platformFeeTotal", NullValueHandling = NullValueHandling.Ignore)]
         public decimal? PlatformFeeTotal { get; set; }
         /// <summary>
         /// 总交易费
         /// </summary>
-        [JsonProperty(PropertyName = "finalvaluefeeTotal")]
+        [JsonProperty(PropertyName = "finalvaluefeeTotal", NullValueHandling = NullValueHandling.Ignore)]
         public decimal? FinalvaluefeeTotal { get; set; }
         /// <summary>
         /// 其他费用
         /// </summary>
-        [JsonProperty(PropertyName = "otherFee")]
+        [JsonProperty(PropertyName = "otherFee", NullValueHandling = NullValueHandling.Ignore)]
         public decimal? OtherFee { get; set; }
         /// <summary>
         /// 试算运费
         /// </summary>
-        [JsonProperty(PropertyName = "costShipFee")]
+        [JsonProperty(PropertyName = "costShipFee", NullValueHandling = NullValueHandling.Ignore)]
         public decimal? CostShipFee { get; set; }
         /// <summary>
         /// 买家ID
@@ -206,12 +206,12 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 订单出库数量
         /// </summary>
-        [JsonProperty(PropertyName = "productCount")]
+        [JsonProperty(PropertyName = "productCount", NullValueHandling = NullValueHandling.Ignore)]
         public int? ProductCount { get; set; }
         /// <summary>
         /// 订单重量
         /// </summary>
-        [JsonProperty(PropertyName = "orderWeight")]
+        [JsonProperty(PropertyName = "orderWeight", NullValueHandling = NullValueHandling.Ignore)]
         public decimal? OrderWeight { get; set; }
         /// <summary>
         /// 买家留言
@@ -231,7 +231,7 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 异常类型：1:换地址,2:退货取消,3:换SKU,4:其他，5：同步服务商失败，6:断货,7：SKU未找到, 11:无门牌号, 12:计费失败, 21:账户未设置FBA/FBC订单分配规则，22:表示仓库缺货的问题类型，23:表示仓库未找到SKU信息的问题类型,30:仓库拦截中
         /// </summary>
-        [JsonProperty(PropertyName = "abnormalType")]
+        [JsonProperty(PropertyName = "abnormalType", NullValueHandling = NullValueHandling.Ignore)]
         public byte? AbnormalType { get; set; }
         /// <summary>
         /// 异常信息
@@ -247,12 +247,12 @@ namespace Xin.ExternalService.EC.Response.Model
         /// 订单地址， getAddress=1时返回
         /// </summary>
         [JsonProperty(PropertyName = "orderAddress")]
-        public List<EC_SalesOrderAddress> SalesOrderAddress { get; set; }
+        public EC_SalesOrderAddress SalesOrderAddress { get; set; }
         /// <summary>
         /// 原始订单信息
         /// </summary>
         [JsonProperty(PropertyName = "orderConfigDatas")]
-        public List<EC_OrderConfigDatas> OrderConfigDatas { get; set; }
+        public EC_OrderConfigDatas OrderConfigDatas { get; set; }
         /// <summary>
         /// 订单明细，getDetail=1时返回
         /// </summary>

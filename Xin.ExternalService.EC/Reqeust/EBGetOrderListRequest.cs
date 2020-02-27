@@ -27,14 +27,20 @@ namespace Xin.ExternalService.EC.Reqeust
                 string data = body.Data;
                 //返回字符串中出现时间0000-00-00 00:00:00 导致反序列化异常
                 data = data.Replace("0000-00-00 00:00:00", "");
-
-                list = JsonConvert.DeserializeObject<List<EC_SalesOrder>>(data);
-                response.Body = list;
-                return response;
+                try
+                {
+                    list = JsonConvert.DeserializeObject<List<EC_SalesOrder>>(data);
+                    response.Body = list;
+                    return response;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch (ECExceptoin)
+            catch (ECExceptoin ex)
             {
-                throw;
+                throw ex;
             }
         }
     }

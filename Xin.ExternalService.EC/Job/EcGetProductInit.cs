@@ -101,6 +101,17 @@ namespace Xin.ExternalService.EC.Job
                     }
                     else
                     {
+                        try
+                        {
+                            await repository.BulkInsertAsync(models, x => x.IncludeGraph = true);
+                            uow.BulkSaveChanges();
+                            models.Clear();
+                        }
+                        catch (Exception ex)
+                        {
+                            log.Error($"初始化产品信息,批量导入产品异常:第{pageIndex}页,{ex.Message}");
+                            throw ex;
+                        }
                         finish = false;
                     }
                 }
