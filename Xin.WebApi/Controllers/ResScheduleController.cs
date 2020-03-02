@@ -6,10 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Xin.Common;
 using Xin.Repository;
 using Xin.Entities;
-using Xin.Common.Model;
-using Xin.WebApi.Permission;
+using Xin.Web.Framework.Model;
 using Microsoft.AspNetCore.Authorization;
-using Xin.WebApi.Helper;
 using Xin.Job.Model;
 using Xin.Job.Server;
 using Xin.Job.Service;
@@ -17,6 +15,8 @@ using log4net;
 using log4net.Repository;
 using log4net.Core;
 using System.Security.Claims;
+using Xin.Web.Framework.Permission;
+using Xin.Web.Framework.Helper;
 
 namespace Xin.WebApi.Controllers
 {
@@ -52,18 +52,18 @@ namespace Xin.WebApi.Controllers
             var page = new PageDateRes<ResSchedule>();
             if (pageReq != null)
             {
-                var conHelper = new ConditionHeler<ResSchedule>("schedulegetpage");
                 var query = pageReq.query;
                 Filter<ResSchedule> filter = null;
                 if (query.Count > 0)
                 {
-                    var fuc = conHelper.GetExpression(query);
+                    var fuc = FilterHelper<ResSchedule>.GetExpression(query, "schedulegetpage");
                     filter = new Repository.Filter<ResSchedule>(fuc);
                 }
-                var orderBy = new Repository.OrderBy<ResSchedule>(pageReq.order, false);
+                var orderBy = new Repository.OrderBy<ResSchedule>(pageReq.order.columnName, pageReq.order.reverse);
                 try
                 {
-                    var result = await _dataPager.QueryAsync(pageReq.pageNum, pageReq.pageSize, filter, orderBy);
+                    var result = await _dataPager.QueryAsync(
+                        pageReq.pageNum, pageReq.pageSize, filter, orderBy, navigationPropertyPaths: null);
                     page = PageMapper<ResSchedule>.ToPageDateRes(result);
                     return page;
                 }

@@ -2572,7 +2572,7 @@
           "bin/placeholder/Xin.Common.dll": {}
         }
       },
-      "Xin.Entites/1.0.0": {
+      "Xin.Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
@@ -2580,10 +2580,10 @@
           "Xin.Repository": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/Xin.Entites.dll": {}
+          "bin/placeholder/Xin.Entities.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Xin.Entites.dll": {}
+          "bin/placeholder/Xin.Entities.dll": {}
         }
       },
       "Xin.Repository/1.0.0": {
@@ -2608,7 +2608,7 @@
         "dependencies": {
           "Moq": "4.13.1",
           "Xin.Common": "1.0.0",
-          "Xin.Entites": "1.0.0",
+          "Xin.Entities": "1.0.0",
           "Xin.Repository": "1.0.0"
         },
         "compile": {
@@ -8388,10 +8388,10 @@
       "path": "../Xin.Common/Xin.Common.csproj",
       "msbuildProject": "../Xin.Common/Xin.Common.csproj"
     },
-    "Xin.Entites/1.0.0": {
+    "Xin.Entities/1.0.0": {
       "type": "project",
-      "path": "../Xin.Entity/Xin.Entites.csproj",
-      "msbuildProject": "../Xin.Entity/Xin.Entites.csproj"
+      "path": "../Xin.Entity/Xin.Entities.csproj",
+      "msbuildProject": "../Xin.Entity/Xin.Entities.csproj"
     },
     "Xin.Repository/1.0.0": {
       "type": "project",
@@ -8410,7 +8410,7 @@
       "Microsoft.AspNetCore.SignalR.Client >= 1.1.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "Xin.Common >= 1.0.0",
-      "Xin.Entites >= 1.0.0",
+      "Xin.Entities >= 1.0.0",
       "Xin.Repository >= 1.0.0",
       "Xin.Service >= 1.0.0"
     ]
@@ -8448,8 +8448,8 @@
             "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj": {
               "projectPath": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj"
             },
-            "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj": {
-              "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj"
+            "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj": {
+              "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj"
             },
             "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj": {
               "projectPath": "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj"

@@ -16,7 +16,7 @@ using Xin.Service;
 using System.Linq;
 using Xin.Entities;
 using Xin.Common;
-using Xin.Common.Model;
+using Xin.Web.Framework.Model;
 
 namespace Xin.WebApi.Controllers
 {

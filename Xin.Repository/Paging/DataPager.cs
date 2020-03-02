@@ -57,7 +57,9 @@ namespace Xin.Repository
             }
         }
 
-        public async Task<DataPage<TEntity>> QueryAsync(int pageNumber, int pageLength, Filter<TEntity> filter = null, OrderBy<TEntity> orderby = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
+        public async Task<DataPage<TEntity>> QueryAsync(int pageNumber, int pageLength,
+            Filter<TEntity> filter = null, OrderBy<TEntity> orderby = null,
+            Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
         {
             using (var uow = _uowProvider.CreateUnitOfWork(false))
             {
@@ -65,6 +67,25 @@ namespace Xin.Repository
 
                 var startRow = (pageNumber - 1) * pageLength;
                 var data = await repository.QueryPageAsync(startRow, pageLength, filter == null ? null : filter.Expression, includes: includes, orderBy: orderby?.Expression);
+                var totalCount = await repository.CountAsync(filter == null ? null : filter.Expression);
+
+                return CreateDataPage(pageNumber, pageLength, data, totalCount);
+            }
+        }
+
+        public async Task<DataPage<TEntity>> QueryAsync(int pageNumber, int pageLength,
+            Filter<TEntity> filter = null, OrderBy<TEntity> orderby = null,
+            string[] navigationPropertyPaths = null)
+        {
+            using (var uow = _uowProvider.CreateUnitOfWork(false))
+            {
+                var repository = uow.GetRepository<TEntity>();
+
+                var startRow = (pageNumber - 1) * pageLength;
+                var data = await repository.NQueryPageAsync(startRow, pageLength,
+                    filter == null ? null : filter.Expression,
+                    navigationPropertyPaths: navigationPropertyPaths,
+                    orderBy: orderby?.Expression);
                 var totalCount = await repository.CountAsync(filter == null ? null : filter.Expression);
 
                 return CreateDataPage(pageNumber, pageLength, data, totalCount);
@@ -143,6 +164,20 @@ namespace Xin.Repository
 
                 var startRow = (pageNumber - 1) * pageLength;
                 var data = await repository.QueryPageAsync(startRow, pageLength, filter.Expression, includes: includes, orderBy: orderby?.Expression);
+                var totalCount = await repository.CountAsync(filter == null ? null : filter.Expression);
+
+                return CreateDataPage(pageNumber, pageLength, data, totalCount);
+            }
+        }
+
+        public async Task<DataPage<TEntity>> QueryAsync(int pageNumber, int pageLength, Filter<TEntity> filter, OrderBy<TEntity> orderby = null, string[] navigationPropertyPaths = null)
+        {
+            using (var uow = _uowProvider.CreateUnitOfWork<TEntityContext>(false))
+            {
+                var repository = uow.GetRepository<TEntity>();
+
+                var startRow = (pageNumber - 1) * pageLength;
+                var data = await repository.NQueryPageAsync(startRow, pageLength, filter.Expression, navigationPropertyPaths: navigationPropertyPaths, orderBy: orderby?.Expression);
                 var totalCount = await repository.CountAsync(filter == null ? null : filter.Expression);
 
                 return CreateDataPage(pageNumber, pageLength, data, totalCount);

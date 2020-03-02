@@ -7007,9 +7007,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj",
-      "projectName": "Xin.Entites",
-      "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj",
+      "projectUniqueName": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj",
+      "projectName": "Xin.Entities",
+      "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj",
       "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
       "outputPath": "D:\\Project\\Xin\\Xin.Entity\\obj\\",
       "projectStyle": "PackageReference",

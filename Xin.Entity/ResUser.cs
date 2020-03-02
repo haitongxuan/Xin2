@@ -5,7 +5,7 @@ using Xin.Common.CustomAttribute;
 
 namespace Xin.Entities
 {
-    [AutoCode(fixheader: "U", length: 6)]
+    [AutoCode(fixheader: "U", length: 6,autoCode:true,autoCodePropertyName:"UserCode")]
     public partial class ResUser
     {
     }

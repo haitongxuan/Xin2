@@ -6,7 +6,7 @@ using Xin.Entities;
 
 namespace Xin.Service
 {
-    public interface IResUserRepository :IXinRepository
+    public interface IResUserRepository :IXinRepository<ResUser>
     {
         /// <summary>
         /// 根据用户名密码获取用户
@@ -29,6 +29,5 @@ namespace Xin.Service
         /// <param name="username"></param>
         /// <returns></returns>
         Task<List<ResPermission>> GetAllPermissions(int userId);
-
     }
 }

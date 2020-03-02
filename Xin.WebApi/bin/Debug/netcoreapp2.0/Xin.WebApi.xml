@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xin.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:Xin.WebApi.AuthTokenHeaderParameter.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Xin.WebApi.Controllers.AuthroizeController">
+            <summary>
+            认证
+            </summary>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.AuthroizeController.Post(Xin.WebApi.Model.LoginViewModel)">
+            <summary>
+            登录获取token
+            </summary>
+            <param name="loginViewModel">登录实体信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResScheduleController.GetPageAsync(Xin.Common.Model.PageDataReq)">
+            <summary>
+            查询数据
+            </summary>
+            <param name="start">当前页</param>
+            <param name="length">分页大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResScheduleController.Add(Xin.Entities.ResSchedule)">
+            <summary>
+            添加任务
+            </summary>
+            <param name="schedule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResScheduleController.Edit(Xin.Entities.ResSchedule)">
+            <summary>
+            修改任务
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResScheduleController.Execute(System.Int32)">
+            <summary>
+            执行任务
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResScheduleController.Stop(System.Int32)">
+            <summary>
+            停止任务
+            </summary>
+            <param name="id">任务编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResScheduleController.Resume(System.Int32)">
+            <summary>
+            恢复暂停任务
+            </summary>
+            <param name="id">任务编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResScheduleController.DeleteSchedule(System.Int32)">
+            <summary>
+            删除任务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResUserController.GetPageAsync(Xin.Common.Model.PageDataReq)">
+            <summary>
+            获取用户分页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResUserController.Add(Xin.WebApi.Model.UserModel)">
+            <summary>
+            添加用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResUserController.Edit(Xin.WebApi.Model.UserModel)">
+            <summary>
+            编辑用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResUserController.Delete(System.Int64)">
+            <summary>
+            删除用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResUserController.GetUserPermissionsAsync(System.Int32)">
+            <summary>
+            获取用户的权限列表
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Extension.JobServiceExtensions.AddJobService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            程序启动将任务调度表里所有状态为 执行中 任务启动起来
+            </summary>
+            <param name="serviceCollection"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Xin.WebApi.Extension.ServiceCollectionExtension.Protector">
+            <summary>
+            cerf weige
+            </summary>
+        </member>
+        <member name="M:Xin.WebApi.Extension.ServiceCollectionExtension.AddAuthorizedFilter``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Extension.ServiceCollectionExtension.RegisterServiceProvider(System.IServiceProvider)">
+            <summary>
+            创建服务提供者
+            </summary>
+            <param name="serviceProvider"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Xin.WebApi.Extension.ServiceCollectionExtension.ServiceProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Xin.WebApi.Filter.WebApiExceptionAttribute">
+            <summary>
+            异常捕获
+            </summary>
+        </member>
+        <member name="P:Xin.WebApi.Model.JwtSeetings.Issuer">
+            <summary>
+            谁颁发的jwt
+            </summary>
+        </member>
+        <member name="P:Xin.WebApi.Model.JwtSeetings.Audience">
+            <summary>
+            谁使用这个jwt
+            </summary>
+        </member>
+        <member name="P:Xin.WebApi.Model.JwtSeetings.SecretKey">
+            <summary>
+            secret是保存在服务器端的，jwt的签发生成也是在服务器端的，secret就是用来进行jwt的签发和jwt的验证，
+            所以，它就是你服务端的私钥，在任何场景都不应该流露出去。一旦客户端得知这个secret, 那就意味着客户端是可以自我签发jwt了
+            通过jwt header中声明的加密方式进行加盐secret组合加密，然后就构成了jwt的第三部分
+            </summary>
+        </member>
+        <member name="P:Xin.WebApi.Model.LoginViewModel.Name">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Xin.WebApi.Model.LoginViewModel.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="M:Xin.WebApi.Startup.JWTConfig(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            使用 Microsoft.AspNetCore.Authentication.JwtBearer
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.ResDepartmentController.GetChildList(System.Int32)">
+            <summary>
+            获取子部门列表
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.PubPermissionController.GetList(System.Int32)">
+            <summary>
+            获取权限列表
+            </summary>
+            <param name="resourceId">资源名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.PubPermissionController.AddAsync(Xin.Entities.ResPermission)">
+            <summary>
+            添加
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.PubPermissionController.EditAsync(Xin.Entities.ResPermission)">
+            <summary>
+            编辑
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.PubPermissionController.DeleteAsync(System.String)">
+            <summary>
+            删除
+            </summary>
+            <param name="id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.ResRoleController.GetPage(Xin.Common.Model.PageDataReq)">
+            <summary>
+            获取角色分页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.ResRoleController.Add(Xin.Entities.ResRole)">
+            <summary>
+            添加角色
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.ResRoleController.Edit(Xin.Entities.ResRole)">
+            <summary>
+            编辑角色
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.ResRoleController.Delete(System.Int64)">
+            <summary>
+            删除角色
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.ResRoleController.GetPermissions(System.Int32)">
+            <summary>
+            获取角色权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LQExtension.Api.Controllers.ResRoleController.SavePermissions(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            保存角色权限
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

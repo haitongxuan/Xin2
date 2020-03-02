@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.Repository", "Xin.Repos
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.Common", "Xin.Common\Xin.Common.csproj", "{026EEFBA-2BFC-49F7-8CD0-CD669A9103EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.Entites", "Xin.Entity\Xin.Entites.csproj", "{39715BD4-DE15-4229-BEA0-B97C1C540410}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.Entities", "Xin.Entity\Xin.Entities.csproj", "{39715BD4-DE15-4229-BEA0-B97C1C540410}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.Service", "Xin.Service\Xin.Service.csproj", "{1DD37563-613C-4358-A4C3-1B830258928D}"
 EndProject
@@ -23,14 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.SignalR", "Xin.SignalR\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.Job.Service", "Xin.Job.Service\Xin.Job.Service.csproj", "{EDF900F0-A2CA-4BDE-9708-F95689010724}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0ED9CC5-E5E8-4AEE-9680-736CBD17D9AE}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.ExternalService.EC", "Xin.ExternalService.EC\Xin.ExternalService.EC.csproj", "{E8D58432-E756-4565-B176-4F1A9C940DD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xin.ExternalService.EC.Tests", "Xin.ExternalService.EC.Tests\Xin.ExternalService.EC.Tests.csproj", "{7DFB3601-C749-4C6D-8F0C-DFE3A59010E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.ExternalService.EC.Tests", "Xin.ExternalService.EC.Tests\Xin.ExternalService.EC.Tests.csproj", "{7DFB3601-C749-4C6D-8F0C-DFE3A59010E2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.Web.Framework", "Xin.Web.Framework\Xin.Web.Framework.csproj", "{2D7BD081-CC7C-4089-95ED-7FAEC29AB2F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.WebApi.Test", "..\Xin.WebApi.Test\Xin.WebApi.Test.csproj", "{D64801BF-2770-42C5-B1C5-6353B9B4341C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +85,14 @@ Global
 		{7DFB3601-C749-4C6D-8F0C-DFE3A59010E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DFB3601-C749-4C6D-8F0C-DFE3A59010E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DFB3601-C749-4C6D-8F0C-DFE3A59010E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D7BD081-CC7C-4089-95ED-7FAEC29AB2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D7BD081-CC7C-4089-95ED-7FAEC29AB2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D7BD081-CC7C-4089-95ED-7FAEC29AB2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D7BD081-CC7C-4089-95ED-7FAEC29AB2F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D64801BF-2770-42C5-B1C5-6353B9B4341C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D64801BF-2770-42C5-B1C5-6353B9B4341C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D64801BF-2770-42C5-B1C5-6353B9B4341C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D64801BF-2770-42C5-B1C5-6353B9B4341C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

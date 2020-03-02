@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +52,7 @@ namespace Xin.Repository
             ((IRepositoryInjection)repository).SetContext(_context);
             return repository;
         }
+
 
         public TRepository GetCustomRepository<TRepository>()
         {

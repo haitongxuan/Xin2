@@ -31,7 +31,7 @@ namespace Xin.ExternalService.EC.Response.Model
 
         public string EbayOrders { get; set; }
         /// <summary>
-        /// 	原始订单明细数据json字符串,目前只支持ebay平台
+        /// 原始订单明细数据json字符串,目前只支持ebay平台
         /// </summary>
 
         public string EbayOrderDetail { get; set; }

@@ -11,8 +11,8 @@ using Xin.Service;
 using Xin.WebApi.Model;
 using Xin.Entities;
 using System.Security.Claims;
-using Xin.WebApi.Permission;
-using Xin.Common.Model;
+using Xin.Web.Framework.Model;
+using Xin.Web.Framework.Permission;
 
 namespace LQExtension.Api.Controllers
 {
@@ -134,7 +134,7 @@ namespace LQExtension.Api.Controllers
                 var sid = this.User.FindFirst(ClaimTypes.Sid);
                 model.WriteDate = DateTime.Now;
                 model.WriteUid = Convert.ToInt32(sid.Value);
-                model.StopFlage = true;
+                model.StopFlag = true;
                 model = repository.Update(model);
                 int i = await uow.SaveChangesAsync();
                 if (i < 0)

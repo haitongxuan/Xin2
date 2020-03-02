@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Xin.Entity\Xin.Entites.csproj" />
+    <ProjectReference Include="..\Xin.Entity\Xin.Entities.csproj" />
     <ProjectReference Include="..\Xin.Job\Xin.Job.csproj" />
     <ProjectReference Include="..\Xin.Repository\Xin.Repository.csproj" />
     <ProjectReference Include="..\Xin.Service\Xin.Service.csproj" />

@@ -23,7 +23,7 @@
             <param name="loginViewModel">登录实体信息</param>
             <returns></returns>
         </member>
-        <member name="M:Xin.WebApi.Controllers.ResScheduleController.GetPageAsync(Xin.Common.Model.PageDataReq)">
+        <member name="M:Xin.WebApi.Controllers.ResScheduleController.GetPageAsync(Xin.Web.Framework.Model.PageDataReq)">
             <summary>
             查询数据
             </summary>
@@ -69,30 +69,6 @@
         <member name="M:Xin.WebApi.Controllers.ResScheduleController.DeleteSchedule(System.Int32)">
             <summary>
             删除任务
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Xin.WebApi.Controllers.ResUserController.GetPageAsync(Xin.Common.Model.PageDataReq)">
-            <summary>
-            获取用户分页
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Xin.WebApi.Controllers.ResUserController.Add(Xin.WebApi.Model.UserModel)">
-            <summary>
-            添加用户
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Xin.WebApi.Controllers.ResUserController.Edit(Xin.WebApi.Model.UserModel)">
-            <summary>
-            编辑用户
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Xin.WebApi.Controllers.ResUserController.Delete(System.Int64)">
-            <summary>
-            删除用户
             </summary>
             <returns></returns>
         </member>
@@ -180,24 +156,6 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:LQExtension.Api.Controllers.ResDepartmentController.Add(Xin.Entities.ResDepartment)">
-            <summary>
-            添加
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.ResDepartmentController.Edit(Xin.Entities.ResDepartment)">
-            <summary>
-            编辑
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.ResDepartmentController.Delete(System.String)">
-            <summary>
-            删除
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:LQExtension.Api.Controllers.PubPermissionController.GetList(System.Int32)">
             <summary>
             获取权限列表
@@ -222,30 +180,6 @@
             删除
             </summary>
             <param name="id">主键</param>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.ResRoleController.GetPage(Xin.Common.Model.PageDataReq)">
-            <summary>
-            获取角色分页
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.ResRoleController.Add(Xin.Entities.ResRole)">
-            <summary>
-            添加角色
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.ResRoleController.Edit(Xin.Entities.ResRole)">
-            <summary>
-            编辑角色
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.ResRoleController.Delete(System.Int64)">
-            <summary>
-            删除角色
-            </summary>
             <returns></returns>
         </member>
         <member name="M:LQExtension.Api.Controllers.ResRoleController.GetPermissions(System.Int32)">

@@ -13,7 +13,8 @@ using Z.BulkOperations;
 
 namespace Xin.Repository
 {
-    public abstract class EntityRepositoryBase<TContext, TEntity> : RepositoryBase<TContext>, IRepository<TEntity> where TContext : DbContext where TEntity : class, new()
+    public abstract class EntityRepositoryBase<TContext, TEntity> : RepositoryBase<TContext>,
+        IRepository<TEntity> where TContext : DbContext where TEntity : class, new()
     {
         private readonly OrderBy<TEntity> DefaultOrderBy = null;// new OrderBy<TEntity>(qry => qry.OrderBy(e => e.Id));
 
@@ -21,7 +22,7 @@ namespace Xin.Repository
         { }
         protected EntityRepositoryBase(ILogger<DataAccess> logger, TContext context) : base(logger, context)
         { }
-
+        #region GetAll
         public virtual IEnumerable<TEntity> GetAll(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
         {
             var result = QueryDb(null, orderBy, includes);
@@ -34,6 +35,21 @@ namespace Xin.Repository
             return await result.ToListAsync();
         }
 
+
+        public IEnumerable<TEntity> NGetAll(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string[] navigationPropertyPaths = null)
+        {
+            var result = QueryDb(null, orderBy, navigationPropertyPaths);
+            return result.ToList();
+        }
+
+        public async Task<IEnumerable<TEntity>> NGetAllAsync(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string[] navigationPropertyPaths = null)
+        {
+            var result = QueryDb(null, orderBy, navigationPropertyPaths);
+            return await result.ToListAsync();
+        }
+        #endregion
+
+        #region Load
         public virtual void Load(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
         {
             var result = QueryDb(null, orderBy, includes);
@@ -46,6 +62,20 @@ namespace Xin.Repository
             await result.LoadAsync();
         }
 
+        public virtual void Load(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
+        {
+            var result = QueryDb(filter, orderBy, includes);
+            result.Load();
+        }
+
+        public virtual async Task LoadAsync(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
+        {
+            var result = QueryDb(filter, orderBy, includes);
+            await result.LoadAsync();
+        }
+        #endregion
+
+        #region GetPage
         public virtual IEnumerable<TEntity> GetPage(int startRow, int pageLength, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
         {
             if (orderBy == null) orderBy = DefaultOrderBy?.Expression;
@@ -62,6 +92,25 @@ namespace Xin.Repository
             return await result.Skip(startRow).Take(pageLength).ToListAsync();
         }
 
+        public IEnumerable<TEntity> NGetPage(int startRow, int pageLength, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string[] navigationPropertyPaths = null)
+        {
+
+            if (orderBy == null) orderBy = DefaultOrderBy?.Expression;
+
+            var result = QueryDb(null, orderBy, navigationPropertyPaths);
+            return result.Skip(startRow).Take(pageLength).ToList();
+        }
+
+        public async Task<IEnumerable<TEntity>> NGetPageAsync(int startRow, int pageLength, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string[] navigationPropertyPaths = null)
+        {
+            if (orderBy == null) orderBy = DefaultOrderBy?.Expression;
+
+            var result = QueryDb(null, orderBy, navigationPropertyPaths);
+            return await result.Skip(startRow).Take(pageLength).ToListAsync();
+        }
+        #endregion
+
+        #region Get
         public virtual TEntity Get(object id, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
         {
             IQueryable<TEntity> query = Context.Set<TEntity>();
@@ -70,13 +119,10 @@ namespace Xin.Repository
             {
                 query = includes(query);
             }
-            //if(typeof(TEntity).IsSubclassOf(typeof(Entity<>)))
-            //    return query.SingleOrDefault(x => x.Id.Equals(id));
             var properties = GetKeyProperties();
             if (properties.Count() != 1 || !(properties.First().PropertyType == id.GetType()))
                 throw new Exception(string.Format("Invalid key type {0}.", id == null ? null : id.GetType().Name));
             return query.Where(PropertyEquals<TEntity, object>(typeof(TEntity).GetProperty(properties.First().Name), id)).SingleOrDefault();
-            //return query.SingleOrDefault(x => (x.GetType().GetProperty(properties.First().Name).GetValue(x, null)).Equals(id));
         }
         public virtual TEntity Get(params object[] key)
         {
@@ -92,19 +138,56 @@ namespace Xin.Repository
                 query = includes(query);
             }
 
-            //if (typeof(TEntity).IsSubclassOf(typeof(Entity<>)))
-            //    return query.SingleOrDefaultAsync(x => x.Id.Equals(id));
             var properties = GetKeyProperties();
             if (properties.Count() != 1 || !(properties.First().PropertyType == id.GetType()))
                 throw new Exception(string.Format("Invalid key type {0}.", id == null ? null : id.GetType().Name));
             return await query.Where(PropertyEquals<TEntity, object>(typeof(TEntity).GetProperty(properties.First().Name), id)).SingleOrDefaultAsync();
-            //return await query.SingleOrDefaultAsync(x => (x.GetType().GetProperty(properties.First().Name).GetValue(x, null)).Equals(id));
 
         }
         public virtual async Task<TEntity> GetAsync(params object[] key)
         {
             return await FindAsync(key);
         }
+
+        public TEntity NGet(object id, string[] navigationPropertyPaths = null)
+        {
+            IQueryable<TEntity> query = Context.Set<TEntity>();
+
+            if (navigationPropertyPaths != null)
+            {
+                foreach(var n in navigationPropertyPaths)
+                {
+                    query.Include(n);
+                }
+            }
+            var properties = GetKeyProperties();
+            if (properties.Count() != 1 || !(properties.First().PropertyType == id.GetType()))
+                throw new Exception(string.Format("Invalid key type {0}.", id == null ? null : id.GetType().Name));
+            return query.Where(PropertyEquals<TEntity, object>(typeof(TEntity).GetProperty(properties.First().Name), id)).SingleOrDefault();
+
+        }
+
+        public async Task<TEntity> NGetAsync(object id, string[] navigationPropertyPaths = null)
+        {
+            IQueryable<TEntity> query = Context.Set<TEntity>();
+
+            if (navigationPropertyPaths != null)
+            {
+                foreach (var n in navigationPropertyPaths)
+                {
+                    query.Include(n);
+                }
+            }
+
+            var properties = GetKeyProperties();
+            if (properties.Count() != 1 || !(properties.First().PropertyType == id.GetType()))
+                throw new Exception(string.Format("Invalid key type {0}.", id == null ? null : id.GetType().Name));
+            return await query.Where(PropertyEquals<TEntity, object>(typeof(TEntity).GetProperty(properties.First().Name), id)).SingleOrDefaultAsync();
+
+        }
+        #endregion
+
+        #region Query
         public virtual IEnumerable<TEntity> Query(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
         {
             var result = QueryDb(filter, orderBy, includes);
@@ -122,24 +205,40 @@ namespace Xin.Repository
                 throw ex;
             }
         }
-
-        public virtual void Load(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
+        public IEnumerable<TEntity> NQuery(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string[] navigationPropertyPaths = null)
         {
-            var result = QueryDb(filter, orderBy, includes);
-            result.Load();
+            var result = QueryDb(filter, orderBy, navigationPropertyPaths);
+            return result.ToList();
         }
 
-        public virtual async Task LoadAsync(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
+        public async Task<IEnumerable<TEntity>> NQueryAsync(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string[] navigationPropertyPaths = null)
         {
-            var result = QueryDb(filter, orderBy, includes);
-            await result.LoadAsync();
+            try
+            {
+                var result = QueryDb(filter, orderBy, navigationPropertyPaths);
+                return await result.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
+        #endregion
+        #region QueryPage
 
         public virtual IEnumerable<TEntity> QueryPage(int startRow, int pageLength, Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
         {
             if (orderBy == null) orderBy = DefaultOrderBy?.Expression;
 
             var result = QueryDb(filter, orderBy, includes);
+            return result.Skip(startRow).Take(pageLength).ToList();
+        }
+
+        public IEnumerable<TEntity> NQueryPage(int startRow, int pageLength, Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string[] navigationPropertyPaths = null)
+        {
+            if (orderBy == null) orderBy = DefaultOrderBy?.Expression;
+
+            var result = QueryDb(filter, orderBy, navigationPropertyPaths);
             return result.Skip(startRow).Take(pageLength).ToList();
         }
 
@@ -151,17 +250,20 @@ namespace Xin.Repository
             return await result.Skip(startRow).Take(pageLength).ToListAsync();
         }
 
+        public virtual async Task<IEnumerable<TEntity>> NQueryPageAsync(int startRow, int pageLength, Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string[] navigationPropertyPaths = null)
+        {
+            if (orderBy == null) orderBy = DefaultOrderBy?.Expression;
+
+            var result = QueryDb(filter, orderBy, navigationPropertyPaths);
+            return await result.Skip(startRow).Take(pageLength).ToListAsync();
+        }
+        #endregion
         public virtual void Add(TEntity entity)
         {
             if (entity == null) throw new InvalidOperationException("Unable to add a null entity to the repository.");
             Context.Set<TEntity>().Add(entity);
         }
 
-        public virtual async Task BulkDelete(IEnumerable<TEntity> entities)
-        {
-            var set = Context.Set<TEntity>();
-            await set.BulkDeleteAsync(entities);
-        }
 
         public virtual TEntity Update(object entity)
         {
@@ -259,7 +361,9 @@ namespace Xin.Repository
         {
             Context.Set<TEntity>().Attach(entity);
         }
-        protected IQueryable<TEntity> QueryDb(Expression<Func<TEntity, bool>> filter, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes)
+        protected IQueryable<TEntity> QueryDb(Expression<Func<TEntity, bool>> filter,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
+            Func<IQueryable<TEntity>, IQueryable<TEntity>> includes)
         {
             IQueryable<TEntity> query = Context.Set<TEntity>();
             if (filter != null)
@@ -270,6 +374,32 @@ namespace Xin.Repository
             if (includes != null)
             {
                 query = includes(query);
+            }
+
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+
+            return query;
+        }
+
+        protected IQueryable<TEntity> QueryDb(Expression<Func<TEntity, bool>> filter,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
+            string[] includes)
+        {
+            IQueryable<TEntity> query = Context.Set<TEntity>();
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
             }
 
             if (orderBy != null)
@@ -316,7 +446,13 @@ namespace Xin.Repository
                 Expression.Constant(value));
             return Expression.Lambda<Func<TItem, bool>>(body, param);
         }
+        #region BulkOpertion
 
+        public virtual async Task BulkDelete(IEnumerable<TEntity> entities)
+        {
+            var set = Context.Set<TEntity>();
+            await set.BulkDeleteAsync(entities);
+        }
         public virtual void BulkInsert(IEnumerable<TEntity> entities)
         {
             var set = Context.Set<TEntity>();
@@ -402,5 +538,7 @@ namespace Xin.Repository
             int reslut = await set.DeleteFromQueryAsync();
             return reslut;
         }
+        #endregion
+
     }
 }

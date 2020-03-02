@@ -70,12 +70,12 @@
         }
       }
     },
-    "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj": {
+    "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj",
-        "projectName": "Xin.Entites",
-        "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj",
+        "projectUniqueName": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj",
+        "projectName": "Xin.Entities",
+        "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj",
         "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
         "outputPath": "D:\\Project\\Xin\\Xin.Entity\\obj\\",
         "projectStyle": "PackageReference",
@@ -244,8 +244,8 @@
               "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj": {
                 "projectPath": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj"
               },
-              "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entites.csproj"
+              "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj": {
+                "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj"
               },
               "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj": {
                 "projectPath": "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj"

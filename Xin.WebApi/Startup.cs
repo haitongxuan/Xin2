@@ -22,7 +22,6 @@ using Xin.WebApi.Filter;
 using Xin.WebApi.Model;
 using Xin.Service;
 using Microsoft.AspNetCore.Authentication;
-using Xin.WebApi.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Xin.Job.Server;
 using Quartz;
@@ -31,6 +30,7 @@ using Xin;
 using Xin.WebApi.Extension;
 using Microsoft.AspNetCore.Http;
 using Quartz.Spi;
+using Xin.Web.Framework.Permission;
 
 namespace Xin.WebApi
 {
@@ -64,6 +64,7 @@ namespace Xin.WebApi
             services.AddTransient<IJobListener, JobListener>();
             services.AddTransient<IJobFactory, XinIocJobFactory>();
             services.AddTransient<ISchedulerCenter, SchedulerCenter>();
+            services.AddTransient(typeof(IXinRepository<>), typeof(AutocodeBaseRepository<>));
 
             services.AddTransient<IClaimsTransformation, XinClaimsTransformer>();
             services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();

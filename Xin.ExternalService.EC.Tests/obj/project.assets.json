@@ -3254,7 +3254,7 @@
           "bin/placeholder/Xin.Common.dll": {}
         }
       },
-      "Xin.Entites/1.0.0": {
+      "Xin.Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
@@ -3262,10 +3262,10 @@
           "Xin.Repository": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/Xin.Entites.dll": {}
+          "bin/placeholder/Xin.Entities.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Xin.Entites.dll": {}
+          "bin/placeholder/Xin.Entities.dll": {}
         }
       },
       "Xin.ExternalService.EC/1.0.0": {
@@ -3278,7 +3278,7 @@
           "System.ServiceModel.Http": "4.4.0",
           "System.ServiceModel.NetTcp": "4.4.0",
           "System.ServiceModel.Security": "4.4.0",
-          "Xin.Entites": "1.0.0",
+          "Xin.Entities": "1.0.0",
           "Xin.Job": "1.0.0",
           "Xin.Repository": "1.0.0",
           "Xin.Service": "1.0.0"
@@ -3327,7 +3327,7 @@
         "dependencies": {
           "Moq": "4.13.1",
           "Xin.Common": "1.0.0",
-          "Xin.Entites": "1.0.0",
+          "Xin.Entities": "1.0.0",
           "Xin.Repository": "1.0.0"
         },
         "compile": {
@@ -3344,7 +3344,7 @@
           "Microsoft.AspNetCore.SignalR": "1.1.0",
           "Microsoft.AspNetCore.SignalR.Client": "1.1.0",
           "Xin.Common": "1.0.0",
-          "Xin.Entites": "1.0.0",
+          "Xin.Entities": "1.0.0",
           "Xin.Repository": "1.0.0",
           "Xin.Service": "1.0.0"
         },
@@ -10572,10 +10572,10 @@
       "path": "../Xin.Common/Xin.Common.csproj",
       "msbuildProject": "../Xin.Common/Xin.Common.csproj"
     },
-    "Xin.Entites/1.0.0": {
+    "Xin.Entities/1.0.0": {
       "type": "project",
-      "path": "../Xin.Entity/Xin.Entites.csproj",
-      "msbuildProject": "../Xin.Entity/Xin.Entites.csproj"
+      "path": "../Xin.Entity/Xin.Entities.csproj",
+      "msbuildProject": "../Xin.Entity/Xin.Entities.csproj"
     },
     "Xin.ExternalService.EC/1.0.0": {
       "type": "project",

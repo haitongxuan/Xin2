@@ -15,9 +15,13 @@ using Xin.Common.CustomAttribute;
 namespace Xin.Service
 {
     public class ResUserRepository :
-        EntityRepositoryBase<XinDBContext, ResUser>,
+        AutocodeBaseRepository<ResUser>,
         IResUserRepository
     {
+        public ResUserRepository(XinDBContext context) : base(context)
+        {
+        }
+
         public ResUserRepository(ILogger<DataAccess> logger, XinDBContext context) : base(logger, context)
         {
         }
@@ -82,21 +86,7 @@ namespace Xin.Service
             return permissions;
         }
 
-        public string GetCode()
-        {
-            var codeatt = (AutoCodeAttribute)typeof(ResUser).GetCustomAttributes(typeof(AutoCodeAttribute), true)[0];
-            string code = string.Empty;
-            Context.GetAutoCode(codeatt.FixHeader, codeatt.Length, ref code);
-            return code;
-        }
 
-        public async Task<string> GetCodeAsync()
-        {
-            var codeatt = (AutoCodeAttribute)typeof(ResUser).GetCustomAttributes(typeof(AutoCodeAttribute), true)[0];
-            string code = string.Empty;
-            var code2 = await Context.GetAutoCodeAsync(codeatt.FixHeader, codeatt.Length, code);
-            string c = code2.Item1;
-            return code;
-        }
+
     }
 }
