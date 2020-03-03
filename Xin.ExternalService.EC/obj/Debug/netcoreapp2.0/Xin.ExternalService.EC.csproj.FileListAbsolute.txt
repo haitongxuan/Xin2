@@ -1,8 +1,0 @@
-D:\Project\Xin.ExternalService.EC\bin\Debug\netcoreapp2.0\Xin.ExternalService.EC.deps.json
-D:\Project\Xin.ExternalService.EC\bin\Debug\netcoreapp2.0\Xin.ExternalService.EC.dll
-D:\Project\Xin.ExternalService.EC\obj\Debug\netcoreapp2.0\Xin.ExternalService.EC.csprojAssemblyReference.cache
-D:\Project\Xin.ExternalService.EC\obj\Debug\netcoreapp2.0\Xin.ExternalService.EC.AssemblyInfoInputs.cache
-D:\Project\Xin.ExternalService.EC\obj\Debug\netcoreapp2.0\Xin.ExternalService.EC.AssemblyInfo.cs
-D:\Project\Xin.ExternalService.EC\bin\Debug\netcoreapp2.0\Xin.ExternalService.EC.pdb
-D:\Project\Xin.ExternalService.EC\obj\Debug\netcoreapp2.0\Xin.ExternalService.EC.dll
-D:\Project\Xin.ExternalService.EC\obj\Debug\netcoreapp2.0\Xin.ExternalService.EC.pdb
