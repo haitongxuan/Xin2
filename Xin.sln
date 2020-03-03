@@ -29,8 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.ExternalService.EC.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.Web.Framework", "Xin.Web.Framework\Xin.Web.Framework.csproj", "{2D7BD081-CC7C-4089-95ED-7FAEC29AB2F1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xin.WebApi.Test", "..\Xin.WebApi.Test\Xin.WebApi.Test.csproj", "{D64801BF-2770-42C5-B1C5-6353B9B4341C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,10 +87,6 @@ Global
 		{2D7BD081-CC7C-4089-95ED-7FAEC29AB2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D7BD081-CC7C-4089-95ED-7FAEC29AB2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D7BD081-CC7C-4089-95ED-7FAEC29AB2F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D64801BF-2770-42C5-B1C5-6353B9B4341C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D64801BF-2770-42C5-B1C5-6353B9B4341C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D64801BF-2770-42C5-B1C5-6353B9B4341C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D64801BF-2770-42C5-B1C5-6353B9B4341C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

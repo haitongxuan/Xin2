@@ -21,8 +21,8 @@ namespace Xin.Service
         {
         }
 
-        public override void Add(TEntity entity)
-        {
+        public override void Add(TEntity entity)        {
+            
             Type entityType = typeof(TEntity);
             var codeatt = (AutoCodeAttribute)entityType.GetCustomAttributes(typeof(AutoCodeAttribute), true)[0];
             if (codeatt != null)

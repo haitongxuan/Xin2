@@ -31,7 +31,6 @@ namespace Xin.Service
             string salt = SecretHelper.GetSalt(true, 10);
             entity.UserPwd = SecretHelper.MD5Encrypt(entity.UserPwd, salt);
             entity.Salt = salt;
-            entity.UserCode = GetCode();
             base.Add(entity);
         }
 

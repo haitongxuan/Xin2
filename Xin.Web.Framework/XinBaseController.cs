@@ -28,6 +28,7 @@ namespace Xin.Web.Framework
             _typeName = typeof(TEntity).FullName;
         }
 
+        protected int UserId => Convert.ToInt32(User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value);
         protected async Task<string> GetPermissionCode(IUnitOfWork uow, string tag)
         {
             var repository = uow.GetRepository<ResResource>();
@@ -67,16 +68,25 @@ namespace Xin.Web.Framework
 
                 if (cp)
                 {
-                    OrderBy<TEntity> order = null;
-                    if (req.order != null)
+                    try
                     {
-                        order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
-                    }
-                    var repository = uow.GetRepository<TEntity>();
-                    var models = await repository.NGetAllAsync(order.Expression, req.navPropertyPaths);
-                    result.data = models.ToList();
+                        OrderBy<TEntity> order = null;
+                        if (req.order != null)
+                        {
+                            order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
+                        }
+                        var repository = uow.GetRepository<TEntity>();
+                        var models = await repository.NGetAllAsync(order.Expression, req.navPropertyPaths);
+                        result.data = models.ToList();
 
-                    return result;
+                        return result;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.code = ResCode.ServerError;
+                        result.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        return result;
+                    }
                 }
                 else
                 {
@@ -99,15 +109,24 @@ namespace Xin.Web.Framework
                 bool cp = await CheckPermission("Read", uow);
                 if (cp)
                 {
-                    var repository = uow.GetRepository<TEntity>();
-                    OrderBy<TEntity> order = null;
-                    if (req.order != null)
+                    try
                     {
-                        order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
+                        var repository = uow.GetRepository<TEntity>();
+                        OrderBy<TEntity> order = null;
+                        if (req.order != null)
+                        {
+                            order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
+                        }
+                        var models = await repository.GetAsync(req.id, order, req.navPropertyPaths);
+                        res.data = models;
+                        return res;
                     }
-                    var models = await repository.GetAsync(req.id, order, req.navPropertyPaths);
-                    res.data = models;
-                    return res;
+                    catch (Exception ex)
+                    {
+                        res.code = ResCode.ServerError;
+                        res.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        return res;
+                    }
                 }
                 else
                 {
@@ -115,6 +134,7 @@ namespace Xin.Web.Framework
                 }
             }
         }
+
 
         /// <summary>
         /// 添加
@@ -155,7 +175,10 @@ namespace Xin.Web.Framework
                     }
                     catch (Exception ex)
                     {
-                        throw ex;
+                        res.code = ResCode.ServerError;
+                        res.data = false;
+                        res.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        return res;
                     }
                 }
                 else
@@ -180,23 +203,32 @@ namespace Xin.Web.Framework
                 bool cp = await CheckPermission("Edit", uow);
                 if (cp)
                 {
-                    var repository = uow.GetRepository<TEntity>();
-                    string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
-                    if (us != null)
+                    try
                     {
-                        int userid = Convert.ToInt32(us);
-                        model.WriteUid = userid;
-                        model.WriteDate = DateTime.Now;
-                        repository.Update(model);
-                        uow.SaveChanges();
+                        var repository = uow.GetRepository<TEntity>();
+                        string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
+                        if (us != null)
+                        {
+                            int userid = Convert.ToInt32(us);
+                            model.WriteUid = userid;
+                            model.WriteDate = DateTime.Now;
+                            repository.Update(model);
+                            uow.SaveChanges();
+                        }
+                        else
+                        {
+                            res.code = ResCode.Error;
+                            res.data = false;
+                            res.msg = "当前登录用户信息获取失败";
+                        }
+                        return res;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        res.code = ResCode.Error;
-                        res.data = false;
-                        res.msg = "当前登录用户信息获取失败";
+                        res.code = ResCode.ServerError;
+                        res.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        return res;
                     }
-                    return res;
                 }
                 else
                 {
@@ -219,22 +251,31 @@ namespace Xin.Web.Framework
                 bool cp = await CheckPermission("Delete", uow);
                 if (cp)
                 {
-                    var repository = uow.GetRepository<TEntity>();
-                    var model = repository.Get(id);
-                    string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
-                    if (us != null)
+                    try
                     {
-                        int userid = Convert.ToInt32(us);
-                        repository.Remove(model);
-                        uow.SaveChanges();
+                        var repository = uow.GetRepository<TEntity>();
+                        var model = repository.Get(id);
+                        string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
+                        if (us != null)
+                        {
+                            int userid = Convert.ToInt32(us);
+                            repository.Remove(model);
+                            uow.SaveChanges();
+                        }
+                        else
+                        {
+                            res.code = ResCode.Error;
+                            res.data = false;
+                            res.msg = "当前登录用户信息获取失败";
+                        }
+                        return res;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        res.code = ResCode.Error;
-                        res.data = false;
-                        res.msg = "当前登录用户信息获取失败";
+                        res.code = ResCode.ServerError;
+                        res.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        return res;
                     }
-                    return res;
                 }
                 else
                 {
@@ -271,38 +312,48 @@ namespace Xin.Web.Framework
             if (cp)
             {
                 var page = new PageDateRes<TEntity>();
-                if (pageReq != null)
+                try
                 {
-                    var query = pageReq.query;
-                    var fuc = FilterHelper<TEntity>.GetExpression(query, parameterstr);
-                    var filter = new Repository.Filter<TEntity>(fuc);
-                    if (string.IsNullOrEmpty(pageReq.order.columnName))
+                    if (pageReq != null)
                     {
-                        pageReq.order.columnName = "Id";
-                        pageReq.order.reverse = false;
-                    }
-                    var orderBy = new Repository.OrderBy<TEntity>(pageReq.order.columnName, pageReq.order.reverse);
-                    var includes = _uowProvider.CreateUnitOfWork().GetRepository<TEntity>();
+                        var query = pageReq.query;
+                        var fuc = FilterHelper<TEntity>.GetExpression(query, parameterstr);
+                        var filter = new Repository.Filter<TEntity>(fuc);
+                        if (string.IsNullOrEmpty(pageReq.order.columnName))
+                        {
+                            pageReq.order.columnName = "Id";
+                            pageReq.order.reverse = false;
+                        }
+                        var orderBy = new Repository.OrderBy<TEntity>(pageReq.order.columnName, pageReq.order.reverse);
+                        var includes = _uowProvider.CreateUnitOfWork().GetRepository<TEntity>();
 
-                    try
-                    {
-                        var result = await _dataPager.QueryAsync(pageReq.pageNum, pageReq.pageSize, filter,
-                            orderBy, pageReq.navPropertyPaths);
+                        try
+                        {
+                            var result = await _dataPager.QueryAsync(pageReq.pageNum, pageReq.pageSize, filter,
+                                orderBy, pageReq.navPropertyPaths);
 
-                        page = PageMapper<TEntity>.ToPageDateRes(result);
-                        return page;
+                            page = PageMapper<TEntity>.ToPageDateRes(result);
+                            return page;
+                        }
+                        catch (Exception ex)
+                        {
+                            page.code = ResCode.Error;
+                            page.msg = ex.Message;
+                            return page;
+                        }
+
                     }
-                    catch (Exception ex)
+                    else
                     {
                         page.code = ResCode.Error;
-                        page.msg = ex.Message;
+                        page.msg = "参数不能为空";
                         return page;
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    page.code = ResCode.Error;
-                    page.msg = "参数不正确";
+                    page.code = ResCode.ServerError;
+                    page.msg = $"{ex.Message}:{ex.InnerException.Message}";
                     return page;
                 }
             }
@@ -333,25 +384,34 @@ namespace Xin.Web.Framework
                 bool cp = await CheckPermission("Delete", uow);
                 if (cp)
                 {
-                    var repository = uow.GetRepository<TEntity>();
-                    var model = repository.Get(id);
-                    string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
-                    if (us != null)
+                    try
                     {
-                        int userid = Convert.ToInt32(us);
-                        model.StopFlag = true;
-                        model.WriteUid = userid;
-                        model.WriteDate = DateTime.Now;
-                        repository.Update(model);
-                        uow.SaveChanges();
+                        var repository = uow.GetRepository<TEntity>();
+                        var model = repository.Get(id);
+                        string us = User.Claims.FirstOrDefault(p => p.Type.Equals(ClaimTypes.Sid)).Value;
+                        if (us != null)
+                        {
+                            int userid = Convert.ToInt32(us);
+                            model.StopFlag = true;
+                            model.WriteUid = userid;
+                            model.WriteDate = DateTime.Now;
+                            repository.Update(model);
+                            uow.SaveChanges();
+                        }
+                        else
+                        {
+                            res.code = ResCode.Error;
+                            res.data = false;
+                            res.msg = "当前登录用户信息获取失败";
+                        }
+                        return res;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        res.code = ResCode.Error;
-                        res.data = false;
-                        res.msg = "当前登录用户信息获取失败";
+                        res.code = ResCode.ServerError;
+                        res.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        return res;
                     }
-                    return res;
                 }
                 else
                 {
@@ -374,11 +434,20 @@ namespace Xin.Web.Framework
                 bool cp = await CheckPermission("Read", uow);
                 if (cp)
                 {
-                    var repository = uow.GetRepository<TEntity>();
-                    var orderby = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
-                    var models = await repository.NQueryAsync(f => f.StopFlag == false, orderby.Expression, req.navPropertyPaths);
-                    result.data = models.ToList();
-                    return result;
+                    try
+                    {
+                        var repository = uow.GetRepository<TEntity>();
+                        var orderby = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
+                        var models = await repository.NQueryAsync(f => f.StopFlag == false, orderby.Expression, req.navPropertyPaths);
+                        result.data = models.ToList();
+                        return result;
+                    }
+                    catch (Exception ex)
+                    {
+                        result.code = ResCode.ServerError;
+                        result.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        return result;
+                    }
                 }
                 else
                 {
@@ -412,44 +481,53 @@ namespace Xin.Web.Framework
             if (cp)
             {
                 var page = new PageDateRes<TEntity>();
-                string parameterstr = _typeName + "Page";
-                if (pageReq != null)
+                try
                 {
-                    var query = pageReq.query;
-                    query.Add(new FilterNode
+                    string parameterstr = _typeName + "Page";
+                    if (pageReq != null)
                     {
-                        andorop = "and",
-                        key = "StopFlag",
-                        binaryop = "eq",
-                        value = false
-                    });
-                    var fuc = FilterHelper<TEntity>.GetExpression(query, parameterstr);
-                    var filter = new Repository.Filter<TEntity>(fuc);
-                    if (pageReq.order == null)
-                    {
-                        pageReq.order.columnName = "Id";
-                        pageReq.order.reverse = false;
-                    }
-                    var orderBy = new Repository.OrderBy<TEntity>(pageReq.order.columnName, pageReq.order.reverse);
-                    try
-                    {
-                        var result = await _dataPager.QueryAsync(pageReq.pageNum, pageReq.pageSize, filter,
-                            orderBy, pageReq.navPropertyPaths);
+                        var query = pageReq.query;
+                        query.Add(new FilterNode
+                        {
+                            andorop = "and",
+                            key = "StopFlag",
+                            binaryop = "eq",
+                            value = false
+                        });
+                        var fuc = FilterHelper<TEntity>.GetExpression(query, parameterstr);
+                        var filter = new Repository.Filter<TEntity>(fuc);
+                        if (pageReq.order == null)
+                        {
+                            pageReq.order.columnName = "Id";
+                            pageReq.order.reverse = false;
+                        }
+                        var orderBy = new Repository.OrderBy<TEntity>(pageReq.order.columnName, pageReq.order.reverse);
+                        try
+                        {
+                            var result = await _dataPager.QueryAsync(pageReq.pageNum, pageReq.pageSize, filter,
+                                orderBy, pageReq.navPropertyPaths);
 
-                        page = PageMapper<TEntity>.ToPageDateRes(result);
-                        return page;
+                            page = PageMapper<TEntity>.ToPageDateRes(result);
+                            return page;
+                        }
+                        catch (Exception ex)
+                        {
+                            page.code = ResCode.Error;
+                            page.msg = ex.Message;
+                            return page;
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
                         page.code = ResCode.Error;
-                        page.msg = ex.Message;
+                        page.msg = "参数不正确";
                         return page;
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    page.code = ResCode.Error;
-                    page.msg = "参数不正确";
+                    page.code = ResCode.ServerError;
+                    page.msg = $"{ex.Message}:{ex.InnerException.Message}";
                     return page;
                 }
             }

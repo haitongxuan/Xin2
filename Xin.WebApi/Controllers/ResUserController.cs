@@ -47,7 +47,7 @@ namespace Xin.WebApi.Controllers
                 user_code = userCode
             };
         }
-        
+
 
         /// <summary>
         /// 获取用户的权限列表
@@ -65,6 +65,56 @@ namespace Xin.WebApi.Controllers
                 var list = (await cr.GetAllPermissions(userId)).ToList();
                 var dr = new DataRes<List<ResPermission>>() { data = list };
                 return dr;
+            }
+        }
+
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <returns></returns>
+        [Route("Add")]
+        [HttpPost]
+        [PermissionFilter("User.Add")]
+        public override async Task<ActionResult<DataRes<bool>>> Add([FromBody]ResUser model)
+        {
+            using (var uow = _uowProvider.CreateUnitOfWork())
+            {
+                IEnumerable<ResUserPermission> upl = from rup in model.ResUserPermissions
+                                                     select new ResUserPermission
+                                                     {
+                                                         PermissionId = rup.PermissionId,
+                                                         CreateDate = DateTime.Now,
+                                                         WriteDate = DateTime.Now,
+                                                         CreateUid = UserId,
+                                                         WriteUid = UserId
+                                                     };
+                IEnumerable<ResUserRole> url = from rur in model.ResUserRoles
+                                               select new ResUserRole
+                                               {
+                                                   RoleId = rur.RoleId,
+                                                   CreateDate = DateTime.Now,
+                                                   WriteDate = DateTime.Now,
+                                                   WriteUid = UserId,
+                                                   CreateUid = UserId
+                                               };
+                var repository = uow.GetCustomRepository<IResUserRepository>();
+                try
+                {
+                    model.ResUserPermissions = upl.ToList();
+                    model.ResUserRoles = url.ToList();
+                    model.StopFlag = false;
+                    model.WriteUid = Convert.ToInt32(UserId);
+                    model.CreateUid = Convert.ToInt32(UserId);
+                    model.CreateDate = DateTime.Now;
+                    model.WriteDate = DateTime.Now;
+                    repository.Add(model);
+                    int i = await uow.SaveChangesAsync();
+                    return new DataRes<bool>() { data = true };
+                }
+                catch (Exception ex)
+                {
+                    return new DataRes<bool>() { data = false, msg = ex.Message, code = ResCode.Error };
+                }
             }
         }
     }
