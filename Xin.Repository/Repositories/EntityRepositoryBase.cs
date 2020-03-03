@@ -155,7 +155,7 @@ namespace Xin.Repository
 
             if (navigationPropertyPaths != null)
             {
-                foreach(var n in navigationPropertyPaths)
+                foreach (var n in navigationPropertyPaths)
                 {
                     query.Include(n);
                 }
@@ -398,7 +398,20 @@ namespace Xin.Repository
             {
                 foreach (var include in includes)
                 {
-                    query = query.Include(include);
+                    string[] arr = include.Split(".");
+                    string realstr = string.Empty;
+                    if (arr.Count() > 0)
+                    {
+                        foreach (string s in arr)
+                        {
+                            realstr = include.Replace(s, s.Substring(0, 1).ToUpper() + s.Substring(1));
+                        }
+                    }
+                    else
+                    {
+                        realstr = include.Substring(0, 1).ToUpper() + include.Substring(1);
+                    }
+                    query = query.Include(realstr);
                 }
             }
 

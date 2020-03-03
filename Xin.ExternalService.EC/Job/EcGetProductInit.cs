@@ -33,14 +33,15 @@ namespace Xin.ExternalService.EC.Job
         {
             var models = new List<ECProduct>();
             var reqModel = new Reqeust.Model.WMSGetProductListReqModel();
-            reqModel.PageSize = 50;
+            reqModel.PageSize = 500;
             reqModel.GetProductBox = IsOrNotEnum.Yes;
             reqModel.GetProductCombination = IsOrNotEnum.Yes;
             reqModel.GetProductCustomCategory = IsOrNotEnum.Yes;
             reqModel.IsCombination = IsOrNotEnum.Yes;
             reqModel.GetProperty = IsOrNotEnum.Yes;
+            int submitPageQty = 10;
             bool finish = true;
-            int pageIndex = 1;
+            int pageIndex = 142;
 
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
@@ -69,10 +70,10 @@ namespace Xin.ExternalService.EC.Job
                         log.Error($"初始化产品信息,获取数据错误:{ex.Message}");
                         throw ex;
                     }
-                    if (resp.Body.Count == 50)
+                    if (resp.Body.Count == reqModel.PageSize)
                     {
                         foreach (var i in resp.Body)
-                        {                          
+                        {
                             try
                             {
                                 var m = Mapper<EC_Product, ECProduct>.Map(i);
@@ -83,7 +84,7 @@ namespace Xin.ExternalService.EC.Job
                                 throw ex;
                             }
                         }
-                        if (pageIndex % 20 == 0)
+                        if (pageIndex % submitPageQty == 0)
                         {
                             try
                             {
@@ -103,6 +104,18 @@ namespace Xin.ExternalService.EC.Job
                     {
                         try
                         {
+                            foreach (var i in resp.Body)
+                            {
+                                try
+                                {
+                                    var m = Mapper<EC_Product, ECProduct>.Map(i);
+                                    models.Add(m);
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw ex;
+                                }
+                            }
                             await repository.BulkInsertAsync(models, x => x.IncludeGraph = true);
                             uow.BulkSaveChanges();
                             models.Clear();
