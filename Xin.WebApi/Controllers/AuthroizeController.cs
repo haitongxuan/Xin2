@@ -11,12 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Xin.Repository;
-using Xin.WebApi.Model;
+using Xin.Web.Framework.Model;
 using Xin.Service;
 using System.Linq;
 using Xin.Entities;
 using Xin.Common;
-using Xin.Web.Framework.Model;
 
 namespace Xin.WebApi.Controllers
 {

@@ -19,7 +19,6 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using Xin.Repository;
 using Xin.WebApi.Filter;
-using Xin.WebApi.Model;
 using Xin.Service;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -31,6 +30,7 @@ using Xin.WebApi.Extension;
 using Microsoft.AspNetCore.Http;
 using Quartz.Spi;
 using Xin.Web.Framework.Permission;
+using Xin.Web.Framework.Model;
 
 namespace Xin.WebApi
 {

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Xin.Common;
 using Xin.Repository;
-using Xin.WebApi.Model;
 using Xin.Entities;
 using Microsoft.EntityFrameworkCore;
 using Xin.Web.Framework.Model;
