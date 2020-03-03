@@ -1,5 +1,0 @@
-D:\Project\Xin.Job.Service\bin\Debug\netcoreapp3.1\Xin.Job.Service.deps.json
-D:\Project\Xin.Job.Service\bin\Debug\netcoreapp3.1\Xin.Job.Service.dll
-D:\Project\Xin.Job.Service\obj\Debug\netcoreapp3.1\Xin.Job.Service.csprojAssemblyReference.cache
-D:\Project\Xin.Job.Service\obj\Debug\netcoreapp3.1\Xin.Job.Service.AssemblyInfoInputs.cache
-D:\Project\Xin.Job.Service\obj\Debug\netcoreapp3.1\Xin.Job.Service.AssemblyInfo.cs

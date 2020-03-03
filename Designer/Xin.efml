@@ -1469,201 +1469,201 @@
     <id name="RlId" type="String" p1:DisplayName="入库唯一明细id" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="ff2b027a-b312-4eb2-b619-c2fb068b3c1a">
       <column name="" length="200" />
     </id>
-    <property name="ReferenceNo" type="String" p1:DisplayName="单据" p1:ValidateMaxLength="64" p1:ValidateRequired="true" p1:Guid="e720a2d7-3c4f-45f5-afb7-f04b90011867">
+    <property name="ReferenceNo" type="String" p1:nullable="True" p1:DisplayName="单据" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="e720a2d7-3c4f-45f5-afb7-f04b90011867">
       <column name="" length="64" />
     </property>
-    <property name="WarehouseId" type="String" p1:DisplayName="仓库id，仓库-&gt;获取仓库信息接口getWarehouse查询," p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="d1e46c4a-dad8-4709-be7d-81c5ce940dca">
+    <property name="WarehouseId" type="String" p1:nullable="True" p1:DisplayName="仓库id，仓库-&gt;获取仓库信息接口getWarehouse查询," p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="d1e46c4a-dad8-4709-be7d-81c5ce940dca">
       <column name="" length="200" />
     </property>
-    <property name="ToWarehouseId" type="String" p1:DisplayName="目的仓库id，仓库-&gt;获取仓库信息接口getWarehouse查询" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="00f44c55-4ca3-4d3d-872b-494d4a6c6259">
+    <property name="ToWarehouseId" type="String" p1:nullable="True" p1:DisplayName="目的仓库id，仓库-&gt;获取仓库信息接口getWarehouse查询" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="00f44c55-4ca3-4d3d-872b-494d4a6c6259">
       <column name="" length="200" />
     </property>
-    <property name="WarehouseCode" type="String" p1:DisplayName="仓库code" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="32a16e96-7802-480c-94ec-47f9e8dc8e49">
+    <property name="WarehouseCode" type="String" p1:nullable="True" p1:DisplayName="仓库code" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="32a16e96-7802-480c-94ec-47f9e8dc8e49">
       <column name="" length="200" />
     </property>
-    <property name="lcCode" type="String" p1:DisplayName="库位" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="5591199e-aa26-4648-af4a-067065111a03">
+    <property name="lcCode" type="String" p1:nullable="True" p1:DisplayName="库位" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="5591199e-aa26-4648-af4a-067065111a03">
       <column name="" length="200" />
     </property>
-    <property name="AddUser" type="Int32" p1:DisplayName="创建人ERP OPENAPI-V1：获取基础数据：获取用户列表接口" p1:ValidateRequired="true" p1:Guid="30e91136-3097-49bf-a292-b39cbc589298">
+    <property name="AddUser" type="Int32" p1:nullable="True" p1:DisplayName="创建人ERP OPENAPI-V1：获取基础数据：获取用户列表接口" p1:ValidateRequired="false" p1:Guid="30e91136-3097-49bf-a292-b39cbc589298">
       <column name="" length="11" />
     </property>
-    <property name="ReceivingAddUser" type="Int32" p1:DisplayName="确定人ERP OPENAPI-V1：获取基础数据：获取用户列表接口" p1:ValidateRequired="true" p1:Guid="860b5785-9373-4243-9c51-edcccebf7bb4">
+    <property name="ReceivingAddUser" type="Int32" p1:nullable="True" p1:DisplayName="确定人ERP OPENAPI-V1：获取基础数据：获取用户列表接口" p1:ValidateRequired="false" p1:Guid="860b5785-9373-4243-9c51-edcccebf7bb4">
       <column name="" length="11" />
     </property>
-    <property name="ApplicationCode" type="String" p1:DisplayName="入库类型：底部有类型映射关系" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="3af06231-e8a3-4a33-bca9-9c19f12427cc">
+    <property name="ApplicationCode" type="String" p1:nullable="True" p1:DisplayName="入库类型：底部有类型映射关系" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="3af06231-e8a3-4a33-bca9-9c19f12427cc">
       <column name="" length="200" />
     </property>
-    <property name="ProductBarcode" type="String" p1:DisplayName="产品代码" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="d556952a-0ff1-46d8-9682-ce8d609582b2">
+    <property name="ProductBarcode" type="String" p1:nullable="True" p1:DisplayName="产品代码" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="d556952a-0ff1-46d8-9682-ce8d609582b2">
       <column name="" length="200" />
     </property>
-    <property name="ProductTitle" type="String" p1:DisplayName="产品中文名称" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="4101d4c4-493a-4c06-8d9b-63f28a6ee67a">
+    <property name="ProductTitle" type="String" p1:nullable="True" p1:DisplayName="产品中文名称" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="4101d4c4-493a-4c06-8d9b-63f28a6ee67a">
       <column name="" length="200" />
     </property>
-    <property name="PuCode" type="String" p1:DisplayName="产品单位，EA(单个) KG(公斤) MT(米) CASE(盒) PC(件) SET(套)" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="660ebbe1-a4b1-4066-9170-5a42532eb6e5">
+    <property name="PuCode" type="String" p1:nullable="True" p1:DisplayName="产品单位，EA(单个) KG(公斤) MT(米) CASE(盒) PC(件) SET(套)" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="660ebbe1-a4b1-4066-9170-5a42532eb6e5">
       <column name="" length="200" />
     </property>
-    <property name="ContainBattery" type="Int32" p1:DisplayName="是否含有电池，0：否，1：是" p1:ValidateRequired="true" p1:Guid="f3c737df-8553-49c9-96c6-2f7d0e1cae9f">
+    <property name="ContainBattery" type="Int32" p1:nullable="True" p1:DisplayName="是否含有电池，0：否，1：是" p1:ValidateRequired="false" p1:Guid="f3c737df-8553-49c9-96c6-2f7d0e1cae9f">
       <column name="" length="11" />
     </property>
-    <property name="ProductIsQc" type="Int32" p1:DisplayName="是否需要质检，0：否，1：是" p1:ValidateRequired="true" p1:Guid="1f56a3d8-fd2d-4b42-add3-2d3cddb20173">
+    <property name="ProductIsQc" type="Int32" p1:nullable="True" p1:DisplayName="是否需要质检，0：否，1：是" p1:ValidateRequired="false" p1:Guid="1f56a3d8-fd2d-4b42-add3-2d3cddb20173">
       <column name="" length="11" />
     </property>
-    <property name="IsImitation" type="Int32" p1:DisplayName="是否为仿制品，0：否，1：是" p1:ValidateRequired="true" p1:Guid="fa02969c-0708-4d89-bf06-d9271f9c3dc6">
+    <property name="IsImitation" type="Int32" p1:nullable="True" p1:DisplayName="是否为仿制品，0：否，1：是" p1:ValidateRequired="false" p1:Guid="fa02969c-0708-4d89-bf06-d9271f9c3dc6">
       <column name="" length="11" />
     </property>
-    <property name="IsExpDate" type="Int32" p1:DisplayName="是否存在有效期，0：否，1：是" p1:ValidateRequired="true" p1:Guid="a8dcfc94-4cda-433a-88a9-ca998d4ed724">
+    <property name="IsExpDate" type="Int32" p1:nullable="True" p1:DisplayName="是否存在有效期，0：否，1：是" p1:ValidateRequired="false" p1:Guid="a8dcfc94-4cda-433a-88a9-ca998d4ed724">
       <column name="" length="11" />
     </property>
-    <property name="ExpDate" type="DateTime" p1:DisplayName="有效期" p1:ValidateRequired="true" p1:Guid="a9fa5cc3-b578-480b-9cb7-a72ad48e360e">
+    <property name="ExpDate" type="DateTime" p1:nullable="True" p1:DisplayName="有效期" p1:ValidateRequired="false" p1:Guid="a9fa5cc3-b578-480b-9cb7-a72ad48e360e">
       <column name="" />
     </property>
-    <property name="Category1" type="Int32" p1:DisplayName="一级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="true" p1:Guid="ec9a82f1-67cc-4082-ac3a-28ba1dde8402">
+    <property name="Category1" type="Int32" p1:nullable="True" p1:DisplayName="一级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="false" p1:Guid="ec9a82f1-67cc-4082-ac3a-28ba1dde8402">
       <column name="" length="11" />
     </property>
-    <property name="Category2" type="Int32" p1:DisplayName="二级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="true" p1:Guid="0707f0e6-cc6e-48df-aa99-16283337079f">
+    <property name="Category2" type="Int32" p1:nullable="True" p1:DisplayName="二级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="false" p1:Guid="0707f0e6-cc6e-48df-aa99-16283337079f">
       <column name="" length="11" />
     </property>
-    <property name="Category3" type="Int32" p1:DisplayName="三级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="true" p1:Guid="788cbe39-00a1-4706-b195-a03479c18646">
+    <property name="Category3" type="Int32" p1:nullable="True" p1:DisplayName="三级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="false" p1:Guid="788cbe39-00a1-4706-b195-a03479c18646">
       <column name="" length="11" />
     </property>
-    <property name="WarehouseProductBarcode" type="String" p1:DisplayName="仓库条码" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="6e2d7087-d103-4794-ad70-a07f2fb0b228">
+    <property name="WarehouseProductBarcode" type="String" p1:nullable="True" p1:DisplayName="仓库条码" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="6e2d7087-d103-4794-ad70-a07f2fb0b228">
       <column name="" length="200" />
     </property>
-    <property name="SupplierCode" type="String" p1:DisplayName="供应商Code,产品-&gt;相关接口getAllSupplier查询" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="a5fd6166-2010-422e-858e-4aa105b040b0">
+    <property name="SupplierCode" type="String" p1:nullable="True" p1:DisplayName="供应商Code,产品-&gt;相关接口getAllSupplier查询" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="a5fd6166-2010-422e-858e-4aa105b040b0">
       <column name="" length="200" />
     </property>
-    <property name="PoCode" type="String" p1:DisplayName="采购单" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="5e21f960-a4e3-4d3c-9c54-f268fc7c01ea">
+    <property name="PoCode" type="String" p1:nullable="True" p1:DisplayName="采购单" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="5e21f960-a4e3-4d3c-9c54-f268fc7c01ea">
       <column name="" length="200" />
     </property>
-    <property name="PoRelease" type="DateTime" p1:DisplayName="采购单审核日期" p1:ValidateRequired="true" p1:Guid="c43190cb-ee2e-4ade-b25b-dbe4608a7670">
+    <property name="PoRelease" type="DateTime" p1:nullable="True" p1:DisplayName="采购单审核日期" p1:ValidateRequired="false" p1:Guid="c43190cb-ee2e-4ade-b25b-dbe4608a7670">
       <column name="" />
     </property>
-    <property name="IsReturned" type="Int32" p1:DisplayName="是否是采购退货，0：否，1：是" p1:ValidateRequired="true" p1:Guid="20fe9a5a-233b-40a8-abac-aedece947b6c">
+    <property name="IsReturned" type="Int32" p1:nullable="True" p1:DisplayName="是否是采购退货，0：否，1：是" p1:ValidateRequired="false" p1:Guid="20fe9a5a-233b-40a8-abac-aedece947b6c">
       <column name="" length="11" />
     </property>
-    <property name="ReceivingReturnedQty" type="Int32" p1:DisplayName="收货过多退货数量" p1:ValidateRequired="true" p1:Guid="5ba19b82-4d4b-45f1-9047-1467bcafd1b1">
+    <property name="ReceivingReturnedQty" type="Int32" p1:nullable="True" p1:DisplayName="收货过多退货数量" p1:ValidateRequired="false" p1:Guid="5ba19b82-4d4b-45f1-9047-1467bcafd1b1">
       <column name="" length="11" />
     </property>
-    <property name="QcReturnedQty" type="Int32" p1:DisplayName="质检退货数量" p1:ValidateRequired="true" p1:Guid="54f7a607-c797-4261-b3c6-b55cd145008a">
+    <property name="QcReturnedQty" type="Int32" p1:nullable="True" p1:DisplayName="质检退货数量" p1:ValidateRequired="false" p1:Guid="54f7a607-c797-4261-b3c6-b55cd145008a">
       <column name="" length="11" />
     </property>
-    <property name="Quantity" type="Int32" p1:DisplayName="数量" p1:ValidateRequired="true" p1:Guid="361a80ab-f80b-4ae3-bbc6-c9b49cc01417">
+    <property name="Quantity" type="Int32" p1:nullable="True" p1:DisplayName="数量" p1:ValidateRequired="false" p1:Guid="361a80ab-f80b-4ae3-bbc6-c9b49cc01417">
       <column name="" length="11" />
     </property>
-    <property name="OrgUnitPrice" type="Double" p1:DisplayName="目标采购价" p1:ValidateRequired="true" p1:Guid="b7b30ec8-323f-4a16-93f0-05f193505525">
+    <property name="OrgUnitPrice" type="Double" p1:nullable="True" p1:DisplayName="目标采购价" p1:ValidateRequired="false" p1:Guid="b7b30ec8-323f-4a16-93f0-05f193505525">
       <column name="" />
     </property>
-    <property name="UnitPrice" type="Double" p1:DisplayName="单价" p1:ValidateRequired="true" p1:Guid="dcbacd38-2aa7-40e1-b43b-5e560fa1ea99">
+    <property name="UnitPrice" type="Double" p1:nullable="True" p1:DisplayName="单价" p1:ValidateRequired="false" p1:Guid="dcbacd38-2aa7-40e1-b43b-5e560fa1ea99">
       <column name="" />
     </property>
-    <property name="ShippingFee" type="Int32" p1:DisplayName="运费" p1:ValidateRequired="true" p1:Guid="d00718d3-99af-4893-b04b-c15a715e0d3e">
+    <property name="ShippingFee" type="Int32" p1:nullable="True" p1:DisplayName="运费" p1:ValidateRequired="false" p1:Guid="d00718d3-99af-4893-b04b-c15a715e0d3e">
       <column name="" length="11" />
     </property>
-    <property name="TariffFee" type="Double" p1:DisplayName="关税" p1:ValidateRequired="true" p1:Guid="af06a8b5-048a-4982-9f1f-69be300aba23">
+    <property name="TariffFee" type="Double" p1:nullable="True" p1:DisplayName="关税" p1:ValidateRequired="false" p1:Guid="af06a8b5-048a-4982-9f1f-69be300aba23">
       <column name="" />
     </property>
-    <property name="UnitPurchaseShipFee" type="Double" p1:DisplayName="采购运费" p1:ValidateRequired="true" p1:Guid="971c7653-4d92-4461-8362-fef339a052bb">
+    <property name="UnitPurchaseShipFee" type="Double" p1:nullable="True" p1:DisplayName="采购运费" p1:ValidateRequired="false" p1:Guid="971c7653-4d92-4461-8362-fef339a052bb">
       <column name="" />
     </property>
-    <property name="UnitPurchaseTaxationFee" type="Double" p1:DisplayName="采购税费" p1:ValidateRequired="true" p1:Guid="f3d7fbde-4b54-4196-8e19-0d59e22eb0a7">
+    <property name="UnitPurchaseTaxationFee" type="Double" p1:nullable="True" p1:DisplayName="采购税费" p1:ValidateRequired="false" p1:Guid="f3d7fbde-4b54-4196-8e19-0d59e22eb0a7">
       <column name="" />
     </property>
-    <property name="Total" type="Double" p1:DisplayName="成本小计：（unit_price+shipping_fee+tariff_fee+unit_purchase_ship_fee+unit_purchase_taxation_fee）quantitycurrency_rate" p1:ValidateRequired="true" p1:Guid="bde24223-3720-4297-a0a6-f1112fcf19da">
+    <property name="Total" type="Double" p1:nullable="True" p1:DisplayName="成本小计：（unit_price+shipping_fee+tariff_fee+unit_purchase_ship_fee+unit_purchase_taxation_fee）quantitycurrency_rate" p1:ValidateRequired="false" p1:Guid="bde24223-3720-4297-a0a6-f1112fcf19da">
       <column name="" />
     </property>
-    <property name="AddTime" type="DateTime" p1:DisplayName="入库时间" p1:ValidateRequired="true" p1:Guid="69d59568-b296-4a53-8f94-9427688e399b">
+    <property name="AddTime" type="DateTime" p1:nullable="True" p1:DisplayName="入库时间" p1:ValidateRequired="false" p1:Guid="69d59568-b296-4a53-8f94-9427688e399b">
       <column name="" />
     </property>
-    <property name="ReceivingDescription" type="String" p1:DisplayName="收货备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="7d2e1c6e-273e-4e07-ab99-1fb8f8ac1af3">
+    <property name="ReceivingDescription" type="String" p1:nullable="True" p1:DisplayName="收货备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="false" p1:Guid="7d2e1c6e-273e-4e07-ab99-1fb8f8ac1af3">
       <column name="" length="1024" />
     </property>
   </class>
   <class name="ECDeliveryDetail" entity-set="ECDeliveryDetails" table="EC_DeliveryDetail" p1:Guid="ab4b5ef7-9c0b-4a53-94b0-fb96b6c62839">
-    <id name="IlId" type="String" shadow="True" p1:DisplayName="出库唯一明细id" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="0103ae20-b443-462b-9137-f1028aa5be5f">
+    <id name="IlId" type="String" p1:DisplayName="出库唯一明细id" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="0103ae20-b443-462b-9137-f1028aa5be5f">
       <column name="" length="200" />
     </id>
-    <property name="ReferenceNo" type="String" shadow="True" p1:DisplayName="单据" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="15431dbf-1b1a-4f24-8824-3523c9ffe951">
+    <property name="ReferenceNo" type="String" p1:nullable="True" p1:DisplayName="单据" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="15431dbf-1b1a-4f24-8824-3523c9ffe951">
       <column name="" length="200" />
     </property>
-    <property name="WarehouseId" type="String" shadow="True" p1:DisplayName="仓库id，仓库-&amp;获取仓库信息接口getWarehouse查询," p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="01f99762-e971-4a6c-b69d-afeafd2cd5c8">
+    <property name="WarehouseId" type="String" p1:nullable="True" p1:DisplayName="仓库id，仓库-&amp;获取仓库信息接口getWarehouse查询," p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="01f99762-e971-4a6c-b69d-afeafd2cd5c8">
       <column name="" length="200" />
     </property>
-    <property name="ToWarehouseId" type="String" shadow="True" p1:DisplayName="目的仓库id，仓库-&amp;获取仓库信息接口getWarehouse查询" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="6397180a-08a8-473d-9aa1-2096ac920932">
+    <property name="ToWarehouseId" type="String" p1:nullable="True" p1:DisplayName="目的仓库id，仓库-&amp;获取仓库信息接口getWarehouse查询" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="6397180a-08a8-473d-9aa1-2096ac920932">
       <column name="" length="200" />
     </property>
-    <property name="WarehouseCode" type="String" shadow="True" p1:DisplayName="仓库code" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="7e0a008e-c18b-4aa5-bdf8-d840ecbd617b">
+    <property name="WarehouseCode" type="String" p1:nullable="True" p1:DisplayName="仓库code" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="7e0a008e-c18b-4aa5-bdf8-d840ecbd617b">
       <column name="" length="200" />
     </property>
-    <property name="IcCode" type="String" shadow="True" p1:DisplayName="库位" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="9c01ddf2-73db-4418-ac72-9a839909e990">
+    <property name="IcCode" type="String" p1:nullable="True" p1:DisplayName="库位" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="9c01ddf2-73db-4418-ac72-9a839909e990">
       <column name="" length="200" />
     </property>
-    <property name="UserId" type="String" p1:DisplayName="创建人ERP OPENAPI-V1：获取基础数据：获取用户列表接口" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="bbc354b8-ad2b-41cf-8951-e51702777d43">
+    <property name="UserId" type="String" p1:nullable="True" p1:DisplayName="创建人ERP OPENAPI-V1：获取基础数据：获取用户列表接口" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="bbc354b8-ad2b-41cf-8951-e51702777d43">
       <column name="" length="200" />
     </property>
-    <property name="ApplicationCode" type="String" p1:DisplayName="出库类型：下方的出库类型映射关系" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="a60792c2-c23a-4c5f-a557-f5c628179143">
+    <property name="ApplicationCode" type="String" p1:nullable="True" p1:DisplayName="出库类型：下方的出库类型映射关系" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="a60792c2-c23a-4c5f-a557-f5c628179143">
       <column name="" length="200" />
     </property>
-    <property name="CuType" type="Int32" p1:DisplayName="出库类型：0借用,1领用,2不良品,3盘亏,5退货,6良品换货,7次品换良品,8良品转次品,9其他,10线下销售,11组装,12拆分,15按批次拆分,13良品还款,14不良品还款" p1:ValidateRequired="true" p1:Guid="c89d2aec-8cd9-4e49-816b-9cb906bac887">
+    <property name="CuType" type="Int32" p1:nullable="True" p1:DisplayName="出库类型：0借用,1领用,2不良品,3盘亏,5退货,6良品换货,7次品换良品,8良品转次品,9其他,10线下销售,11组装,12拆分,15按批次拆分,13良品还款,14不良品还款" p1:ValidateRequired="false" p1:Guid="c89d2aec-8cd9-4e49-816b-9cb906bac887">
       <column name="" length="11" />
     </property>
-    <property name="ProductBarcode" type="String" p1:DisplayName="产品代码" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="d35dc199-6ef9-4c52-a560-5782e9edf9a5">
+    <property name="ProductBarcode" type="String" p1:nullable="True" p1:DisplayName="产品代码" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="d35dc199-6ef9-4c52-a560-5782e9edf9a5">
       <column name="" length="200" />
     </property>
-    <property name="ProductTitle" type="String" p1:DisplayName="产品中文名称" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="2a6a440a-e816-402a-bc0d-5cfbd2988265">
+    <property name="ProductTitle" type="String" p1:nullable="True" p1:DisplayName="产品中文名称" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="2a6a440a-e816-402a-bc0d-5cfbd2988265">
       <column name="" length="200" />
     </property>
-    <property name="Category1" type="Int32" p1:DisplayName="一级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="true" p1:Guid="b0cd9a16-6dd6-4404-9a45-b8e84ae6f422">
+    <property name="Category1" type="Int32" p1:nullable="True" p1:DisplayName="一级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="false" p1:Guid="b0cd9a16-6dd6-4404-9a45-b8e84ae6f422">
       <column name="" length="11" />
     </property>
-    <property name="Category2" type="Int32" p1:DisplayName="二级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="true" p1:Guid="470e512c-28aa-429e-9ec9-8a3c185d9eca">
+    <property name="Category2" type="Int32" p1:nullable="True" p1:DisplayName="二级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="false" p1:Guid="470e512c-28aa-429e-9ec9-8a3c185d9eca">
       <column name="" length="11" />
     </property>
-    <property name="Category3" type="Int32" p1:DisplayName="三级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="true" p1:Guid="0089e325-c475-492f-bd73-19ac87b6cc1f">
+    <property name="Category3" type="Int32" p1:nullable="True" p1:DisplayName="三级品类pc_id：本目录getProductCategory接口" p1:ValidateRequired="false" p1:Guid="0089e325-c475-492f-bd73-19ac87b6cc1f">
       <column name="" length="11" />
     </property>
-    <property name="WarehouseProductBarcode" type="String" p1:DisplayName="仓库条码" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="0949a004-fcf0-44e9-a0a7-68fcb8520a1e">
+    <property name="WarehouseProductBarcode" type="String" p1:nullable="True" p1:DisplayName="仓库条码" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="0949a004-fcf0-44e9-a0a7-68fcb8520a1e">
       <column name="" length="200" />
     </property>
-    <property name="SupplierCode" type="String" p1:DisplayName="供应商Code,产品-&amp;相关接口getAllSupplier查询" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="8bf404f9-5ccc-4d69-a618-d974fc0c642f">
+    <property name="SupplierCode" type="String" p1:nullable="True" p1:DisplayName="供应商Code,产品-&amp;相关接口getAllSupplier查询" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="8bf404f9-5ccc-4d69-a618-d974fc0c642f">
       <column name="" length="200" />
     </property>
-    <property name="Quantity" type="Int32" p1:DisplayName="数量" p1:ValidateRequired="true" p1:Guid="92d30614-68a7-4364-9e30-751557d92516">
+    <property name="Quantity" type="Int32" p1:nullable="True" p1:DisplayName="数量" p1:ValidateRequired="false" p1:Guid="92d30614-68a7-4364-9e30-751557d92516">
       <column name="" length="11" />
     </property>
-    <property name="OrgUnitPrice" type="Double" p1:DisplayName="目标采购价" p1:ValidateRequired="true" p1:Guid="dceff3af-af09-4284-9be8-1d9e7e966858">
+    <property name="OrgUnitPrice" type="Double" p1:nullable="True" p1:DisplayName="目标采购价" p1:ValidateRequired="false" p1:Guid="dceff3af-af09-4284-9be8-1d9e7e966858">
       <column name="" />
     </property>
-    <property name="UnitPrice" type="Double" p1:DisplayName="单价" p1:ValidateRequired="true" p1:Guid="84e810d1-14d3-4d6b-90bb-28968231bcb8">
+    <property name="UnitPrice" type="Double" p1:nullable="True" p1:DisplayName="单价" p1:ValidateRequired="false" p1:Guid="84e810d1-14d3-4d6b-90bb-28968231bcb8">
       <column name="" />
     </property>
-    <property name="ShippingFee" type="Int32" p1:DisplayName="头程运费" p1:ValidateRequired="true" p1:Guid="656053dc-7658-46f9-b88e-1c6703a72aa2">
+    <property name="ShippingFee" type="Int32" p1:nullable="True" p1:DisplayName="头程运费" p1:ValidateRequired="false" p1:Guid="656053dc-7658-46f9-b88e-1c6703a72aa2">
       <column name="" length="11" />
     </property>
-    <property name="Tariff_Fee" type="Double" p1:DisplayName="头程关税" p1:ValidateRequired="true" p1:Guid="1a61ed85-fbb3-4cb5-943e-317437a1c832">
+    <property name="Tariff_Fee" type="Double" p1:nullable="True" p1:DisplayName="头程关税" p1:ValidateRequired="false" p1:Guid="1a61ed85-fbb3-4cb5-943e-317437a1c832">
       <column name="" />
     </property>
-    <property name="UnitPurchaseShipFee" type="Double" p1:DisplayName="采购运费" p1:ValidateRequired="true" p1:Guid="b5819577-406c-47f8-a79a-3b42c678f96c">
+    <property name="UnitPurchaseShipFee" type="Double" p1:nullable="True" p1:DisplayName="采购运费" p1:ValidateRequired="false" p1:Guid="b5819577-406c-47f8-a79a-3b42c678f96c">
       <column name="" />
     </property>
-    <property name="unitPurchaseTaxationFee" type="Double" p1:DisplayName="采购税费" p1:ValidateRequired="true" p1:Guid="b57dbdc2-2484-446a-957c-60f72882be2f">
+    <property name="UnitPurchaseTaxationFee" type="Double" p1:nullable="True" p1:DisplayName="采购税费" p1:ValidateRequired="false" p1:Guid="b57dbdc2-2484-446a-957c-60f72882be2f">
       <column name="" />
     </property>
-    <property name="Total" type="Double" p1:DisplayName="成本小计：（unit_price+shipping_fee+tariff_fee+unit_purchase_ship_fee+unit_purchase_taxation_fee）quantitycurrency_rate" p1:ValidateRequired="true" p1:Guid="17d1bc77-562f-4da1-948c-74dcb15780cc">
+    <property name="Total" type="Double" p1:nullable="True" p1:DisplayName="成本小计：（unit_price+shipping_fee+tariff_fee+unit_purchase_ship_fee+unit_purchase_taxation_fee）quantitycurrency_rate" p1:ValidateRequired="false" p1:Guid="17d1bc77-562f-4da1-948c-74dcb15780cc">
       <column name="" />
     </property>
-    <property name="AddTime" type="DateTime" p1:DisplayName="出库时间" p1:ValidateRequired="true" p1:Guid="44b13ae5-34e8-4b1f-9867-7cb6c39e0946">
+    <property name="AddTime" type="DateTime" p1:nullable="True" p1:DisplayName="出库时间" p1:ValidateRequired="false" p1:Guid="44b13ae5-34e8-4b1f-9867-7cb6c39e0946">
       <column name="" />
     </property>
-    <property name="SystemRemark" type="String" p1:DisplayName="系统备注：application_code=SO订单出库会可能存在系统备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="226acb08-2be4-4c41-a026-641560a989da">
+    <property name="SystemRemark" type="String" p1:nullable="True" p1:DisplayName="系统备注：application_code=SO订单出库会可能存在系统备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="false" p1:Guid="226acb08-2be4-4c41-a026-641560a989da">
       <column name="" length="1024" />
     </property>
-    <property name="Remark" type="String" p1:DisplayName="出库单管理备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="c6814e2a-040a-4000-a751-c17a7f5b715a">
+    <property name="Remark" type="String" p1:nullable="True" p1:DisplayName="出库单管理备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="false" p1:Guid="c6814e2a-040a-4000-a751-c17a7f5b715a">
       <column name="" length="1024" />
     </property>
-    <property name="ProductRemark" type="String" p1:DisplayName="出库单管理产品备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="a569a059-19b8-4b66-abe8-977f043b89ec">
+    <property name="ProductRemark" type="String" p1:nullable="True" p1:DisplayName="出库单管理产品备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="false" p1:Guid="a569a059-19b8-4b66-abe8-977f043b89ec">
       <column name="" length="1024" />
     </property>
-    <property name="RefNo" type="String" p1:DisplayName="订单参考号" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="7343a3d2-7905-4e92-976f-a41155f97815">
+    <property name="RefNo" type="String" p1:nullable="True" p1:DisplayName="订单参考号" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="7343a3d2-7905-4e92-976f-a41155f97815">
       <column name="" length="200" />
     </property>
   </class>
@@ -1671,121 +1671,121 @@
     <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="918a9cfa-e137-44ab-8a2e-0b75b916603c">
       <column name="" length="11" />
     </id>
-    <property name="CreateDate" type="String" shadow="True" p1:DisplayName="创建时间" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="d0ada067-38ff-40ae-a232-d6be2a7536a7">
+    <property name="CreateDate" type="String" p1:nullable="True" p1:DisplayName="创建时间" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="d0ada067-38ff-40ae-a232-d6be2a7536a7">
       <column name="" length="200" />
     </property>
-    <property name="RefNo" type="String" shadow="True" p1:DisplayName="参考号&#x9;" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="899b20a4-2101-4edb-a24b-3d22256e5970">
+    <property name="RefNo" type="String" p1:nullable="True" p1:DisplayName="参考号&#x9;" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="899b20a4-2101-4edb-a24b-3d22256e5970">
       <column name="" length="200" />
     </property>
-    <property name="WarehouseRefNo" type="String" shadow="True" p1:DisplayName="仓库单号" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="a9e9bb04-e8a2-4239-9acd-d42778f78300">
+    <property name="WarehouseRefNo" type="String" p1:nullable="True" p1:DisplayName="仓库单号" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="a9e9bb04-e8a2-4239-9acd-d42778f78300">
       <column name="" length="200" />
     </property>
-    <property name="Reason" type="String" shadow="True" p1:DisplayName="退款原因" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="9f7bc83b-df0f-4338-b4ca-57f8b2b5e525">
+    <property name="Reason" type="String" p1:nullable="True" p1:DisplayName="退款原因" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="9f7bc83b-df0f-4338-b4ca-57f8b2b5e525">
       <column name="" length="200" />
     </property>
-    <property name="TransId" type="String" shadow="True" p1:DisplayName="PayPal退款交易号" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="84c3e7a9-9c86-429f-8284-c0a7c0fc4687">
+    <property name="TransId" type="String" p1:nullable="True" p1:DisplayName="PayPal退款交易号" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="84c3e7a9-9c86-429f-8284-c0a7c0fc4687">
       <column name="" length="200" />
     </property>
-    <property name="CreateUser" type="String" shadow="True" p1:DisplayName="创建人" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="ba198522-5e99-43bf-b456-c7baefdc8219">
+    <property name="CreateUser" type="String" p1:nullable="True" p1:DisplayName="创建人" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="ba198522-5e99-43bf-b456-c7baefdc8219">
       <column name="" length="200" />
     </property>
-    <property name="Note" type="String" p1:DisplayName="退款备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="f0630c05-dacf-43eb-b512-558be980139d">
+    <property name="Note" type="String" p1:nullable="True" p1:DisplayName="退款备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="false" p1:Guid="f0630c05-dacf-43eb-b512-558be980139d">
       <column name="" length="1024" />
     </property>
-    <property name="FinancialNote" type="String" p1:DisplayName="财务备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="ed2106a4-7c7a-4d43-98f5-20bf62e65a9b">
+    <property name="FinancialNote" type="String" p1:nullable="True" p1:DisplayName="财务备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="false" p1:Guid="ed2106a4-7c7a-4d43-98f5-20bf62e65a9b">
       <column name="" length="1024" />
     </property>
-    <property name="VerifyDate" type="String" p1:DisplayName="审核时间" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="eebf077d-3aa0-4697-9fca-6d6e532b3ff7">
+    <property name="VerifyDate" type="String" p1:nullable="True" p1:DisplayName="审核时间" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="eebf077d-3aa0-4697-9fca-6d6e532b3ff7">
       <column name="" length="200" />
     </property>
-    <property name="VerifyUser" type="String" p1:DisplayName="审核人" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="4cd1cf63-b59d-4ebc-bf62-7e961c0441eb">
+    <property name="VerifyUser" type="String" p1:nullable="True" p1:DisplayName="审核人" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="4cd1cf63-b59d-4ebc-bf62-7e961c0441eb">
       <column name="" length="200" />
     </property>
-    <property name="UserAccount" type="String" p1:DisplayName="账户" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="8b3bdb93-b620-42e3-afbc-d9017f5b5218">
+    <property name="UserAccount" type="String" p1:nullable="True" p1:DisplayName="账户" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="8b3bdb93-b620-42e3-afbc-d9017f5b5218">
       <column name="" length="200" />
     </property>
-    <property name="UserAccountName" type="String" p1:DisplayName="账号别名" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="f7d6fbcf-1085-4081-9743-87c991296b23">
+    <property name="UserAccountName" type="String" p1:nullable="True" p1:DisplayName="账号别名" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="f7d6fbcf-1085-4081-9743-87c991296b23">
       <column name="" length="200" />
     </property>
-    <property name="RefrenceNoPlatform" type="String" p1:DisplayName="建立退款订单" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="3b34e5cf-e62a-479a-8c02-2aea8b2fd07d">
+    <property name="RefrenceNoPlatform" type="String" p1:nullable="True" p1:DisplayName="建立退款订单" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="3b34e5cf-e62a-479a-8c02-2aea8b2fd07d">
       <column name="" length="200" />
     </property>
-    <property name="RmaRefrenceNoPlatform" type="String" p1:DisplayName="实际退款订单" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="a5991aa9-3443-48b2-8dcb-334c9b1a6a9a">
+    <property name="RmaRefrenceNoPlatform" type="String" p1:nullable="True" p1:DisplayName="实际退款订单" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="a5991aa9-3443-48b2-8dcb-334c9b1a6a9a">
       <column name="" length="200" />
     </property>
-    <property name="WarehouseShipDate" type="String" p1:DisplayName="出库时间" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="e0f39b82-8bb3-460c-bd4b-3ade395f5b52">
+    <property name="WarehouseShipDate" type="String" p1:nullable="True" p1:DisplayName="出库时间" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="e0f39b82-8bb3-460c-bd4b-3ade395f5b52">
       <column name="" length="200" />
     </property>
-    <property name="Country" type="String" p1:DisplayName="国家" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="dc862918-e11f-43ea-abc0-aec1789c8bce">
+    <property name="Country" type="String" p1:nullable="True" p1:DisplayName="国家" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="dc862918-e11f-43ea-abc0-aec1789c8bce">
       <column name="" length="200" />
     </property>
-    <property name="Site" type="String" p1:DisplayName="站点" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="12e995f9-fb2f-4e2c-8f29-5ec52b9929fb">
+    <property name="Site" type="String" p1:nullable="True" p1:DisplayName="站点" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="12e995f9-fb2f-4e2c-8f29-5ec52b9929fb">
       <column name="" length="200" />
     </property>
-    <property name="WarehousId" type="String" p1:DisplayName="仓库" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="00409668-f21f-40a9-b927-8cee26873c2e">
+    <property name="WarehousId" type="String" p1:nullable="True" p1:DisplayName="仓库" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="00409668-f21f-40a9-b927-8cee26873c2e">
       <column name="" length="200" />
     </property>
-    <property name="ShippingMethod" type="String" p1:DisplayName="运输方式" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="d7b1cd79-58c3-40bf-b4b7-898d6a7deb49">
+    <property name="ShippingMethod" type="String" p1:nullable="True" p1:DisplayName="运输方式" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="d7b1cd79-58c3-40bf-b4b7-898d6a7deb49">
       <column name="" length="200" />
     </property>
-    <property name="OperatorNote" type="String" p1:DisplayName="系统备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="34c08c03-26f7-4955-91a2-d30d339d5da5">
+    <property name="OperatorNote" type="String" p1:nullable="True" p1:DisplayName="系统备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="false" p1:Guid="34c08c03-26f7-4955-91a2-d30d339d5da5">
       <column name="" length="1024" />
     </property>
-    <property name="CustomerServiceNote" type="String" p1:DisplayName="客服备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="ccdd0a61-05fe-4836-932b-9890b84af5d2">
+    <property name="CustomerServiceNote" type="String" p1:nullable="True" p1:DisplayName="客服备注" p1:ValidateMaxLength="1024" p1:ValidateRequired="false" p1:Guid="ccdd0a61-05fe-4836-932b-9890b84af5d2">
       <column name="" length="1024" />
     </property>
-    <property name="ProductSku" type="String" p1:DisplayName="SKU" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="5cf826db-c62c-4abd-8650-6ded3952c15b">
+    <property name="ProductSku" type="String" p1:nullable="True" p1:DisplayName="SKU" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="5cf826db-c62c-4abd-8650-6ded3952c15b">
       <column name="" length="200" />
     </property>
-    <property name="SaleUser" type="String" p1:DisplayName="销售负责人" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="648e2881-57b3-407d-9103-13500fb2bbbe">
+    <property name="SaleUser" type="String" p1:nullable="True" p1:DisplayName="销售负责人" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="648e2881-57b3-407d-9103-13500fb2bbbe">
       <column name="" length="200" />
     </property>
-    <property name="ProductTitle" type="String" p1:DisplayName="产品名称" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="fa6ae5fb-51f6-4ce7-994a-725222551fba">
+    <property name="ProductTitle" type="String" p1:nullable="True" p1:DisplayName="产品名称" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="fa6ae5fb-51f6-4ce7-994a-725222551fba">
       <column name="" length="200" />
     </property>
-    <property name="Qty" type="String" p1:DisplayName="退款数量" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="0fd04dfb-a5db-4828-b503-4b9794577b5d">
+    <property name="Qty" type="String" p1:nullable="True" p1:DisplayName="退款数量" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="0fd04dfb-a5db-4828-b503-4b9794577b5d">
       <column name="" length="200" />
     </property>
-    <property name="PcLike" type="String" p1:DisplayName="一级品类" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="0703d2b4-13ed-4482-b4f0-85e15a19ae94">
+    <property name="PcLike" type="String" p1:nullable="True" p1:DisplayName="一级品类" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="0703d2b4-13ed-4482-b4f0-85e15a19ae94">
       <column name="" length="200" />
     </property>
-    <property name="PcName" type="String" p1:DisplayName="品类名称" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="5094ef67-e5ac-4877-9632-69809c8cbe0e">
+    <property name="PcName" type="String" p1:nullable="True" p1:DisplayName="品类名称" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="5094ef67-e5ac-4877-9632-69809c8cbe0e">
       <column name="" length="200" />
     </property>
-    <property name="PayRefId" type="String" p1:DisplayName="paypal交易号" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="9dc39fef-f822-4b16-819c-9cd376b23d59">
+    <property name="PayRefId" type="String" p1:nullable="True" p1:DisplayName="paypal交易号" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="9dc39fef-f822-4b16-819c-9cd376b23d59">
       <column name="" length="200" />
     </property>
-    <property name="RefundType" type="String" p1:DisplayName="退款类型" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="34d2f3b5-8721-47af-a6e6-0765b03cdb8c">
+    <property name="RefundType" type="String" p1:nullable="True" p1:DisplayName="退款类型" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="34d2f3b5-8721-47af-a6e6-0765b03cdb8c">
       <column name="" length="200" />
     </property>
-    <property name="AmountRefund" type="String" p1:DisplayName="退款金额" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="e2e13d7a-802f-4ab0-84a8-6d08f469858c">
+    <property name="AmountRefund" type="String" p1:nullable="True" p1:DisplayName="退款金额" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="e2e13d7a-802f-4ab0-84a8-6d08f469858c">
       <column name="" length="200" />
     </property>
-    <property name="AmountPaid" type="String" p1:DisplayName="交易金额" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="b40cc04f-6115-4a4d-ad5a-e9bb12e74f2c">
+    <property name="AmountPaid" type="String" p1:nullable="True" p1:DisplayName="交易金额" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="b40cc04f-6115-4a4d-ad5a-e9bb12e74f2c">
       <column name="" length="200" />
     </property>
-    <property name="AmountOrder" type="String" p1:DisplayName="销售额" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="20e61fe2-1905-4009-9092-5904c8a02cf1">
+    <property name="AmountOrder" type="String" p1:nullable="True" p1:DisplayName="销售额" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="20e61fe2-1905-4009-9092-5904c8a02cf1">
       <column name="" length="200" />
     </property>
-    <property name="Currency" type="String" p1:DisplayName="币种 " p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="ac06d9c1-2f13-4805-85b0-70ff335412e6">
+    <property name="Currency" type="String" p1:nullable="True" p1:DisplayName="币种 " p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="ac06d9c1-2f13-4805-85b0-70ff335412e6">
       <column name="" length="200" />
     </property>
-    <property name="BuyerId" type="String" p1:DisplayName="买家ID" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="b1414dc7-736a-49b7-a59f-b6f74091bd1e">
+    <property name="BuyerId" type="String" p1:nullable="True" p1:DisplayName="买家ID" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="b1414dc7-736a-49b7-a59f-b6f74091bd1e">
       <column name="" length="200" />
     </property>
-    <property name="RefundDate" type="String" p1:DisplayName="退款时间" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="1a67af8b-343a-462c-81a6-b2fbe4a29a07">
+    <property name="RefundDate" type="String" p1:nullable="True" p1:DisplayName="退款时间" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="1a67af8b-343a-462c-81a6-b2fbe4a29a07">
       <column name="" length="200" />
     </property>
-    <property name="Status" type="String" p1:DisplayName="退款状态" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="811f6986-f656-43b0-9c24-79899559cb67">
+    <property name="Status" type="String" p1:nullable="True" p1:DisplayName="退款状态" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="811f6986-f656-43b0-9c24-79899559cb67">
       <column name="" length="200" />
     </property>
-    <property name="RefundStep" type="String" p1:DisplayName="退款方式" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="b1666305-163e-481a-998b-198ae97f297f">
+    <property name="RefundStep" type="String" p1:nullable="True" p1:DisplayName="退款方式" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="b1666305-163e-481a-998b-198ae97f297f">
       <column name="" length="200" />
     </property>
-    <property name="RefundDataSource" type="String" p1:DisplayName="数据来源" p1:ValidateMaxLength="200" p1:ValidateRequired="true" p1:Guid="6e3afc07-0eec-4e0d-8312-4c14d76333ba">
+    <property name="RefundDataSource" type="String" p1:nullable="True" p1:DisplayName="数据来源" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="6e3afc07-0eec-4e0d-8312-4c14d76333ba">
       <column name="" length="200" />
     </property>
-    <property name="SyncMessage" type="String" p1:DisplayName="同步信息" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="edd6a9aa-61e6-4aa5-b66b-f5f6724b0f9b">
+    <property name="SyncMessage" type="String" p1:nullable="True" p1:DisplayName="同步信息" p1:ValidateMaxLength="1024" p1:ValidateRequired="false" p1:Guid="edd6a9aa-61e6-4aa5-b66b-f5f6724b0f9b">
       <column name="" length="1024" />
     </property>
   </class>

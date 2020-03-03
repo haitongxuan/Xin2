@@ -10,8 +10,6 @@ using Microsoft.Extensions.Logging;
 using Xin.Repository;
 using Xin.Entities;
 using System.Threading.Tasks;
-using Xin.ExternalService.EC.Reqeust.Model;
-using Xin.ExternalService.EC.Reqeust;
 
 namespace Xin.ExternalService.EC.Job.Tests
 {
@@ -44,21 +42,6 @@ namespace Xin.ExternalService.EC.Job.Tests
             {
                 throw ex;
             }
-        }
-
-        [TestMethod]
-        public async Task RequestTest()
-        {
-            var models = new List<ECSalesOrder>();
-            var reqModel = new EBGetOrderListReqModel();
-            reqModel.PageSize = 50;
-            reqModel.GetDetail = IsOrNotEnum.Yes;
-            reqModel.GetAddress = IsOrNotEnum.Yes;
-            reqModel.Page = 182;
-            Reqeust.EBGetOrderListRequest req = new EBGetOrderListRequest("admin", "eccang123456", reqModel);
-            Response.EBGetOrderListResponse resp = null;
-            resp = await req.Request();
-            var data = resp.Body;
         }
     }
 }

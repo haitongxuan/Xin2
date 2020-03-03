@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Project\Xin\Xin.WebApi\Xin.WebApi.xml</DocumentationFile>
+    <DocumentationFile>..\Xin.WebApi\Xin.WebApi.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
     <WarningLevel>1</WarningLevel>
   </PropertyGroup>

@@ -1,8 +1,0 @@
-D:\Project\Xin\Xin.Repository\bin\Debug\netcoreapp3.1\Xin.Repository.deps.json
-D:\Project\Xin\Xin.Repository\bin\Debug\netcoreapp3.1\Xin.Repository.dll
-D:\Project\Xin\Xin.Repository\bin\Debug\netcoreapp3.1\Xin.Repository.pdb
-D:\Project\Xin\Xin.Repository\obj\Debug\netcoreapp3.1\Xin.Repository.csprojAssemblyReference.cache
-D:\Project\Xin\Xin.Repository\obj\Debug\netcoreapp3.1\Xin.Repository.AssemblyInfoInputs.cache
-D:\Project\Xin\Xin.Repository\obj\Debug\netcoreapp3.1\Xin.Repository.AssemblyInfo.cs
-D:\Project\Xin\Xin.Repository\obj\Debug\netcoreapp3.1\Xin.Repository.dll
-D:\Project\Xin\Xin.Repository\obj\Debug\netcoreapp3.1\Xin.Repository.pdb

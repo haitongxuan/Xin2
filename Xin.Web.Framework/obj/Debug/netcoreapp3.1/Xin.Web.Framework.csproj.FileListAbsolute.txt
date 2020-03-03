@@ -1,4 +1,0 @@
-D:\Project\Xin\Xin.Web.Framework\bin\Debug\netcoreapp3.1\Xin.Web.Framework.deps.json
-D:\Project\Xin\Xin.Web.Framework\bin\Debug\netcoreapp3.1\Xin.Web.Framework.dll
-D:\Project\Xin\Xin.Web.Framework\obj\Debug\netcoreapp3.1\Xin.Web.Framework.AssemblyInfoInputs.cache
-D:\Project\Xin\Xin.Web.Framework\obj\Debug\netcoreapp3.1\Xin.Web.Framework.AssemblyInfo.cs
