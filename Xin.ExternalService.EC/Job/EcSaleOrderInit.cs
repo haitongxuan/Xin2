@@ -31,11 +31,12 @@ namespace Xin.ExternalService.EC.Job
         {
             var models = new List<ECSalesOrder>();
             var reqModel = new EBGetOrderListReqModel();
-            reqModel.PageSize = 50;
+            reqModel.PageSize = 500;
             reqModel.GetDetail = IsOrNotEnum.Yes;
             reqModel.GetAddress = IsOrNotEnum.Yes;
             bool finish = true;
             int pageIndex = 1;
+            int submitPageQty = 10;
 
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
@@ -66,7 +67,7 @@ namespace Xin.ExternalService.EC.Job
                         log.Error($"初始化产品信息,获取数据错误:{ex.Message}");
                         throw ex;
                     }
-                    if (resp.Body.Count == 50)
+                    if (resp.Body.Count == reqModel.PageSize)
                     {
                         foreach (var i in resp.Body)
                         {
@@ -80,7 +81,7 @@ namespace Xin.ExternalService.EC.Job
                                 throw ex;
                             }
                         }
-                        if (pageIndex % 20 == 0)
+                        if (pageIndex % submitPageQty == 0)
                         {
                             #region
                             //string sql = "";
@@ -122,6 +123,18 @@ namespace Xin.ExternalService.EC.Job
                     {
                         try
                         {
+                            foreach (var i in resp.Body)
+                            {
+                                try
+                                {
+                                    var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(i);
+                                    models.Add(m);
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw ex;
+                                }
+                            }
                             await repository.BulkInsertAsync(models, x => x.IncludeGraph = true);
                             uow.BulkSaveChanges();
                             models.Clear();

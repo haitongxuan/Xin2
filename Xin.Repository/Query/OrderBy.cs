@@ -39,7 +39,7 @@ namespace Xin.Repository
             string[] properties = columnName.Split(',');
             foreach (string propertyName in properties)
             {
-                string propertyNameTitle = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(propertyName);
+                string propertyNameTitle = propertyName.Substring(0, 1).ToUpper() + propertyName.Substring(1);
                 PropertyInfo propertyInfo = entityType.GetProperty(propertyNameTitle,
                     BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
                 expression = System.Linq.Expressions.Expression.Property(expression, propertyInfo);

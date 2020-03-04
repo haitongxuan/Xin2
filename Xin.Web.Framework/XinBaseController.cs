@@ -84,7 +84,7 @@ namespace Xin.Web.Framework
                     catch (Exception ex)
                     {
                         result.code = ResCode.ServerError;
-                        result.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        result.msg = ex.Message;
                         return result;
                     }
                 }
@@ -124,7 +124,7 @@ namespace Xin.Web.Framework
                     catch (Exception ex)
                     {
                         res.code = ResCode.ServerError;
-                        res.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        res.msg = ex.Message;
                         return res;
                     }
                 }
@@ -177,7 +177,7 @@ namespace Xin.Web.Framework
                     {
                         res.code = ResCode.ServerError;
                         res.data = false;
-                        res.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        res.msg = ex.Message;
                         return res;
                     }
                 }
@@ -226,7 +226,7 @@ namespace Xin.Web.Framework
                     catch (Exception ex)
                     {
                         res.code = ResCode.ServerError;
-                        res.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        res.msg = ex.Message;
                         return res;
                     }
                 }
@@ -273,7 +273,7 @@ namespace Xin.Web.Framework
                     catch (Exception ex)
                     {
                         res.code = ResCode.ServerError;
-                        res.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        res.msg = ex.Message;
                         return res;
                     }
                 }
@@ -353,7 +353,7 @@ namespace Xin.Web.Framework
                 catch (Exception ex)
                 {
                     page.code = ResCode.ServerError;
-                    page.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                    page.msg = ex.Message;
                     return page;
                 }
             }
@@ -409,7 +409,7 @@ namespace Xin.Web.Framework
                     catch (Exception ex)
                     {
                         res.code = ResCode.ServerError;
-                        res.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        res.msg = ex.Message;
                         return res;
                     }
                 }
@@ -445,7 +445,7 @@ namespace Xin.Web.Framework
                     catch (Exception ex)
                     {
                         result.code = ResCode.ServerError;
-                        result.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                        result.msg = ex.Message;
                         return result;
                     }
                 }
@@ -527,7 +527,7 @@ namespace Xin.Web.Framework
                 catch (Exception ex)
                 {
                     page.code = ResCode.ServerError;
-                    page.msg = $"{ex.Message}:{ex.InnerException.Message}";
+                    page.msg = ex.Message;
                     return page;
                 }
             }

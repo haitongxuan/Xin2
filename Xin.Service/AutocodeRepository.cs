@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xin.Common.CustomAttribute;
@@ -21,17 +22,20 @@ namespace Xin.Service
         {
         }
 
-        public override void Add(TEntity entity)        {
-            
+        public override void Add(TEntity entity)
+        {
             Type entityType = typeof(TEntity);
-            var codeatt = (AutoCodeAttribute)entityType.GetCustomAttributes(typeof(AutoCodeAttribute), true)[0];
-            if (codeatt != null)
+            if (entityType.CustomAttributes.Any(x => x.AttributeType.Equals(typeof(AutoCodeAttribute))))
             {
-                if (codeatt.AutoCode)
+                var codeatt = (AutoCodeAttribute)entityType.GetCustomAttributes(typeof(AutoCodeAttribute), true)[0];
+                if (codeatt != null)
                 {
-                    string code = GetCode();
-                    var property = entityType.GetProperty(codeatt.AutoCodePropertyName);
-                    property.SetValue(entity, code);
+                    if (codeatt.AutoCode)
+                    {
+                        string code = GetCode();
+                        var property = entityType.GetProperty(codeatt.AutoCodePropertyName);
+                        property.SetValue(entity, code);
+                    }
                 }
             }
             base.Add(entity);
