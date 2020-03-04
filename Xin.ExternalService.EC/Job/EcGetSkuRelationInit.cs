@@ -51,22 +51,24 @@ namespace Xin.ExternalService.EC.Job
                     log.Error($"初始化Sku映射信息,删除Sku映射信息异常:{ex.Message}");
                     throw ex;
                 }
-                EBGetSkuRelationRequest request = new EBGetSkuRelationRequest("admin", "eccang123456", reqModel);
+                EBGetSkuRelationRequest request = new EBGetSkuRelationRequest(login.Username, login.Password, reqModel);
                 var response = await request.Request();
+                response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                 int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
 
-                for (int page = pageNum; page >0 ; page--)
+                for (int page = pageNum; page > 0; page--)
                 {
                     reqModel.Page = page;
                     reqModel.PageSize = 1000;
                     try
                     {
+                        log.Info($"Sku映射,开始拉取:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{page}页;");
                         request = new EBGetSkuRelationRequest("admin", "eccang123456", reqModel);
                         response = await request.Request();
                     }
                     catch (Exception ex)
                     {
-                        log.Error($"接口获取出现异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{page}页;异常信息:{ex.Message}");
+                        log.Error($"Sku映射接口获取出现异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{page}页;异常信息:{ex.Message}");
 
                         throw ex;
                     }
@@ -79,7 +81,7 @@ namespace Xin.ExternalService.EC.Job
                         }
                         catch (Exception ex)
                         {
-                            log.Error($"转换实体类出现异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{page}页;异常信息:{ex.Message}");
+                            log.Error($"Sku映射转换实体类出现异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
                     }

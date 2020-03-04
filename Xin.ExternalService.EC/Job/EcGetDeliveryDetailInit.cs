@@ -50,6 +50,7 @@ namespace Xin.ExternalService.EC.Job
                 }
                 WMSGetDeliveryDetailListRequest req = new WMSGetDeliveryDetailListRequest(login.Username, login.Password, reqModel);
                 var response = await req.Request();
+                response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                 int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
 
                 for (int page = pageNum; page > 0; page--)
@@ -58,12 +59,13 @@ namespace Xin.ExternalService.EC.Job
                     reqModel.Page = page;
                     try
                     {
+                        log.Info($"入库单信息,开始拉取:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;");
                         req = new WMSGetDeliveryDetailListRequest(login.Username, login.Password, reqModel);
                         response = await req.Request();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        log.Error($"初始化入库单信息,接口调用出现异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
                         throw;
                     }
                     foreach (var item in response.Body)
@@ -75,7 +77,7 @@ namespace Xin.ExternalService.EC.Job
                         }
                         catch (Exception ex)
                         {
-                            log.Error($"转换实体类出现异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
+                            log.Error($"初始化入库单信息,转换实体类出现异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
                     }
