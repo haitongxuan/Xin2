@@ -45,19 +45,27 @@ namespace Xin.ExternalService.EC.Job
                 }
                 catch (Exception ex)
                 {
-                    log.Error($"初始化入库单信息,删除产品信息异常:{ex.Message}");
+                    log.Error($"初始化入库单信息,删除入库单信息异常:{ex.Message}");
                     throw ex;
                 }
                 WMSGetDeliveryDetailListRequest req = new WMSGetDeliveryDetailListRequest(login.Username, login.Password, reqModel);
                 var response = await req.Request();
-                int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 500);
+                int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
 
                 for (int page = pageNum; page > 0; page--)
                 {
-                    reqModel.PageSize = 500;
+                    reqModel.PageSize = 1000;
                     reqModel.Page = page;
-                    req = new WMSGetDeliveryDetailListRequest(login.Username, login.Password, reqModel);
-                    response = await req.Request();
+                    try
+                    {
+                        req = new WMSGetDeliveryDetailListRequest(login.Username, login.Password, reqModel);
+                        response = await req.Request();
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
                     foreach (var item in response.Body)
                     {
                         try
