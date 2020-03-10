@@ -59,7 +59,7 @@ namespace Xin.Web.Framework
         /// <returns></returns>
         [HttpPost]
         [Route("GetList")]
-        public virtual async Task<ActionResult<DataRes<List<TEntity>>>> GetList(BaseReq req)
+        public virtual async Task<ActionResult<DataRes<List<TEntity>>>> GetList(NavigateOrderReq req)
         {
             var result = new DataRes<List<TEntity>>() { code = ResCode.Success };
             using (var uow = _uowProvider.CreateUnitOfWork())
@@ -112,12 +112,7 @@ namespace Xin.Web.Framework
                     try
                     {
                         var repository = uow.GetRepository<TEntity>();
-                        OrderBy<TEntity> order = null;
-                        if (req.order != null)
-                        {
-                            order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
-                        }
-                        var models = await repository.GetAsync(req.id, order, req.navPropertyPaths);
+                        var models = await repository.NGetAsync(req.Id, req.navPropertyPaths);
                         res.data = models;
                         return res;
                     }
@@ -243,7 +238,7 @@ namespace Xin.Web.Framework
         /// <returns></returns>
         [Route("Delete/{id}")]
         [HttpPost]
-        public virtual async Task<ActionResult<DataRes<bool>>> Delete(string id)
+        public virtual async Task<ActionResult<DataRes<bool>>> Delete(int id)
         {
             DataRes<bool> res = new DataRes<bool>() { code = ResCode.Success, data = true };
             using (var uow = _uowProvider.CreateUnitOfWork())
@@ -300,7 +295,7 @@ namespace Xin.Web.Framework
         /// <returns></returns>
         [Route("GetPage")]
         [HttpPost]
-        public virtual async Task<ActionResult<PageDateRes<TEntity>>> GetPageAsync([FromBody]PageDataReq pageReq)
+        public virtual async Task<ActionResult<PageDateRes<TEntity>>> GetPageAsync([FromBody]NavigateOrderPageDataReq pageReq)
         {
             bool cp = false;
             using (var uow = _uowProvider.CreateUnitOfWork())
@@ -376,7 +371,7 @@ namespace Xin.Web.Framework
         /// <returns></returns>
         [Route("Delete/{id}")]
         [HttpPost]
-        public override async Task<ActionResult<DataRes<bool>>> Delete(string id)
+        public override async Task<ActionResult<DataRes<bool>>> Delete(int id)
         {
             DataRes<bool> res = new DataRes<bool>() { code = ResCode.Success, data = true };
             using (var uow = _uowProvider.CreateUnitOfWork())
@@ -426,7 +421,7 @@ namespace Xin.Web.Framework
         /// <returns></returns>
         [HttpPost]
         [Route("GetList")]
-        public override async Task<ActionResult<DataRes<List<TEntity>>>> GetList([FromBody]BaseReq req)
+        public override async Task<ActionResult<DataRes<List<TEntity>>>> GetList([FromBody]NavigateOrderReq req)
         {
             var result = new DataRes<List<TEntity>>() { code = ResCode.Success };
             using (var uow = _uowProvider.CreateUnitOfWork())
@@ -473,7 +468,7 @@ namespace Xin.Web.Framework
         /// <returns></returns>
         [Route("GetPage")]
         [HttpPost]
-        public virtual async Task<ActionResult<PageDateRes<TEntity>>> GetPageAsync([FromBody]PageDataReq pageReq)
+        public virtual async Task<ActionResult<PageDateRes<TEntity>>> GetPageAsync([FromBody]NavigateOrderPageDataReq pageReq)
         {
             bool cp = false;
             using (var uow = _uowProvider.CreateUnitOfWork())

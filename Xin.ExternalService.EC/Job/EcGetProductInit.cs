@@ -41,7 +41,7 @@ namespace Xin.ExternalService.EC.Job
             reqModel.GetProperty = IsOrNotEnum.Yes;
             int submitPageQty = 10;
             bool finish = true;
-            int pageIndex = 142;
+            int pageIndex = 1;
 
             using (var uow = _uowProvider.CreateUnitOfWork())
             {

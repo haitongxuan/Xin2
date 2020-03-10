@@ -47,7 +47,7 @@ namespace Xin.WebApi.Controllers
         [Route("GetPage")]
         [HttpPost]
         [PermissionFilter("Schedule.Read")]
-        public async Task<PageDateRes<ResSchedule>> GetPageAsync([FromBody]PageDataReq pageReq)
+        public async Task<PageDateRes<ResSchedule>> GetPageAsync([FromBody]NavigateOrderPageDataReq pageReq)
         {
             var page = new PageDateRes<ResSchedule>();
             if (pageReq != null)

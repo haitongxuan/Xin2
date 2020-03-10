@@ -129,5 +129,11 @@ namespace Xin.Repository
         Task BulkRemveoAsync(IEnumerable<TEntity> entities, Action<BulkOperation<TEntity>> bulkOperationFactory);
 
         Task<int> DeleteAll();
+
+        IEnumerable<TEntity> ListFromSql(string sql, string filterStr = "", string orderStr = "");
+
+        IEnumerable<TEntity> PageFromSql(string sql, string orderStr, int pageIndex = 1, int pageSize = 50);
+
+        IQueryable<TEntity> FromSql(string sql);
     }
 }

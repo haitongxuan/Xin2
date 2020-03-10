@@ -12,9 +12,9 @@ namespace Xin.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ResResourceController : XinVDBaseController<ResResource>
+    public class ResResourceController : XinVDPageBaseController<ResResource>
     {
-        public ResResourceController(IUowProvider uowProvider) : base(uowProvider)
+        public ResResourceController(IUowProvider uowProvider, IDataPager<ResResource> dataPager) : base(uowProvider, dataPager)
         {
         }
     }

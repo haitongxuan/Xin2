@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Xin.Web.Framework.Model
 {
-    public class IdentityReq : BaseReq
+    public class IdentityReq : NavigateOrderReq
     {
-        public string id { get; set; }
+        public int Id { get; set; }
     }
 }

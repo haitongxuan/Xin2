@@ -30,7 +30,8 @@ namespace Xin.WebApi.Controllers
         private readonly IUowProvider _uowProvider;
         public AuthroizeController(IOptions<JwtSeetings> jwtSeetingsOptions, IUowProvider uowProvider)
         {
-            _jwtSeetings = jwtSeetingsOptions.Value;
+            if (jwtSeetingsOptions != null)
+                _jwtSeetings = jwtSeetingsOptions.Value;
             _uowProvider = uowProvider;
         }
 

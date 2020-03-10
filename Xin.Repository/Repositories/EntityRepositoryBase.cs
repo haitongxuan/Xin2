@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Net;
 using Z.BulkOperations;
+using System.Data.SqlClient;
 
 namespace Xin.Repository
 {
@@ -153,12 +154,10 @@ namespace Xin.Repository
         {
             IQueryable<TEntity> query = Context.Set<TEntity>();
 
-            if (navigationPropertyPaths != null)
+            string[] realList = GetUpperIncludePath(navigationPropertyPaths);
+            foreach (var realstr in realList)
             {
-                foreach (var n in navigationPropertyPaths)
-                {
-                    query.Include(n);
-                }
+                query = query.Include(realstr);
             }
             var properties = GetKeyProperties();
             if (properties.Count() != 1 || !(properties.First().PropertyType == id.GetType()))
@@ -173,9 +172,10 @@ namespace Xin.Repository
 
             if (navigationPropertyPaths != null)
             {
-                foreach (var n in navigationPropertyPaths)
+                string[] realList = GetUpperIncludePath(navigationPropertyPaths);
+                foreach (var realstr in realList)
                 {
-                    query.Include(n);
+                    query = query.Include(realstr);
                 }
             }
 
@@ -384,6 +384,32 @@ namespace Xin.Repository
             return query;
         }
 
+        protected string[] GetUpperIncludePath(string[] includes)
+        {
+            List<string> realList = new List<string>();
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    string[] arr = include.Split(".");
+                    string realstr = include;
+                    if (arr.Count() > 0)
+                    {
+                        foreach (string s in arr)
+                        {
+                            realstr = realstr.Replace(s, s.Substring(0, 1).ToUpper() + s.Substring(1));
+                        }
+                    }
+                    else
+                    {
+                        realstr = realstr.Substring(0, 1).ToUpper() + realstr.Substring(1);
+                    }
+                    realList.Add(realstr);
+                }
+            }
+            return realList.ToArray();
+        }
+
         protected IQueryable<TEntity> QueryDb(Expression<Func<TEntity, bool>> filter,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
             string[] includes)
@@ -396,21 +422,9 @@ namespace Xin.Repository
 
             if (includes != null)
             {
-                foreach (var include in includes)
+                var realList = GetUpperIncludePath(includes);
+                foreach (var realstr in realList)
                 {
-                    string[] arr = include.Split(".");
-                    string realstr = string.Empty;
-                    if (arr.Count() > 0)
-                    {
-                        foreach (string s in arr)
-                        {
-                            realstr = include.Replace(s, s.Substring(0, 1).ToUpper() + s.Substring(1));
-                        }
-                    }
-                    else
-                    {
-                        realstr = include.Substring(0, 1).ToUpper() + include.Substring(1);
-                    }
                     query = query.Include(realstr);
                 }
             }
@@ -553,5 +567,29 @@ namespace Xin.Repository
         }
         #endregion
 
+        #region FromSql
+        public IEnumerable<TEntity> ListFromSql(string sql, string filterStr = "", string orderStr = "")
+        {
+            string queryStr = $"select * from ({sql}) tab where {filterStr} order by {orderStr}";
+            IQueryable<TEntity> query = Context.Set<TEntity>();
+            return query.FromSql(sql).AsEnumerable();
+        }
+
+        public IEnumerable<TEntity> PageFromSql(string sql, string orderStr, int pageIndex = 1, int pageSize = 50)
+        {
+            int startrow = (pageIndex - 1) * pageSize + 1;
+            int endrow = pageIndex * pageSize;
+            string queryStr = $"select row_number over({orderStr}) as rownum,* from ({sql}) tab" +
+                $" where rownum between {startrow} and {endrow}";
+            IQueryable<TEntity> query = Context.Set<TEntity>();
+            return query.FromSql(queryStr).AsEnumerable();
+        }
+
+        public IQueryable<TEntity> FromSql(string sql)
+        {
+            IQueryable<TEntity> query = Context.Set<TEntity>();
+            return query.FromSql(sql);
+        }
+        #endregion
     }
 }

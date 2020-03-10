@@ -459,6 +459,8 @@ namespace Xin.Service.Context
             this.ECRMARefundMapping(modelBuilder);
             this.CustomizeECRMARefundMapping(modelBuilder);
 
+            this.SingleProductSellMapping(modelBuilder);
+
             RelationshipsMapping(modelBuilder);
             CustomizeMapping(ref modelBuilder);
         }
