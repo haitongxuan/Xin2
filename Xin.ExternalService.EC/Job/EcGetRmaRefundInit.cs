@@ -12,15 +12,16 @@ using Xin.Repository;
 
 namespace Xin.ExternalService.EC.Job
 {
-    public class EcGetDeliveryDetailInit : EcBaseJob
+    public class EcGetRmaRefundInit : EcBaseJob
     {
         private readonly LogHelper log;
         private readonly IUowProvider _uowProvider;
-        public EcGetDeliveryDetailInit(IUowProvider uowProvider)
+        public EcGetRmaRefundInit(IUowProvider uowProvider)
         {
             log = LogFactory.GetLogger(LogType.QuartzLog);
             _uowProvider = uowProvider;
         }
+
         public override async Task Execute(IJobExecutionContext context)
         {
             await Job(DateTime.Now);
@@ -28,16 +29,14 @@ namespace Xin.ExternalService.EC.Job
 
         public override async Task Job(DateTime? datetime = null)
         {
-            WMSGetDeliveryDetailListReqModel reqModel = new WMSGetDeliveryDetailListReqModel();
-            reqModel.DateFor = DateTime.Parse("2018-01-01");
-            reqModel.DateTo = DateTime.Now;
-            reqModel.PageSize = 5;
+            EBGetRmaRefundListReqModel reqModel = new EBGetRmaRefundListReqModel();
             reqModel.Page = 1;
-            List<ECDeliveryDetail> deliveryDetails = new List<ECDeliveryDetail>();
-
+            reqModel.PageSize = 50;
+            reqModel.CreateDateForm = DateTime.Parse("2018-01-01");
+            reqModel.CreateDateTo = DateTime.Now;
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
-                var repository = uow.GetRepository<ECDeliveryDetail>();
+                var repository = uow.GetRepository<ECRMARefund>();
                 try
                 {
                     await repository.DeleteAll();
@@ -45,56 +44,57 @@ namespace Xin.ExternalService.EC.Job
                 }
                 catch (Exception ex)
                 {
-                    log.Error($"初始化入库单信息,删除入库单信息异常:{ex.Message}");
+                    log.Error($"初始化退货信息信息,删除退货信息信息异常:{ex.Message}");
                     throw ex;
                 }
-                WMSGetDeliveryDetailListRequest req = new WMSGetDeliveryDetailListRequest(login.Username, login.Password, reqModel);
+                EBGetRmaRefundListRequest req = new EBGetRmaRefundListRequest(login.Username, login.Password, reqModel);
                 var response = await req.Request();
-                response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
+                response.TotalCount = response.TotalCount ==null ? "1" : response.TotalCount;
                 int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
 
+                List<ECRMARefund> rmaRefunds = new List<ECRMARefund>();
                 for (int page = pageNum; page > 0; page--)
                 {
                     reqModel.PageSize = 1000;
                     reqModel.Page = page;
                     try
                     {
-                        log.Info($"入库单信息,开始拉取:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;");
-                        req = new WMSGetDeliveryDetailListRequest(login.Username, login.Password, reqModel);
+                        log.Info($"退货信息,开始拉取:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;");
+                        req = new EBGetRmaRefundListRequest(login.Username, login.Password, reqModel);
                         response = await req.Request();
                     }
                     catch (Exception ex)
                     {
-                        log.Error($"初始化入库单信息,接口调用出现异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
-                        throw;
+                        log.Error($"退货信息,接口调用出现异常:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;异常信息:{ex.Message}");
+                        throw ex;
                     }
                     foreach (var item in response.Body)
                     {
                         try
                         {
-                            var m = Mapper<EC_DeliveryDetail, ECDeliveryDetail>.Map(item);
-                            deliveryDetails.Add(m);
+                            var m = Mapper<EC_RmaRefund, ECRMARefund>.Map(item);
+                            rmaRefunds.Add(m);
                         }
                         catch (Exception ex)
                         {
-                            log.Error($"初始化入库单信息,转换实体类出现异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
+                            log.Error($"退货信息,转换实体类出现异常:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
                     }
 
                     try
                     {
-                        await repository.BulkInsertAsync(deliveryDetails, x => x.IncludeGraph = true);
+                        await repository.BulkInsertAsync(rmaRefunds, x => x.IncludeGraph = true);
                         uow.BulkSaveChanges();
-                        deliveryDetails.Clear();
+                        rmaRefunds.Clear();
                     }
                     catch (Exception ex)
                     {
-                        log.Error($"入库单信息,写入数据库异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
+                        log.Error($"退货信息,写入数据库异常:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;异常信息:{ex.Message}");
                         throw ex;
                     }
                 }
-                log.Info($"入库单信息拉取写入完成,时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}");
+                log.Info($"退货信息拉取写入完成,时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}");
             }
         }
     }

@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 namespace Xin.ExternalService.EC.EB
 {
     
@@ -197,7 +199,11 @@ namespace Xin.ExternalService.EC.EB
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
+                result.OpenTimeout = TimeSpan.Parse("00:05:00");
+                result.ReceiveTimeout = TimeSpan.Parse("00:05:00");
+                result.SendTimeout = TimeSpan.Parse("00:05:00");
                 result.AllowCookies = true;
+
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("找不到名称为“{0}”的终结点。", endpointConfiguration));

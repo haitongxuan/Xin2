@@ -1789,6 +1789,37 @@
       <column name="" length="1024" />
     </property>
   </class>
+  <class name="ECSkuRelation" entity-set="ECSkuRelations" table="EC_SkuRelation" schema="dbo" p1:Guid="502f21f9-539f-46f2-98b9-0c8f80d01151">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="f2603322-e5d0-4757-a6a0-efa447069de1">
+      <column name="" />
+    </id>
+    <property name="UserAccount" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="699d19ea-185c-40c6-bc52-c1b3913cde81">
+      <column name="" />
+    </property>
+    <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="cf9a2828-f939-49d7-9be4-41de0f432611">
+      <column name="ProductSku" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="ECSkuRelationItems" entity-set="ECSkuRelationItems" table="EC_SkuRelationItems" schema="dbo" p1:Guid="faf3efdc-929a-41ad-be85-5a5ccbc72d5b">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="54f603e6-dfbe-437f-a7e5-61e5f8a5280a">
+      <column name="" />
+    </id>
+    <property name="PcrProductSku" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e556f18c-b504-4991-b3f8-b6ab1f4c3837">
+      <column name="" />
+    </property>
+    <property name="PcrQuantity" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="12e9f759-9e47-4260-b4fb-37a35d3f79c1">
+      <column name="" />
+    </property>
+    <property name="WarehouseId" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f80374fa-fa5c-42de-aaac-bac0cd057705">
+      <column name="" />
+    </property>
+    <property name="PcrPercent" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="31e43313-beda-451d-97d7-da3a6296539e">
+      <column name="" />
+    </property>
+    <property name="RelationItemId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="760adffe-d7de-4d94-8816-074ee3969b93">
+      <column name="" />
+    </property>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">
@@ -1924,6 +1955,14 @@
       </end1>
       <end2 multiplicity="Many" name="OrderDetails" class="ECSalesOrder" relation-class="ECSalesOrderDetail" lazy="False" p1:Guid="734e433d-0263-456e-a5ab-15553c68ee33">
         <property name="OrderId" />
+      </end2>
+    </association>
+    <association name="ECSkuRelation_ECSkuRelationItems" cardinality="OneToMany" p1:Guid="3f6eda2d-7388-427b-a0c8-3dda97b805f4">
+      <end1 multiplicity="ZeroOrOne" name="ECSkuRelation" class="ECSkuRelationItems" relation-class="ECSkuRelation" constrained="True" lazy="False" p1:Guid="201d048b-70e0-4c24-ac7d-7e70194b4b44">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="Relation" class="ECSkuRelation" relation-class="ECSkuRelationItems" lazy="False" p1:Guid="ddfde1bc-130f-4eac-ae27-4759f63367df">
+        <property name="RelationItemId" />
       </end2>
     </association>
   </associations>

@@ -18,25 +18,36 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ResAutoCode : XinVDBaseEntity {
+    public partial class ECSkuRelation {
 
-        public ResAutoCode()
+        public ECSkuRelation()
         {
+            this.Relation = new List<ECSkuRelationItems>();
             OnCreated();
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(10)]
+        [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
-        [System.ComponentModel.DisplayName("头部")]
-        public virtual string FixHeader
+        public virtual int Id
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        [System.ComponentModel.DisplayName("当前位置")]
-        public virtual int Current
+        public virtual string UserAccount
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(4000)]
+        public virtual string ProductSku
+        {
+            get;
+            set;
+        }
+
+        public virtual IList<ECSkuRelationItems> Relation
         {
             get;
             set;
