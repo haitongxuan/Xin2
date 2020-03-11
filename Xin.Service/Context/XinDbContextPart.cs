@@ -15,6 +15,8 @@ namespace Xin.Service.Context
             set;
         }
 
+        public virtual DbSet<SingleSalesAnalysis> SingleSalesAnalyses { get; set; }
+
         private void SingleProductSellMapping(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SingleProductSell>().Property<string>(@"Plateform").HasColumnName(@"Plateform").ValueGeneratedNever();
@@ -34,7 +36,20 @@ namespace Xin.Service.Context
             modelBuilder.Entity<SingleProductSell>().Property<string>(@"SubProductSku").HasColumnName(@"SubProductSku").ValueGeneratedNever();
             modelBuilder.Entity<SingleProductSell>().Property<int?>(@"SubQty").HasColumnName(@"SubQty").ValueGeneratedNever();
             modelBuilder.Entity<SingleProductSell>().Property<string>(@"WarehouseId").HasColumnName(@"WarehouseId").ValueGeneratedNever();
-            modelBuilder.Entity<SingleProductSell>().HasKey(@"SubProductSku",@"SaleOrderCode",@"ProductSku");
+            modelBuilder.Entity<SingleProductSell>().HasKey(@"SubProductSku", @"SaleOrderCode", @"ProductSku");
+        }
+
+        private void SingleSalesAnalysisMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SingleSalesAnalysis>().Property<string>(@"SingleSku").HasColumnName(@"SingleSku").ValueGeneratedNever();
+            modelBuilder.Entity<SingleSalesAnalysis>().Property<long>(@"RowNumber").HasColumnName(@"RowNumber").ValueGeneratedNever();
+            modelBuilder.Entity<SingleSalesAnalysis>().Property<int>(@"ThreeDaysSales").HasColumnName(@"ThreeDaysSales").ValueGeneratedNever();
+            modelBuilder.Entity<SingleSalesAnalysis>().Property<int>(@"SevenDaysSales").HasColumnName(@"SevenDaysSales").ValueGeneratedNever();
+            modelBuilder.Entity<SingleSalesAnalysis>().Property<int>(@"ForteenDaysSales").HasColumnName(@"ForteenDaysSales").ValueGeneratedNever();
+            modelBuilder.Entity<SingleSalesAnalysis>().Property<int>(@"ThirtyDaysSales").HasColumnName(@"ThirtyDaysSales").ValueGeneratedNever();
+            modelBuilder.Entity<SingleSalesAnalysis>().Property<string>(@"WarehouseId").HasColumnName(@"WarehouseId").ValueGeneratedNever();
+            modelBuilder.Entity<SingleSalesAnalysis>().Property<string>(@"WarehouseDesc").HasColumnName(@"WarehouseDesc").ValueGeneratedNever();
+            modelBuilder.Entity<SingleSalesAnalysis>().HasKey(@"RowNumber");
         }
     }
 }

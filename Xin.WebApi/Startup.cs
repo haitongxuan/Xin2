@@ -65,6 +65,7 @@ namespace Xin.WebApi
             services.AddTransient<IJobFactory, XinIocJobFactory>();
             services.AddTransient<ISchedulerCenter, SchedulerCenter>();
             services.AddTransient(typeof(IXinRepository<>), typeof(AutocodeBaseRepository<>));
+            services.AddTransient<ISingleSalesAnlysisRepository, SingleSalesAnlysisReporitory>();
 
             services.AddTransient<IClaimsTransformation, XinClaimsTransformer>();
             services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();

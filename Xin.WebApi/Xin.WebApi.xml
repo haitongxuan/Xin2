@@ -23,7 +23,7 @@
             <param name="loginViewModel">登录实体信息</param>
             <returns></returns>
         </member>
-        <member name="M:Xin.WebApi.Controllers.ResScheduleController.GetPageAsync(Xin.Web.Framework.Model.PageDataReq)">
+        <member name="M:Xin.WebApi.Controllers.ResScheduleController.GetPageAsync(Xin.Web.Framework.Model.NavigateOrderPageDataReq)">
             <summary>
             查询数据
             </summary>

@@ -459,7 +459,10 @@ namespace Xin.Service.Context
             this.ECRMARefundMapping(modelBuilder);
             this.CustomizeECRMARefundMapping(modelBuilder);
 
+            #region From Part DbContext
             this.SingleProductSellMapping(modelBuilder);
+            this.SingleSalesAnalysisMapping(modelBuilder);
+            #endregion
 
             RelationshipsMapping(modelBuilder);
             CustomizeMapping(ref modelBuilder);

@@ -33,14 +33,19 @@ namespace Xin.Web.Framework.Model
         /// <summary>
         /// 未发现
         /// </summary>
-        NotFound=404,
+        NotFound = 404,
         /// <summary>
         /// 服务器内部错误
         /// </summary>
-        ServerError=500,
+        ServerError = 500,
         /// <summary>
         /// 未授权
         /// </summary>
-        Unauthorized=401
+        Unauthorized = 401
+    }
+
+    public class ResMsg
+    {
+        public const string ParameterIsNull = "Request parameter is null,please check your parameter!";
     }
 }

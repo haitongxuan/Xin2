@@ -22,18 +22,90 @@ namespace Xin.Web.Framework.Model
         /// 条件运算符
         /// </summary>
         public string andorop { get; set; }
+
+        public override string ToString()
+        {
+            string res = string.Empty;
+            string opt = Operate.GetSqlOperate(binaryop);
+            switch (binaryop)
+            {
+                case (Operate.like):
+                    res = $"{key} {opt} '%{value.ToString()}%' {andorop} ";
+                    break;
+                case (Operate.include):
+                    res = $"{key} {opt} ({value.ToString()}) {andorop} ";
+                    break;
+                case (Operate.between):
+                    res = $"{key} {opt} '%{value.ToString()}%' {andorop} ";
+                    break;
+                default:
+                    string[] betweenpair = value.ToString().Split(',');
+                    res = $"{key} {opt} '{betweenpair[0]}' and '{betweenpair[1]}' {andorop} ";
+                    break;
+            }
+            return res;
+        }
+
+        public static string ListToString(List<FilterNode> filterNodes)
+        {
+            string res = string.Empty;
+            foreach (var item in filterNodes)
+            {
+                res = res + item.ToString();
+            }
+            res = res + " 1=1 ";
+            return res;
+        }
     }
 
     public class Operate
     {
-        public string eq = "eq";
-        public string neq = "neq";
-        public string gt = "gt";
-        public string lt = "lt";
-        public string gte = "gte";
-        public string lte = "lte";
-        public string like = "like";
-        public string include = "in";
-        public string between = "between";
+        public const string eq = "eq";
+        public const string neq = "neq";
+        public const string gt = "gt";
+        public const string lt = "lt";
+        public const string gte = "gte";
+        public const string lte = "lte";
+        public const string like = "like";
+        public const string include = "in";
+        public const string between = "between";
+
+        public static string GetSqlOperate(string operate)
+        {
+            string res = string.Empty;
+            switch (operate)
+            {
+                case (eq):
+                    res = "=";
+                    break;
+                case (neq):
+                    res = "<>";
+                    break;
+                case (gt):
+                    res = ">";
+                    break;
+                case (lt):
+                    res = "<";
+                    break;
+                case (gte):
+                    res = ">=";
+                    break;
+                case (lte):
+                    res = "<=";
+                    break;
+                case (like):
+                    res = "like";
+                    break;
+                case (include):
+                    res = "in";
+                    break;
+                case (between):
+                    res = "between";
+                    break;
+                default:
+                    break;
+            }
+            return res;
+        }
     }
 }
