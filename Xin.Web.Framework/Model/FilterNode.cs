@@ -30,17 +30,17 @@ namespace Xin.Web.Framework.Model
             switch (binaryop)
             {
                 case (Operate.like):
-                    res = $"{key} {opt} '%{value.ToString()}%' {andorop} ";
+                    res = $" {andorop} {key} {opt} '%{value.ToString()}%' ";
                     break;
                 case (Operate.include):
-                    res = $"{key} {opt} ({value.ToString()}) {andorop} ";
+                    res = $" {andorop} {key} {opt} ({value.ToString()})  ";
                     break;
                 case (Operate.between):
-                    res = $"{key} {opt} '%{value.ToString()}%' {andorop} ";
+                    string[] betweenpair = value.ToString().Split(',');
+                    res = $"{andorop} {key} {opt} '{betweenpair[0]}' and '{betweenpair[1]}' ";
                     break;
                 default:
-                    string[] betweenpair = value.ToString().Split(',');
-                    res = $"{key} {opt} '{betweenpair[0]}' and '{betweenpair[1]}' {andorop} ";
+                    res = $" {andorop} {key} {opt} '{value.ToString()}'";
                     break;
             }
             return res;
@@ -53,7 +53,6 @@ namespace Xin.Web.Framework.Model
             {
                 res = res + item.ToString();
             }
-            res = res + " 1=1 ";
             return res;
         }
     }

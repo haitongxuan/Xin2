@@ -20,7 +20,7 @@ namespace Xin.Service
         {
         }
 
-        public IEnumerable<SingleSalesAnalysis> GetList(DateTime filterdate, string filterStr = null, string outsideFilterStr = null)
+        public IEnumerable<SingleSalesAnalysis> GetList(DateTime filterdate, string filterStr = null)
         {
             const string firstDays = "30";
             const string secondDays = "14";
@@ -34,7 +34,7 @@ namespace Xin.Service
                 "join EC_SalesOrderDetail a on x.OrderId=a.OrderId " +
                 "join EC_SkuRelation b on a.ProductSku=b.ProductSku and x.WarehouseId=b.WarehouseId " +
                 "join EC_SkuRelationItems c on b.RelationId = c.RelationId " +
-                "where {0} {1} " +
+                "where {0} " +
                 "group by c.pcrProductSku,x.WarehouseId ";
             string queryStr = $"select * from " +
                 $"(select ROW_NUMBER() over(order by tb0.WarehouseId,tb0.PcrProductSku) RowNumber," +
@@ -45,15 +45,15 @@ namespace Xin.Service
                 $"case when tb4.SubQty is null then 0 else tb4.SubQty end ThreeDaysSales" +
                 $" from(select a.WarehouseId, b.PcrProductSku from EC_SkuRelation a " +
                 $"join EC_SkuRelationItems b on a.RelationId = b.RelationId group by a.WarehouseId,b.PcrProductSku) tb0 left join" +
-                $"({string.Format(subQueryStr, string.Format(daysFilterStr, filterdate.ToString(), firstDays.ToString()), filterStr == null ? "" : " and " + filterStr)}) as tb1 " +
+                $"({string.Format(subQueryStr, string.Format(daysFilterStr, filterdate.ToString(), firstDays.ToString()))}) as tb1 " +
                 $"on tb0.PcrProductSku=tb1.SubProductSku and tb0.WarehouseId=tb1.WarehouseId left join " +
-                $"({string.Format(subQueryStr, string.Format(daysFilterStr, filterdate.ToString(), secondDays.ToString()), filterStr == null ? "" : " and " + filterStr)}) as tb2 " +
+                $"({string.Format(subQueryStr, string.Format(daysFilterStr, filterdate.ToString(), secondDays.ToString()))}) as tb2 " +
                 $"on tb1.SubProductSku=tb2.SubProductSku and tb1.WarehouseId=tb2.WarehouseId left join " +
-                $"({string.Format(subQueryStr, string.Format(daysFilterStr, filterdate.ToString(), thirdDays.ToString()), filterStr == null ? "" : " and " + filterStr)}) as tb3 " +
+                $"({string.Format(subQueryStr, string.Format(daysFilterStr, filterdate.ToString(), thirdDays.ToString()))}) as tb3 " +
                 $"on tb1.SubProductSku=tb3.SubProductSku and tb1.WarehouseId=tb3.WarehouseId left join " +
-                $"({string.Format(subQueryStr, string.Format(daysFilterStr, filterdate.ToString(), forthDays.ToString()), filterStr == null ? "" : " and " + filterStr)}) as tb4 " +
+                $"({string.Format(subQueryStr, string.Format(daysFilterStr, filterdate.ToString(), forthDays.ToString()))}) as tb4 " +
                 $"on tb1.SubProductSku=tb4.SubProductSku and tb1.WarehouseId=tb4.WarehouseId left join " +
-                $"EC_Warehouse wh on wh.WarehouseId=tb0.WarehouseId ) tt WHERE 1=1 {outsideFilterStr} " +
+                $"EC_Warehouse wh on wh.WarehouseId=tb0.WarehouseId ) tt WHERE 1=1 {filterStr} " +
                 $"order by rownumber";
             return this.ListFromSql(queryStr);
         }
@@ -62,8 +62,8 @@ namespace Xin.Service
         {
             int startrow = (pageIndex - 1) * pageSize + 1;
             int endrow = pageIndex * pageSize;
-            string outsideFilterStr = $" and RowNumber between {startrow} and {endrow}";
-            return this.GetList(filterdate, filterStr, outsideFilterStr);
+            string outsideFilterStr = $"{filterStr} and RowNumber between {startrow} and {endrow}";
+            return this.GetList(filterdate, outsideFilterStr);
         }
     }
 }

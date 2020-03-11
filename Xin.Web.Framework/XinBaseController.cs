@@ -76,7 +76,7 @@ namespace Xin.Web.Framework
                             order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
                         }
                         var repository = uow.GetRepository<TEntity>();
-                        var models = await repository.NGetAllAsync(order.Expression, req.navPropertyPaths);
+                        var models = await repository.NGetAllAsync(order != null ? order.Expression : null, req.navPropertyPaths);
                         result.data = models.ToList();
 
                         return result;
@@ -431,9 +431,19 @@ namespace Xin.Web.Framework
                 {
                     try
                     {
-                        var repository = uow.GetRepository<TEntity>();
-                        var orderby = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
-                        var models = await repository.NQueryAsync(f => f.StopFlag == false, orderby.Expression, req.navPropertyPaths);
+                        var repository = uow.GetRepository<TEntity>(); 
+                        if (req.order == null)
+                        {
+                            req.order.columnName = "Id";
+                            req.order.reverse = false;
+                        }
+                        OrderBy<TEntity> order = null;
+                        if (req.order != null)
+                        {
+                            order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
+                        }
+                        var models = await repository.NQueryAsync(f => f.StopFlag == false, order != null ? order.Expression : null
+                            , req.navPropertyPaths);
                         result.data = models.ToList();
                         return result;
                     }

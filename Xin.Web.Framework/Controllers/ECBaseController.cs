@@ -47,7 +47,7 @@ namespace Xin.Web.Framework.Controllers
                         order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
                     }
                     var repository = uow.GetRepository<TEntity>();
-                    var models = await repository.NGetAllAsync(order.Expression, req.navPropertyPaths);
+                    var models = await repository.NGetAllAsync(order != null ? order.Expression : null, req.navPropertyPaths);
                     result.data = models.ToList();
 
                     return result;

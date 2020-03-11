@@ -7,7 +7,7 @@ namespace Xin.Service
 {
     public interface ISingleSalesAnlysisRepository
     {
-        IEnumerable<SingleSalesAnalysis> GetList(DateTime filterdate, string filterStr = null, string outsideFilterStr = null);
+        IEnumerable<SingleSalesAnalysis> GetList(DateTime filterdate, string filterStr = null);
 
         IEnumerable<SingleSalesAnalysis> GetPage(DateTime filterdate, int pageIndex, int pageSize, string filterStr = null);
     }

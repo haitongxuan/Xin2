@@ -12,7 +12,7 @@ namespace Xin.Web.Framework.Model
 
     public class OrderReq : BaseReq
     {
-        public Order order { get; set; } = new Order() { columnName = "Id", reverse = false };
+        public Order order { get; set; } 
     }
 
     public class BaseReq
