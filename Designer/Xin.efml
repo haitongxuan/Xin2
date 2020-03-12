@@ -1789,35 +1789,38 @@
       <column name="" length="1024" />
     </property>
   </class>
-  <class name="ECSkuRelation" entity-set="ECSkuRelations" table="EC_SkuRelation" schema="dbo" p1:Guid="502f21f9-539f-46f2-98b9-0c8f80d01151">
-    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="f2603322-e5d0-4757-a6a0-efa447069de1">
-      <column name="" />
+  <class name="ECSkuRelation" entity-set="ECSkuRelations" table="EC_SkuRelation" schema="dbo" p1:Guid="4857542f-1692-4dd7-9f06-555c62479eb3">
+    <id name="RelationId" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="25769ec3-5e23-4305-b444-c93ea6d6db1f">
+      <column name="RelationId" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
-    <property name="UserAccount" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="699d19ea-185c-40c6-bc52-c1b3913cde81">
-      <column name="" />
+    <property name="UserAccount" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="dd30e39c-fa92-4532-a8fd-b7999946efba">
+      <column name="UserAccount" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="cf9a2828-f939-49d7-9be4-41de0f432611">
+    <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="df080633-7889-4430-9080-69adc01afb67">
       <column name="ProductSku" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
+    <property name="CreateTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="085bfa70-03d6-4f03-919d-ecdb01184abb">
+      <column name="CreateTime" not-null="False" sql-type="datetime2" p1:unicode="False" />
+    </property>
+    <property name="WarehouseId" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="81f38cc6-6a4b-431d-8243-d712cb8db70d">
+      <column name="WarehouseId" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
+    </property>
   </class>
-  <class name="ECSkuRelationItems" entity-set="ECSkuRelationItems" table="EC_SkuRelationItems" schema="dbo" p1:Guid="faf3efdc-929a-41ad-be85-5a5ccbc72d5b">
-    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="54f603e6-dfbe-437f-a7e5-61e5f8a5280a">
-      <column name="" />
+  <class name="ECSkuRelationItem" entity-set="ECSkuRelationItems" table="EC_SkuRelationItems" schema="dbo" p1:Guid="74512660-1217-4ec2-800c-2ccb8d5d1ffc">
+    <id name="RelationItemId" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="b903c136-7823-40d6-8038-c4fe801c03b0">
+      <column name="RelationItemId" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
-    <property name="PcrProductSku" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e556f18c-b504-4991-b3f8-b6ab1f4c3837">
-      <column name="" />
+    <property name="PcrProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="fe23364e-12d1-4994-90a7-25f108010589">
+      <column name="PcrProductSku" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="PcrQuantity" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="12e9f759-9e47-4260-b4fb-37a35d3f79c1">
-      <column name="" />
+    <property name="PcrQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="f581a3f5-d2ae-490e-b791-7d049aec8d91">
+      <column name="PcrQuantity" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="WarehouseId" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f80374fa-fa5c-42de-aaac-bac0cd057705">
-      <column name="" />
+    <property name="PcrPercent" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="49be72f0-9357-4ca6-a7bf-b884d82de302">
+      <column name="PcrPercent" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="PcrPercent" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="31e43313-beda-451d-97d7-da3a6296539e">
-      <column name="" />
-    </property>
-    <property name="RelationItemId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="760adffe-d7de-4d94-8816-074ee3969b93">
-      <column name="" />
+    <property name="RelationId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="cbd50e56-28a3-41b2-a2a3-8c7bd688dbb2">
+      <column name="RelationId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
   </class>
   <associations>
@@ -1957,12 +1960,12 @@
         <property name="OrderId" />
       </end2>
     </association>
-    <association name="ECSkuRelation_ECSkuRelationItems" cardinality="OneToMany" p1:Guid="3f6eda2d-7388-427b-a0c8-3dda97b805f4">
-      <end1 multiplicity="ZeroOrOne" name="ECSkuRelation" class="ECSkuRelationItems" relation-class="ECSkuRelation" constrained="True" lazy="False" p1:Guid="201d048b-70e0-4c24-ac7d-7e70194b4b44">
-        <property name="Id" />
+    <association name="ECSkuRelation_ECSkuRelationItem" cardinality="OneToMany" on-delete="Cascade" p1:Guid="02620cd9-2287-4359-af23-7870f7245c0d">
+      <end1 multiplicity="ZeroOrOne" name="ECSkuRelation" class="ECSkuRelationItem" relation-class="ECSkuRelation" constrained="True" lazy="False" p1:Guid="9fc6a402-5978-4ea7-8d06-0746fd1b43dc">
+        <property name="RelationId" />
       </end1>
-      <end2 multiplicity="Many" name="Relation" class="ECSkuRelation" relation-class="ECSkuRelationItems" lazy="False" p1:Guid="ddfde1bc-130f-4eac-ae27-4759f63367df">
-        <property name="RelationItemId" />
+      <end2 multiplicity="Many" name="Relation" class="ECSkuRelation" relation-class="ECSkuRelationItem" lazy="False" p1:Guid="0767e6d2-8e70-48ee-99bf-4affc9f1670e">
+        <property name="RelationId" />
       </end2>
     </association>
   </associations>

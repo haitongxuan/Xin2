@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Xin.ExternalService.EC.Response.Model;
 using System.ComponentModel;
+using Newtonsoft.Json.Converters;
 
 namespace Xin.ExternalService.EC.Reqeust
 {
@@ -16,7 +17,9 @@ namespace Xin.ExternalService.EC.Reqeust
         {
             service.Service = "getProductList";
             service.Plateform = "WMS";
-            service.ParamsJson = JsonConvert.SerializeObject(reqModel);
+            IsoDateTimeConverter timeFormat = new IsoDateTimeConverter();
+            timeFormat.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            service.ParamsJson = JsonConvert.SerializeObject(reqModel, timeFormat);
         }
         public override async Task<WMSGetProductListResponse> Request()
         {

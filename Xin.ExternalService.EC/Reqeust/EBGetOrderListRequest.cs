@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Converters;
 
 namespace Xin.ExternalService.EC.Reqeust
 {
@@ -15,7 +16,9 @@ namespace Xin.ExternalService.EC.Reqeust
         {
             service.Service = "getOrderList";
             service.Plateform = "EB";
-            service.ParamsJson = JsonConvert.SerializeObject(reqModel);
+            IsoDateTimeConverter timeFormat = new IsoDateTimeConverter();
+            timeFormat.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            service.ParamsJson = JsonConvert.SerializeObject(reqModel, timeFormat);
         }
         public override async Task<EBGetOrderListResponse> Request()
         {

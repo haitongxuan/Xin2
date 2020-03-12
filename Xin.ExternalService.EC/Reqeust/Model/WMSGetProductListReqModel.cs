@@ -58,13 +58,13 @@ namespace Xin.ExternalService.EC.Reqeust.Model
         /// <summary>
         /// 产品创建时间-开始时间
         /// </summary>
-        [JsonProperty(PropertyName = "productAddTimeFrom	", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "productAddTimeFrom", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? ProductAddTimeFrom { get; set; }
 
         /// <summary>
         /// 产品创建时间-截止时间
         /// </summary>
-        [JsonProperty(PropertyName = "productAddTimeTo	", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "productAddTimeTo", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? ProductAddTimeTo { get; set; }
 
         /// <summary>

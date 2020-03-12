@@ -20,6 +20,11 @@ namespace Xin.ExternalService.EC.Response.Model
         public string UserAccount { get; set; }
 
         /// <summary>
+        /// 仓库ID
+        /// </summary>
+        [JsonProperty(PropertyName = "warehouse_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string WarehouseId { get; set; }
+        /// <summary>
         /// 对应SKU数据对象
         /// </summary>
         [JsonProperty(PropertyName = "relation", NullValueHandling = NullValueHandling.Ignore)]
@@ -38,11 +43,6 @@ namespace Xin.ExternalService.EC.Response.Model
         /// </summary>
         [JsonProperty(PropertyName = "pcr_quantity", NullValueHandling = NullValueHandling.Ignore)]
         public string PcrQuantity { get; set; }
-        /// <summary>
-        /// 仓库ID
-        /// </summary>
-        [JsonProperty(PropertyName = "warehouse_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string WarehouseId { get; set; }
 
         /// <summary>
         /// 采购价
