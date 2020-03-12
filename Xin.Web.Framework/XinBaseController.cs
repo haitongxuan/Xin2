@@ -432,16 +432,12 @@ namespace Xin.Web.Framework
                     try
                     {
                         var repository = uow.GetRepository<TEntity>(); 
-                        if (req.order == null)
+                        if (req.order.columnName == null)
                         {
                             req.order.columnName = "Id";
                             req.order.reverse = false;
                         }
                         OrderBy<TEntity> order = null;
-                        if (req.order != null)
-                        {
-                            order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
-                        }
                         var models = await repository.NQueryAsync(f => f.StopFlag == false, order != null ? order.Expression : null
                             , req.navPropertyPaths);
                         result.data = models.ToList();
@@ -501,7 +497,7 @@ namespace Xin.Web.Framework
                         });
                         var fuc = FilterHelper<TEntity>.GetExpression(query, parameterstr);
                         var filter = new Repository.Filter<TEntity>(fuc);
-                        if (pageReq.order == null)
+                        if (pageReq.order.columnName == null)
                         {
                             pageReq.order.columnName = "Id";
                             pageReq.order.reverse = false;

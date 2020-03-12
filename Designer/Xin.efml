@@ -1793,31 +1793,89 @@
     <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="f2603322-e5d0-4757-a6a0-efa447069de1">
       <column name="" />
     </id>
-    <property name="UserAccount" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="699d19ea-185c-40c6-bc52-c1b3913cde81">
-      <column name="" />
+    <property name="UserAccount" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="699d19ea-185c-40c6-bc52-c1b3913cde81">
+      <column name="" length="128" />
     </property>
-    <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="cf9a2828-f939-49d7-9be4-41de0f432611">
-      <column name="ProductSku" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
+    <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="cf9a2828-f939-49d7-9be4-41de0f432611">
+      <column name="ProductSku" not-null="False" length="256" sql-type="nvarchar" p1:unicode="True" />
     </property>
   </class>
   <class name="ECSkuRelationItems" entity-set="ECSkuRelationItems" table="EC_SkuRelationItems" schema="dbo" p1:Guid="faf3efdc-929a-41ad-be85-5a5ccbc72d5b">
     <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="54f603e6-dfbe-437f-a7e5-61e5f8a5280a">
       <column name="" />
     </id>
-    <property name="PcrProductSku" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e556f18c-b504-4991-b3f8-b6ab1f4c3837">
-      <column name="" />
+    <property name="PcrProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="e556f18c-b504-4991-b3f8-b6ab1f4c3837">
+      <column name="" length="256" />
     </property>
-    <property name="PcrQuantity" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="12e9f759-9e47-4260-b4fb-37a35d3f79c1">
-      <column name="" />
+    <property name="PcrQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="12e9f759-9e47-4260-b4fb-37a35d3f79c1">
+      <column name="" length="256" />
     </property>
-    <property name="WarehouseId" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f80374fa-fa5c-42de-aaac-bac0cd057705">
-      <column name="" />
+    <property name="WarehouseId" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="f80374fa-fa5c-42de-aaac-bac0cd057705">
+      <column name="" length="256" />
     </property>
-    <property name="PcrPercent" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="31e43313-beda-451d-97d7-da3a6296539e">
-      <column name="" />
+    <property name="PcrPercent" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="31e43313-beda-451d-97d7-da3a6296539e">
+      <column name="" length="256" />
     </property>
     <property name="RelationItemId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="760adffe-d7de-4d94-8816-074ee3969b93">
       <column name="" />
+    </property>
+  </class>
+  <class name="RepBaseBrandStock" entity-set="RepBaseBrandStocks" table="Rep_BrandStock" p1:Guid="45f633d8-f68e-49cb-8d45-61f42ec66002">
+    <id name="Id" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="b7433627-6ead-4d48-8db8-3e2cf0c0710c">
+      <column name="" />
+    </id>
+    <property name="CreateUid" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="2dca4ce8-44ba-47d8-9224-8c8d52bffbba">
+      <column name="" />
+    </property>
+    <property name="CreateDate" type="DateTime" shadow="True" p1:ValidateRequired="true" p1:Guid="48af1155-d7e1-4c23-94d6-140bc431132e">
+      <column name="" />
+    </property>
+    <property name="WriteUid" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="3dfb7e80-5d18-4a38-8303-4846bd36ffcf">
+      <column name="" />
+    </property>
+    <property name="WriteDate" type="DateTime" shadow="True" p1:ValidateRequired="true" p1:Guid="6218efec-7f51-488b-9612-251c49a3b835">
+      <column name="" />
+    </property>
+    <property name="StopFlag" type="Boolean" shadow="True" p1:ValidateRequired="true" p1:Guid="77ac11a5-916d-4a1b-befd-4a1555a3638c">
+      <column name="" default="false" />
+    </property>
+    <property name="ECWarehouseId" type="Int32" p1:ValidateRequired="true" p1:Guid="a37e096c-c612-49c1-8e82-de8cab914bd3">
+      <column name="" />
+    </property>
+    <property name="SingleSKu" type="String" p1:ValidateMaxLength="128" p1:ValidateRequired="true" p1:Guid="04821a00-4de4-4c08-8e5d-cc6fa67499cc">
+      <column name="" length="128" />
+    </property>
+    <property name="Qty" type="Int32" p1:ValidateRequired="true" p1:Guid="d964d4b2-a115-474d-970c-f93351dd557f">
+      <column name="" />
+    </property>
+  </class>
+  <class name="BnsOmsReceivingCodeRecord" entity-set="BnsOmsReceivingCodeRecords" table="Bns_OmsReceivingCodeRecord" p1:Guid="6dba530d-5718-4bc0-86a6-e751b8c5c2ec">
+    <id name="Id" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="631bc7c8-bf45-4e09-895a-1749eb2e3043">
+      <column name="" />
+    </id>
+    <property name="CreateUid" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="73ec4fcb-ea84-401f-ab3a-621cdfe87abe">
+      <column name="" />
+    </property>
+    <property name="CreateDate" type="DateTime" shadow="True" p1:ValidateRequired="true" p1:Guid="c2f9da7c-8058-41e9-8bc3-e342ed3e11e1">
+      <column name="" />
+    </property>
+    <property name="WriteUid" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="386163b8-80f4-42a4-a63b-894fbb08cf0b">
+      <column name="" />
+    </property>
+    <property name="WriteDate" type="DateTime" shadow="True" p1:ValidateRequired="true" p1:Guid="8d69bf78-6f89-4236-9984-5474c987a39c">
+      <column name="" />
+    </property>
+    <property name="StopFlag" type="Boolean" shadow="True" p1:ValidateRequired="true" p1:Guid="2bdaee6c-cb36-4594-a306-6683f5ab7aa2">
+      <column name="" default="false" />
+    </property>
+    <property name="OmsReceivingCode" type="String" p1:DisplayName="oms入库单号" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="d5024a75-d858-4c8a-aeb2-0cb4dd527257">
+      <column name="" length="1024" />
+    </property>
+    <property name="State" type="Int32" p1:DisplayName="拉取状态" p1:ValidateRequired="true" p1:Guid="e5f23ece-c2cf-462d-91fe-1d53332e575e">
+      <column name="" />
+    </property>
+    <property name="Message" type="String" p1:DisplayName="信息" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="89a56369-9cba-4319-b5fc-a4ed3ac8d6e9">
+      <column name="" length="1024" />
     </property>
   </class>
   <associations>
