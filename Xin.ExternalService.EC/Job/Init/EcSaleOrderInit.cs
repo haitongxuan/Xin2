@@ -31,12 +31,12 @@ namespace Xin.ExternalService.EC.Job
         {
             var models = new List<ECSalesOrder>();
             var reqModel = new EBGetOrderListReqModel();
-            reqModel.PageSize = 500;
+            reqModel.PageSize = 1000;
             reqModel.GetDetail = IsOrNotEnum.Yes;
             reqModel.GetAddress = IsOrNotEnum.Yes;
             bool finish = true;
             int pageIndex = 1;
-            int submitPageQty = 10;
+            int submitPageQty = 5;
 
             using (var uow = _uowProvider.CreateUnitOfWork())
             {

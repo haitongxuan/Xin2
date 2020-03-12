@@ -25,6 +25,10 @@ namespace Xin.ExternalService.EC.Reqeust
                 var body = await service.ResponseServiceAsync();
                 EBGetSkuRelationResponse response = new EBGetSkuRelationResponse(body);
                 string data = body.Data;
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"E:\LQAPP\XIN\sku.txt", true))
+                {
+                    file.WriteLine(data+"; \n");
+                }
                 try
                 {
                     list = JsonConvert.DeserializeObject<List<EC_SkuRelation>>(data);

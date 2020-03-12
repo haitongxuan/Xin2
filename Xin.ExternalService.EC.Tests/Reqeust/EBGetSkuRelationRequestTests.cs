@@ -19,7 +19,12 @@ namespace Xin.ExternalService.EC.Reqeust.Tests
 
             EBGetSkuRelationReqModel reqModel = new EBGetSkuRelationReqModel();
             reqModel.Page = 1;
-            reqModel.PageSize = 50;
+            reqModel.PageSize = 1000;
+            RelationCondition condition = new RelationCondition();
+            condition.AddTimeStart = "2018-01-01";
+            condition.AddTimeEnd = "2020-03-04 17:21:07.0000000";
+            condition.ProductSku = "X0-Q7WK-72D0";
+            reqModel.Condition = condition;
             //var tt = new RequstInfoStruct { paramsJson = JsonConvert.SerializeObject(reqModel), service = "getSkuRelation", userName = "admin", userPass = "eccang123456", url = "http://longqi-eb.eccang.com/default/svc-open/web-service-v2" };
             //string st = GetRequestXML(tt);
             EBGetSkuRelationRequest request = new EBGetSkuRelationRequest("admin", "eccang123456", reqModel);
