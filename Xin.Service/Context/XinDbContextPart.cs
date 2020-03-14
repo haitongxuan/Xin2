@@ -9,6 +9,13 @@ namespace Xin.Service.Context
 {
     public partial class XinDBContext : DbContext, IEntityContext
     {
+
+        private void VirtuleMappingCreate(ModelBuilder modelBuilder)
+        {
+            this.SingleProductSellMapping(modelBuilder);
+            this.SingleSalesAnalysisMapping(modelBuilder);
+        }
+
         public virtual DbSet<SingleProductSell> SingleProductSells
         {
             get;

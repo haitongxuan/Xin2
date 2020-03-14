@@ -17,10 +17,9 @@ namespace Xin.ExternalService.EC.WMS.Request.Tests
             var reqModel = new GetAsnListRequestModel();
             reqModel.page = 1;
             reqModel.pageSize = 100;
-            reqModel.createDateFrom = DateTime.Now.AddDays(-10).ToString();
-            reqModel.createDateTo = DateTime.Now.ToString();
+            reqModel.receivingCode = "RVA007-200304-0001";
 
-            GetAsnListRequest req = new GetAsnListRequest("d2684ad701d2111628d418a57ea6d1d0", "b26695abae31081d99eaa8348bcbca42", reqModel);
+            GetAsnListRequest req = new GetAsnListRequest("7417441d04ea6267a57cbb6cdced5552", "726fb5fbe5b258d33e32aba78df42e83", reqModel);
             var response = await req.Request();
             string s = response.data;
         }
