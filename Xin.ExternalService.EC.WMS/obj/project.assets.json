@@ -5990,23 +5990,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LongQi-Howard\\.nuget\\packages\\": {},
+    "C:\\Users\\haitx\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj",
+      "projectUniqueName": "D:\\Project\\Xin\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj",
       "projectName": "Xin.ExternalService.EC.WMS",
-      "projectPath": "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj",
-      "packagesPath": "C:\\Users\\LongQi-Howard\\.nuget\\packages\\",
-      "outputPath": "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMS\\obj\\",
+      "projectPath": "D:\\Project\\Xin\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj",
+      "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
+      "outputPath": "D:\\Project\\Xin\\Xin.ExternalService.EC.WMS\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\LongQi-Howard\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\haitx\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6019,8 +6019,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj": {
-              "projectPath": "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj"
+            "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj": {
+              "projectPath": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj"
             }
           }
         }

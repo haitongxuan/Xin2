@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMSTests\\Xin.ExternalService.EC.WMS.Tests.csproj": {}
+    "D:\\Project\\Xin\\Xin.ExternalService.EC.WMSTests\\Xin.ExternalService.EC.WMS.Tests.csproj": {}
   },
   "projects": {
-    "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj": {
+    "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj",
+        "projectUniqueName": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj",
         "projectName": "Xin.Common",
-        "projectPath": "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj",
-        "packagesPath": "C:\\Users\\LongQi-Howard\\.nuget\\packages\\",
-        "outputPath": "E:\\LQAPP\\Xin2\\Xin.Common\\obj\\",
+        "projectPath": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj",
+        "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\Xin\\Xin.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\LongQi-Howard\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\haitx\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -74,20 +74,20 @@
         }
       }
     },
-    "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMSTests\\Xin.ExternalService.EC.WMS.Tests.csproj": {
+    "D:\\Project\\Xin\\Xin.ExternalService.EC.WMSTests\\Xin.ExternalService.EC.WMS.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMSTests\\Xin.ExternalService.EC.WMS.Tests.csproj",
+        "projectUniqueName": "D:\\Project\\Xin\\Xin.ExternalService.EC.WMSTests\\Xin.ExternalService.EC.WMS.Tests.csproj",
         "projectName": "Xin.ExternalService.EC.WMS.Tests",
-        "projectPath": "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMSTests\\Xin.ExternalService.EC.WMS.Tests.csproj",
-        "packagesPath": "C:\\Users\\LongQi-Howard\\.nuget\\packages\\",
-        "outputPath": "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMSTests\\obj\\",
+        "projectPath": "D:\\Project\\Xin\\Xin.ExternalService.EC.WMSTests\\Xin.ExternalService.EC.WMS.Tests.csproj",
+        "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\Xin\\Xin.ExternalService.EC.WMSTests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\LongQi-Howard\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\haitx\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -100,8 +100,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj": {
-                "projectPath": "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj"
+              "D:\\Project\\Xin\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj": {
+                "projectPath": "D:\\Project\\Xin\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj"
               }
             }
           }
@@ -152,20 +152,20 @@
         }
       }
     },
-    "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj": {
+    "D:\\Project\\Xin\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj",
+        "projectUniqueName": "D:\\Project\\Xin\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj",
         "projectName": "Xin.ExternalService.EC.WMS",
-        "projectPath": "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj",
-        "packagesPath": "C:\\Users\\LongQi-Howard\\.nuget\\packages\\",
-        "outputPath": "E:\\LQAPP\\Xin2\\Xin.ExternalService.EC.WMS\\obj\\",
+        "projectPath": "D:\\Project\\Xin\\Xin.ExternalService.EC.WMS\\Xin.ExternalService.EC.WMS.csproj",
+        "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\Xin\\Xin.ExternalService.EC.WMS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\LongQi-Howard\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\haitx\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -178,8 +178,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj": {
-                "projectPath": "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj"
+              "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj": {
+                "projectPath": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj"
               }
             }
           }
