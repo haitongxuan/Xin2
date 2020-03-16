@@ -38,6 +38,8 @@
         <File Name="Xin.ECAsnCost.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
         <File Name="Xin.ECAsnWarehouseAttr.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
         <File Name="Xin.ECAsnProductCost.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
+        <File Name="Xin.BnsUsBaseInventory.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
+        <File Name="Xin.BnsUsTagType.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
       </GeneratedFiles>
     </Generation>
     <DatabaseFirstNamingRules>
