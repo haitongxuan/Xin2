@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Xin.Common;
 using Xin.Entities;
 using Xin.ExternalService.EC.WMS.Request;
 using Xin.ExternalService.EC.WMS.Request.Model;
 using Xin.ExternalService.EC.WMS.Response.Model;
 using Xin.Repository;
+using Xin.Web.Framework.Controllers;
 using Xin.Web.Framework.Model;
 using Xin.Web.Framework.Permission;
 
@@ -19,18 +21,14 @@ namespace Xin.WebApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize]
-    public class OmsAnsListController : ControllerBase
+    public class OmsAnsListController : BaseController<BnsOmsReceivingCodeRecord>
     {
-        private readonly IUowProvider _uowProvider;
-
-        public OmsAnsListController(IUowProvider uowProvider)
+        public OmsAnsListController(IUowProvider uowProvider) : base(uowProvider)
         {
-
         }
-
         //[PermissionFilter("OmsAns.Read")]
         [Route("GetList")]
-        [HttpGet]
+        [HttpPost]
         public ActionResult<DataRes<List<BnsOmsReceivingCodeRecord>>> GetList(DatetimePointPageReq pageReq)
         {
 
@@ -68,9 +66,10 @@ namespace Xin.WebApi.Controllers
             return res;
 
         }
-        [Route("/AddRecivingCode")]
+        //[PermissionFilter("OmsAns.Read")]
+        [Route("AddRecivingCode")]
         [HttpPost]
-        public ActionResult<DataRes<List<BnsOmsReceivingCodeRecord>>> AddRecivingCode(DatetimePointPageReq pageReq,string codes)
+        public ActionResult<DataRes<List<BnsOmsReceivingCodeRecord>>> AddRecivingCode(DatetimePointPageReq pageReq, string codes)
         {
             var res = new DataRes<List<BnsOmsReceivingCodeRecord>>() { code = ResCode.Success };
             if (string.IsNullOrWhiteSpace(codes))
@@ -91,24 +90,57 @@ namespace Xin.WebApi.Controllers
 
                 foreach (var item in code)
                 {
+                    if (repository.Query(x => x.OmsReceivingCode == item).FirstOrDefault() != null)
+                    {
+                        res.msg += "入库单号: " + item + "已经有记录,请不要重复拉取";
+                        continue;
+                    }
                     BnsOmsReceivingCodeRecord temp = new BnsOmsReceivingCodeRecord();
                     temp.CreateDate = createDate;
                     temp.Message = "创建拉取任务";
                     temp.StopFlag = false;
+                    temp.OmsReceivingCode = item;
+                    temp.State = 1;
                     list.Add(temp);
 
                 }
                 reqModel.receivingCodeArr = code;
+                reqModel.page = 1;
+                reqModel.pageSize = 50;
                 GetAsnListRequest req = new GetAsnListRequest("7417441d04ea6267a57cbb6cdced5552", "726fb5fbe5b258d33e32aba78df42e83", reqModel);
                 var response = req.Request().Result;
                 foreach (var item in response.data)
                 {
                     detailList.Add(Mapper<GetAsnListResponseModel, ECAsn>.Map(item));
                 }
-                repository.BulkInsert(list, x => x.IncludeGraph = true);
                 asnRepository.BulkInsert(detailList, x => x.IncludeGraph = true);
+                repository.BulkInsert(list, x => x.IncludeGraph = true);
                 uow.SaveChanges();
                 res.data = list;
+            }
+            return res;
+        }
+        //[PermissionFilter("OmsAns.Read")]
+        [Route("GetDetails")]
+        [HttpPost]
+        public ActionResult<DataRes<ECAsn>> GetAnsDetail(int id)
+        {
+            var res = new DataRes<ECAsn>() { code = ResCode.Success };
+            using (var uow = _uowProvider.CreateUnitOfWork())
+            {
+                var repository = uow.GetRepository<BnsOmsReceivingCodeRecord>();
+                var ansRepository = uow.GetRepository<ECAsn>();
+                BnsOmsReceivingCodeRecord model = repository.Get(id);
+                var ansModel = ansRepository.Query(x => x.ReceiveCode == model.OmsReceivingCode, null,
+                    x => x.Include(a => a.Items)
+                    .Include(a=>a.ReceivingCost))
+                    .FirstOrDefault();
+                res.data = ansModel;
+                if (ansModel==null)
+                {
+                    res.code = ResCode.NotFound;
+                    res.msg = "此Id数据还未拉取";
+                }
             }
             return res;
         }

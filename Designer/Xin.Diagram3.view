@@ -1849,16 +1849,6 @@
                 </CustomProperties>
               </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>-6.763157176509 px</X>
-                <Y>216.947368621826 px</Y>
-              </PointD>
-              <PointD>
-                <X>-6.763157176509 px</X>
-                <Y>216.947368470586 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <Oid xsi:type="SchemaModelOID">
               <Path>44bd43ff-92e9-437d-804a-7f5cdb6ab265</Path>
@@ -1954,7 +1944,7 @@
           <Scale>0.76</Scale>
           <Location>
             <X>-735.526325019113 px</X>
-            <Y>-57.8947375685885 px</Y>
+            <Y>-184.210528627327 px</Y>
           </Location>
         </ViewPort>
         <Oid xsi:type="SchemaModelOID">

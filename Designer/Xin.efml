@@ -1830,7 +1830,7 @@
     </property>
   </class>
   <class name="BnsOmsReceivingCodeRecord" entity-set="BnsOmsReceivingCodeRecords" table="Bns_OmsReceivingCodeRecord" p1:Guid="55a4ddc0-44aa-431d-af29-85d9058f1e14">
-    <id name="Id" type="Int32" p1:ValidateRequired="true" p1:Guid="3b31958d-12d5-4e51-9837-cea2f9fb42d7">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="3b31958d-12d5-4e51-9837-cea2f9fb42d7">
       <column name="" />
     </id>
     <property name="CreateUid" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bbe9a336-6bca-405e-bd96-bc7525b37342">
@@ -1859,7 +1859,7 @@
     </property>
   </class>
   <class name="ECAsn" entity-set="ECAsns" table="EC_Asn" p1:Guid="52cbe7f3-510e-4baa-b0c9-9fc2eca5f15e">
-    <id name="Id" type="Int32" value-generated="OnAdd" shadow="True" p1:ValidateRequired="true" p1:Guid="1c39bb68-2a43-442f-9f5d-af3d31d01018">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="1c39bb68-2a43-442f-9f5d-af3d31d01018">
       <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
     <property name="ReceiveCode" type="String" p1:ValidateMaxLength="64" p1:ValidateRequired="true" p1:Guid="8dbbb352-485a-4118-bb29-977af6fca03c">
@@ -1930,7 +1930,7 @@
     </property>
   </class>
   <class name="ECAsnItem" entity-set="ECAsnItems" table="EC_AsnItem" p1:Guid="87f1f2a2-bea9-464d-af64-41df081a4a54">
-    <id name="Id" type="Int32" value-generated="OnAdd" shadow="True" p1:ValidateRequired="true" p1:Guid="8105703a-a9bf-4914-9f3c-3ee69ccf0c13">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="8105703a-a9bf-4914-9f3c-3ee69ccf0c13">
       <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
     <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="b1d36aa4-43d7-494b-94f9-717c57fecd0c">
@@ -2199,7 +2199,7 @@
       <end1 multiplicity="ZeroOrOne" name="ECAsn" class="ECAsnCost" relation-class="ECAsn" constrained="True" lazy="False" p1:Guid="7819ccf0-7b4d-4e0d-a4fb-21a6e34a806f">
         <property name="Id" />
       </end1>
-      <end2 multiplicity="Many" name="ECAsnCosts" class="ECAsn" relation-class="ECAsnCost" lazy="False" p1:Guid="70d3c7c1-5599-4c2e-9b07-0a048578b917">
+      <end2 multiplicity="Many" name="ReceivingCost" class="ECAsn" relation-class="ECAsnCost" lazy="False" p1:Guid="70d3c7c1-5599-4c2e-9b07-0a048578b917">
         <property name="ECAsnId" />
       </end2>
     </association>
@@ -2207,7 +2207,7 @@
       <end1 multiplicity="ZeroOrOne" name="ECAsn" class="ECAsnItem" relation-class="ECAsn" constrained="True" lazy="False" p1:Guid="fefffaab-335d-4ba1-a582-a95a81a0a0fd">
         <property name="Id" />
       </end1>
-      <end2 multiplicity="Many" name="ECAsnItems" class="ECAsn" relation-class="ECAsnItem" lazy="False" p1:Guid="b3c34157-140b-431c-91c8-9f7c03562133">
+      <end2 multiplicity="Many" name="Items" class="ECAsn" relation-class="ECAsnItem" lazy="False" p1:Guid="b3c34157-140b-431c-91c8-9f7c03562133">
         <property name="ECAsnId" />
       </end2>
     </association>
@@ -2215,7 +2215,7 @@
       <end1 multiplicity="ZeroOrOne" name="ECAsnItem" class="ECAsnProductCost" relation-class="ECAsnItem" constrained="True" lazy="False" p1:Guid="7c60acf3-2599-446e-b63b-8333d18c62bd">
         <property name="Id" />
       </end1>
-      <end2 multiplicity="Many" name="ECAsnProductCosts" class="ECAsnItem" relation-class="ECAsnProductCost" lazy="False" p1:Guid="69bb9e74-c6f3-4617-a756-c0a1c2a07c1a">
+      <end2 multiplicity="Many" name="ProductCosts" class="ECAsnItem" relation-class="ECAsnProductCost" lazy="False" p1:Guid="69bb9e74-c6f3-4617-a756-c0a1c2a07c1a">
         <property name="ECAsnItemId" />
       </end2>
     </association>
@@ -2223,7 +2223,7 @@
       <end1 multiplicity="ZeroOrOne" name="ECAsnItem" class="ECAsnWarehouseAttr" relation-class="ECAsnItem" constrained="True" lazy="False" p1:Guid="c52621f7-6e6d-44f0-b417-3e40e606c378">
         <property name="Id" />
       </end1>
-      <end2 multiplicity="Many" name="ECAsnWarehouseAttrs" class="ECAsnItem" relation-class="ECAsnWarehouseAttr" lazy="False" p1:Guid="ab3cca4a-897e-4f6f-b622-013b00975674">
+      <end2 multiplicity="Many" name="WarehouseAtrrs" class="ECAsnItem" relation-class="ECAsnWarehouseAttr" lazy="False" p1:Guid="ab3cca4a-897e-4f6f-b622-013b00975674">
         <property name="ECAsnItemId" />
       </end2>
     </association>
