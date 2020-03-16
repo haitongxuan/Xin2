@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -12,19 +15,67 @@ using Xin.Web.Framework.Model;
 
 namespace Xin.Web.Framework.Controllers
 {
-    public class ECBaseController<TEntity> : ControllerBase where TEntity : class, new()
+    public class BaseController<TEntity> : ControllerBase where TEntity : class, new()
     {
 
         protected readonly IUowProvider _uowProvider;
-        public ECBaseController(IUowProvider uowProvider)
+        public BaseController(IUowProvider uowProvider)
         {
             _uowProvider = uowProvider;
         }
     }
 
-    public class ECReadBaseController<TEntity> : ECBaseController<TEntity> where TEntity : class, new()
+    public abstract class ExcelImportController<TEntity> : ReadBaseController<TEntity> where TEntity : class, new()
     {
-        public ECReadBaseController(IUowProvider uowProvider) : base(uowProvider)
+        public ExcelImportController(IUowProvider uowProvider) : base(uowProvider)
+        {
+        }
+
+        /// <summary>
+        /// 导入Excel数据
+        /// </summary>
+        /// <param name="excelFile"></param>
+        /// <returns></returns>
+        public async Task<ActionResult<DataRes<bool>>> Import(IFormFile excelFile)
+        {
+            DataRes<bool> result = new DataRes<bool>() { code = ResCode.Success, data = true };
+            if (excelFile == null || excelFile.Length <= 0)
+            {
+                result.code = ResCode.Error;
+                result.data = false;
+                result.msg = ResMsg.FileNotNull;
+            }
+            else if (!Path.GetExtension(excelFile.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+            {
+                result.code = ResCode.NoValidate;
+                result.msg = ResMsg.ExcelNotValidate;
+                result.data = false;
+
+            }
+            List<TEntity> list = null;
+            using (var stream = new MemoryStream())
+            {
+                using (var package = new ExcelPackage(stream))
+                {
+                    StringBuilder sb = new StringBuilder();
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                    list = GetEntitiesFromExcel(worksheet);
+                }
+            }
+            using (var uow = _uowProvider.CreateUnitOfWork())
+            {
+                var repository = uow.GetRepository<TEntity>();
+                await repository.BulkInsertAsync(list).ConfigureAwait(false);
+            }
+            return result;
+        }
+
+        protected abstract List<TEntity> GetEntitiesFromExcel(ExcelWorksheet sheet);
+    }
+
+    public class ReadBaseController<TEntity> : BaseController<TEntity> where TEntity : class, new()
+    {
+        public ReadBaseController(IUowProvider uowProvider) : base(uowProvider)
         {
         }
 

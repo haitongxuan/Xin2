@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <efcore context-namespace="Xin.Service.Context" namespace="Xin.Entities" p1:name="XinDBContext" p1:Guid="f542a14b-c18e-43d9-9144-ecd101e429bc" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="$EnumTypes">
+    <EnumType Name="BnsUsTagType" class="BnsUsTagType" p1:Guid="7b4b124f-37d8-4a3b-80e8-c7a2fc074147">
+      <Member Name="Unice" Value="1" p1:Guid="267ad3c5-fe21-447c-805f-fa5ae19e3cdc" />
+      <Member Name="Normal" Value="2" p1:Guid="8310f8e0-70ed-45a9-b5c5-f669a2c3ac26" />
+    </EnumType>
+  </class>
   <class name="ResDepartment" entity-set="ResDepartments" table="Res_Department" p1:Guid="f4a68ad8-7e12-497e-aa43-4cc0b856221f" p1:EntityBase="XinVDBaseEntity">
     <id name="Id" type="Int32" value-generated="OnAdd" shadow="True" p1:DisplayName="主键" p1:ValidateRequired="true" p1:Guid="0a89b445-e650-4fe1-8a73-5645dd59fffd">
       <column name="" not-null="True" precision="10" scale="0" p1:unicode="False" />
@@ -1845,7 +1851,11 @@
     <property name="OmsReceivingCode" type="String" p1:nullable="True" p1:DisplayName="oms入库单号" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="22384233-8d20-460f-8b02-c8ac424a4f7d">
       <column name="" length="128" />
     </property>
+<<<<<<< HEAD
     <property name="State" type="Int32" p1:nullable="True" p1:DisplayName="拉取状态" p1:ValidateRequired="false" p1:Guid="b2931ab5-baba-4579-9539-25b1c4eb9830">
+=======
+    <property name="State" type="Int32" p1:DisplayName="拉取状态，0未拉取，1已拉取" p1:ValidateRequired="true" p1:Guid="b2931ab5-baba-4579-9539-25b1c4eb9830">
+>>>>>>> e02549777bf86973191de76df0e15a5ceb859312
       <column name="" />
     </property>
     <property name="Message" type="String" p1:nullable="True" p1:DisplayName="信息" p1:ValidateRequired="false" p1:Guid="a0e344c1-6707-4563-a54b-fba47f6d38bf">
@@ -2025,6 +2035,23 @@
     </property>
     <property name="ECAsnItemId" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="c67e4eec-171f-4836-85ab-e2f6c3c24c67">
       <column name="" not-null="False" />
+    </property>
+  </class>
+  <class name="BnsUsBaseInventory" entity-set="BnsUsBaseInventories" table="Bns_UsBaseInventory" p1:Guid="47ae5b64-e4f7-4101-9e63-45d307762c0b">
+    <id name="Id" type="Int32" p1:ValidateRequired="true" p1:Guid="66f5b2ce-282b-43b1-9538-f788dfa82ec3">
+      <column name="" />
+    </id>
+    <property name="WarehouseId" type="Int32" p1:ValidateRequired="true" p1:Guid="b723c884-7bb6-40d6-8e75-d19dd320204c">
+      <column name="" />
+    </property>
+    <property name="Qty" type="Int32" p1:ValidateRequired="true" p1:Guid="6f0d41dc-8ca2-4ddd-b57e-f9ac738afd5e">
+      <column name="" />
+    </property>
+    <property name="TagType" type="Xin.Entities.BnsUsTagType" p1:ValidateRequired="true" p1:Guid="31b6c71d-0b29-4d7b-91ed-c8a2ca9996c5">
+      <column name="" length="32" />
+    </property>
+    <property name="ProductSku" type="String" p1:ValidateMaxLength="128" p1:ValidateRequired="true" p1:Guid="2f9928b0-be61-4aba-a3e3-f9d4bf1afc02">
+      <column name="" length="128" />
     </property>
   </class>
   <associations>

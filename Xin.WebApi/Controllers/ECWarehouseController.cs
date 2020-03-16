@@ -12,7 +12,7 @@ namespace Xin.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ECWarehouseController : ECReadBaseController<ECWarehouse>
+    public class ECWarehouseController : ReadBaseController<ECWarehouse>
     {
         public ECWarehouseController(IUowProvider uowProvider) : base(uowProvider)
         {

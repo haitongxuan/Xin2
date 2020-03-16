@@ -17,7 +17,7 @@ namespace Xin.WebApi.Controllers
     [Route("api/[controller]")]
     [Authorize]
     [ApiController]
-    public class SingleSalesAnalysisController : ECBaseController<SingleSalesAnalysis>
+    public class SingleSalesAnalysisController : BaseController<SingleSalesAnalysis>
     {
         public SingleSalesAnalysisController(IUowProvider uowProvider) : base(uowProvider)
         {

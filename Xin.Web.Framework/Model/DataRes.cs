@@ -47,5 +47,7 @@ namespace Xin.Web.Framework.Model
     public class ResMsg
     {
         public const string ParameterIsNull = "Request parameter is null,please check your parameter!";
+        public const string FileNotNull = "Please check file!";
+        public const string ExcelNotValidate = "Please check .xlsx file!";
     }
 }
