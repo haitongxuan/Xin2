@@ -33,6 +33,11 @@
         <File Name="Xin.ECSkuRelation.cs" DestinationFolder="D:\Project\Xin\Xin.Entity" />
         <File Name="Xin.ECSkuRelationItem.cs" DestinationFolder="D:\Project\Xin\Xin.Entity" />
         <File Name="Xin.BnsOmsReceivingCodeRecord.cs" DestinationFolder="D:\Project\Xin\Xin.Entity" />
+        <File Name="Xin.ECAsn.cs" DestinationFolder="D:\Project\Xin\Xin.Entity" />
+        <File Name="Xin.ECAsnItem.cs" DestinationFolder="D:\Project\Xin\Xin.Entity" />
+        <File Name="Xin.ECAsnCost.cs" DestinationFolder="D:\Project\Xin\Xin.Entity" />
+        <File Name="Xin.ECAsnWarehouseAttr.cs" DestinationFolder="D:\Project\Xin\Xin.Entity" />
+        <File Name="Xin.ECAsnProductCost.cs" DestinationFolder="D:\Project\Xin\Xin.Entity" />
       </GeneratedFiles>
     </Generation>
     <DatabaseFirstNamingRules>
