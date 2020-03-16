@@ -3848,6 +3848,10 @@
                     </Oid>
                   </Model>
                 </Children>
+                <Location>
+                  <X>0 px</X>
+                  <Y>1.77635683940025E-15 px</Y>
+                </Location>
                 <Size>
                   <Width>145 px</Width>
                   <Height>36 px</Height>

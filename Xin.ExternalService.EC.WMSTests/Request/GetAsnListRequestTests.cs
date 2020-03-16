@@ -14,21 +14,13 @@ namespace Xin.ExternalService.EC.WMS.Request.Tests
         [TestMethod()]
         public async Task RequestTest()
         {
-            try
-            {
-                var reqModel = new GetAsnListRequestModel();
-                 reqModel.page = 1;
-                reqModel.pageSize = 100;
-                reqModel.receivingCode = "RVA007-200118-0003";
-                GetAsnListRequest req = new GetAsnListRequest("7417441d04ea6267a57cbb6cdced5552", "726fb5fbe5b258d33e32aba78df42e83", reqModel);
-                var response = await req.Request();
+            var reqModel = new GetAsnListRequestModel();
+            reqModel.page = 1;
+            reqModel.pageSize = 100;
+            reqModel.receivingCode = "RVA007-200304-0001";
 
-            }
-            catch (Exception ex )
-            {
-
-                throw;
-            }
+            GetAsnListRequest req = new GetAsnListRequest("7417441d04ea6267a57cbb6cdced5552", "726fb5fbe5b258d33e32aba78df42e83", reqModel);
+            var response = await req.Request();
         }
     }
 }
