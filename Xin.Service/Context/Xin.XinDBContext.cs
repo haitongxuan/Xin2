@@ -540,6 +540,8 @@ namespace Xin.Service.Context
             this.BnsUsBaseInventoryMapping(modelBuilder);
             this.CustomizeBnsUsBaseInventoryMapping(modelBuilder);
 
+            this.VirtuleMappingCreate(modelBuilder);
+
             RelationshipsMapping(modelBuilder);
             CustomizeMapping(ref modelBuilder);
         }
