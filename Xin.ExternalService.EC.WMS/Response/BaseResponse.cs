@@ -12,8 +12,8 @@ namespace Xin.ExternalService.EC.WMS.Response
         public Pagination pagenation { get; set; }
         public int count { get; set; }
         public string nextPage { get; set; }
-        public string data { get; set; }
-        public List<TEntity> dataEntities { get; set; }
+        //public string data { get; set; }
+        //public TEntity dataEntities { get; set; }
         [JsonProperty(PropertyName = "Error", NullValueHandling = NullValueHandling.Ignore)]
         public Error error { get; set; }
     }

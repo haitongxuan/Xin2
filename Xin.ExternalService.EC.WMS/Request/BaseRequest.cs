@@ -31,6 +31,6 @@ namespace Xin.ExternalService.EC.WMS.Request
             }
         }
 
-        public abstract Task<BaseResponse<TResponse>> Request();
+        public abstract Task<TResponse> Request();
     }
 }

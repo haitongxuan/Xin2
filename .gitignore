@@ -28,3 +28,9 @@
 /Xin.WebApi/obj
 /Xin.WebApi/bin
 /Xin.WebApi/log
+/Xin.ExternalService.EC.WMSTests/obj
+/Xin.ExternalService.EC.WMSTests/bin
+/Xin.ExternalService.EC.WMS/bin
+/Xin.ExternalService.EC.WMS/obj
+/Xin.ServiceTests/bin
+/Xin.ServiceTests/obj

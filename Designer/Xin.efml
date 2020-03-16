@@ -1827,126 +1827,129 @@
     <id name="Id" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="3b31958d-12d5-4e51-9837-cea2f9fb42d7">
       <column name="" />
     </id>
-    <property name="CreateUid" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="bbe9a336-6bca-405e-bd96-bc7525b37342">
+    <property name="CreateUid" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bbe9a336-6bca-405e-bd96-bc7525b37342">
       <column name="" />
     </property>
-    <property name="CreateDate" type="DateTime" shadow="True" p1:ValidateRequired="true" p1:Guid="8ae1ab86-ef23-4878-8de5-1c503ed8231b">
+    <property name="CreateDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8ae1ab86-ef23-4878-8de5-1c503ed8231b">
       <column name="" />
     </property>
-    <property name="WriteUid" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="c446c383-d3f5-4a41-a29a-1a0fefadf45a">
+    <property name="WriteUid" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c446c383-d3f5-4a41-a29a-1a0fefadf45a">
       <column name="" />
     </property>
-    <property name="WriteDate" type="DateTime" shadow="True" p1:ValidateRequired="true" p1:Guid="51d35392-e485-4ceb-ac77-86598e61abd9">
+    <property name="WriteDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="51d35392-e485-4ceb-ac77-86598e61abd9">
       <column name="" />
     </property>
-    <property name="StopFlag" type="Boolean" shadow="True" p1:ValidateRequired="true" p1:Guid="4757dce7-9823-432d-9354-aa9f25756898">
+    <property name="StopFlag" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4757dce7-9823-432d-9354-aa9f25756898">
       <column name="" default="false" />
     </property>
-    <property name="OmsReceivingCode" type="String" p1:DisplayName="oms入库单号" p1:ValidateMaxLength="128" p1:ValidateRequired="true" p1:Guid="22384233-8d20-460f-8b02-c8ac424a4f7d">
+    <property name="OmsReceivingCode" type="String" p1:nullable="True" p1:DisplayName="oms入库单号" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="22384233-8d20-460f-8b02-c8ac424a4f7d">
       <column name="" length="128" />
     </property>
-    <property name="State" type="Int32" p1:DisplayName="拉取状态" p1:ValidateRequired="true" p1:Guid="b2931ab5-baba-4579-9539-25b1c4eb9830">
+    <property name="State" type="Int32" p1:nullable="True" p1:DisplayName="拉取状态" p1:ValidateRequired="false" p1:Guid="b2931ab5-baba-4579-9539-25b1c4eb9830">
       <column name="" />
     </property>
-    <property name="Message" type="String" p1:DisplayName="信息" p1:ValidateRequired="true" p1:Guid="a0e344c1-6707-4563-a54b-fba47f6d38bf">
+    <property name="Message" type="String" p1:nullable="True" p1:DisplayName="信息" p1:ValidateRequired="false" p1:Guid="a0e344c1-6707-4563-a54b-fba47f6d38bf">
       <column name="" />
     </property>
   </class>
   <class name="ECAsn" entity-set="ECAsns" table="EC_Asn" p1:Guid="52cbe7f3-510e-4baa-b0c9-9fc2eca5f15e">
-    <id name="Id" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="1c39bb68-2a43-442f-9f5d-af3d31d01018">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="1c39bb68-2a43-442f-9f5d-af3d31d01018">
       <column name="" />
     </id>
     <property name="ReceiveCode" type="String" p1:ValidateMaxLength="64" p1:ValidateRequired="true" p1:Guid="8dbbb352-485a-4118-bb29-977af6fca03c">
       <column name="" length="64" />
     </property>
-    <property name="ReferenceNo" type="String" p1:ValidateMaxLength="64" p1:ValidateRequired="true" p1:Guid="4a9e7b56-b048-4985-b43c-a69830641951">
+    <property name="ReferenceNo" type="String" p1:nullable="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="4a9e7b56-b048-4985-b43c-a69830641951">
       <column name="" length="64" />
     </property>
-    <property name="IncomeType" type="Int32" p1:ValidateRequired="true" p1:Guid="538106b1-207a-46e1-b8d3-0f49fd7927bc">
+    <property name="IncomeType" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="538106b1-207a-46e1-b8d3-0f49fd7927bc">
       <column name="" />
     </property>
-    <property name="WarehouseCode" type="String" p1:ValidateMaxLength="64" p1:ValidateRequired="true" p1:Guid="148e7715-b186-4afe-80d1-e087c5dfadaa">
+    <property name="WarehouseCode" type="String" p1:nullable="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="148e7715-b186-4afe-80d1-e087c5dfadaa">
       <column name="" length="64" />
     </property>
-    <property name="TransitWarehouseCode" type="String" p1:ValidateMaxLength="64" p1:ValidateRequired="true" p1:Guid="ced6313d-65da-4a0b-80b0-03e62fac9a23">
+    <property name="TransitWarehouseCode" type="String" p1:nullable="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="ced6313d-65da-4a0b-80b0-03e62fac9a23">
       <column name="" length="64" />
     </property>
-    <property name="SmCode" type="String" p1:ValidateMaxLength="64" p1:ValidateRequired="true" p1:Guid="2364bf82-d618-4474-b9bd-815264fae37c">
+    <property name="SmCode" type="String" p1:nullable="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="2364bf82-d618-4474-b9bd-815264fae37c">
       <column name="" length="64" />
     </property>
-    <property name="ShippingMethod" type="String" p1:ValidateMaxLength="64" p1:ValidateRequired="true" p1:Guid="8a0444a5-f10a-4011-9b42-275857636de4">
+    <property name="ShippingMethod" type="String" p1:nullable="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="8a0444a5-f10a-4011-9b42-275857636de4">
       <column name="" length="64" />
     </property>
-    <property name="TrackingNumber" type="String" p1:ValidateMaxLength="128" p1:ValidateRequired="true" p1:Guid="e028b388-84b7-46f4-8d0a-af7edf405eb0">
+    <property name="TrackingNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="e028b388-84b7-46f4-8d0a-af7edf405eb0">
       <column name="" length="128" />
     </property>
-    <property name="ReceivingStatus" type="String" p1:ValidateMaxLength="64" p1:ValidateRequired="true" p1:Guid="045efa8c-0c61-4e25-bd1f-fbb1700c2483">
+    <property name="ReceivingStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="045efa8c-0c61-4e25-bd1f-fbb1700c2483">
       <column name="" length="64" />
     </property>
-    <property name="ReceivingDesc" type="String" p1:ValidateMaxLength="1024" p1:ValidateRequired="true" p1:Guid="b5dd5595-5bdd-45b9-8c27-29096702fd04">
+    <property name="ReceivingDesc" type="String" p1:nullable="True" p1:ValidateMaxLength="1024" p1:ValidateRequired="false" p1:Guid="b5dd5595-5bdd-45b9-8c27-29096702fd04">
       <column name="" length="1024" />
     </property>
-    <property name="EtaDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="5cea5c24-7880-46b6-8541-416b74bed0c4">
+    <property name="EtaDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5cea5c24-7880-46b6-8541-416b74bed0c4">
       <column name="" />
     </property>
-    <property name="ReceivingModifyTime" type="DateTime" p1:ValidateRequired="true" p1:Guid="17767b9c-9ad6-41e2-94da-6a6cc4ba10a0">
+    <property name="ReceivingModifyTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="17767b9c-9ad6-41e2-94da-6a6cc4ba10a0">
       <column name="" />
     </property>
-    <property name="RegionIdLevel0" type="Int32" p1:ValidateRequired="true" p1:Guid="761afeff-e5ca-436b-9fcd-826969812d20">
+    <property name="RegionIdLevel0" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="761afeff-e5ca-436b-9fcd-826969812d20">
       <column name="" />
     </property>
-    <property name="RegionIdLevel1" type="Int32" p1:ValidateRequired="true" p1:Guid="97d03121-0c7b-483c-8a94-6011c8cf5efd">
+    <property name="RegionIdLevel1" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="97d03121-0c7b-483c-8a94-6011c8cf5efd">
       <column name="" />
     </property>
-    <property name="RegionIdLevel2" type="Int32" p1:ValidateRequired="true" p1:Guid="453e9e46-a72e-4d58-b5dc-a972faee08c0">
+    <property name="RegionIdLevel2" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="453e9e46-a72e-4d58-b5dc-a972faee08c0">
       <column name="" />
     </property>
-    <property name="Street" type="String" p1:ValidateMaxLength="256" p1:ValidateRequired="true" p1:Guid="90c5056b-413c-44b3-bfea-928f21ee169d">
+    <property name="Street" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="90c5056b-413c-44b3-bfea-928f21ee169d">
       <column name="" length="256" />
     </property>
-    <property name="Contacter" type="String" p1:ValidateMaxLength="256" p1:ValidateRequired="true" p1:Guid="7bc8fa39-92b0-42b4-86f4-a6b468141d91">
+    <property name="Contacter" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="7bc8fa39-92b0-42b4-86f4-a6b468141d91">
       <column name="" length="256" />
     </property>
-    <property name="ContactPhone" type="String" p1:ValidateMaxLength="64" p1:ValidateRequired="true" p1:Guid="ea37f7da-0c55-457b-9429-a38e32e757ae">
+    <property name="ContactPhone" type="String" p1:nullable="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="ea37f7da-0c55-457b-9429-a38e32e757ae">
       <column name="" length="64" />
     </property>
-    <property name="BoxTotal" type="Int32" p1:ValidateRequired="true" p1:Guid="ddce5f71-747f-46f2-a5e8-37f7ac13a01f">
+    <property name="BoxTotal" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ddce5f71-747f-46f2-a5e8-37f7ac13a01f">
       <column name="" />
     </property>
-    <property name="SkuTotal" type="Int32" p1:ValidateRequired="true" p1:Guid="8248c187-5ac8-4a65-b14d-14aab26b45ee">
+    <property name="SkuTotal" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8248c187-5ac8-4a65-b14d-14aab26b45ee">
       <column name="" />
     </property>
-    <property name="SkuSpecies" type="Int32" p1:ValidateRequired="true" p1:Guid="750d2889-079b-4c17-875d-73a2e0655a7d">
+    <property name="SkuSpecies" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="750d2889-079b-4c17-875d-73a2e0655a7d">
       <column name="" />
     </property>
-    <property name="CalculateFeeTime" type="DateTime" p1:ValidateRequired="true" p1:Guid="0ebefe10-8cba-488f-96cc-e5691cd2bb2d">
+    <property name="CalculateFeeTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0ebefe10-8cba-488f-96cc-e5691cd2bb2d">
       <column name="" />
     </property>
   </class>
   <class name="ECAsnItem" entity-set="ECAsnItems" table="EC_AsnItem" p1:Guid="87f1f2a2-bea9-464d-af64-41df081a4a54">
-    <id name="Id" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="8105703a-a9bf-4914-9f3c-3ee69ccf0c13">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="8105703a-a9bf-4914-9f3c-3ee69ccf0c13">
       <column name="" />
     </id>
-    <property name="ProductSku" type="String" p1:ValidateMaxLength="128" p1:ValidateRequired="true" p1:Guid="b1d36aa4-43d7-494b-94f9-717c57fecd0c">
+    <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="b1d36aa4-43d7-494b-94f9-717c57fecd0c">
       <column name="" length="128" />
     </property>
-    <property name="ProductBarcode" type="String" p1:ValidateMaxLength="128" p1:ValidateRequired="true" p1:Guid="7aa10576-70be-4dfc-a1d0-6e92b3aff06a">
+    <property name="ProductBarcode" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="7aa10576-70be-4dfc-a1d0-6e92b3aff06a">
       <column name="" length="128" />
     </property>
-    <property name="Quantity" type="Int32" p1:ValidateRequired="true" p1:Guid="3983ce81-7fd4-4de8-9bb4-e8c759317951">
+    <property name="Quantity" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3983ce81-7fd4-4de8-9bb4-e8c759317951">
       <column name="" />
     </property>
-    <property name="ReceivedQuantity" type="Int32" p1:ValidateRequired="true" p1:Guid="7a389683-aae0-4c8c-806a-8679a6824423">
+    <property name="ReceivedQuantity" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7a389683-aae0-4c8c-806a-8679a6824423">
       <column name="" />
     </property>
-    <property name="BoxNo" type="Int32" p1:ValidateRequired="true" p1:Guid="e8dbfb96-f931-4392-8eac-d9f3a0b3d8b6">
+    <property name="BoxNo" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e8dbfb96-f931-4392-8eac-d9f3a0b3d8b6">
       <column name="" />
     </property>
-    <property name="PutawayQuantity" type="Int32" p1:ValidateRequired="true" p1:Guid="b1590f6b-7b34-426d-a498-bc3a657bf1c5">
+    <property name="PutawayQuantity" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b1590f6b-7b34-426d-a498-bc3a657bf1c5">
       <column name="" />
     </property>
-    <property name="ProductPrice" type="Decimal" p1:ValidateRequired="true" p1:Guid="531c3045-d31b-4a7a-82e9-7f5f7d95168e">
+    <property name="ProductPrice" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="531c3045-d31b-4a7a-82e9-7f5f7d95168e">
       <column name="" />
+    </property>
+    <property name="ECAsnId" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="097fa7b0-f7c1-4c27-9828-18525fbd2b3c">
+      <column name="" not-null="False" />
     </property>
   </class>
   <class name="ECAsnCost" entity-set="ECAsnCosts" table="EC_AsnCost" p1:Guid="e0a36e8e-3ba7-4179-a1f1-1b7b4c6888b4">
@@ -1968,8 +1971,11 @@
     <property name="OtherCost" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ea87c523-c767-4645-897f-d6b864492e25">
       <column name="" />
     </property>
-    <property name="CustomerCurrency" type="String" p1:ValidateMaxLength="32" p1:ValidateRequired="true" p1:Guid="7f87acfd-a3c4-4999-9d00-61d3c3857903">
+    <property name="CustomerCurrency" type="String" p1:nullable="True" p1:ValidateMaxLength="32" p1:ValidateRequired="false" p1:Guid="7f87acfd-a3c4-4999-9d00-61d3c3857903">
       <column name="" length="32" />
+    </property>
+    <property name="ECAsnId" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="fce80c36-1872-4744-b758-99b5c9904795">
+      <column name="" not-null="False" />
     </property>
   </class>
   <class name="ECAsnWarehouseAttr" entity-set="ECAsnWarehouseAttrs" table="EC_AsnWarehouseAttr" p1:Guid="b172f184-dedb-41a9-ac1a-7372882dc396">
@@ -1987,6 +1993,9 @@
     </property>
     <property name="ProductWeight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="cc5f01d0-55f3-419e-a38f-4edca20d53c0">
       <column name="" />
+    </property>
+    <property name="ECAsnItemId" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="b44b2dc1-b85d-44fd-a610-4018c6e28586">
+      <column name="" not-null="False" />
     </property>
   </class>
   <class name="ECAsnProductCost" entity-set="ECAsnProductCosts" table="EC_AsnProductCost" p1:Guid="d947aa46-a93c-42a8-a77a-e85c46b40658">
@@ -2008,11 +2017,14 @@
     <property name="OtherCost" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="99054cda-be07-4851-83a0-a70aeb543d78">
       <column name="" />
     </property>
-    <property name="CustomerCurrency" type="String" p1:ValidateMaxLength="32" p1:ValidateRequired="true" p1:Guid="795a5362-17bb-4bbc-aa39-23841b61b2bd">
+    <property name="CustomerCurrency" type="String" p1:nullable="True" p1:ValidateMaxLength="32" p1:ValidateRequired="false" p1:Guid="795a5362-17bb-4bbc-aa39-23841b61b2bd">
       <column name="" length="32" />
     </property>
     <property name="HeadCost" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="678b1d9c-a9bf-4352-9a1a-166732868fd3">
       <column name="" />
+    </property>
+    <property name="ECAsnItemId" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="c67e4eec-171f-4836-85ab-e2f6c3c24c67">
+      <column name="" not-null="False" />
     </property>
   </class>
   <associations>
@@ -2158,6 +2170,38 @@
       </end1>
       <end2 multiplicity="Many" name="Relation" class="ECSkuRelation" relation-class="ECSkuRelationItem" lazy="False" p1:Guid="0767e6d2-8e70-48ee-99bf-4affc9f1670e">
         <property name="RelationId" />
+      </end2>
+    </association>
+    <association name="ECAsn_ECAsnCost" cardinality="OneToMany" on-delete="Cascade" p1:Guid="b0240770-c47d-4d9d-96da-7369281daffa">
+      <end1 multiplicity="One" name="ECAsn" class="ECAsnCost" relation-class="ECAsn" constrained="True" lazy="False" p1:Guid="d628d335-2e04-4df9-bd22-f99edae3e379">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="ECAsnCosts" class="ECAsn" relation-class="ECAsnCost" lazy="False" p1:Guid="ccfdce66-ef26-4ea5-8ea3-ae18becd8c2e">
+        <property name="ECAsnId" />
+      </end2>
+    </association>
+    <association name="ECAsn_ECAsnItem" cardinality="OneToMany" p1:Guid="e6599994-2ff8-4818-875a-f12d7f10072e">
+      <end1 multiplicity="One" name="ECAsn" class="ECAsnItem" relation-class="ECAsn" constrained="True" lazy="False" p1:Guid="4942a394-c739-4535-910b-01cdd5890290">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="ECAsnItems" class="ECAsn" relation-class="ECAsnItem" lazy="False" p1:Guid="54d8473d-32af-4b12-9796-f395827a05d9">
+        <property name="ECAsnId" />
+      </end2>
+    </association>
+    <association name="ECAsnItem_ECAsnProductCost" cardinality="OneToMany" p1:Guid="fdd31957-6982-4dbf-8589-ad20d4340961">
+      <end1 multiplicity="One" name="ECAsnItem" class="ECAsnProductCost" relation-class="ECAsnItem" constrained="True" lazy="False" p1:Guid="b8c0af8c-1538-4589-a117-b86b058427b3">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="ECAsnProductCosts" class="ECAsnItem" relation-class="ECAsnProductCost" lazy="False" p1:Guid="01fcd1fa-3373-4306-a7b6-26c8fa42ef21">
+        <property name="ECAsnItemId" />
+      </end2>
+    </association>
+    <association name="ECAsnItem_ECAsnWarehouseAttr" cardinality="OneToMany" p1:Guid="ef02a82b-e196-4f3e-9cf4-bc9eebd3d4aa">
+      <end1 multiplicity="One" name="ECAsnItem" class="ECAsnWarehouseAttr" relation-class="ECAsnItem" constrained="True" lazy="False" p1:Guid="da71c9c0-0bb3-4b67-990e-e1b01c05b53b">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="ECAsnWarehouseAttrs" class="ECAsnItem" relation-class="ECAsnWarehouseAttr" lazy="False" p1:Guid="860b7454-389d-4de3-b4c9-8cee5b9a54b5">
+        <property name="ECAsnItemId" />
       </end2>
     </association>
   </associations>

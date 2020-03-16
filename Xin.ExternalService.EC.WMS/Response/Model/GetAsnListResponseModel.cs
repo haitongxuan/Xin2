@@ -79,7 +79,7 @@ namespace Xin.ExternalService.EC.WMS.Response.Model
         [JsonProperty(PropertyName = "product_price", NullValueHandling = NullValueHandling.Ignore)]
         public decimal ProductPrice { get; set; }
         [JsonProperty(PropertyName = "warehouse_attr", NullValueHandling = NullValueHandling.Ignore)]
-        public List<WarehouseAtrr> WarehouseAtrrs { get; set; }
+        public WarehouseAtrr WarehouseAtrrs { get; set; }
         [JsonProperty(PropertyName = "product_cost", NullValueHandling = NullValueHandling.Ignore)]
         public List<ProductCost> ProductCosts { get; set; }
     }
