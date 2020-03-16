@@ -36,6 +36,9 @@ namespace Xin.Web.Framework.Controllers
         /// </summary>
         /// <param name="excelFile"></param>
         /// <returns></returns>
+
+        [HttpPost]
+        [Route("import")]
         public async Task<ActionResult<DataRes<bool>>> Import(IFormFile excelFile)
         {
             DataRes<bool> result = new DataRes<bool>() { code = ResCode.Success, data = true };
