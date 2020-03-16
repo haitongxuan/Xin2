@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\Xin\\Xin.ServiceTests\\Xin.ServiceTests.csproj": {}
+    "E:\\LQAPP\\Xin2\\Xin.ServiceTests\\Xin.ServiceTests.csproj": {}
   },
   "projects": {
-    "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj": {
+    "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj",
+        "projectUniqueName": "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj",
         "projectName": "Xin.Common",
-        "projectPath": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj",
-        "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Xin\\Xin.Common\\obj\\",
+        "projectPath": "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj",
+        "packagesPath": "C:\\Users\\LongQi-Howard\\.nuget\\packages\\",
+        "outputPath": "E:\\LQAPP\\Xin2\\Xin.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\haitx\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LongQi-Howard\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -74,20 +74,20 @@
         }
       }
     },
-    "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj": {
+    "E:\\LQAPP\\Xin2\\Xin.Entity\\Xin.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj",
+        "projectUniqueName": "E:\\LQAPP\\Xin2\\Xin.Entity\\Xin.Entities.csproj",
         "projectName": "Xin.Entities",
-        "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj",
-        "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Xin\\Xin.Entity\\obj\\",
+        "projectPath": "E:\\LQAPP\\Xin2\\Xin.Entity\\Xin.Entities.csproj",
+        "packagesPath": "C:\\Users\\LongQi-Howard\\.nuget\\packages\\",
+        "outputPath": "E:\\LQAPP\\Xin2\\Xin.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\haitx\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LongQi-Howard\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -100,11 +100,11 @@
         "frameworks": {
           "netcoreapp2.0": {
             "projectReferences": {
-              "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj"
+              "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj": {
+                "projectPath": "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj"
               },
-              "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj"
+              "E:\\LQAPP\\Xin2\\Xin.Repository\\Xin.Repository.csproj": {
+                "projectPath": "E:\\LQAPP\\Xin2\\Xin.Repository\\Xin.Repository.csproj"
               }
             }
           }
@@ -139,20 +139,20 @@
         }
       }
     },
-    "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj": {
+    "E:\\LQAPP\\Xin2\\Xin.Repository\\Xin.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj",
+        "projectUniqueName": "E:\\LQAPP\\Xin2\\Xin.Repository\\Xin.Repository.csproj",
         "projectName": "Xin.Repository",
-        "projectPath": "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj",
-        "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Xin\\Xin.Repository\\obj\\",
+        "projectPath": "E:\\LQAPP\\Xin2\\Xin.Repository\\Xin.Repository.csproj",
+        "packagesPath": "C:\\Users\\LongQi-Howard\\.nuget\\packages\\",
+        "outputPath": "E:\\LQAPP\\Xin2\\Xin.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\haitx\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LongQi-Howard\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -165,8 +165,8 @@
         "frameworks": {
           "netcoreapp2.0": {
             "projectReferences": {
-              "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj"
+              "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj": {
+                "projectPath": "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj"
               }
             }
           }
@@ -219,20 +219,20 @@
         }
       }
     },
-    "D:\\Project\\Xin\\Xin.ServiceTests\\Xin.ServiceTests.csproj": {
+    "E:\\LQAPP\\Xin2\\Xin.ServiceTests\\Xin.ServiceTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Xin\\Xin.ServiceTests\\Xin.ServiceTests.csproj",
+        "projectUniqueName": "E:\\LQAPP\\Xin2\\Xin.ServiceTests\\Xin.ServiceTests.csproj",
         "projectName": "Xin.ServiceTests",
-        "projectPath": "D:\\Project\\Xin\\Xin.ServiceTests\\Xin.ServiceTests.csproj",
-        "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Xin\\Xin.ServiceTests\\obj\\",
+        "projectPath": "E:\\LQAPP\\Xin2\\Xin.ServiceTests\\Xin.ServiceTests.csproj",
+        "packagesPath": "C:\\Users\\LongQi-Howard\\.nuget\\packages\\",
+        "outputPath": "E:\\LQAPP\\Xin2\\Xin.ServiceTests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\haitx\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LongQi-Howard\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -245,8 +245,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj"
+              "E:\\LQAPP\\Xin2\\Xin.Service\\Xin.Service.csproj": {
+                "projectPath": "E:\\LQAPP\\Xin2\\Xin.Service\\Xin.Service.csproj"
               }
             }
           }
@@ -297,20 +297,20 @@
         }
       }
     },
-    "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj": {
+    "E:\\LQAPP\\Xin2\\Xin.Service\\Xin.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj",
+        "projectUniqueName": "E:\\LQAPP\\Xin2\\Xin.Service\\Xin.Service.csproj",
         "projectName": "Xin.Service",
-        "projectPath": "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj",
-        "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Xin\\Xin.Service\\obj\\",
+        "projectPath": "E:\\LQAPP\\Xin2\\Xin.Service\\Xin.Service.csproj",
+        "packagesPath": "C:\\Users\\LongQi-Howard\\.nuget\\packages\\",
+        "outputPath": "E:\\LQAPP\\Xin2\\Xin.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\haitx\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LongQi-Howard\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -323,14 +323,14 @@
         "frameworks": {
           "netcoreapp2.0": {
             "projectReferences": {
-              "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Common\\Xin.Common.csproj"
+              "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj": {
+                "projectPath": "E:\\LQAPP\\Xin2\\Xin.Common\\Xin.Common.csproj"
               },
-              "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Entity\\Xin.Entities.csproj"
+              "E:\\LQAPP\\Xin2\\Xin.Entity\\Xin.Entities.csproj": {
+                "projectPath": "E:\\LQAPP\\Xin2\\Xin.Entity\\Xin.Entities.csproj"
               },
-              "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj": {
-                "projectPath": "D:\\Project\\Xin\\Xin.Repository\\Xin.Repository.csproj"
+              "E:\\LQAPP\\Xin2\\Xin.Repository\\Xin.Repository.csproj": {
+                "projectPath": "E:\\LQAPP\\Xin2\\Xin.Repository\\Xin.Repository.csproj"
               }
             }
           }

@@ -3,3 +3,14 @@ D:\Project\Xin.ExternalService.EC.WMS\bin\Debug\netcoreapp2.2\Xin.ExternalServic
 D:\Project\Xin.ExternalService.EC.WMS\obj\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.AssemblyInfoInputs.cache
 D:\Project\Xin.ExternalService.EC.WMS\obj\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.AssemblyInfo.cs
 D:\Project\Xin.ExternalService.EC.WMS\obj\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.csprojAssemblyReference.cache
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\bin\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.deps.json
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\bin\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.dll
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\bin\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.pdb
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\bin\Debug\netcoreapp2.2\Xin.Common.dll
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\bin\Debug\netcoreapp2.2\Xin.Common.pdb
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\obj\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.csprojAssemblyReference.cache
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\obj\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.AssemblyInfoInputs.cache
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\obj\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.AssemblyInfo.cs
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\obj\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.csproj.CopyComplete
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\obj\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.dll
+E:\LQAPP\Xin2\Xin.ExternalService.EC.WMS\obj\Debug\netcoreapp2.2\Xin.ExternalService.EC.WMS.pdb

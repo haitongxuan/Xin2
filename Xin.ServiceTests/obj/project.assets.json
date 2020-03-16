@@ -8802,23 +8802,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\haitx\\.nuget\\packages\\": {},
+    "C:\\Users\\LongQi-Howard\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\Xin\\Xin.ServiceTests\\Xin.ServiceTests.csproj",
+      "projectUniqueName": "E:\\LQAPP\\Xin2\\Xin.ServiceTests\\Xin.ServiceTests.csproj",
       "projectName": "Xin.ServiceTests",
-      "projectPath": "D:\\Project\\Xin\\Xin.ServiceTests\\Xin.ServiceTests.csproj",
-      "packagesPath": "C:\\Users\\haitx\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\Xin\\Xin.ServiceTests\\obj\\",
+      "projectPath": "E:\\LQAPP\\Xin2\\Xin.ServiceTests\\Xin.ServiceTests.csproj",
+      "packagesPath": "C:\\Users\\LongQi-Howard\\.nuget\\packages\\",
+      "outputPath": "E:\\LQAPP\\Xin2\\Xin.ServiceTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\haitx\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LongQi-Howard\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8831,8 +8831,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj": {
-              "projectPath": "D:\\Project\\Xin\\Xin.Service\\Xin.Service.csproj"
+            "E:\\LQAPP\\Xin2\\Xin.Service\\Xin.Service.csproj": {
+              "projectPath": "E:\\LQAPP\\Xin2\\Xin.Service\\Xin.Service.csproj"
             }
           }
         }
