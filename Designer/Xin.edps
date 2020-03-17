@@ -39,6 +39,9 @@
         <File Name="Xin.ECAsnWarehouseAttr.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
         <File Name="Xin.ECAsnProductCost.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
         <File Name="Xin.BnsUsBaseInventory.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
+        <File Name="Xin.ECShipBatch.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
+        <File Name="Xin.ECShipBatchPackingInfo.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
+        <File Name="Xin.ECShipBatchProductInfo.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
         <File Name="Xin.BnsUsTagType.cs" DestinationFolder="E:\LQAPP\Xin2\Xin.Entity" />
       </GeneratedFiles>
     </Generation>

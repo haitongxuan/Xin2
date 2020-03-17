@@ -2050,6 +2050,165 @@
       <column name="" length="128" />
     </property>
   </class>
+  <class name="ECShipBatch" entity-set="ECShipBatches" table="EC_ShipBatch" schema="dbo" p1:Guid="696c505d-0e45-489a-8647-1e00179c37e7">
+    <id name="OrderCode" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="5fcce259-ff2d-4095-a4ed-7c147f86cf6c">
+      <column name="OrderCode" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </id>
+    <property name="ReferenceNo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d81b4a0e-51ed-43eb-ac96-81a2ac060afb">
+      <column name="ReferenceNo" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="AddTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bd8925d9-a134-4180-9908-8ba34f5f3b3b">
+      <column name="AddTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="ExpectedDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="df714bf3-9336-4681-8ff3-73e66b4ec648">
+      <column name="ExpectedDate" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="TrackingNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="401180c2-1a0e-4f5b-9cbb-47e0c082fe54">
+      <column name="TrackingNumber" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="RefNo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d7aab71d-2ad6-4f60-afe0-b91242970a79">
+      <column name="RefNo" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="UserAccount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="19f76189-3ccd-4d80-a61b-8def9e757734">
+      <column name="UserAccount" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ToWarehouse" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d0fb712d-0301-447a-b410-9a9c9262acdb">
+      <column name="ToWarehouse" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Warehouse" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c6bedfa0-02e9-4ca3-8725-494dfb13aab3">
+      <column name="Warehouse" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="SmCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="23855506-ae5a-4ebd-9c15-93a9bd9883a5">
+      <column name="SmCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="SmNameCn" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="94d4c44a-6829-4001-be42-977d93071bc4">
+      <column name="SmNameCn" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Destination" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ec6fce0f-b574-4037-b51e-8e63b0346f13">
+      <column name="Destination" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="HeadFreight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="164428e9-322f-4518-bcfd-8e7f5094cdd6">
+      <column name="HeadFreight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="HeadTariff" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="518f8556-030a-4c64-b662-96c41440fc1a">
+      <column name="HeadTariff" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="CostCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c0934fa6-89b3-4f46-bed2-24e99194de9d">
+      <column name="CostCurrencyCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="TariffCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0b73f787-53fc-4c70-8b76-66c44a75efd8">
+      <column name="TariffCurrencyCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ParcelQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a352e85a-0d1a-48d6-8183-0f9602b044e4">
+      <column name="ParcelQuantity" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BoxCount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ca9ea59f-5a6c-4d7d-89b2-c260ef6db56b">
+      <column name="BoxCount" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Amount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="fad2908f-b49b-448a-891b-5acbf8a2a9dc">
+      <column name="Amount" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="SoWeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="783efdb2-b837-4cf5-bf6d-259be629aced">
+      <column name="SoWeight" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="SystemWeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e736ab8c-d659-4235-916d-6eefe96c6faa">
+      <column name="SystemWeight" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Remark" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9c55ef15-9718-4b5d-89ca-2263f14aec33">
+      <column name="Remark" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9aed1673-ca58-4743-a406-e7f6dba1b114">
+      <column name="OabName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabPhone" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="50f28f1c-5944-4a21-b004-8ca5413e3036">
+      <column name="OabPhone" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabFax" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d0b648c7-f65d-44e0-a575-3b2ce592cd16">
+      <column name="OabFax" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabCompany" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ef10eaf6-1a0b-4b4f-a0b1-eaa1d9004275">
+      <column name="OabCompany" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabEmail" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fe91afcc-82e0-4c9c-92f8-c1e696ed0dff">
+      <column name="OabEmail" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabPostcode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="113bac9e-8f9a-4ae1-9102-02143bd16013">
+      <column name="OabPostcode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabCounty" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="82771695-6b8b-4711-ab22-7a7daa1ee28b">
+      <column name="OabCounty" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabState" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="dabc9ef7-23ed-42f7-ad39-5f75ae6893e0">
+      <column name="OabState" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabCity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="88802979-baf8-45a8-8a39-3e1ecc1ad1fa">
+      <column name="OabCity" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabStreetAddress1" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c09078ec-60a4-4c64-a86b-4ad67e17c544">
+      <column name="OabStreetAddress1" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabStreetAddress2" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="eda22be2-1c01-41f0-a4e7-815f9893859f">
+      <column name="OabStreetAddress2" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OabDoorplate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6d127050-a16a-4a6f-ba38-212d414ea69b">
+      <column name="OabDoorplate" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="ECShipBatchPackingInfo" entity-set="ECShipBatchPackingInfos" table="EC_ShipBatchPackingInfo" schema="dbo" p1:Guid="812f2df8-b646-4774-b902-312ab38e07bf">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="b16c32d0-39d6-4e86-9f5f-2e719606be0f">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ReferenceNo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="84d6487f-3176-453f-9cf0-b20a5628d342">
+      <column name="ReferenceNo" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="TppCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c159a893-9da5-4fc8-b0e1-e3e76190ffd7">
+      <column name="TppCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="TppQuantity" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="21b887ec-08b9-4015-a30c-ac1841df9bf4">
+      <column name="TppQuantity" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="TppWeight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="265bec4c-0087-49e3-9f65-78882775d468">
+      <column name="TppWeight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="TppVolume" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ebf29ff7-f569-4212-9594-c24097e5b6c6">
+      <column name="TppVolume" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OrderCode" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9e8be41d-7df7-4bf4-95c0-f02d6df9efc6">
+      <column name="OrderCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="ECShipBatchProductInfo" entity-set="ECShipBatchProductInfos" table="EC_ShipBatchProductInfo" schema="dbo" p1:Guid="3adf108f-7ca3-4189-b3d8-325cf98f2749">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="87ef57bf-1824-4250-977d-d53bf3393c02">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ProductTitle" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f4f8e16f-616b-4ded-9386-c01677dc0547">
+      <column name="ProductTitle" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ProductBarcode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3d49551a-4157-419d-b254-3920b11eef85">
+      <column name="ProductBarcode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BarcodeCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f96c9231-6884-41f4-b1c2-4b5b7a55129b">
+      <column name="BarcodeCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OpQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9790e763-bfa7-462a-a192-33c9e5e7e1ad">
+      <column name="OpQuantity" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ProductWeight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bedde0d5-26b3-4a53-b37a-dc10034cf2aa">
+      <column name="ProductWeight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Volume" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fdf16751-db0d-46e2-b7e9-0b9380e0e4f9">
+      <column name="Volume" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OpRefPaydate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7e0df949-63c1-4bfb-bbf9-495cf1572074">
+      <column name="OpRefPaydate" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="TotalWeight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="92a71062-8efd-49a0-b203-406b73c7a62a">
+      <column name="TotalWeight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="OrderCode" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8be15af0-8c81-4b81-9216-8e9109ccef3a">
+      <column name="OrderCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">
@@ -2225,6 +2384,22 @@
       </end1>
       <end2 multiplicity="Many" name="WarehouseAtrrs" class="ECAsnItem" relation-class="ECAsnWarehouseAttr" lazy="False" p1:Guid="ab3cca4a-897e-4f6f-b622-013b00975674">
         <property name="ECAsnItemId" />
+      </end2>
+    </association>
+    <association name="ECShipBatch_ECShipBatchPackingInfo" cardinality="OneToMany" on-delete="Cascade" p1:Guid="550bd26f-3230-4bf1-93a5-7c96739c47a1">
+      <end1 multiplicity="ZeroOrOne" name="ECShipBatch" class="ECShipBatchPackingInfo" relation-class="ECShipBatch" constrained="True" lazy="False" p1:Guid="51856955-3c62-4ba9-82fb-c047a2aac0db">
+        <property name="OrderCode" />
+      </end1>
+      <end2 multiplicity="Many" name="PackingInfos" class="ECShipBatch" relation-class="ECShipBatchPackingInfo" lazy="False" p1:Guid="8797fde8-f055-492f-912c-f006108c8eaf">
+        <property name="OrderCode" />
+      </end2>
+    </association>
+    <association name="ECShipBatch_ECShipBatchProductInfo" cardinality="OneToMany" on-delete="Cascade" p1:Guid="8d5398d0-92cd-47cf-9529-2dfc869b5750">
+      <end1 multiplicity="ZeroOrOne" name="ECShipBatch" class="ECShipBatchProductInfo" relation-class="ECShipBatch" constrained="True" lazy="False" p1:Guid="c0fe43f3-25ad-4ac1-8dcd-a17397abd6c8">
+        <property name="OrderCode" />
+      </end1>
+      <end2 multiplicity="Many" name="ProductInfos" class="ECShipBatch" relation-class="ECShipBatchProductInfo" lazy="False" p1:Guid="cc0cd511-42da-419b-af32-17c93ee9bb79">
+        <property name="OrderCode" />
       </end2>
     </association>
   </associations>
