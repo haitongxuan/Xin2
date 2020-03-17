@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
@@ -39,9 +40,10 @@ namespace Xin.Web.Framework.Controllers
 
         [HttpPost]
         [Route("import")]
-        public async Task<ActionResult<DataRes<bool>>> Import(IFormFile excelFile)
+        public async Task<ActionResult<DataRes<bool>>> Import([FromForm]IFormFile excelFile)
         {
             DataRes<bool> result = new DataRes<bool>() { code = ResCode.Success, data = true };
+            //IFormFile excelFile = files["excelfile"];
             if (excelFile == null || excelFile.Length <= 0)
             {
                 result.code = ResCode.Error;
@@ -56,13 +58,20 @@ namespace Xin.Web.Framework.Controllers
 
             }
             List<TEntity> list = null;
-            using (var stream = new MemoryStream())
+            using (var stream = excelFile.OpenReadStream())
             {
                 using (var package = new ExcelPackage(stream))
                 {
-                    StringBuilder sb = new StringBuilder();
-                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
-                    list = GetEntitiesFromExcel(worksheet);
+                    try
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                        list = GetEntitiesFromExcel(worksheet);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
             using (var uow = _uowProvider.CreateUnitOfWork())

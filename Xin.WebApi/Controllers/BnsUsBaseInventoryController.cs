@@ -15,6 +15,7 @@ using System.Text;
 
 namespace Xin.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class BnsUsBaseInventoryController : ExcelImportController<BnsUsBaseInventory>

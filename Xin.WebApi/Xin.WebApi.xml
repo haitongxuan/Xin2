@@ -23,6 +23,51 @@
             <param name="loginViewModel">登录实体信息</param>
             <returns></returns>
         </member>
+        <member name="M:Xin.WebApi.Controllers.ResDepartmentController.GetChildList(System.Int32)">
+            <summary>
+            获取子部门列表
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.PubPermissionController.GetList(System.Int32)">
+            <summary>
+            获取权限列表
+            </summary>
+            <param name="resourceId">资源名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.PubPermissionController.AddAsync(Xin.Entities.ResPermission)">
+            <summary>
+            添加
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.PubPermissionController.EditAsync(Xin.Entities.ResPermission)">
+            <summary>
+            编辑
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.PubPermissionController.DeleteAsync(System.String)">
+            <summary>
+            删除
+            </summary>
+            <param name="id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResRoleController.GetPermissions(System.Int32)">
+            <summary>
+            获取角色权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ResRoleController.SavePermissions(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            保存角色权限
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Controllers.ResScheduleController.GetPageAsync(Xin.Web.Framework.Model.NavigateOrderPageDataReq)">
             <summary>
             查询数据
@@ -127,51 +172,6 @@
             使用 Microsoft.AspNetCore.Authentication.JwtBearer
             </summary>
             <param name="services"></param>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.ResDepartmentController.GetChildList(System.Int32)">
-            <summary>
-            获取子部门列表
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.PubPermissionController.GetList(System.Int32)">
-            <summary>
-            获取权限列表
-            </summary>
-            <param name="resourceId">资源名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.PubPermissionController.AddAsync(Xin.Entities.ResPermission)">
-            <summary>
-            添加
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.PubPermissionController.EditAsync(Xin.Entities.ResPermission)">
-            <summary>
-            编辑
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.PubPermissionController.DeleteAsync(System.String)">
-            <summary>
-            删除
-            </summary>
-            <param name="id">主键</param>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.ResRoleController.GetPermissions(System.Int32)">
-            <summary>
-            获取角色权限
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LQExtension.Api.Controllers.ResRoleController.SavePermissions(System.Int32,System.Collections.Generic.List{System.Int32})">
-            <summary>
-            保存角色权限
-            </summary>
-            <returns></returns>
         </member>
     </members>
 </doc>
