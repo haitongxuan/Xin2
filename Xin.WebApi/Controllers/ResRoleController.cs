@@ -17,7 +17,7 @@ using System.Security.Claims;
 using Xin.Web.Framework.Helper;
 using Xin.Web.Framework;
 
-namespace LQExtension.Api.Controllers
+namespace Xin.WebApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/ResRole")]

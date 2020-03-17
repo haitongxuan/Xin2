@@ -13,7 +13,7 @@ using System.Security.Claims;
 using Xin.Web.Framework.Model;
 using Xin.Web.Framework.Permission;
 
-namespace LQExtension.Api.Controllers
+namespace Xin.WebApi.Controllers
 {
     [Authorize]
     [Produces("application/json")]
