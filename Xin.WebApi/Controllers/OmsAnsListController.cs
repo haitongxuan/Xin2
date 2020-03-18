@@ -89,29 +89,27 @@ namespace Xin.WebApi.Controllers
         //[PermissionFilter("OmsAns.Read")]
         [Route("AddRecivingCode")]
         [HttpPost]
-        public GridPage<List<BnsOmsReceivingCodeRecord>> AddRecivingCode(string codes)
+        public GridPage<List<BnsOmsReceivingCodeRecord>> AddRecivingCode(string[] codes)
         {
             var res = new GridPage<List<BnsOmsReceivingCodeRecord>>() { code = ResCode.Success };
-            if (string.IsNullOrWhiteSpace(codes))
-            {
-                res.code = ResCode.Error;
-                return res;
-            }
             try
             {
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
                     var repository = uow.GetRepository<BnsOmsReceivingCodeRecord>();
                     var asnRepository = uow.GetRepository<ECAsn>();
-
-                    string[] code = codes.Split(",");
                     List<BnsOmsReceivingCodeRecord> list = new List<BnsOmsReceivingCodeRecord>();
                     List<ECAsn> detailList = new List<ECAsn>();
                     DateTime createDate = DateTime.Now;
                     var reqModel = new GetAsnListRequestModel();
 
-                    foreach (var item in code)
+                    foreach (var item in codes)
                     {
+                        if (string.IsNullOrWhiteSpace(item))
+                        {
+                            res.code = ResCode.Error;
+                            continue;
+                        }
                         if (repository.Query(x => x.OmsReceivingCode == item).FirstOrDefault() != null)
                         {
                             res.msg += "入库单号: " + item + "已经有记录,请不要重复拉取";
@@ -126,7 +124,7 @@ namespace Xin.WebApi.Controllers
                         list.Add(temp);
 
                     }
-                    reqModel.receivingCodeArr = code;
+                    reqModel.receivingCodeArr = codes;
                     reqModel.page = 1;
                     reqModel.pageSize = 50;
                     GetAsnListRequest req = new GetAsnListRequest(omsApi.ApiKey, omsApi.ApiToken, reqModel);
