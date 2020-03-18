@@ -25,7 +25,7 @@ namespace Xin.WebApi.Controllers
         public ECShipBatchController(IUowProvider uowProvider) : base(uowProvider)
         {
         }
-        [PermissionFilter("ShipBatch.Read")]
+        //[PermissionFilter("ShipBatch.Read")]
         [Route("getList")]
         [HttpGet]
         public GridPage<List<ECShipBatch>> GetList(DatetimePointPageReq pageReq)
@@ -82,7 +82,7 @@ namespace Xin.WebApi.Controllers
             return res;
         }
 
-        [PermissionFilter("ShipBatch.add")]
+        //[PermissionFilter("ShipBatch.add")]
         [Route("addShipBatch")]
         [HttpGet]
         public GridPage<List<ECShipBatch>> addShipBatch(string orderCode)
