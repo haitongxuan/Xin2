@@ -23,6 +23,14 @@
             <param name="loginViewModel">登录实体信息</param>
             <returns></returns>
         </member>
+        <member name="M:Xin.WebApi.Controllers.OmsAnsListController.AddRecivingCode(System.String)">
+            <summary>
+            添加入库单
+            </summary>
+            <param name="pageReq"></param>
+            <param name="codes"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Controllers.ResDepartmentController.GetChildList(System.Int32)">
             <summary>
             获取子部门列表

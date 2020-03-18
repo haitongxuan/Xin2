@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Xin.Common;
 using Xin.Entities;
 using Xin.Repository;
 using Xin.Service;
@@ -18,11 +19,42 @@ namespace Xin.Web.Framework.Controllers
 {
     public class BaseController<TEntity> : ControllerBase where TEntity : class, new()
     {
+        protected readonly EcLogin ecLogin;
+        protected readonly OmsApiKey omsApi;
 
         protected readonly IUowProvider _uowProvider;
         public BaseController(IUowProvider uowProvider)
         {
+            var config = new AppConfigurationServices().Configuration;
             _uowProvider = uowProvider;
+            ecLogin = new EcLogin()
+            {
+                UserName = config["ECLogin:Username"],
+                Password = config["ECLogin:Password"]
+            };
+            omsApi = new OmsApiKey()
+            {
+                ApiKey = config["OmsApiKey:ApiKey"],
+                ApiToken = config["OmsApiKey:ApiToken"]
+
+            };
+        }
+        public class OmsApiKey
+        {
+            public OmsApiKey()
+            {
+            }
+            public string ApiKey { get; set; }
+            public string ApiToken { get; set; }
+        }
+        public class EcLogin
+        {
+            public EcLogin()
+            {
+            }
+            public string UserName { get; set; }
+            public string Password { get; set; }
+
         }
     }
 
