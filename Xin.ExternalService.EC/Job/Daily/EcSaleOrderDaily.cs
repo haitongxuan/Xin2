@@ -13,6 +13,7 @@ using Xin.Repository;
 
 namespace Xin.ExternalService.EC.Job
 {
+    [DisallowConcurrentExecution]
     public class EcSaleOrderDaily : EcBaseJob
     {
         private readonly LogHelper log;

@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Xin.ExternalService.EC.WMS\Xin.ExternalService.EC.WMS.csproj" />
+    <ProjectReference Include="..\Xin.ExternalService.EC\Xin.ExternalService.EC.csproj" />
     <ProjectReference Include="..\Xin.Job.Service\Xin.Job.Service.csproj" />
     <ProjectReference Include="..\Xin.Service\Xin.Service.csproj" />
     <ProjectReference Include="..\Xin.Web.Framework\Xin.Web.Framework.csproj" />

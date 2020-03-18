@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Xin.Web.Framework.Model
 {
+    public class GridPage<T> : DataRes<T>
+    {
+        public int totalCount { get; set; }
+    }
     public class DataRes<T>
     {
         [Description("e.g. 200:success; 500:system error; 404:not found; 401:Unauthorized ")]
