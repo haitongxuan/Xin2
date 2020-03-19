@@ -67,7 +67,7 @@ namespace Xin.Service.Context
             modelBuilder.Entity<UsTagTypeInventory>().Property<string>(u => u.ProductSku).HasColumnName(@"ProductSku").ValueGeneratedNever(); modelBuilder.Entity<UsTagTypeInventory>().Property<string>(u => u.ProductSku).HasColumnName(@"ProductSku").ValueGeneratedNever();
             modelBuilder.Entity<UsTagTypeInventory>().Property<int>(u => u.Qty).HasColumnName(@"Qty").ValueGeneratedNever();
             modelBuilder.Entity<UsTagTypeInventory>().Property<string>(u => u.TagType).HasColumnName(@"TagType").ValueGeneratedNever();
-            modelBuilder.Entity<UsTagTypeInventory>().Property<int>(u => u.RowNumber).HasColumnName(@"RowNumber").ValueGeneratedNever();
+            modelBuilder.Entity<UsTagTypeInventory>().Property<long>(u => u.RowNumber).HasColumnName(@"RowNumber").ValueGeneratedNever();
             modelBuilder.Entity<UsTagTypeInventory>().HasKey(@"RowNumber");
         }
     }

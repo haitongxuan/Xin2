@@ -9,9 +9,9 @@ namespace Xin.Web.Framework.Helper
 {
     public class PageMapper<T> where T : class, new()
     {
-        public static PageDateRes<T> ToPageDateRes(DataPage<T> dpage)
+        public static PageDataRes<T> ToPageDateRes(DataPage<T> dpage)
         {
-            PageDateRes<T> page = new PageDateRes<T>();
+            PageDataRes<T> page = new PageDataRes<T>();
             if (dpage.Data.Any())
             {
                 page.data = dpage.Data.ToList();

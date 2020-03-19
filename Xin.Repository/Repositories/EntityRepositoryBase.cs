@@ -572,7 +572,14 @@ namespace Xin.Repository
         {
             string queryStr = $"select * from ({sql}) tab where {filterStr} order by {orderStr}";
             IQueryable<TEntity> query = Context.Set<TEntity>();
-            return query.FromSql(sql).AsEnumerable();
+            return query.FromSql(queryStr).AsEnumerable();
+        }
+
+        public int CountFromSql(string sql, string filterStr = "", string orderStr = "")
+        {
+            string queryStr = $"select count(1) from ({sql}) tab where {filterStr} order by {orderStr}";
+            IQueryable<TEntity> query = Context.Set<TEntity>();
+            return query.FromSql(queryStr).Count();
         }
 
         public IEnumerable<TEntity> PageFromSql(string sql, string orderStr, int pageIndex = 1, int pageSize = 50)

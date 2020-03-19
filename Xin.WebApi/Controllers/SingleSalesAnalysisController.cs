@@ -11,6 +11,7 @@ using Xin.Service;
 using Xin.Web.Framework.Permission;
 using Xin.Web.Framework.Model;
 using Microsoft.AspNetCore.Authorization;
+using Xin.Web.Framework.Helper;
 
 namespace Xin.WebApi.Controllers
 {
@@ -26,14 +27,15 @@ namespace Xin.WebApi.Controllers
         [PermissionFilter("SingleSalesAnalysis.Read")]
         [Route("GetPage")]
         [HttpPost]
-        public ActionResult<DataRes<List<SingleSalesAnalysis>>> GetPage(DatetimePointPageReq req)
+        public ActionResult<PageDataRes<SingleSalesAnalysis>> GetPage(DatetimePointPageReq req)
         {
-            var res = new DataRes<List<SingleSalesAnalysis>>() { code = ResCode.Success };
+            var res = new PageDataRes<SingleSalesAnalysis>() { code = ResCode.Success };
             if (req != null)
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
                     var repository = uow.GetCustomRepository<ISingleSalesAnlysisRepository>();
-                    res.data = repository.GetPage(req.datetimePoint, req.pageNum, req.pageSize, FilterNode.ListToString(req.query)).ToList();
+                    var page = repository.GetPage(req.datetimePoint, req.pageNum, req.pageSize, FilterNode.ListToString(req.query));
+                    res = PageMapper<SingleSalesAnalysis>.ToPageDateRes(page);
                 }
             else
             {

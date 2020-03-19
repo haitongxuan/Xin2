@@ -20,8 +20,9 @@ namespace Xin.WebApi.Controllers
     [ApiController]
     public class BnsUsBaseInventoryController : ExcelImportController<BnsUsBaseInventory>
     {
-        public BnsUsBaseInventoryController(IUowProvider uowProvider) : base(uowProvider)
+        public BnsUsBaseInventoryController(IUowProvider uowProvider,IDataPager<BnsUsBaseInventory> dataPager) : base(uowProvider,dataPager)
         {
+            _init = true;
         }
 
         protected override List<BnsUsBaseInventory> GetEntitiesFromExcel(ExcelWorksheet sheet)

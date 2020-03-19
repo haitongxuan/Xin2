@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Xin.Entities.VirtualEntity;
+using Xin.Repository;
 
 namespace Xin.Service
 {
@@ -9,6 +10,6 @@ namespace Xin.Service
     {
         IEnumerable<UsTagTypeInventory> GetList(string filterStr = null);
 
-        IEnumerable<UsTagTypeInventory> GetPage(int pageIndex, int pageSize, string filterStr = null);
+        DataPage<UsTagTypeInventory> GetPage(int pageIndex, int pageSize, string filterStr = null);
     }
 }

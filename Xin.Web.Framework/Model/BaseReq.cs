@@ -20,6 +20,13 @@ namespace Xin.Web.Framework.Model
         public virtual List<FilterNode> query { get; set; } = new List<FilterNode>();
     }
 
+    public class PageReq : OrderReq
+    {
+        //  int pageNum = 1, int pageSize = 20, string field = "id", string order = " desc "
+        public int pageNum { get; set; } = 1;
+        public int pageSize { get; set; } = 50;
+    }
+
     public class DatetimePointReq : OrderReq
     {
         public DateTime datetimePoint { get; set; }

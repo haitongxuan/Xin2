@@ -295,7 +295,7 @@ namespace Xin.Web.Framework
         /// <returns></returns>
         [Route("GetPage")]
         [HttpPost]
-        public virtual async Task<ActionResult<PageDateRes<TEntity>>> GetPageAsync([FromBody]NavigateOrderPageDataReq pageReq)
+        public virtual async Task<ActionResult<PageDataRes<TEntity>>> GetPageAsync([FromBody]NavigateOrderPageDataReq pageReq)
         {
             bool cp = false;
             using (var uow = _uowProvider.CreateUnitOfWork())
@@ -306,7 +306,7 @@ namespace Xin.Web.Framework
             string parameterstr = typeof(TEntity).Name + "Page";
             if (cp)
             {
-                var page = new PageDateRes<TEntity>();
+                var page = new PageDataRes<TEntity>();
                 try
                 {
                     if (pageReq != null)
@@ -474,14 +474,14 @@ namespace Xin.Web.Framework
         /// <returns></returns>
         [Route("GetPage")]
         [HttpPost]
-        public virtual async Task<ActionResult<PageDateRes<TEntity>>> GetPageAsync([FromBody]NavigateOrderPageDataReq pageReq)
+        public virtual async Task<ActionResult<PageDataRes<TEntity>>> GetPageAsync([FromBody]NavigateOrderPageDataReq pageReq)
         {
             bool cp = false;
             using (var uow = _uowProvider.CreateUnitOfWork())
                 cp = await CheckPermission("Edit", uow);
             if (cp)
             {
-                var page = new PageDateRes<TEntity>();
+                var page = new PageDataRes<TEntity>();
                 try
                 {
                     string parameterstr = _typeName + "Page";

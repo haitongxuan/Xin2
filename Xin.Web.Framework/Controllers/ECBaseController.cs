@@ -13,6 +13,7 @@ using Xin.Common;
 using Xin.Entities;
 using Xin.Repository;
 using Xin.Service;
+using Xin.Web.Framework.Helper;
 using Xin.Web.Framework.Model;
 
 namespace Xin.Web.Framework.Controllers
@@ -58,11 +59,14 @@ namespace Xin.Web.Framework.Controllers
         }
     }
 
-    public abstract class ExcelImportController<TEntity> : ReadBaseController<TEntity> where TEntity : class, new()
+    public abstract class ExcelImportController<TEntity> : PageBaseController<TEntity> where TEntity : class, new()
     {
-        public ExcelImportController(IUowProvider uowProvider) : base(uowProvider)
+        protected bool _init;
+
+        public ExcelImportController(IUowProvider uowProvider, IDataPager<TEntity> dataPager) : base(uowProvider, dataPager)
         {
         }
+
 
         /// <summary>
         /// 导入Excel数据
@@ -109,12 +113,64 @@ namespace Xin.Web.Framework.Controllers
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<TEntity>();
+                if (_init)
+                {
+                    await repository.DeleteAll();
+                    uow.BulkSaveChanges();
+                }
                 await repository.BulkInsertAsync(list).ConfigureAwait(false);
+                uow.SaveChanges();
             }
             return result;
         }
 
         protected abstract List<TEntity> GetEntitiesFromExcel(ExcelWorksheet sheet);
+    }
+
+    public class PageBaseController<TEntity> : ReadBaseController<TEntity> where TEntity : class, new()
+    {
+        protected IDataPager<TEntity> _dataPager;
+        public PageBaseController(IUowProvider uowProvider, IDataPager<TEntity> dataPager) : base(uowProvider)
+        {
+            _dataPager = dataPager;
+        }
+
+        /// <summary>
+        /// 获取分页
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetPage")]
+        public virtual async Task<ActionResult<PageDataRes<TEntity>>> GetPage([FromBody]NavigateOrderPageDataReq req)
+        {
+            var result = new PageDataRes<TEntity>() { code = ResCode.Success };
+            using (var uow = _uowProvider.CreateUnitOfWork())
+            {
+                try
+                {
+                    var query = req.query;
+                    string parameterstr = typeof(TEntity).Name + "Page";
+                    OrderBy<TEntity> order = null;
+                    if (req.order != null)
+                    {
+                        order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
+                    }
+                    var repository = uow.GetRepository<TEntity>();
+                    var fuc = FilterHelper<TEntity>.GetExpression(query, parameterstr);
+                    var filter = new Repository.Filter<TEntity>(fuc);
+                    var models = await _dataPager.QueryAsync(req.pageNum, req.pageSize, filter, order, req.navPropertyPaths);
+                    result = PageMapper<TEntity>.ToPageDateRes(models);
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    result.code = ResCode.ServerError;
+                    result.msg = ex.Message;
+                    return result;
+                }
+            }
+        }
     }
 
     public class ReadBaseController<TEntity> : BaseController<TEntity> where TEntity : class, new()
@@ -182,5 +238,6 @@ namespace Xin.Web.Framework.Controllers
                 }
             }
         }
+
     }
 }

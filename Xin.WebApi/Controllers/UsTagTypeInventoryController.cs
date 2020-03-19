@@ -10,6 +10,7 @@ using Xin.Web.Framework.Controllers;
 using Xin.Web.Framework.Model;
 using Xin.Web.Framework.Permission;
 using Xin.Service;
+using Xin.Web.Framework.Helper;
 
 namespace Xin.WebApi.Controllers
 {
@@ -24,14 +25,15 @@ namespace Xin.WebApi.Controllers
         [PermissionFilter("UsTagTypeInventory.Read")]
         [Route("GetPage")]
         [HttpPost]
-        public ActionResult<DataRes<List<UsTagTypeInventory>>> GetPage(DatetimePointPageReq req)
+        public ActionResult<PageDataRes<UsTagTypeInventory>> GetPage(PageReq req)
         {
-            var res = new DataRes<List<UsTagTypeInventory>>() { code = ResCode.Success };
+            var res = new PageDataRes<UsTagTypeInventory>() { code = ResCode.Success };
             if (req != null)
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
                     var repository = uow.GetCustomRepository<IUsTagTypeInventoryRepository>();
-                    res.data = repository.GetPage(req.pageNum, req.pageSize, FilterNode.ListToString(req.query)).ToList();
+                    var page = repository.GetPage(req.pageNum, req.pageSize, FilterNode.ListToString(req.query));
+                    res = PageMapper<UsTagTypeInventory>.ToPageDateRes(page);
                 }
             else
             {

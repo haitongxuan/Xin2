@@ -2034,7 +2034,7 @@
     </property>
   </class>
   <class name="BnsUsBaseInventory" entity-set="BnsUsBaseInventories" table="Bns_UsBaseInventory" p1:Guid="47ae5b64-e4f7-4101-9e63-45d307762c0b">
-    <id name="Id" type="Int32" p1:ValidateRequired="true" p1:Guid="66f5b2ce-282b-43b1-9538-f788dfa82ec3">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="66f5b2ce-282b-43b1-9538-f788dfa82ec3">
       <column name="" />
     </id>
     <property name="WarehouseId" type="Int32" p1:ValidateRequired="true" p1:Guid="b723c884-7bb6-40d6-8e75-d19dd320204c">

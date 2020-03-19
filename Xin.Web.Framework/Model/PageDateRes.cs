@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xin.Web.Framework.Model
 {
-    public class PageDateRes<T> where T:class,new()
+    public class PageDataRes<T> where T:class,new()
     {
         public ResCode code { get; set; }
 

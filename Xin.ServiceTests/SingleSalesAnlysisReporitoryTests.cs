@@ -30,7 +30,7 @@ namespace Xin.Service.Tests
             using (var uow = provider.CreateUnitOfWork())
             {
                 var repository = uow.GetCustomRepository<ISingleSalesAnlysisRepository>();
-                var list = repository.GetPage(DateTime.Now,10,50).ToList();
+                var list = repository.GetPage(DateTime.Now,10,50);
             }
         }
     }

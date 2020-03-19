@@ -13,6 +13,6 @@ namespace Xin.Entities.VirtualEntity
         public string TagType { get; set; }
         public int Qty { get; set; }
 
-        public int RowNumber { get; set; }
+        public long RowNumber { get; set; }
     }
 }

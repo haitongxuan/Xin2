@@ -21,8 +21,9 @@ namespace Xin.Service
         {
         }
 
-        public IEnumerable<SingleSalesAnalysis> GetList(DateTime filterdate, string filterStr = null)
+        private string GetQuery(DateTime filterdate, string filterStr)
         {
+
             const string firstDays = "30";
             const string secondDays = "14";
             const string thirdDays = "7";
@@ -56,15 +57,26 @@ namespace Xin.Service
                 $"on tb1.SubProductSku=tb4.SubProductSku and tb1.WarehouseId=tb4.WarehouseId left join " +
                 $"EC_Warehouse wh on wh.WarehouseId=tb0.WarehouseId ) tt WHERE 1=1 {filterStr} " +
                 $"order by rownumber";
-            return this.ListFromSql(queryStr);
+            return queryStr;
         }
 
-        public IEnumerable<SingleSalesAnalysis> GetPage(DateTime filterdate, int pageIndex, int pageSize, string filterStr = null)
+        public IEnumerable<SingleSalesAnalysis> GetList(DateTime filterdate, string filterStr = null)
         {
+            return this.ListFromSql(GetQuery(filterdate, filterStr));
+        }
+
+        public DataPage<SingleSalesAnalysis> GetPage(DateTime filterdate, int pageIndex, int pageSize, string filterStr = null)
+        {
+            DataPage<SingleSalesAnalysis> page = new DataPage<SingleSalesAnalysis>();
+
             int startrow = (pageIndex - 1) * pageSize + 1;
             int endrow = pageIndex * pageSize;
             string outsideFilterStr = $"{filterStr} and RowNumber between {startrow} and {endrow}";
-            return this.GetList(filterdate, outsideFilterStr);
+            page.PageNumber = pageIndex;
+            page.PageLength = pageSize;
+            page.TotalEntityCount = CountFromSql(GetQuery(filterdate, filterStr));
+            page.Data = this.GetList(filterdate, outsideFilterStr);
+            return page;
         }
     }
 }
