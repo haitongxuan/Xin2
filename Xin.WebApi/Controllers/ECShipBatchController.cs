@@ -27,7 +27,7 @@ namespace Xin.WebApi.Controllers
         }
         //[PermissionFilter("ShipBatch.Read")]
         [Route("getList")]
-        [HttpGet]
+        [HttpPost]
         public GridPage<List<ECShipBatch>> GetList(DatetimePointPageReq pageReq)
         {
             var res = new GridPage<List<ECShipBatch>>() { code = ResCode.Success };
@@ -84,7 +84,7 @@ namespace Xin.WebApi.Controllers
 
         //[PermissionFilter("ShipBatch.add")]
         [Route("addShipBatch")]
-        [HttpGet]
+        [HttpPost]
         public GridPage<List<ECShipBatch>> addShipBatch(string orderCode)
         {
             var res = new GridPage<List<ECShipBatch>>() { code = ResCode.Success };

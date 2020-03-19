@@ -127,7 +127,7 @@ namespace Xin.WebApi.Controllers
                     reqModel.receivingCodeArr = codes;
                     reqModel.page = 1;
                     reqModel.pageSize = 50;
-                    GetAsnListRequest req = new GetAsnListRequest(omsApi.ApiKey, omsApi.ApiToken, reqModel);
+                    GetAsnListRequest req = new GetAsnListRequest(omsApi.ApiToken, omsApi.ApiKey, reqModel);
                     var response = req.Request().Result;
                     foreach (var item in response.data)
                     {

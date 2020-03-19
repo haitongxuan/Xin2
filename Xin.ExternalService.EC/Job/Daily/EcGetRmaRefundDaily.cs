@@ -13,14 +13,13 @@ using Xin.Repository;
 
 namespace Xin.ExternalService.EC.Job
 {
+    [DisallowConcurrentExecution]
     public class EcGetRmaRefundDaily : EcBaseJob
     {
         private readonly LogHelper log;
-        private readonly IUowProvider _uowProvider;
-        public EcGetRmaRefundDaily(IUowProvider uowProvider)
+        public EcGetRmaRefundDaily()
         {
             log = LogFactory.GetLogger(LogType.QuartzLog);
-            _uowProvider = uowProvider;
         }
 
         public override async Task Execute(IJobExecutionContext context)
@@ -44,6 +43,7 @@ namespace Xin.ExternalService.EC.Job
                 response.TotalCount = response.TotalCount ==null ? "1" : response.TotalCount;
                 int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
                 List<ECRMARefund> rmaRefunds = new List<ECRMARefund>();
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefundDaily", "INFO", $"开始拉取退货信息数据,共{pageNum}页", reqModel));
                 for (int page = pageNum; page > 0; page--)
                 {
                     reqModel.PageSize = 1000;
@@ -56,6 +56,7 @@ namespace Xin.ExternalService.EC.Job
                     }
                     catch (Exception ex)
                     {
+                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefundDaily", "ERROR", $"拉取退货信息数据异常:{ex.Message},第{page}页", reqModel));
                         log.Error($"退货信息,接口调用出现异常:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;异常信息:{ex.Message}");
                         throw ex;
                     }
@@ -71,6 +72,8 @@ namespace Xin.ExternalService.EC.Job
                         }
                         catch (Exception ex)
                         {
+                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefundDaily", "ERROR", $"拉取退货信息转换实体类出现异常:{ex.Message},第{page}页", reqModel));
+
                             log.Error($"退货信息,转换实体类出现异常:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
@@ -85,12 +88,14 @@ namespace Xin.ExternalService.EC.Job
                     }
                     catch (Exception ex)
                     {
+                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefundDaily", "ERROR", $"拉取退货信息写入数据库异常:{ex.Message},第{page}页", reqModel));
+
                         log.Error($"退货信息,写入数据库异常:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;异常信息:{ex.Message}");
                         throw ex;
                     }
                 }
                 //更新
-
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefundDaily", "INFO", $"拉取退货信息写入数据库完成", null));
                 log.Info($"退货信息拉取写入完成,时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}");
             }
         }

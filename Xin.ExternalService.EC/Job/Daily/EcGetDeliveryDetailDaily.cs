@@ -13,14 +13,13 @@ using Xin.Repository;
 
 namespace Xin.ExternalService.EC.Job
 {
+    [DisallowConcurrentExecution]
     public class EcGetDeliveryDetailDaily : EcBaseJob
     {
         private readonly LogHelper log;
-        private readonly IUowProvider _uowProvider;
-        public EcGetDeliveryDetailDaily(IUowProvider uowProvider)
+        public EcGetDeliveryDetailDaily()
         {
             log = LogFactory.GetLogger(LogType.QuartzLog);
-            _uowProvider = uowProvider;
         }
         public override async Task Execute(IJobExecutionContext context)
         {
@@ -44,7 +43,7 @@ namespace Xin.ExternalService.EC.Job
                 var response = await req.Request();
                 response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                 int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
-
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetDeliveryDetailDaily", "INFO", $"出库单,开始拉取,共{pageNum}页", reqModel));
                 for (int page = pageNum; page > 0; page--)
                 {
                     reqModel.PageSize = 1000;
@@ -57,6 +56,7 @@ namespace Xin.ExternalService.EC.Job
                     }
                     catch (Exception ex)
                     {
+                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetDeliveryDetailDaily", "ERROR", $"出库单,接口调用出现异常:{ex.Message},第{page}页", reqModel));
                         log.Error($"初始化入库单信息,接口调用出现异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
                         throw;
                     }
@@ -66,7 +66,7 @@ namespace Xin.ExternalService.EC.Job
                         {
                             var m = Mapper<EC_DeliveryDetail, ECDeliveryDetail>.Map(item);
                             var res = repository.Get(item.IlId);
-                            if (res!=null)
+                            if (res != null)
                             {
                                 updateList.Add(m);
                             }
@@ -74,10 +74,11 @@ namespace Xin.ExternalService.EC.Job
                             {
                                 insertList.Add(m);
                             }
-                           
+
                         }
                         catch (Exception ex)
                         {
+                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetDeliveryDetailDaily", "ERROR", $"出库单,转换实体类出现异常:{ex.Message},第{page}页", reqModel));
                             log.Error($"初始化入库单信息,转换实体类出现异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
@@ -95,11 +96,14 @@ namespace Xin.ExternalService.EC.Job
                     }
                     catch (Exception ex)
                     {
+                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetDeliveryDetailDaily", "ERROR", $"出库单,写入数据库异常:{ex.Message},第{page}页", reqModel));
                         log.Error($"入库单信息,写入数据库异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
                         throw ex;
                     }
                 }
-                log.Info($"入库单信息拉取写入完成,时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}");
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetDeliveryDetailDaily", "INFO", $"出库单,拉取写入完成", reqModel));
+
+                log.Info($"出库单信息拉取写入完成,时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}");
             }
         }
     }
