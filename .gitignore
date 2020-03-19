@@ -34,4 +34,5 @@
 /Xin.ExternalService.EC.WMSTests/bin
 /Xin.ServiceTests/obj
 /Xin.ServiceTests/bin
-/Xin.QuartzService
+/Xin.QuartzService/obj
+/Xin.QuartzService/bin

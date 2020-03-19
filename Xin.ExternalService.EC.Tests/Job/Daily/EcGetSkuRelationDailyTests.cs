@@ -34,7 +34,7 @@ namespace Xin.ExternalService.EC.Job.Daily.Tests
             var provider = new UowProvider(logger.Object, sp.Object);
             try
             {
-                EcGetSkuRelationDaily job = new EcGetSkuRelationDaily(provider);
+                EcGetSkuRelationDaily job = new EcGetSkuRelationDaily();
                 await job.Job();
             }
             catch (Exception ex)

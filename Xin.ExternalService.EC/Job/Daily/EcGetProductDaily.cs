@@ -13,14 +13,13 @@ using Xin.ExternalService.EC.Reqeust.Model;
 
 namespace Xin.ExternalService.EC.Job
 {
+    [DisallowConcurrentExecution]
     public class EcGetProductDaily : EcBaseJob
     {
         private readonly LogHelper log;
-        private readonly IUowProvider _uowProvider;
-        public EcGetProductDaily(IUowProvider uowProvider)
+        public EcGetProductDaily()
         {
             log = LogFactory.GetLogger(LogType.QuartzLog);
-            _uowProvider = uowProvider;
         }
         public override async Task Execute(IJobExecutionContext context)
         {
@@ -34,7 +33,6 @@ namespace Xin.ExternalService.EC.Job
 
         public override async Task Job(DateTime? preTime = null)
         {
-            preTime = preTime;
             if (preTime == null)
             {
                 throw new Exception("返回为空！");
@@ -58,6 +56,8 @@ namespace Xin.ExternalService.EC.Job
                 using (var uow = _uowProvider.CreateUnitOfWork(false, false))
                 {
                     var repository = uow.GetRepository<ECProduct>();
+                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "INFO", $"产品信息新增,开始拉取", reqModel));
+
                     //新增
                     while (finish)
                     {
@@ -84,9 +84,8 @@ namespace Xin.ExternalService.EC.Job
                         try
                         {
                             updateList = updateList.GroupBy(item => item.ProductSku).Select(item => item.First()).ToList();
-                            await repository.BulkUpdateAsync(updateList);
-                            uow.BulkSaveChanges();
                             addList = addList.GroupBy(item => item.ProductSku).Select(item => item.First()).ToList();
+                            await repository.BulkUpdateAsync(updateList);
                             await repository.BulkInsertAsync(addList);
                             uow.BulkSaveChanges();
                             addList.Clear();
@@ -103,9 +102,9 @@ namespace Xin.ExternalService.EC.Job
                     //修改
                     pageIndex = 1;
                     finish = true;
+                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "INFO", $"产品信息更新,开始拉取", reqModel));
                     while (finish)
                     {
-                        System.Diagnostics.Debug.WriteLine($"正在拉取{pageIndex}页");
                         reqModel.Page = pageIndex;
                         reqModel.ProductAddTimeFrom = null;
                         reqModel.ProductAddTimeTo = null;
@@ -124,9 +123,8 @@ namespace Xin.ExternalService.EC.Job
                         try
                         {
                             updateList = updateList.GroupBy(item => item.ProductSku).Select(item => item.First()).ToList();
-                            await repository.BulkUpdateAsync(updateList);
-                            uow.BulkSaveChanges();
                             addList = addList.GroupBy(item => item.ProductSku).Select(item => item.First()).ToList();
+                            await repository.BulkUpdateAsync(updateList);
                             await repository.BulkInsertAsync(addList);
                             uow.BulkSaveChanges();
                             addList.Clear();
@@ -134,15 +132,20 @@ namespace Xin.ExternalService.EC.Job
                         }
                         catch (Exception ex)
                         {
+                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "ERROR", $"产品信息更新,写入数据库出现异常:{ex.Message}", reqModel));
                             log.Error($"日产品信息,更新出现错误:{ex.Message}");
                             throw ex;
                         }
                         pageIndex++;
                     }
                 }
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "INFO", $"产品信息,拉取完成", reqModel));
+
             }
             catch (Exception ex)
             {
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "ERROR", $"产品信息,出现异常:{ex.Message}", reqModel));
+
                 log.Error($"日产品信息,出现错误:{ex.Message}");
 
                 throw ex;

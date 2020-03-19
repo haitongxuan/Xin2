@@ -17,11 +17,9 @@ namespace Xin.ExternalService.EC.Job
     public class EcSaleOrderDaily : EcBaseJob
     {
         private readonly LogHelper log;
-        private readonly IUowProvider _uowProvider;
-        public EcSaleOrderDaily(IUowProvider uowProvider)
+        public EcSaleOrderDaily()
         {
             log = LogFactory.GetLogger(LogType.QuartzLog);
-            _uowProvider = uowProvider;
         }
         public override async Task Execute(IJobExecutionContext context)
         {
@@ -47,6 +45,7 @@ namespace Xin.ExternalService.EC.Job
                 using (var uow = _uowProvider.CreateUnitOfWork(false))
                 {
                     var repository = uow.GetRepository<ECSalesOrder>();
+                    //reqCondition.CreatedDateAfter = DateTime.Parse("2020-03-12T10:50:09");
                     reqCondition.CreatedDateAfter = repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreatedDate)).FirstOrDefault().CreatedDate;
 
                     //新增
@@ -54,20 +53,22 @@ namespace Xin.ExternalService.EC.Job
                     var response = await req.Request();
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
+                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", "开始拉取新增数据", reqModel));
+
                     for (int page = pageNum; page > 0; page--)
                     {
                         reqModel.PageSize = 1000;
                         reqModel.Page = page;
-
                         try
                         {
                             log.Info($"日订单开始拉取:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
-                            System.Diagnostics.Debug.WriteLine($"正在拉取{page}页");
+
                         }
                         catch (Exception ex)
                         {
+                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,接口调用出现异常:{ex.Message},第{page}页", reqModel));
                             log.Error($"日订单信息,接口调用出现异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
@@ -87,11 +88,31 @@ namespace Xin.ExternalService.EC.Job
                             }
                             catch (Exception ex)
                             {
+                                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,转换实体类出现异常:{ex.Message},第{page}页", reqModel));
                                 log.Error($"日订单信息,转换实体类出现异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;异常信息:{ex.Message}");
                                 throw ex;
                             }
                         }
+                        //写入数据库
+                        try
+                        {
+                            insertList = insertList.GroupBy(item => item.OrderId).Select(item => item.First()).ToList();
+                            updateList = updateList.GroupBy(item => item.OrderId).Select(item => item.First()).ToList();
+                            await repository.BulkInsertAsync(insertList, x => x.IncludeGraph = true);
+                            await repository.BulkUpdateAsync(updateList, x => x.IncludeGraph = true);
+                            uow.BulkSaveChanges();
+                            insertList.Clear();
+                            updateList.Clear();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,写入数据库异常:{ex.Message},第{page}页", reqModel));
+                            log.Error($"订单信息,写入数据库异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()};异常信息:{ex.Message}");
+                            throw ex;
+                        }
                     }
+
                     reqCondition.CreatedDateBefore = null;
                     reqCondition.CreatedDateAfter = null;
                     reqCondition.UpdateDateBefore = DateTime.Now;
@@ -102,6 +123,8 @@ namespace Xin.ExternalService.EC.Job
                     response = await req.Request();
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
+                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", "开始拉取更新数据", reqModel));
+
                     for (int page = pageNum; page > 0; page--)
                     {
                         reqModel.PageSize = 1000;
@@ -112,11 +135,10 @@ namespace Xin.ExternalService.EC.Job
                             log.Info($"日订单开始更新:更新时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
-                            System.Diagnostics.Debug.WriteLine($"正在拉取{page}页");
-
                         }
                         catch (Exception ex)
                         {
+                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,接口调用出现异常:{ex.Message},第{page}页", reqModel));
                             log.Error($"订单更新信息,接口调用出现异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
@@ -129,46 +151,33 @@ namespace Xin.ExternalService.EC.Job
                             }
                             catch (Exception ex)
                             {
+                                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,转换实体类出现异常:{ex.Message},第{page}页", null));
                                 log.Error($"订单信息,转换实体类出现异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;异常信息:{ex.Message}");
                                 throw ex;
                             }
+
+                        }
+                        //写入数据库
+                        try
+                        {
+                            updateList = updateList.GroupBy(item => item.OrderId).Select(item => item.First()).ToList();
+                            await repository.BulkUpdateAsync(updateList, x => x.IncludeGraph = true);
+                            uow.BulkSaveChanges();
+                            updateList.Clear();
+                        }
+                        catch (Exception ex)
+                        {
+                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,出现异常:{ex.Message},第{page}页", reqModel));
+                            log.Error($"订单信息,写入数据库异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()};异常信息:{ex.Message}");
+                            throw ex;
                         }
                     }
-
-                    //写入数据库
-                    try
-                    {
-                        updateList = updateList.GroupBy(item => item.OrderId).Select(item => item.First()).ToList();
-                        await repository.BulkUpdateAsync(updateList, x => x.IncludeGraph = true);
-                        uow.BulkSaveChanges();
-                        updateList.Clear();
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Error($"订单信息,写入数据库异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()};异常信息:{ex.Message}");
-                        throw ex;
-                    }
-
-                    //写入数据库
-                    try
-                    {
-                        insertList = insertList.GroupBy(item => item.OrderId).Select(item => item.First()).ToList();
-                        await repository.BulkInsertAsync(insertList, x => x.IncludeGraph = true);
-                        uow.BulkSaveChanges();
-                        insertList.Clear();
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Error($"订单信息,写入数据库异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()};异常信息:{ex.Message}");
-                        throw ex;
-                    }
-
                 }
 
             }
             catch (Exception ex)
             {
-
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,出现异常:{ex.Message}", null));
                 throw ex;
             }
             log.Info($"订单信息更新成功");

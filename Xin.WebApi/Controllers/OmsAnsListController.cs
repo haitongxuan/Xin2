@@ -89,9 +89,15 @@ namespace Xin.WebApi.Controllers
         //[PermissionFilter("OmsAns.Read")]
         [Route("AddRecivingCode")]
         [HttpPost]
-        public GridPage<List<BnsOmsReceivingCodeRecord>> AddRecivingCode(string[] codes)
+        public GridPage<List<BnsOmsReceivingCodeRecord>> AddRecivingCode([FromBody]string[] codes)
         {
             var res = new GridPage<List<BnsOmsReceivingCodeRecord>>() { code = ResCode.Success };
+            if (codes != null& codes.Length < 1)
+            {
+                res.code = ResCode.Error;
+                res.msg = "code不能为空";
+                return res;
+            }
             try
             {
                 using (var uow = _uowProvider.CreateUnitOfWork())
@@ -127,7 +133,7 @@ namespace Xin.WebApi.Controllers
                     reqModel.receivingCodeArr = codes;
                     reqModel.page = 1;
                     reqModel.pageSize = 50;
-                    GetAsnListRequest req = new GetAsnListRequest(omsApi.ApiKey, omsApi.ApiToken, reqModel);
+                    GetAsnListRequest req = new GetAsnListRequest(omsApi.ApiToken, omsApi.ApiKey, reqModel);
                     var response = req.Request().Result;
                     foreach (var item in response.data)
                     {

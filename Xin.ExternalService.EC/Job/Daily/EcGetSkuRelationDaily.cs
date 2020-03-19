@@ -13,14 +13,13 @@ using Xin.Repository;
 
 namespace Xin.ExternalService.EC.Job.Daily
 {
+    [DisallowConcurrentExecution]
     public class EcGetSkuRelationDaily : EcBaseJob
     {
         private readonly LogHelper log;
-        private readonly IUowProvider _uowProvider;
-        public EcGetSkuRelationDaily(IUowProvider uowProvider)
+        public EcGetSkuRelationDaily()
         {
             log = LogFactory.GetLogger(LogType.QuartzLog);
-            _uowProvider = uowProvider;
         }
         public async override Task Execute(IJobExecutionContext context)
         {
@@ -35,7 +34,7 @@ namespace Xin.ExternalService.EC.Job.Daily
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ECSkuRelation>();
-                datetime = repository.GetPage(1, 1, x => x.OrderByDescending(c => c.CreateTime)).FirstOrDefault().CreateTime;
+                datetime = repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreateTime)).FirstOrDefault().CreateTime;
                 EBGetSkuRelationReqModel reqModel = new EBGetSkuRelationReqModel();
                 RelationCondition condition = new RelationCondition();
                 condition.AddTimeStart = datetime.ToString();
@@ -45,6 +44,8 @@ namespace Xin.ExternalService.EC.Job.Daily
                     reqModel.Page = page;
                     reqModel.PageSize = 5000;
                     reqModel.Condition = condition;
+                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetSkuRelationDaily", "INFO", $"SKU映射信息开始拉取,第{page}页", reqModel));
+                    log.Info($"SKU映射信息开始拉取,第{page}页");
                     EBGetSkuRelationRequest request = new EBGetSkuRelationRequest(login.Username, login.Password, reqModel);
                     var response = await request.Request();
                     if (response.Body.Count == 5000)
@@ -62,7 +63,7 @@ namespace Xin.ExternalService.EC.Job.Daily
                             }
                             catch (Exception ex)
                             {
-                                RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationInit", "ERROR", "Sku映射转换实体类出现异常;" + ex.Message, reqModel));
+                                RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "ERROR", $"Sku映射转换实体类出现异常:{ex.Message},第{page}页", reqModel));
                                 log.Error($"Sku映射转换实体类出现异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
                                 throw ex;
                             }
@@ -84,7 +85,7 @@ namespace Xin.ExternalService.EC.Job.Daily
                             }
                             catch (Exception ex)
                             {
-                                RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationInit", "ERROR", "Sku映射转换实体类出现异常;" + ex.Message, reqModel));
+                                RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "ERROR", $"Sku映射转换实体类出现异常:{ex.Message},第{page}页", reqModel));
                                 log.Error($"Sku映射转换实体类出现异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
                                 throw ex;
                             }
@@ -97,7 +98,7 @@ namespace Xin.ExternalService.EC.Job.Daily
                         }
                         catch (Exception ex)
                         {
-                            RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationInit", "ERROR", "入库单信息,写入数据库异常;" + ex.Message, reqModel));
+                            RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "ERROR", $"入库单信息,写入数据库异常:{ex.Message},第{page}页", reqModel));
                             log.Error($"入库单信息,写入数据库异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
@@ -107,14 +108,13 @@ namespace Xin.ExternalService.EC.Job.Daily
                         try
                         {
                             skuRelation = skuRelation.GroupBy(a => a.ProductSku).Select(a => a.First()).ToList();
-                            System.Diagnostics.Debug.WriteLine($"本次写入{skuRelation.Count}条");
                             await repository.BulkInsertAsync(skuRelation, x => x.IncludeGraph = true);
                             uow.BulkSaveChanges();
                             skuRelation.Clear();
                         }
                         catch (Exception ex)
                         {
-                            RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationInit", "ERROR", "入库单信息,写入数据库异常;" + ex.Message, reqModel));
+                            RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "ERROR", $"入库单信息,写入数据库异常:{ex.Message},第{page}页" + ex.Message, reqModel));
                             log.Error($"入库单信息,写入数据库异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
@@ -122,6 +122,7 @@ namespace Xin.ExternalService.EC.Job.Daily
                     page++;
                 }
             }
+            RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "INFO", $"入库单信息,写入完成", null));
         }
     }
 }

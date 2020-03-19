@@ -30,7 +30,7 @@ namespace Xin.ExternalService.EC.Job.Tests
             var provider = new UowProvider(logger.Object, sp.Object);
             try
             {
-                EcGetRmaRefundDaily job = new EcGetRmaRefundDaily(provider);
+                EcGetRmaRefundDaily job = new EcGetRmaRefundDaily();
                 await job.Job();
             }
             catch (Exception ex)

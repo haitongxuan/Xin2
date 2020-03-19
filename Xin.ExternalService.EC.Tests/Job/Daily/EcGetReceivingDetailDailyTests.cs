@@ -32,7 +32,7 @@ namespace Xin.ExternalService.EC.Job.Tests
             var provider = new UowProvider(logger.Object, sp.Object);
             try
             {
-                EcGetReceivingDetailDaily job = new EcGetReceivingDetailDaily(provider);
+                EcGetReceivingDetailDaily job = new EcGetReceivingDetailDaily();
                 await job.Job();
             }
             catch (Exception ex)
