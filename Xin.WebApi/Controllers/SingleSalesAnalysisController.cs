@@ -24,7 +24,7 @@ namespace Xin.WebApi.Controllers
         }
 
         [PermissionFilter("SingleSalesAnalysis.Read")]
-        [Route("GetList")]
+        [Route("GetPage")]
         [HttpPost]
         public ActionResult<DataRes<List<SingleSalesAnalysis>>> GetPage(DatetimePointPageReq req)
         {

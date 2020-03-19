@@ -58,9 +58,9 @@
       </ModelFirstNamingRules>
     </ModelFirst>
     <Diagrams>
-      <Diagram Name="Diagram1" DefaultDiagram="True" />
-      <Diagram Name="Diagram2" />
-      <Diagram Name="Diagram3" />
+      <Diagram Name="RES" DefaultDiagram="True" />
+      <Diagram Name="EC" />
+      <Diagram Name="ec2" />
     </Diagrams>
     <Templates>
       <Template Name="Blank" Description="New empty template for Devart Entity Developer C# code generation." Enabled="True" File="Xin.Blank.tmpl">

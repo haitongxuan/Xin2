@@ -5,18 +5,19 @@ using System.Text;
 using Xin.Entities.VirtualEntity;
 using Xin.Repository;
 using Xin.Service.Context;
+using Xin.Entities;
 
 namespace Xin.Service
 {
-    public class SingleSalesAnlysisReporitory :
-        AutocodeBaseRepository<SingleSalesAnalysis>,
+    public class SingleSalesAnlysisRepository :
+        EntityRepositoryBase<XinDBContext, SingleSalesAnalysis>,
         ISingleSalesAnlysisRepository
     {
-        public SingleSalesAnlysisReporitory(XinDBContext context) : base(context)
+        public SingleSalesAnlysisRepository(XinDBContext context) : base(context)
         {
         }
 
-        public SingleSalesAnlysisReporitory(ILogger<DataAccess> logger, XinDBContext context) : base(logger, context)
+        public SingleSalesAnlysisRepository(ILogger<DataAccess> logger, XinDBContext context) : base(logger, context)
         {
         }
 

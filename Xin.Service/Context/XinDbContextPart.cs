@@ -14,6 +14,7 @@ namespace Xin.Service.Context
         {
             this.SingleProductSellMapping(modelBuilder);
             this.SingleSalesAnalysisMapping(modelBuilder);
+            this.UsTagTypeInventoryMapping(modelBuilder);
         }
 
         public virtual DbSet<SingleProductSell> SingleProductSells
@@ -23,6 +24,8 @@ namespace Xin.Service.Context
         }
 
         public virtual DbSet<SingleSalesAnalysis> SingleSalesAnalyses { get; set; }
+
+        public virtual DbSet<UsTagTypeInventory> UsTagTypeInventories { get; set; }
 
         private void SingleProductSellMapping(ModelBuilder modelBuilder)
         {
@@ -57,6 +60,15 @@ namespace Xin.Service.Context
             modelBuilder.Entity<SingleSalesAnalysis>().Property<string>(@"WarehouseId").HasColumnName(@"WarehouseId").ValueGeneratedNever();
             modelBuilder.Entity<SingleSalesAnalysis>().Property<string>(@"WarehouseDesc").HasColumnName(@"WarehouseDesc").ValueGeneratedNever();
             modelBuilder.Entity<SingleSalesAnalysis>().HasKey(@"RowNumber");
+        }
+
+        private void UsTagTypeInventoryMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UsTagTypeInventory>().Property<string>(u => u.ProductSku).HasColumnName(@"ProductSku").ValueGeneratedNever(); modelBuilder.Entity<UsTagTypeInventory>().Property<string>(u => u.ProductSku).HasColumnName(@"ProductSku").ValueGeneratedNever();
+            modelBuilder.Entity<UsTagTypeInventory>().Property<int>(u => u.Qty).HasColumnName(@"Qty").ValueGeneratedNever();
+            modelBuilder.Entity<UsTagTypeInventory>().Property<string>(u => u.TagType).HasColumnName(@"TagType").ValueGeneratedNever();
+            modelBuilder.Entity<UsTagTypeInventory>().Property<int>(u => u.RowNumber).HasColumnName(@"RowNumber").ValueGeneratedNever();
+            modelBuilder.Entity<UsTagTypeInventory>().HasKey(@"RowNumber");
         }
     }
 }

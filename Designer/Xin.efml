@@ -2209,6 +2209,11 @@
       <column name="OrderCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
   </class>
+  <class name="ECFbaOrder" entity-set="ECFbaOrders" p1:Guid="5c57258a-8ed9-4802-8316-32fcc8726d84">
+    <id name="Id" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="069fae8c-2bf1-4192-9765-3bcfbba547bf">
+      <column name="" />
+    </id>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">

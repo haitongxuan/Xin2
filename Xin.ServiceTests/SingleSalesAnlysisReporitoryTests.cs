@@ -25,7 +25,7 @@ namespace Xin.Service.Tests
             sp.Setup((o) => o.GetService(typeof(IRepository<SingleSalesAnalysis>)))
                 .Returns(new GenericEntityRepository<SingleSalesAnalysis>(logger.Object));
             sp.Setup((o) => o.GetService(typeof(ISingleSalesAnlysisRepository)))
-                .Returns(new SingleSalesAnlysisReporitory(myContext));
+                .Returns(new SingleSalesAnlysisRepository(myContext));
             var provider = new UowProvider(logger.Object, sp.Object);
             using (var uow = provider.CreateUnitOfWork())
             {
