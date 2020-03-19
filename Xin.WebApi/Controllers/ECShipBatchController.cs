@@ -85,23 +85,28 @@ namespace Xin.WebApi.Controllers
         //[PermissionFilter("ShipBatch.add")]
         [Route("addShipBatch")]
         [HttpPost]
-        public GridPage<List<ECShipBatch>> addShipBatch(string orderCode)
+        public GridPage<List<ECShipBatch>> addShipBatch([FromBody]string[] codes)
         {
             var res = new GridPage<List<ECShipBatch>>() { code = ResCode.Success };
-            if (string.IsNullOrWhiteSpace(orderCode))
+            if (codes != null & codes.Length<1)
             {
                 res.code = ResCode.Error;
+                res.msg = "code不能为空";
                 return res;
             }
+
             try
             {
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
                     var repository = uow.GetRepository<ECShipBatch>();
-                    string[] code = orderCode.Split(",");
                     List<ECShipBatch> list = new List<ECShipBatch>();
-                    foreach (var item in code)
+                    foreach (var item in codes)
                     {
+                        if (string.IsNullOrWhiteSpace(item))
+                        {
+                            res.code = ResCode.Error;
+                            continue;                        }
                         string order = item;
                         WMSGetShipBatchRequest request = new WMSGetShipBatchRequest(ecLogin.UserName, ecLogin.Password, order);
                         var re = request.Request().Result;
