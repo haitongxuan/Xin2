@@ -570,16 +570,23 @@ namespace Xin.Repository
         #region FromSql
         public IEnumerable<TEntity> ListFromSql(string sql, string filterStr = "", string orderStr = "")
         {
-            string queryStr = $"select * from ({sql}) tab where {filterStr} order by {orderStr}";
+            string queryStr = $"select * from ({sql}) tab ";
+            if (!string.IsNullOrEmpty(filterStr))
+            {
+                queryStr += $"where 1=1 {filterStr} ";
+            }
+            if (!string.IsNullOrEmpty(filterStr))
+            {
+                queryStr += $"order by {orderStr}";
+            }
             IQueryable<TEntity> query = Context.Set<TEntity>();
             return query.FromSql(queryStr).AsEnumerable();
         }
 
-        public int CountFromSql(string sql, string filterStr = "", string orderStr = "")
+        public int CountFromSql(string sql)
         {
-            string queryStr = $"select count(1) from ({sql}) tab where {filterStr} order by {orderStr}";
             IQueryable<TEntity> query = Context.Set<TEntity>();
-            return query.FromSql(queryStr).Count();
+            return query.FromSql(sql).Count();
         }
 
         public IEnumerable<TEntity> PageFromSql(string sql, string orderStr, int pageIndex = 1, int pageSize = 50)

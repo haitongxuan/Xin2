@@ -6,6 +6,7 @@ using Xin.Repository;
 using Xin.Service.Context;
 using Xin.Entities;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 
 namespace Xin.Service
 {
@@ -28,13 +29,13 @@ namespace Xin.Service
                 $"(a.Qty+(case when c.ReceiveQty is null then 0 else c.ReceiveQty end)" +
                 $"-(case when b.SalesQty is null then 0 else b.SalesQty end)) Qty,a.TagType from Bns_UsBaseInventory a " +
                 $"left join (select ProductSku SalesProductSku,TagType,sum(Qty) SalesQty from( " +
-                $"select case when UserAccount in ('Amazon_Unice','ebay_unice_jolia','ebay_unice_sunber', " +
+                $"select case when a.UserAccount in ('Amazon_Unice','ebay_unice_jolia','ebay_unice_sunber', " +
                 $"'ebay_unicehair','ebay_unicewigs','Unice','unicemall') then 'Unice' else 'Normal' end TagType, " +
-                $"b.ProductSku,sum(b.Qty) Qty from EC_SalesOrder a " +
+                $"d.PcrProductSku ProductSku,sum(b.Qty*d.PcrQuantity) Qty from EC_SalesOrder a " +
                 $"join EC_SalesOrderDetail b on a.OrderId = b.OrderId " +
                 $"join EC_SkuRelation c on b.ProductSku=c.ProductSku and a.WarehouseId=c.WarehouseId " +
                 $"join EC_SkuRelationItems d on c.RelationId = d.RelationId " +
-                $"where WarehouseId = 21 group by ProductSku,UserAccount) aa group by ProductSku, TagType) b " +
+                $"where a.WarehouseId = 21 group by d.PcrProductSku,a.UserAccount) aa group by ProductSku, TagType) b " +
                 $"on a.ProductSku = b.SalesProductSku and a.TagType = b.TagType left join(select " +
                 $"case when lower(Remark)= 'unice' then 'Unice' else 'Normal' end TagType, b.ProductBarcode ReceiveProductSku, " +
                 $"SUM(convert(int, b.OpQuantity)) ReceiveQty from EC_ShipBatch a join EC_ShipBatchProductInfo b " +
@@ -45,7 +46,8 @@ namespace Xin.Service
 
         public IEnumerable<UsTagTypeInventory> GetList(string filterStr = null)
         {
-            return this.ListFromSql(GetQuery(filterStr));
+            string sql = GetQuery(filterStr);
+            return this.ListFromSql(sql);
         }
 
         public DataPage<UsTagTypeInventory> GetPage(int pageIndex, int pageSize, string filterStr = null)
@@ -56,8 +58,12 @@ namespace Xin.Service
             string outsideFilterStr = $"{filterStr} and RowNumber between {startrow} and {endrow}";
             page.PageNumber = pageIndex;
             page.PageLength = pageSize;
-            page.TotalEntityCount = CountFromSql(GetQuery(filterStr));
-            page.Data = this.GetList(outsideFilterStr);
+            string sql = GetQuery(filterStr);
+            page.TotalEntityCount = CountFromSql(sql);
+            var data = this.GetList(outsideFilterStr).AsEnumerable();
+
+            List<UsTagTypeInventory> list = data.ToList();
+            page.Data = list;
             return page;
         }
     }
