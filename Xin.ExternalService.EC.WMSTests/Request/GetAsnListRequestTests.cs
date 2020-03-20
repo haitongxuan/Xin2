@@ -23,14 +23,6 @@ namespace Xin.ExternalService.EC.WMS.Request.Tests
 
             GetAsnListRequest req = new GetAsnListRequest("7417441d04ea6267a57cbb6cdced5552", "726fb5fbe5b258d33e32aba78df42e83", reqModel);
             var response = await req.Request();
-
-            EcClient client = new EcClient();
-            QueryFbaOrderRequestModel model = new QueryFbaOrderRequestModel();
-            model.FbaCode = "FZ-A007-200119-0001";
-            var r = await client.callServiceAsync(JsonConvert.SerializeObject(model),
-                "7417441d04ea6267a57cbb6cdced5552",
-                "726fb5fbe5b258d33e32aba78df42e83",
-                "queryFbaOrder");
         }
     }
 }

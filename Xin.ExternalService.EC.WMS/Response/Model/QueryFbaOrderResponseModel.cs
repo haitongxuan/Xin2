@@ -45,7 +45,7 @@ namespace Xin.ExternalService.EC.WMS.Response.Model
         [JsonProperty(PropertyName = "back_status", NullValueHandling = NullValueHandling.Ignore)]
         public int BackStatus { get; set; }
         [JsonProperty(PropertyName = "company_code", NullValueHandling = NullValueHandling.Ignore)]
-        public int CompanyCode { get; set; }
+        public string CompanyCode { get; set; }
         [JsonProperty(PropertyName = "exception_info", NullValueHandling = NullValueHandling.Ignore)]
         public string ExceptionInfo { get; set; }
         [JsonProperty(PropertyName = "sc_id", NullValueHandling = NullValueHandling.Ignore)]
@@ -59,7 +59,7 @@ namespace Xin.ExternalService.EC.WMS.Response.Model
         [JsonProperty(PropertyName = "to_warehouse_id", NullValueHandling = NullValueHandling.Ignore)]
         public int ToWarehouseId { get; set; }
         [JsonProperty(PropertyName = "sm_code", NullValueHandling = NullValueHandling.Ignore)]
-        public int SmCode { get; set; }
+        public string SmCode { get; set; }
         [JsonProperty(PropertyName = "fba_id", NullValueHandling = NullValueHandling.Ignore)]
         public int FbaId { get; set; }
         [JsonProperty(PropertyName = "warehouse_id", NullValueHandling = NullValueHandling.Ignore)]
