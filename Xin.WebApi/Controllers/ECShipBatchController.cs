@@ -19,7 +19,7 @@ namespace Xin.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ECShipBatchController : BaseController<ECShipBatch>
     {
         public ECShipBatchController(IUowProvider uowProvider) : base(uowProvider)
