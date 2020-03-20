@@ -18,9 +18,9 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class BnsUsBaseInventory {
+    public partial class ECFbaOmsBox {
 
-        public BnsUsBaseInventory()
+        public ECFbaOmsBox()
         {
             OnCreated();
         }
@@ -33,30 +33,51 @@ namespace Xin.Entities
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int WarehouseId
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string BoxCode
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int Qty
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string BoxNum
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual BnsUsTagType TagType
+        public virtual decimal? BoxLength
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(128)]
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual string ProductSku
+        public virtual decimal? BoxWidth
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? BoxHeight
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? BoxWeight
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? ProductQty
+        {
+            get;
+            set;
+        }
+
+        public virtual ECFbaBox ECFbaBox
         {
             get;
             set;

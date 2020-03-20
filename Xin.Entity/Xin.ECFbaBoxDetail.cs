@@ -18,70 +18,104 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class BnsOmsReceivingCodeRecord {
+    public partial class ECFbaBoxDetail {
 
-        public BnsOmsReceivingCodeRecord()
+        public ECFbaBoxDetail()
         {
-            this.StopFlag = false;
             OnCreated();
         }
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int Id
+        public virtual int BoxDetailId
         {
             get;
             set;
         }
 
-        public virtual int? CreateUid
+        public virtual int? BoxId
         {
             get;
             set;
         }
 
-        public virtual System.DateTime? CreateDate
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string BoxCode
         {
             get;
             set;
         }
 
-        public virtual int? WriteUid
+        public virtual int? ProductId
         {
             get;
             set;
         }
 
-        public virtual System.DateTime? WriteDate
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string ProductBarcode
         {
             get;
             set;
         }
 
-        public virtual bool? StopFlag
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string GoodsBarcode
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(128)]
-        [System.ComponentModel.DisplayName("oms入库单号")]
-        public virtual string OmsReceivingCode
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string ProductTitle
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DisplayName("拉取状态，0未拉取，1已拉取")]
-        public virtual int? State
+        public virtual decimal? Quantity
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        [System.ComponentModel.DisplayName("信息")]
-        public virtual string Message
+        public virtual decimal? Length
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? Width
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? Height
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? Weight
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? TransitQty
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? FinalQty
+        {
+            get;
+            set;
+        }
+
+        public virtual ECFbaQueryOrder ECFbaQueryOrder
         {
             get;
             set;

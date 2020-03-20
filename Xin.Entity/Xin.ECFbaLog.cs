@@ -18,11 +18,10 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class BnsOmsReceivingCodeRecord {
+    public partial class ECFbaLog {
 
-        public BnsOmsReceivingCodeRecord()
+        public ECFbaLog()
         {
-            this.StopFlag = false;
             OnCreated();
         }
 
@@ -34,54 +33,79 @@ namespace Xin.Entities
             set;
         }
 
-        public virtual int? CreateUid
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string FbaCode
         {
             get;
             set;
         }
 
-        public virtual System.DateTime? CreateDate
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string BoxCode
         {
             get;
             set;
         }
 
-        public virtual int? WriteUid
+        public virtual int? WarehouseId
         {
             get;
             set;
         }
 
-        public virtual System.DateTime? WriteDate
+        public virtual int? OperationType
         {
             get;
             set;
         }
 
-        public virtual bool? StopFlag
+        public virtual int? StatusFrom
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(128)]
-        [System.ComponentModel.DisplayName("oms入库单号")]
-        public virtual string OmsReceivingCode
+        public virtual int? StatusTo
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DisplayName("拉取状态，0未拉取，1已拉取")]
-        public virtual int? State
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string LogContent
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        [System.ComponentModel.DisplayName("信息")]
-        public virtual string Message
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string ClientSys
+        {
+            get;
+            set;
+        }
+
+        public virtual int? UserId
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string UserName
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string OperationTime
+        {
+            get;
+            set;
+        }
+
+        public virtual ECFbaQueryOrder ECFbaQueryOrder
         {
             get;
             set;

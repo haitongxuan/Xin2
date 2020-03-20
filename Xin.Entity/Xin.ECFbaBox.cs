@@ -18,10 +18,13 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class BnsUsBaseInventory {
+    public partial class ECFbaBox {
 
-        public BnsUsBaseInventory()
+        public ECFbaBox()
         {
+            this.FinalBox = new List<ECFbaFinalBox>();
+            this.OmsBox = new List<ECFbaOmsBox>();
+            this.TransitBox = new List<ECFbaTransitBox>();
             OnCreated();
         }
 
@@ -33,30 +36,31 @@ namespace Xin.Entities
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int WarehouseId
+        public virtual int? OrderId
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int Qty
+        public virtual ECFbaQueryOrder ECFbaQueryOrder
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual BnsUsTagType TagType
+        public virtual IList<ECFbaFinalBox> FinalBox
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(128)]
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual string ProductSku
+        public virtual IList<ECFbaOmsBox> OmsBox
+        {
+            get;
+            set;
+        }
+
+        public virtual IList<ECFbaTransitBox> TransitBox
         {
             get;
             set;

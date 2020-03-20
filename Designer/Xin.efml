@@ -2209,10 +2209,478 @@
       <column name="OrderCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
   </class>
-  <class name="ECFbaOrder" entity-set="ECFbaOrders" p1:Guid="5c57258a-8ed9-4802-8316-32fcc8726d84">
-    <id name="Id" type="Int32" shadow="True" p1:ValidateRequired="true" p1:Guid="069fae8c-2bf1-4192-9765-3bcfbba547bf">
-      <column name="" />
+  <class name="ECFbaBoxDetail" entity-set="ECFbaBoxDetails" table="EC_FbaBoxDetail" schema="dbo" p1:Guid="26fe0ac6-53e6-4dea-82b7-ba57c695bc12">
+    <id name="BoxDetailId" type="Int32" p1:ValidateRequired="true" p1:Guid="9bc7b2c1-bb61-4a94-a1c9-bf4d5efae601">
+      <column name="BoxDetailId" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
+    <property name="BoxId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8d1d27ad-6618-499e-acc6-03e05290459b">
+      <column name="BoxId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="BoxCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d37426dd-5e88-4d60-907d-d4bf9e6a463f">
+      <column name="BoxCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ProductId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="dd6f878f-a622-40a0-ab5a-e423c933c7df">
+      <column name="ProductId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ProductBarcode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7e6ebfc1-6ce2-4984-a014-d696bd7c2237">
+      <column name="ProductBarcode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="GoodsBarcode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e83f9009-6e00-47aa-8df6-db10e2350c9b">
+      <column name="GoodsBarcode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ProductTitle" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="abe52a42-6cb6-4307-8e75-d284a251a08c">
+      <column name="ProductTitle" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Quantity" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="72ba1287-e75f-4a7e-869a-41fbc11afa78">
+      <column name="Quantity" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Length" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="2cbfcd0d-2541-46ee-88a8-953499a750e3">
+      <column name="Length" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Width" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="d1e3b0cb-e257-48a3-91c4-72b6b81c98b1">
+      <column name="Width" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Height" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0d6b5e89-3c28-4940-977c-bc0d59363490">
+      <column name="Height" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Weight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="cdd03993-9ba7-4f65-8dfe-52fc0f025236">
+      <column name="Weight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="TransitQty" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9b9e4bfc-890a-40cb-8e2e-52f8c54f3af5">
+      <column name="TransitQty" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="FinalQty" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c1c63f96-a2fa-4fe1-9466-94457239715a">
+      <column name="FinalQty" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="OrderId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="9fce1d0b-27eb-4bed-bc30-90ebae4528d4">
+      <column name="OrderId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECFbaFinalBox" entity-set="ECFbaFinalBoxes" table="EC_FbaFinalBox" schema="dbo" p1:Guid="14249fb7-2137-414f-996e-ef5c519b3f97">
+    <id name="Id" type="Int32" p1:ValidateRequired="true" p1:Guid="3c8677d4-c33d-4400-b2a1-0bd7bcd4094e">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="WarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1ee27915-46c5-4849-8cfd-102c808b7009">
+      <column name="WarehouseId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="BoxId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="eab43594-ef3a-45d2-9f85-23006b90d7d1">
+      <column name="BoxId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="BoxCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e2a74ec8-64ae-45f1-a3a0-e7290b349c10">
+      <column name="BoxCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="FbaCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="39d60868-c3d6-403c-b23a-5410f505b5fd">
+      <column name="FbaCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Length" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b31f0fe8-6ed4-4367-baab-75548e652113">
+      <column name="Length" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Width" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bb7c5656-a962-4153-a255-ac3dae6506dc">
+      <column name="Width" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Height" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6039fa38-2c5e-4329-9511-3aa159eae88b">
+      <column name="Height" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Weight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="85388781-43ab-4972-86dd-a7edeaf79478">
+      <column name="Weight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="ProQty" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e41dd7fd-7910-435d-a095-d6979e020219">
+      <column name="ProQty" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="MeasureUserId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5d03bda7-a035-4af3-9308-971bdf4c3e3d">
+      <column name="MeasureUserId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="MeasureTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c87626c6-d373-4d22-b8bc-c4b596f6a53f">
+      <column name="MeasureTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="ArriveTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4c112bd2-bec8-4805-81b2-0aaf7dde835b">
+      <column name="ArriveTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="OutTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="24d836d1-f89f-4183-ba79-5528a09c086d">
+      <column name="OutTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="ReceiptStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="39f682c0-b961-44a9-94ed-d266bb65eddd">
+      <column name="ReceiptStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="MeasureStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="09fd1482-03ac-434e-827e-5b856e9e0279">
+      <column name="MeasureStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ExceptionStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6cae8b86-04d7-448f-9774-b4c1abc09286">
+      <column name="ExceptionStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ExceptionConfirm" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e5e08d1b-cbd2-4fec-a2c6-77de029fbb7d">
+      <column name="ExceptionConfirm" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ExceptionInfo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a7e3a253-f6a1-4142-8bed-777f599ee452">
+      <column name="ExceptionInfo" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="UpdateTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5ee5a194-1a7a-4a6c-9d1a-893d50bb4d5e">
+      <column name="UpdateTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="FbaBoxId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="a3030372-0f4e-447c-b84a-48817cbddb51">
+      <column name="FbaBoxId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECFbaLog" entity-set="ECFbaLogs" table="EC_FbaLog" schema="dbo" p1:Guid="80805063-9038-4232-b37c-56267b531cf3">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="03bd59e0-6610-471a-b8e1-c2ba68c34bbf">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="FbaCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="124b3144-5fbd-4c18-bab3-b5ffc5e1dafc">
+      <column name="FbaCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BoxCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e8cd6f14-a45e-4fe6-8a23-ba7a530685a3">
+      <column name="BoxCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="WarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="417d30bf-0908-4165-9f24-cdaa62165a84">
+      <column name="WarehouseId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="OperationType" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="cb4af89a-f9d3-4561-968b-2df5fbdfc993">
+      <column name="OperationType" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="StatusFrom" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f5f30a22-781f-440a-a2c6-cf8fe3225bb9">
+      <column name="StatusFrom" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="StatusTo" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="72580aa0-6d90-4006-bb8b-66cffc4a9b3f">
+      <column name="StatusTo" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="LogContent" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1041a901-ae56-4f67-a856-c35e58117147">
+      <column name="LogContent" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ClientSys" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="63c5ba16-230f-432f-8445-e0e5d717498d">
+      <column name="ClientSys" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="UserId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="cf4f0dc6-ca19-4006-9eb7-c8aaf60b6912">
+      <column name="UserId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="UserName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a399cba7-9316-4504-9b63-d1cab8f92a71">
+      <column name="UserName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OperationTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="29cd0f86-0d2d-46b1-b664-2ef43b2b3c68">
+      <column name="OperationTime" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OrderId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="66ab3696-5b46-4a78-8cec-4d53f0769c77">
+      <column name="OrderId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECFbaOmsBox" entity-set="ECFbaOmsBoxes" table="EC_FbaOmsBox" schema="dbo" p1:Guid="243bb47b-1da8-466a-a05c-b2b3b8b65c9e">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="89103579-d236-497e-97bc-28e5e4301fe1">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="BoxCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="07473ad5-87fe-41ad-a889-c46f9238021e">
+      <column name="BoxCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BoxNum" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="caac73e0-65f0-4784-8594-2070d8451c37">
+      <column name="BoxNum" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BoxLength" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="33948bc3-924d-4887-a4f5-50bffd05fe38">
+      <column name="BoxLength" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="BoxWidth" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="424631b0-43e5-4bf1-a99c-aa3917f07acf">
+      <column name="BoxWidth" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="BoxHeight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e98fdb1c-ec01-4f32-a06b-10608b44d7a9">
+      <column name="BoxHeight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="BoxWeight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="51177ad0-1e2e-447f-a139-2c18897520fa">
+      <column name="BoxWeight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="ProductQty" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4bcbfd92-daa1-4afc-9cb8-15cccc2c6da4">
+      <column name="ProductQty" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="FbaBoxId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="96a9f5e3-cbf1-42e9-82af-6757890a1e2d">
+      <column name="FbaBoxId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECFbaOrder" entity-set="ECFbaOrders" table="EC_FbaOrder" schema="dbo" p1:Guid="62553742-412c-4739-be14-2ae2734df853">
+    <id name="FbaCode" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="ea6e6921-1a6f-46f8-a917-6265a8b8153f">
+      <column name="FbaCode" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </id>
+    <property name="AmazonShipment" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6b6f4604-6590-449f-8323-96427b6adac5">
+      <column name="AmazonShipment" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="AmazonReference" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fe044844-0db6-4ad1-97cf-810becd4aa76">
+      <column name="AmazonReference" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="SmType" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c2e69f4f-327d-4df3-ae8b-69f6122f9844">
+      <column name="SmType" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="FbaType" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8d871b2b-cf24-41ac-be06-d2de50993cd0">
+      <column name="FbaType" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="StockType" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="57102dd6-ff3d-4444-a8e5-e71d5e17d51e">
+      <column name="StockType" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="FbaStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0b13b0c9-a40c-49f2-ac28-455d5b32b9c1">
+      <column name="FbaStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ExceptionStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6c7aec82-1189-4fbb-880f-5e934661beb5">
+      <column name="ExceptionStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="BackStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1150f95d-0528-4cce-8686-6208b512db8c">
+      <column name="BackStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="CompanyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d8043713-4fe5-499f-9c2b-4a06f89de51d">
+      <column name="CompanyCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ExceptionInfo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="aa050eec-52b9-49b4-9044-de04d4d0f282">
+      <column name="ExceptionInfo" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ScId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7de91a7a-9933-4982-86c4-c57164f8fb29">
+      <column name="ScId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="LabelStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="76385307-e70c-4d4a-80b2-d787b84640c3">
+      <column name="LabelStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="TrackingNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="eb420987-cbeb-4a64-9a54-7b4024d551da">
+      <column name="TrackingNumber" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="TransitWarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0f2e4ef8-1b57-40ec-add1-bcc81fd03130">
+      <column name="TransitWarehouseId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ToWarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="964bb4fb-30dc-46a9-94ed-a41726daca59">
+      <column name="ToWarehouseId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="SmCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="75394b38-d951-4f11-a816-e9dc595f5b62">
+      <column name="SmCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="FbaId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="27b362b0-73b1-4677-95b4-819097700006">
+      <column name="FbaId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="WarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="31edafbd-b4e6-405e-9a43-73613d429918">
+      <column name="WarehouseId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="NextWarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4adc1a87-0e3d-445a-864e-9e8df6d909cf">
+      <column name="NextWarehouse_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="IsInsurance" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8f3ccb31-7e2d-4d0d-8ed1-92454113eb58">
+      <column name="IsInsurance" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="InsuranceValue" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3d3b659b-5d84-4ae2-871c-48fa7cd60ffd">
+      <column name="InsuranceValue" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="BoxTotal" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="683112b8-46e1-4f0e-8727-d8dab91818c8">
+      <column name="box_total" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ProductTotal" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="40aedf24-5871-4934-a04f-741a9d721b8a">
+      <column name="ProductTotal" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="WeightTotal" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="51752b53-3eab-413e-ad00-6da2734945ba">
+      <column name="WeightTotal" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="ReckonWeight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="90264ca6-d2d1-40fc-9c1f-d45bea33dc27">
+      <column name="ReckonWeight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="CurrencyAmount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ab250397-1ed6-4c9e-9b5b-d41817dfc989">
+      <column name="CurrencyAmount" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="CurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a2ee75b8-692e-4cea-8718-4c14255cc423">
+      <column name="CurrencyCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="PayStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="18e90c93-d6bb-44ff-91ed-196e4166f4f5">
+      <column name="PayStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="PayTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="534f6475-786f-4808-9b39-e1664397ad45">
+      <column name="PayTime" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="FbaRemarks" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="08d3aa00-d5b7-48cf-877d-cf558f7a1bda">
+      <column name="FbaRemarks" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="CreateSite" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="89ef1350-5385-4486-82ef-7b6df9e59e93">
+      <column name="CreateSite" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="CreateUserId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="42261154-1d91-4e24-9972-176cf752c8ac">
+      <column name="CreateUserId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="CreateTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6b3a47d0-9a42-42f3-8bec-b48fb94a6709">
+      <column name="CreateTime" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="UpdateUserId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="45970908-bb4a-4db1-bc66-26127cef96aa">
+      <column name="UpdateUserId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="UpdateTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="cdd68e66-0e69-4319-8c0c-2b3f116c2674">
+      <column name="UpdateTime" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="TransitReceiptTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d624a4ef-61d2-42f9-b9a4-f60b86ffcb20">
+      <column name="TransitReceiptTime" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="TransitSendTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="930729e6-9931-470f-ae70-8d084f669af1">
+      <column name="TransitSendTime" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ToReceiptTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e1f94f33-1814-486d-9d27-57358db2351b">
+      <column name="ToReceiptTime" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ToSendTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4ddf1375-5623-402b-8dde-5f70bec4017b">
+      <column name="ToSendTime" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="SyncWmsStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6e6390b1-475c-417b-812e-9df97d5bfc71">
+      <column name="SyncWmsStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="SyncWmsTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="cc3e9f96-faf8-45d1-a392-f3c727503297">
+      <column name="SyncWmsTime" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="ECFbaPackBox" entity-set="ECFbaPackBoxes" table="EC_FbaPackBox" schema="dbo" p1:Guid="7a7d8b12-0b83-49ab-af60-ea641241bffd">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="82b4816e-6a0e-4efa-806a-2b0e792f8b5c">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="BoxCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0a30d643-b3ae-44ac-87b9-6b835979a888">
+      <column name="BoxCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BoxNum" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0ac613c0-8539-4320-87c9-fbc746c5d99b">
+      <column name="BoxNum" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BoxLength" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="026d2e39-9091-4e00-bb33-697dc27e0edf">
+      <column name="BoxLength" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BoxWidth" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="68cf9897-40e8-4374-baa3-c3847f7158c0">
+      <column name="BoxWidth" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BoxHeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2d6e9180-4e2f-4a50-8113-28c47e73465d">
+      <column name="BoxHeight" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BoxWeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9578bce0-18f7-46e5-9f90-04c10685f6b0">
+      <column name="BoxWeight" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ProductQty" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="403158be-2056-4f65-a10d-bea215570c3d">
+      <column name="ProductQty" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="TrackingNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f24e66bb-bdf0-4040-aff7-5db4dc7649e9">
+      <column name="TrackingNumber" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="BoxWeightCharged" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b60efc58-afaf-48e6-9d10-ba8e95c3e4a4">
+      <column name="BoxWeightCharged" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="OrderId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="17b009ed-3c50-4a2f-916f-8cced27f7095">
+      <column name="OrderId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECFbaPackDetail" entity-set="ECFbaPackDetails" table="EC_FbaPackDetail" schema="dbo" p1:Guid="4a194dcc-68a0-4327-93bc-54ea0e43d855">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="4b00cbb8-3e12-45d3-83d6-97cb2bd7abcd">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="PackDetailId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a7501d7a-ae7d-4e16-b51f-5b6ff7b6f080">
+      <column name="PackDetailId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="BoxNum" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f640619e-f443-449d-b833-a0da9716748f">
+      <column name="BoxNum" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ProductId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9d4bfe46-8f1f-4fba-9502-661968be0783">
+      <column name="ProductId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ProductBarcode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="962e6506-860d-44ae-bea1-64402bf9650b">
+      <column name="ProductBarcode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="GoodsBarcode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3462a6ec-75f6-4452-a607-1dd74011d98d">
+      <column name="GoodsBarcode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ProductTitle" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ea9b2b33-6a69-47ac-8734-ff5b392d82ef">
+      <column name="ProductTitle" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Quantity" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ec9f02df-7992-4554-aefb-ad84cc662170">
+      <column name="Quantity" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Length" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8e5704c8-d236-4f78-9e27-e9dc604649c8">
+      <column name="Length" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Width" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="641ba44b-d034-4229-8acd-7fda014fe4a9">
+      <column name="Width" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Height" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e048e31a-a28b-4efc-8eab-3487573b5e47">
+      <column name="Height" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Weight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4d44740e-e662-48ff-86b5-cea7686d933b">
+      <column name="Weight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="OrderId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="1cf72009-b42a-4219-96e5-7eeef2eb1ba9">
+      <column name="OrderId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECFbaQueryOrder" entity-set="ECFbaQueryOrders" table="EC_FbaQueryOrder" schema="dbo" p1:Guid="d3f1ea1b-afa4-491d-8e1b-0a815fba12fd">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="61ebf4da-6e59-4441-97ef-5a1caf903444">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="FbaCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ba8e58f9-dadd-4f11-921f-e806f89ac97a">
+      <column name="FbaCode" not-null="False" length="255" sql-type="nvarchar" unique="True" p1:unicode="True" />
+    </property>
+    <property name="FbaTracking" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="285d77e5-b519-4b7b-a196-0f7d218ff5e3">
+      <column name="FbaTracking" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+    <property name="FbaOrderCost" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="afbf4aa0-f874-4a02-8e29-71b7c33b6f80">
+      <column name="FbaOrderCost" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="ECFbaTransitBox" entity-set="ECFbaTransitBoxes" table="EC_FbaTransitBox" schema="dbo" p1:Guid="b9c6da34-6436-4f31-b39b-0284993e3448">
+    <id name="Id" type="Int32" p1:ValidateRequired="true" p1:Guid="a6440444-7fb7-4bd9-a816-fb3cae71fbef">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="WarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e105e309-0fe4-49d1-850d-e02ae61066c5">
+      <column name="WarehouseId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="BoxId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f49c4f19-7eda-4286-8d90-95b9d87c5518">
+      <column name="BoxId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="BoxCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f1bceec3-3ecf-4cb0-97d2-ae7e3d6699b7">
+      <column name="BoxCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="FbaCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b2afc31d-0bdd-4e83-a28e-d4c228c88792">
+      <column name="FbaCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Length" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="db171169-fa02-4389-b9bf-6661038b0370">
+      <column name="Length" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Width" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b8e74723-5c40-4225-bd78-a6f151331ae7">
+      <column name="Width" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Height" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="d482fa42-93b7-4b6a-93d2-5f75a3009ea6">
+      <column name="Height" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Weight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="82e2b73e-2e95-4c54-ab26-53e4242789ac">
+      <column name="Weight" not-null="False" precision="18" scale="0" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="ProQty" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3adaa638-dad1-4142-9701-2b0ea2a143e6">
+      <column name="ProQty" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="MeasureUserId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="53d64f67-6a44-4954-946f-bb939ae4851e">
+      <column name="MeasureUserId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="MeasureTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="352d8cbf-d8ab-4691-a4fb-b9ab63212f6c">
+      <column name="MeasureTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="ArriveTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="2aa0bc57-0729-4c30-80f4-86a4d5f17ed4">
+      <column name="ArriveTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="OutTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="243391ce-45ea-464f-ae3d-2c8bbb5c677f">
+      <column name="OutTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="ReceiptStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="20e6714d-032c-433f-98a0-259c88495581">
+      <column name="ReceiptStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="MeasureStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="04d55ef4-cf53-432f-a414-8532eb7aba52">
+      <column name="MeasureStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ExceptionStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5f52a406-0b13-4760-be56-2d9fd0610379">
+      <column name="ExceptionStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ExceptionConfirm" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ab03a799-dd58-4855-8af5-6a5cba835c57">
+      <column name="ExceptionConfirm" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ExceptionInfo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="30203918-2d30-4062-9de8-054b424ce5cf">
+      <column name="ExceptionInfo" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="UpdateTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bf895ea5-0bd4-48a2-96ab-f7b3068cd189">
+      <column name="UpdateTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="FbaBoxId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="e3901b25-dc6c-495e-991e-ffdf7ca3f139">
+      <column name="FbaBoxId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECFbaBox" entity-set="ECFbaBoxes" table="EC_FbaBox" schema="dbo" p1:Guid="e12a6ebf-b5ba-4f95-ac30-a5d69d0283e7">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="2e1f2c90-5a3d-400b-b412-46b8e1d9eb68">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="OrderId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="31cb3cd0-15b4-4619-90b6-9ed9f7e49c50">
+      <column name="OrderId" not-null="False" precision="10" scale="0" sql-type="int" unique="True" p1:unicode="False" />
+    </property>
   </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
@@ -2405,6 +2873,78 @@
       </end1>
       <end2 multiplicity="Many" name="ProductInfos" class="ECShipBatch" relation-class="ECShipBatchProductInfo" lazy="False" p1:Guid="cc0cd511-42da-419b-af32-17c93ee9bb79">
         <property name="OrderCode" />
+      </end2>
+    </association>
+    <association name="ECFbaQueryOrder_ECFbaBoxDetail" cardinality="OneToMany" on-delete="Cascade" p1:Guid="e0791d78-0d08-432e-90f5-80ed568dc084">
+      <end1 multiplicity="ZeroOrOne" name="ECFbaQueryOrder" class="ECFbaBoxDetail" relation-class="ECFbaQueryOrder" constrained="True" lazy="False" p1:Guid="6a018d86-e499-4bf4-af5e-31b7510434ed">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="FbaBoxDetail" class="ECFbaQueryOrder" relation-class="ECFbaBoxDetail" lazy="False" p1:Guid="4a9aba6b-f8d6-416c-b954-82c1719a8380">
+        <property name="OrderId" />
+      </end2>
+    </association>
+    <association name="ECFbaQueryOrder_ECFbaLog" cardinality="OneToMany" on-delete="Cascade" p1:Guid="aa87afeb-0154-46af-8d8a-2f03abd6d0e5">
+      <end1 multiplicity="ZeroOrOne" name="ECFbaQueryOrder" class="ECFbaLog" relation-class="ECFbaQueryOrder" constrained="True" lazy="False" p1:Guid="ac042523-de0a-4a6e-ba80-dd7f43408a87">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="FbaOrderLog" class="ECFbaQueryOrder" relation-class="ECFbaLog" lazy="False" p1:Guid="1f75d587-1034-4942-a5fe-a8f94534a91b">
+        <property name="OrderId" />
+      </end2>
+    </association>
+    <association name="ECFbaQueryOrder_ECFbaPackBox" cardinality="OneToMany" on-delete="Cascade" p1:Guid="1318df0a-89df-45b1-a5b7-2b3293a680d1">
+      <end1 multiplicity="ZeroOrOne" name="ECFbaQueryOrder" class="ECFbaPackBox" relation-class="ECFbaQueryOrder" constrained="True" lazy="False" p1:Guid="0e13fb90-9897-456a-beba-1bde8ee75068">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="FbaPack" class="ECFbaQueryOrder" relation-class="ECFbaPackBox" lazy="False" p1:Guid="011f320b-995a-49f9-89cc-9cee6e6d28ce">
+        <property name="OrderId" />
+      </end2>
+    </association>
+    <association name="ECFbaQueryOrder_ECFbaPackDetail" cardinality="OneToMany" on-delete="Cascade" p1:Guid="2aaf7195-8140-469e-92a4-44b3cdc448e8">
+      <end1 multiplicity="ZeroOrOne" name="ECFbaQueryOrder" class="ECFbaPackDetail" relation-class="ECFbaQueryOrder" constrained="True" lazy="False" p1:Guid="b10df0c0-2d90-4fef-962b-9e258c81a196">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="FbaPackDetail" class="ECFbaQueryOrder" relation-class="ECFbaPackDetail" lazy="False" p1:Guid="62aa93b8-0895-433e-bae6-f7024df3c378">
+        <property name="OrderId" />
+      </end2>
+    </association>
+    <association name="ECFbaOrder1_ECFbaQueryOrder" cardinality="OneToOne" on-delete="Cascade" p1:Guid="3ddf53be-a339-4893-8271-41cb08e76920">
+      <end1 multiplicity="ZeroOrOne" name="FbaOrder" class="ECFbaQueryOrder" relation-class="ECFbaOrder" constrained="True" lazy="False" p1:Guid="0ddddbee-7856-4808-8428-98076537023d">
+        <property name="FbaCode" />
+      </end1>
+      <end2 multiplicity="One" name="ECFbaQueryOrder" class="ECFbaOrder" relation-class="ECFbaQueryOrder" constrained="False" lazy="False" p1:Guid="aede10c2-8edd-4e71-af94-c08e17aacc3a">
+        <property name="FbaCode" />
+      </end2>
+    </association>
+    <association name="ECFbaQueryOrder_ECFbaBox" cardinality="OneToOne" on-delete="Cascade" p1:Guid="e70c147e-8804-4273-b18e-57a00f56965e">
+      <end1 multiplicity="ZeroOrOne" name="ECFbaQueryOrder" class="ECFbaBox" relation-class="ECFbaQueryOrder" constrained="True" lazy="False" p1:Guid="6cdc6de1-ae3f-4dc4-a7b5-6296f0633444">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="One" name="FbaBox" class="ECFbaQueryOrder" relation-class="ECFbaBox" constrained="False" lazy="False" p1:Guid="430f3c43-7541-4b61-872e-e0c6afacf255">
+        <property name="OrderId" />
+      </end2>
+    </association>
+    <association name="ECFbaBox_ECFbaFinalBox" cardinality="OneToMany" on-delete="Cascade" p1:Guid="2b74824d-a319-4682-8d5b-a930b7442d25">
+      <end1 multiplicity="ZeroOrOne" name="ECFbaBox" class="ECFbaFinalBox" relation-class="ECFbaBox" constrained="True" lazy="False" p1:Guid="aa32fe01-63a6-4578-8a7b-321366a3c08d">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="FinalBox" class="ECFbaBox" relation-class="ECFbaFinalBox" lazy="False" p1:Guid="f95615ef-9e2c-4fe1-afe8-9dbf2f999258">
+        <property name="FbaBoxId" />
+      </end2>
+    </association>
+    <association name="ECFbaBox_ECFbaOmsBox" cardinality="OneToMany" on-delete="Cascade" p1:Guid="679f52a9-f1a5-406b-b821-0b7d32de7434">
+      <end1 multiplicity="ZeroOrOne" name="ECFbaBox" class="ECFbaOmsBox" relation-class="ECFbaBox" constrained="True" lazy="False" p1:Guid="af998ddc-0de0-4139-b6da-cbc224b1f790">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="OmsBox" class="ECFbaBox" relation-class="ECFbaOmsBox" lazy="False" p1:Guid="f38fb69f-628b-4396-9843-58896638f680">
+        <property name="FbaBoxId" />
+      </end2>
+    </association>
+    <association name="ECFbaBox_ECFbaTransitBox" cardinality="OneToMany" on-delete="Cascade" p1:Guid="23f29c42-c929-4038-98f8-f45254c36594">
+      <end1 multiplicity="ZeroOrOne" name="ECFbaBox" class="ECFbaTransitBox" relation-class="ECFbaBox" constrained="True" lazy="False" p1:Guid="d509a1e0-bda0-4736-a55d-b930132a2506">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="TransitBox" class="ECFbaBox" relation-class="ECFbaTransitBox" lazy="False" p1:Guid="eb21d2e6-d9f3-4b45-912a-895626d5b971">
+        <property name="FbaBoxId" />
       </end2>
     </association>
   </associations>

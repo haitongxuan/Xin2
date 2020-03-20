@@ -18,9 +18,9 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class BnsUsBaseInventory {
+    public partial class ECFbaPackDetail {
 
-        public BnsUsBaseInventory()
+        public ECFbaPackDetail()
         {
             OnCreated();
         }
@@ -33,30 +33,76 @@ namespace Xin.Entities
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int WarehouseId
+        public virtual int? PackDetailId
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int Qty
+        public virtual int? BoxNum
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual BnsUsTagType TagType
+        public virtual int? ProductId
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(128)]
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual string ProductSku
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string ProductBarcode
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string GoodsBarcode
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string ProductTitle
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? Quantity
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? Length
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? Width
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? Height
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? Weight
+        {
+            get;
+            set;
+        }
+
+        public virtual ECFbaQueryOrder ECFbaQueryOrder
         {
             get;
             set;

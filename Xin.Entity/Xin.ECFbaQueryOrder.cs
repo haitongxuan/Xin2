@@ -18,10 +18,14 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class BnsUsBaseInventory {
+    public partial class ECFbaQueryOrder {
 
-        public BnsUsBaseInventory()
+        public ECFbaQueryOrder()
         {
+            this.FbaBoxDetail = new List<ECFbaBoxDetail>();
+            this.FbaOrderLog = new List<ECFbaLog>();
+            this.FbaPack = new List<ECFbaPackBox>();
+            this.FbaPackDetail = new List<ECFbaPackDetail>();
             OnCreated();
         }
 
@@ -33,30 +37,56 @@ namespace Xin.Entities
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int WarehouseId
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string FbaCode
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int Qty
+        public virtual string FbaTracking
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual BnsUsTagType TagType
+        public virtual string FbaOrderCost
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(128)]
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual string ProductSku
+        public virtual IList<ECFbaBoxDetail> FbaBoxDetail
+        {
+            get;
+            set;
+        }
+
+        public virtual IList<ECFbaLog> FbaOrderLog
+        {
+            get;
+            set;
+        }
+
+        public virtual IList<ECFbaPackBox> FbaPack
+        {
+            get;
+            set;
+        }
+
+        public virtual IList<ECFbaPackDetail> FbaPackDetail
+        {
+            get;
+            set;
+        }
+
+        public virtual ECFbaOrder FbaOrder
+        {
+            get;
+            set;
+        }
+
+        public virtual ECFbaBox FbaBox
         {
             get;
             set;

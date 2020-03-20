@@ -18,38 +18,93 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECShipBatch {
+    public partial class ECFbaOrder {
 
-        public ECShipBatch()
+        public ECFbaOrder()
         {
-            this.PackingInfos = new List<ECShipBatchPackingInfo>();
-            this.ProductInfos = new List<ECShipBatchProductInfo>();
             OnCreated();
         }
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.StringLength(255)]
         [System.ComponentModel.DataAnnotations.Required()]
-        public virtual string OrderCode
+        public virtual string FbaCode
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ReferenceNo
+        public virtual string AmazonShipment
         {
             get;
             set;
         }
 
-        public virtual System.DateTime? AddTime
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string AmazonReference
         {
             get;
             set;
         }
 
-        public virtual System.DateTime? ExpectedDate
+        public virtual int? SmType
+        {
+            get;
+            set;
+        }
+
+        public virtual int? FbaType
+        {
+            get;
+            set;
+        }
+
+        public virtual int? StockType
+        {
+            get;
+            set;
+        }
+
+        public virtual int? FbaStatus
+        {
+            get;
+            set;
+        }
+
+        public virtual int? ExceptionStatus
+        {
+            get;
+            set;
+        }
+
+        public virtual int? BackStatus
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CompanyCode
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string ExceptionInfo
+        {
+            get;
+            set;
+        }
+
+        public virtual int? ScId
+        {
+            get;
+            set;
+        }
+
+        public virtual int? LabelStatus
         {
             get;
             set;
@@ -62,29 +117,13 @@ namespace Xin.Entities
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string RefNo
+        public virtual int? TransitWarehouseId
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string UserAccount
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ToWarehouse
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string Warehouse
+        public virtual int? ToWarehouseId
         {
             get;
             set;
@@ -97,178 +136,167 @@ namespace Xin.Entities
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string SmNameCn
+        public virtual int? FbaId
+        {
+            get;
+            set;
+        }
+
+        public virtual int? WarehouseId
+        {
+            get;
+            set;
+        }
+
+        public virtual int? NextWarehouseId
+        {
+            get;
+            set;
+        }
+
+        public virtual int? IsInsurance
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? InsuranceValue
+        {
+            get;
+            set;
+        }
+
+        public virtual int? BoxTotal
+        {
+            get;
+            set;
+        }
+
+        public virtual int? ProductTotal
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? WeightTotal
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? ReckonWeight
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? CurrencyAmount
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string Destination
+        public virtual string CurrencyCode
         {
             get;
             set;
         }
 
-        public virtual decimal? HeadFreight
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? HeadTariff
+        public virtual int? PayStatus
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string CostCurrencyCode
+        public virtual string PayTime
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TariffCurrencyCode
+        public virtual string FbaRemarks
+        {
+            get;
+            set;
+        }
+
+        public virtual int? CreateSite
+        {
+            get;
+            set;
+        }
+
+        public virtual int? CreateUserId
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ParcelQuantity
+        public virtual string CreateTime
+        {
+            get;
+            set;
+        }
+
+        public virtual int? UpdateUserId
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string BoxCount
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? Amount
+        public virtual string UpdateTime
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string SoWeight
+        public virtual string TransitReceiptTime
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string SystemWeight
+        public virtual string TransitSendTime
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string Remark
+        public virtual string ToReceiptTime
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabName
+        public virtual string ToSendTime
+        {
+            get;
+            set;
+        }
+
+        public virtual int? SyncWmsStatus
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabPhone
+        public virtual string SyncWmsTime
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabFax
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabCompany
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabEmail
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabPostcode
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabCounty
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabState
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabCity
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabStreetAddress1
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabStreetAddress2
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OabDoorplate
-        {
-            get;
-            set;
-        }
-
-        public virtual IList<ECShipBatchPackingInfo> PackingInfos
-        {
-            get;
-            set;
-        }
-
-        public virtual IList<ECShipBatchProductInfo> ProductInfos
+        public virtual ECFbaQueryOrder ECFbaQueryOrder
         {
             get;
             set;

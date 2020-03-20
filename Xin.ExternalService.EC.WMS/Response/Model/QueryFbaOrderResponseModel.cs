@@ -14,7 +14,7 @@ namespace Xin.ExternalService.EC.WMS.Response.Model
         [JsonProperty(PropertyName = "fba_box_detail", NullValueHandling = NullValueHandling.Ignore)]
         public List<FbaBoxDetail> FbaBoxDetail { get; set; }
 
-        [JsonProperty(PropertyName = "fba_pack", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "fba_pack_box", NullValueHandling = NullValueHandling.Ignore)]
         public List<FbaPackBox> FbaPack { get; set; }
 
         [JsonProperty(PropertyName = "fba_pack_detail", NullValueHandling = NullValueHandling.Ignore)]
