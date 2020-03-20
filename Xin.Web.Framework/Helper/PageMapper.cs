@@ -12,9 +12,10 @@ namespace Xin.Web.Framework.Helper
         public static PageDataRes<T> ToPageDateRes(DataPage<T> dpage)
         {
             PageDataRes<T> page = new PageDataRes<T>();
-            if (dpage.Data.Any())
+            var list = dpage.Data.ToList();
+            if (list.Any())
             {
-                page.data = dpage.Data.ToList();
+                page.data = list;
                 page.count = dpage.TotalEntityCount;
                 page.code = ResCode.Success;
                 page.PageNum = dpage.PageNumber;
