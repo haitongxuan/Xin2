@@ -18,60 +18,83 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ResPermission : XinVDBaseEntity {
+    public partial class ECProcessedSkuRelationItem {
 
-        public ResPermission()
+        public ECProcessedSkuRelationItem()
         {
-            this.ResRolePermissions = new List<ResRolePermission>();
-            this.ResUserPermissions = new List<ResUserPermission>();
             OnCreated();
         }
 
+        [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
-        [System.ComponentModel.DisplayName("资源")]
-        public virtual int ResResourceId
+        public virtual int RelationItemId
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(20)]
-        [System.ComponentModel.DisplayName("权限代码")]
-        public virtual string PermissionCode
+        public virtual int? RelationId
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(64)]
-        [System.ComponentModel.DisplayName("英文名称")]
-        public virtual string EnName
+        [System.ComponentModel.DataAnnotations.StringLength(128)]
+        public virtual string StoreProductCategory
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(64)]
-        [System.ComponentModel.DisplayName("中文名称")]
-        public virtual string CnName
+        [System.ComponentModel.DataAnnotations.StringLength(128)]
+        public virtual string PcrProductSku
         {
             get;
             set;
         }
 
-        public virtual ResResource ResResource
+        public virtual int? PcrQuantity
         {
             get;
             set;
         }
 
-        public virtual IList<ResRolePermission> ResRolePermissions
+        public virtual decimal? PcrPercent
         {
             get;
             set;
         }
 
-        public virtual IList<ResUserPermission> ResUserPermissions
+        [System.ComponentModel.DataAnnotations.StringLength(50)]
+        public virtual string Density
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(50)]
+        public virtual string HandArea
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(50)]
+        public virtual string Style
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(50)]
+        public virtual string Size
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(50)]
+        public virtual string ProductCategory
         {
             get;
             set;

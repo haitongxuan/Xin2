@@ -2682,6 +2682,41 @@
       <column name="OrderId" not-null="False" precision="10" scale="0" sql-type="int" unique="True" p1:unicode="False" />
     </property>
   </class>
+  <class name="ECProcessedSkuRelationItem" entity-set="ECProcessedSkuRelationItems" table="EC_Processed_SkuRelationItems" schema="dbo" p1:Guid="4815f7ad-5ea3-48f6-852e-b131c25ffef8">
+    <id name="RelationItemId" type="Int32" p1:ValidateRequired="true" p1:Guid="b998de36-c3b1-43aa-86b1-c75d85802d60">
+      <column name="RelationItemId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="RelationId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b537e63e-c3ee-4f52-b4bf-e5f251d7b91d">
+      <column name="RelationId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="StoreProductCategory" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="acc581cd-fe16-45d2-973f-103ed0bc6c48">
+      <column name="StoreProductCategory" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="PcrProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="d83a844a-1fa0-4c52-9c0c-b7197628bd5b">
+      <column name="PcrProductSku" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="PcrQuantity" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4522e07e-2934-4656-a460-a7cf200264bd">
+      <column name="PcrQuantity" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="PcrPercent" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="29c7f32d-f901-4c0a-883d-bb6b97d799d2">
+      <column name="PcrPercent" not-null="False" precision="12" scale="2" sql-type="decimal" p1:unicode="False" />
+    </property>
+    <property name="Density" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="b34753a3-f946-4d3f-80c4-8aa9acb884a7">
+      <column name="Density" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="HandArea" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="ab253a9a-31e3-476c-8aa9-6a51d0dbcea2">
+      <column name="HandArea" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Style" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="5a0a273f-13b8-4974-ab3c-1c0689e3a71b">
+      <column name="Style" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Size" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="b55c05b7-cf42-403f-8f61-1c17b6ddc872">
+      <column name="Size" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="ProductCategory" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="6f6edc95-743c-4787-8d80-cdf63aabef4f">
+      <column name="ProductCategory" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">
