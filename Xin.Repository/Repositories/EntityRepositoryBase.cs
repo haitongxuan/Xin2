@@ -605,5 +605,7 @@ namespace Xin.Repository
             return query.FromSql(sql);
         }
         #endregion
+
+
     }
 }
