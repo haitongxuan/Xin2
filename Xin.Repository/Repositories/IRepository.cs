@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -136,5 +137,9 @@ namespace Xin.Repository
 
         IQueryable<TEntity> FromSql(string sql);
         int CountFromSql(string sql);
+
+        IEnumerable<TEntity> ListFromProcedure(string sql,params SqlParameter[] sqlParameters);
+        IQueryable<TEntity> FromProcedure(string sql,params SqlParameter[] sqlParameters);
+
     }
 }

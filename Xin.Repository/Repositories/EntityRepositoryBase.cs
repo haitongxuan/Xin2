@@ -605,5 +605,16 @@ namespace Xin.Repository
             return query.FromSql(sql);
         }
         #endregion
+        #region FromProcedure
+        public IEnumerable<TEntity> ListFromProcedure(string sql,params SqlParameter[] sqlParameters)
+        {
+            return FromProcedure(sql, sqlParameters).ToList();
+        }
+        public IQueryable<TEntity> FromProcedure(string sql,params SqlParameter[] sqlParameters)
+        {
+            IQueryable<TEntity> query = Context.Set<TEntity>();
+            return query.FromSql(sql, sqlParameters);
+        }
+        #endregion
     }
 }

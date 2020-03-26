@@ -15,17 +15,17 @@ namespace Xin.Service.Context
             this.SingleProductSellMapping(modelBuilder);
             this.SingleSalesAnalysisMapping(modelBuilder);
             this.UsTagTypeInventoryMapping(modelBuilder);
+            this.ChannelLevelSalesCountMapping(modelBuilder);
+            this.TotalSaleMapping(modelBuilder);
+            this.HairWeftStyleSaleMapping(modelBuilder);
         }
 
-        public virtual DbSet<SingleProductSell> SingleProductSells
-        {
-            get;
-            set;
-        }
-
+        public virtual DbSet<SingleProductSell> SingleProductSells { get; set; }
         public virtual DbSet<SingleSalesAnalysis> SingleSalesAnalyses { get; set; }
-
         public virtual DbSet<UsTagTypeInventory> UsTagTypeInventories { get; set; }
+        public virtual DbSet<ChannelLevelSalesCount> ChannelLevelSalesCounts { get; set; }
+        public virtual DbSet<HairWeftStyleSale> HairWeftStyleSales { get; set; }
+        public virtual DbSet<TotalSale> TotalSales { get; set; }
 
         private void SingleProductSellMapping(ModelBuilder modelBuilder)
         {
@@ -64,11 +64,36 @@ namespace Xin.Service.Context
 
         private void UsTagTypeInventoryMapping(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UsTagTypeInventory>().Property<string>(u => u.ProductSku).HasColumnName(@"ProductSku").ValueGeneratedNever(); modelBuilder.Entity<UsTagTypeInventory>().Property<string>(u => u.ProductSku).HasColumnName(@"ProductSku").ValueGeneratedNever();
+            modelBuilder.Entity<UsTagTypeInventory>().Property<string>(u => u.ProductSku).HasColumnName(@"ProductSku").ValueGeneratedNever();
             modelBuilder.Entity<UsTagTypeInventory>().Property<int>(u => u.Qty).HasColumnName(@"Qty").ValueGeneratedNever();
             modelBuilder.Entity<UsTagTypeInventory>().Property<string>(u => u.TagType).HasColumnName(@"TagType").ValueGeneratedNever();
             modelBuilder.Entity<UsTagTypeInventory>().Property<long>(u => u.RowNumber).HasColumnName(@"RowNumber").ValueGeneratedNever();
             modelBuilder.Entity<UsTagTypeInventory>().HasKey(@"RowNumber");
+        }
+
+        private void ChannelLevelSalesCountMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ChannelLevelSalesCount>().Property<string>(u => u.Level).HasColumnName(@"Level").ValueGeneratedNever();
+            modelBuilder.Entity<ChannelLevelSalesCount>().Property<int>(u => u.SalesCountQty).HasColumnName(@"SalesCountQty").ValueGeneratedNever();
+            modelBuilder.Entity<ChannelLevelSalesCount>().Property<string>(u => u.Channel).HasColumnName(@"Channel").ValueGeneratedNever();
+            modelBuilder.Entity<ChannelLevelSalesCount>().Property<long>(u => u.RowNumber).HasColumnName(@"RowNumber").ValueGeneratedNever();
+            modelBuilder.Entity<ChannelLevelSalesCount>().HasKey(@"RowNumber");
+        }
+
+        private void HairWeftStyleSaleMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<HairWeftStyleSale>().Property<string>(u => u.Style).HasColumnName(@"Style").ValueGeneratedNever();
+            modelBuilder.Entity<HairWeftStyleSale>().Property<int>(u => u.SaleQty).HasColumnName(@"SaleQty").ValueGeneratedNever();
+            modelBuilder.Entity<HairWeftStyleSale>().Property<string>(u => u.SalesRatio).HasColumnName(@"SalesRatio").ValueGeneratedNever();
+            modelBuilder.Entity<HairWeftStyleSale>().Property<string>(u => u.LastSalesRatio).HasColumnName(@"LastSalesRatio").ValueGeneratedNever();
+            modelBuilder.Entity<HairWeftStyleSale>().HasKey(@"Style");
+        }
+
+        private void TotalSaleMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TotalSale>().Property<string>(u => u.ProductCategory).HasColumnName(@"ProductCategory").ValueGeneratedNever();
+            modelBuilder.Entity<TotalSale>().Property<int>(u => u.SaleQty).HasColumnName(@"SaleQty").ValueGeneratedNever();
+            modelBuilder.Entity<TotalSale>().HasKey(@"ProductCategory");
         }
     }
 }
