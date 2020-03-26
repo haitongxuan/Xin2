@@ -180,6 +180,8 @@ namespace Xin.ExternalService.EC.Job
                 RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,出现异常:{ex.Message}", null));
                 throw ex;
             }
+            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", "订单信息更新成功", null));
+
             log.Info($"订单信息更新成功");
         }
     }

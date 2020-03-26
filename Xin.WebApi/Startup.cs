@@ -31,6 +31,7 @@ using Microsoft.AspNetCore.Http;
 using Quartz.Spi;
 using Xin.Web.Framework.Permission;
 using Xin.Web.Framework.Model;
+using Xin.Service.Repository;
 
 namespace Xin.WebApi
 {
@@ -67,6 +68,7 @@ namespace Xin.WebApi
             services.AddTransient(typeof(IXinRepository<>), typeof(AutocodeBaseRepository<>));
             services.AddTransient<ISingleSalesAnlysisRepository, SingleSalesAnlysisRepository>();
             services.AddTransient<IUsTagTypeInventoryRepository, UsTagTypeInventoryRepository>();
+            services.AddTransient<ISaleOrderDetailRepository, SaleOrderDetailRepository>();
 
             services.AddTransient<IClaimsTransformation, XinClaimsTransformer>();
             services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
