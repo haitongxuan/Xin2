@@ -68,10 +68,9 @@ namespace Xin.WebApi.Controllers
                     $"where d.StoreProductCategory is not null and a.Status = 4  {dateFilterStr}" +
                     $"group by d.StoreProductCategory,a.Plateform,a.PlatformUserName) tt " +
                     $"group by Channel, StoreProductCategory) aa " +
-                    $"on aa.StoreProductCategory = bb.StoreProductCategory and aa.Channel = bb.Channel " +
-                    $"order by bb.Channel,StoreProductCategory";
+                    $"on aa.StoreProductCategory = bb.StoreProductCategory and aa.Channel = bb.Channel ";
                 var repository = uow.GetRepository<ChannelLevelSalesCount>();
-                var list = repository.ListFromSql(sql).ToList();
+                var list = repository.ListFromSql(sql,"", "Channel,StoreProductCategory").ToList();
                 res.data = list;
                 return res;
             }

@@ -36,7 +36,7 @@ namespace Xin.WebApi.Controllers
                 var edatep = new SqlParameter("@Edate", req.endTime);
 
                 var repository = uow.GetRepository<HairWeftStyleSale>();
-                var data = repository.FromProcedure("EXECUTE HairWeftStyleSales_sp @Sdate,@Edate", sdatep, edatep).ToList();
+                var data = repository.FromProcedure("EXECUTE HairWeftStyleSale_sp @Sdate,@Edate", sdatep, edatep).ToList();
                 res.data = data;
                 return res;
             }
