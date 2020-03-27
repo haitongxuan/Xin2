@@ -40,5 +40,18 @@ namespace Xin.WebApi.Controllers
                 return res;
             }
         }
+
+        [PermissionFilter("TotalSale.Read")]
+        [Route("GetProductCategoryList")]
+        [HttpPost]
+        public ActionResult<DataRes<List<string>>> GetProductCategoryList()
+        {
+            var result = new DataRes<List<string>>() { code = ResCode.Success };
+            string[] arr = {"生发发帘","生发小发块","生发大发块","360发块","透明蕾丝发块","老接发","新接发",
+                "高质量接发","化纤接发","顺发","UNICE新幅度","压色","辫发" ,"老发帘","人发头套-自产",
+                "人发头套-组合","老头套","化纤头套"};
+            result.data = arr.ToList();
+            return result;
+        }
     }
 }
