@@ -6,7 +6,7 @@ namespace Xin.Entities.VirtualEntity
 {
    public class SaleOrderDetail
     {
-        public long RowNumber { get; set; }
+        public int RowNumber { get; set; }
 
         public string SaleOrderCode { get; set; }
         public string Plateform { get; set; }
@@ -20,7 +20,6 @@ namespace Xin.Entities.VirtualEntity
         public string Size { get; set; }
         public string Density { get; set; }
         public string HandArea { get; set; }
-        public string ProductCategory { get; set; }
-        public string Type { get; set; }
+        public string ProductType { get; set; }
     }
 }

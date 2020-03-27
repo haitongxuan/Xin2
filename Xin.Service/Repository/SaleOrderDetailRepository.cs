@@ -19,19 +19,7 @@ namespace Xin.Service.Repository
         }
         public IEnumerable<SaleOrderDetail> GetList(string startTime  ,string endTime)
         {
-            DateTime dt = DateTime.Now;
-            if (string.IsNullOrEmpty(startTime))
-            {
-                startTime = dt.AddDays(1 - dt.Day).Date.ToString() ;
-            }
-            if (string.IsNullOrEmpty(endTime))
-            {
-                endTime = dt.AddDays(1 - dt.Day).AddMonths(1).Date.ToString();
-            }
-            else
-            {
-                endTime = DateTime.Parse(endTime).AddDays(1).Date.ToString();
-            }
+           
             string sql = "if exists(select * from tempdb..sysobjects where id=object_id('tempdb..##TempOrder'))DROP TABLE ##TempOrder;" +
                         "if exists(select * from tempdb..sysobjects where id=object_id('tempdb..##TempSku'))DROP TABLE ##TempSku;" +
                         "if exists(select * from tempdb..sysobjects where id=object_id('tempdb..##TempOrderDetail'))DROP TABLE ##TempOrderDetail;" +

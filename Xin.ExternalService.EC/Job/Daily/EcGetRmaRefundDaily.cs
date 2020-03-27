@@ -38,6 +38,7 @@ namespace Xin.ExternalService.EC.Job
                 reqModel.PageSize = 50;
                 reqModel.CreateDateForm = DateTime.Parse(repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreateDate)).FirstOrDefault().CreateDate);
                 reqModel.CreateDateTo = DateTime.Now;
+
                 EBGetRmaRefundListRequest req = new EBGetRmaRefundListRequest(login.Username, login.Password, reqModel);
                 var response = await req.Request();
                 response.TotalCount = response.TotalCount ==null ? "1" : response.TotalCount;

@@ -19,16 +19,29 @@ namespace Xin.Service.Context
             this.TotalSaleMapping(modelBuilder);
             this.HairWeftStyleSaleMapping(modelBuilder);
             this.SaleOrderDetailMapping(modelBuilder);
+            this.OddMinusSaleMapping(modelBuilder);
         }
+
+
 
         public virtual DbSet<SingleProductSell> SingleProductSells { get; set; }
         public virtual DbSet<SingleSalesAnalysis> SingleSalesAnalyses { get; set; }
         public virtual DbSet<UsTagTypeInventory> UsTagTypeInventories { get; set; }
         public virtual DbSet<ChannelLevelSalesCount> ChannelLevelSalesCounts { get; set; }
         public virtual DbSet<HairWeftStyleSale> HairWeftStyleSales { get; set; }
+        public virtual DbSet<OddMinusSale> OddMinusSale { get; set; }
         public virtual DbSet<TotalSale> TotalSales { get; set; }
         public virtual DbSet<SaleOrderDetail> SaleOrderDetails { get; set; }
+        private void OddMinusSaleMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OddMinusSale>().Property<int>(@"OddQty").HasColumnName(@"OddQty").ValueGeneratedNever();
+            modelBuilder.Entity<OddMinusSale>().Property<int>(@"MinusQty").HasColumnName(@"MinusQty").ValueGeneratedNever();
+            modelBuilder.Entity<OddMinusSale>().Property<int>(@"Zqty").HasColumnName(@"Zqty").ValueGeneratedNever();
+            modelBuilder.Entity<OddMinusSale>().Property<string>(@"OddQtyRate").HasColumnName(@"OddQtyRate").ValueGeneratedNever();
+            modelBuilder.Entity<OddMinusSale>().Property<string>(@"MinusQtyRate").HasColumnName(@"MinusQtyRate").ValueGeneratedNever();
+            modelBuilder.Entity<OddMinusSale>().HasKey(@"PlateForm");
 
+        }
         private void SingleProductSellMapping(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SingleProductSell>().Property<string>(@"Plateform").HasColumnName(@"Plateform").ValueGeneratedNever();
@@ -110,8 +123,7 @@ namespace Xin.Service.Context
         modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Size").HasColumnName(@"Size").ValueGeneratedNever();
         modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Density").HasColumnName(@"Density").ValueGeneratedNever();
         modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"HandArea").HasColumnName(@"HandArea").ValueGeneratedNever();
-        modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"ProductCategory").HasColumnName(@"ProductCategory").ValueGeneratedNever();
-        modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Type").HasColumnName(@"Type").ValueGeneratedNever();
+        modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"ProductType").HasColumnName(@"ProductType").ValueGeneratedNever();
         modelBuilder.Entity<SaleOrderDetail>().HasKey(@"RowNumber");
         }
     }

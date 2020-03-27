@@ -47,7 +47,7 @@ namespace Xin.ExternalService.EC.Job
                     var repository = uow.GetRepository<ECSalesOrder>();
                     //reqCondition.CreatedDateAfter = DateTime.Parse("2020-03-12T10:50:09");
                     reqCondition.CreatedDateAfter = repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreatedDate)).FirstOrDefault().CreatedDate;
-
+                     var updateTime= repository.GetPage(0, 1, x => x.OrderByDescending(c => c.UpdateDate)).FirstOrDefault().UpdateDate;
                     //新增
                     Reqeust.EBGetOrderListRequest req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                     var response = await req.Request();
@@ -116,7 +116,7 @@ namespace Xin.ExternalService.EC.Job
                     reqCondition.CreatedDateBefore = null;
                     reqCondition.CreatedDateAfter = null;
                     reqCondition.UpdateDateBefore = DateTime.Now;
-                    reqCondition.UpdateDateAfter = repository.GetPage(0, 1, x => x.OrderByDescending(c => c.UpdateDate)).FirstOrDefault().UpdateDate;
+                    reqCondition.UpdateDateAfter = updateTime;
                     reqModel.Page = 1;
                     reqModel.PageSize = 10;
                     req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);

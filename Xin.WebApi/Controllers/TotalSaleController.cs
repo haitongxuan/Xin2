@@ -26,13 +26,13 @@ namespace Xin.WebApi.Controllers
         }
         [PermissionFilter("TotalSale.Read")]
         [HttpPost]
-        public ActionResult<DataRes<List<TotalSale>>> Index(DateTime? startDatetime = null, DateTime? endDatetime = null)
+        public ActionResult<DataRes<List<TotalSale>>> Index([FromBody]ReqTimeBetween req)
         {
             var res = new DataRes<List<TotalSale>>() { code = ResCode.Success };
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
-                var sdatep = new SqlParameter("@Sdate", startDatetime);
-                var edatep = new SqlParameter("@Edate", endDatetime);
+                var sdatep = new SqlParameter("@Sdate", req.startTime);
+                var edatep = new SqlParameter("@Edate", req.endTime);
 
                 var repository = uow.GetRepository<TotalSale>();
                 var data = repository.FromProcedure("EXECUTE TotalSale_sp @Sdate,@Edate", sdatep, edatep).ToList();
