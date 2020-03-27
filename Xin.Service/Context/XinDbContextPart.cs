@@ -20,11 +20,15 @@ namespace Xin.Service.Context
             this.HairWeftStyleSaleMapping(modelBuilder);
             this.SaleOrderDetailMapping(modelBuilder);
             this.OddMinusSaleMapping(modelBuilder);
+            this.WavingBlockMapping(modelBuilder);
+            this.HeadgearDensityMapping(modelBuilder);
             this.ListStringModelMapping(modelBuilder);
         }
 
 
 
+        public virtual DbSet<WavingBlock> WavingBlocks { get; set; }
+        public virtual DbSet<HeadgearDensity> HeadgearDensitys { get; set; }
         public virtual DbSet<SingleProductSell> SingleProductSells { get; set; }
         public virtual DbSet<SingleSalesAnalysis> SingleSalesAnalyses { get; set; }
         public virtual DbSet<UsTagTypeInventory> UsTagTypeInventories { get; set; }
@@ -34,7 +38,46 @@ namespace Xin.Service.Context
         public virtual DbSet<TotalSale> TotalSales { get; set; }
         public virtual DbSet<SaleOrderDetail> SaleOrderDetails { get; set; }
 
-        public virtual DbSet<ListStringModel> ListStringModels { get; set; }
+        private void HeadgearDensityMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<HeadgearDensity>().Property<string>(@"Style").HasColumnName(@"Style").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density360130").HasColumnName(@"Density360130").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density136250").HasColumnName(@"Density136250").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density360150").HasColumnName(@"Density360150").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density360180").HasColumnName(@"Density360180").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density360250").HasColumnName(@"Density360250").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density44130").HasColumnName(@"Density44130").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density44150").HasColumnName(@"Density44150").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density44180").HasColumnName(@"Density44180").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density134130").HasColumnName(@"Density134130").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density134150").HasColumnName(@"Density134150").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density134180").HasColumnName(@"Density134180").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density136130").HasColumnName(@"Density136130").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density136150").HasColumnName(@"Density136150").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Density136180").HasColumnName(@"Density136180").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"DensityHand130").HasColumnName(@"DensityHand130").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Densityhand150").HasColumnName(@"Densityhand150").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Densityhand180").HasColumnName(@"Densityhand180").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Densitymachine130").HasColumnName(@"Densitymachine130").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().Property<int>(@"Densitymachine").HasColumnName(@"Densitymachine").ValueGeneratedNever();
+            modelBuilder.Entity<HeadgearDensity>().HasKey(@"Id");
+        }
+        private void WavingBlockMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<WavingBlock>().Property<int>(@"Magento").HasColumnName(@"Magento").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().Property<int>(@"Shopify").HasColumnName(@"Shopify").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().Property<int>(@"Amazon").HasColumnName(@"Amazon").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().Property<int>(@"Aliexpress").HasColumnName(@"Aliexpress").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().Property<int>(@"Ebay").HasColumnName(@"Ebay").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().Property<string>(@"Size").HasColumnName(@"Size").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().Property<decimal>(@"MagentoTotalRatio").HasColumnName(@"MagentoTotalRatio").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().Property<decimal>(@"ShopifyTotalRatio").HasColumnName(@"ShopifyTotalRatio").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().Property<decimal>(@"AmazonTotalRatio").HasColumnName(@"AmazonTotalRatio").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().Property<decimal>(@"AliexpressTotalRatio").HasColumnName(@"AliexpressTotalRatio").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().Property<decimal>(@"EbayTotalRatio").HasColumnName(@"EbayTotalRatio").ValueGeneratedNever();
+            modelBuilder.Entity<WavingBlock>().HasKey(@"Id");
+
+        }
         private void OddMinusSaleMapping(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OddMinusSale>().Property<int>(@"OddQty").HasColumnName(@"OddQty").ValueGeneratedNever();

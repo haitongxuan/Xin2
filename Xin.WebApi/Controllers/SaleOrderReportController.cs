@@ -47,119 +47,39 @@ namespace Xin.WebApi.Controllers
             {
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
-                    var repository = uow.GetRepository<SaleOrderDetail>(); ;
+                    var repository = uow.GetRepository<WavingBlock>(); ;
                     var sdatep = new SqlParameter("@startDate", startTime);
                     var edatep = new SqlParameter("@endDate", endTime);
                     var sqltype = new SqlParameter("@type", type);
-                    string[] plates = new string[] { "aliexpress", "amazon", "ebay", "magento", "shopify" };
-
-                    if (type == "发帘")
+                    var weaving = repository.FromProcedure("EXECUTE GetWavingBlock_sp @startDate,@endDate,@type", sdatep, edatep, sqltype).ToList();
+                    int total = 0;
+                    List<WaveBlockReportModel> dataList = new List<WaveBlockReportModel>();
+                    foreach (var item in weaving)
                     {
-                        var weaving = repository.FromProcedure("EXECUTE GetOrderDetail @startDate,@endDate,@type", sdatep, edatep, sqltype).ToList();
-                        string[] sizes = new string[] { "8寸", "10寸", "12寸", "14寸", "16寸", "18寸", "20寸", "22寸", "24寸", "26寸", "28寸", "30寸", "32寸" };
-                        int total = weaving.Where(a=>a.Size!=null).Sum(a => a.Qty);
-                        List<WaveBlockReportModel> dataList = new List<WaveBlockReportModel>();
-                        foreach (var size in sizes)
-                        {
-                            WaveBlockReportModel tempModel = new WaveBlockReportModel();
-                            var temp = weaving.Where(a => a.Size == size).ToList();
-                            int sizeTotal = temp.Sum(a => a.Qty);
-                            tempModel.Total = total == 0 ? 1 : total;
-                            tempModel.Size = size;
-                            tempModel.SizeTotal = sizeTotal;
-                            decimal temp1Dec = (decimal)sizeTotal / total * 100;
-                            tempModel.SizeTotalRatio = Math.Round(temp1Dec, 2, MidpointRounding.AwayFromZero).ToString() + "%";
-                            foreach (string plate in plates)
-                            {
-                                var plateTotal = weaving.Where(a => a.Plateform.Contains(plate)).Sum(a => a.Qty);
-                                plateTotal = plateTotal == 0 ? 1 : plateTotal;
-                                var temp1 = temp.Where(a => a.Plateform == plate).ToList();
-                                int plateSizeTotal = temp1.Sum(a => a.Qty);
-                                decimal tempDec = (decimal)plateSizeTotal / plateTotal * 100;
-                                var tempRatio = Math.Round(tempDec, 2, MidpointRounding.AwayFromZero).ToString() + "%";
-                                switch (plate)
-                                {
-                                    case "aliexpress":
-                                        tempModel.aliSizeTotal = plateSizeTotal;
-                                        tempModel.aliSizeTotalRatio = tempRatio;
-                                        break;
-                                    case "amazon":
-                                        tempModel.amazSizeTotal = plateSizeTotal;
-                                        tempModel.amazSizeTotalRatio = tempRatio; break;
-                                    case "ebay":
-                                        tempModel.ebaySizeTotal = plateSizeTotal;
-                                        tempModel.ebaySizeTotalRatio = tempRatio; break;
-                                    case "magento":
-                                        tempModel.magentoSizeTotal = plateSizeTotal;
-                                        tempModel.magentoSizeTotalRatio = tempRatio; break;
-                                    case "shopify":
-                                        tempModel.shopifySizeTotal = plateSizeTotal;
-                                        tempModel.shopifySizeTotalRatio = tempRatio;
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            }
-                            dataList.Add(tempModel);
-                        }
-                        res.data = dataList;
+                        int tempNum = item.Magento + item.Shopify + item.Aliexpress + item.Amazon + item.Ebay;
+                        total += tempNum;
+                        WaveBlockReportModel model = new WaveBlockReportModel();
+                        model.Size = item.Size;
+                        model.SizeTotal = tempNum;
+                        model.shopifySizeTotal = item.Shopify;
+                        model.shopifySizeTotalRatio = item.ShopifyTotalRatio.ToString() + "%";
+                        model.aliSizeTotal = item.Aliexpress;
+                        model.aliSizeTotalRatio = item.AliexpressTotalRatio.ToString() + "%";
+                        model.ebaySizeTotal = item.Ebay;
+                        model.ebaySizeTotalRatio = item.EbayTotalRatio.ToString() + "%";
+                        model.amazSizeTotal = item.Amazon;
+                        model.amazSizeTotalRatio = item.AmazonTotalRatio.ToString() + "%";
+                        model.magentoSizeTotal = item.Magento;
+                        model.magentoSizeTotalRatio = item.MagentoTotalRatio.ToString() + "%";
+                        dataList.Add(model);
                     }
-                    else if (type == "发块")
+                    foreach (var item in dataList)
                     {
-                        string[] sizes = new string[] { "8寸", "10寸", "12寸", "14寸", "16寸", "18寸", "20寸" };
-                        var weaving = repository.FromProcedure("EXECUTE GetOrderDetail @startDate,@endDate,@type", sdatep, edatep, sqltype).ToList();
-                        int total = weaving.Where(a => a.Size != null).Sum(a => a.Qty);
-                        List<WaveBlockReportModel> dataList = new List<WaveBlockReportModel>();
-                        foreach (var size in sizes)
-                        {
-                            WaveBlockReportModel tempModel = new WaveBlockReportModel();
-                            var temp = weaving.Where(a => a.Size == size).ToList();
-                            int sizeTotal = temp.Sum(a => a.Qty);
-                            tempModel.Total = total == 0 ? 1 : total;
-                            tempModel.Size = size;
-                            tempModel.SizeTotal = sizeTotal;
-                            decimal temp1Dec = (decimal)sizeTotal / total * 100;
-                            tempModel.SizeTotalRatio = Math.Round(temp1Dec, 2).ToString() + "%";
-                            foreach (string plate in plates)
-                            {
-                                var plateTotal = weaving.Where(a => a.Plateform.Contains(plate)).Sum(a => a.Qty);
-                                plateTotal = plateTotal == 0 ? 1 : plateTotal;
-                                var temp1 = temp.Where(a => a.Plateform == plate).ToList();
-                                int plateSizeTotal = temp1.Sum(a => a.Qty);
-                                decimal tempDec = (decimal)plateSizeTotal / plateTotal * 100;
-                                var tempRatio = Math.Round(tempDec, 2, MidpointRounding.AwayFromZero).ToString() + "%";
-                                switch (plate)
-                                {
-                                    case "aliexpress":
-                                        tempModel.aliSizeTotal = plateSizeTotal;
-                                        tempModel.aliSizeTotalRatio = tempRatio;
-                                        break;
-                                    case "amazon":
-                                        tempModel.amazSizeTotal = plateSizeTotal;
-                                        tempModel.amazSizeTotalRatio = tempRatio; break;
-                                    case "ebay":
-                                        tempModel.ebaySizeTotal = plateSizeTotal;
-                                        tempModel.ebaySizeTotalRatio = tempRatio; break;
-                                    case "magento":
-                                        tempModel.magentoSizeTotal = plateSizeTotal;
-                                        tempModel.magentoSizeTotalRatio = tempRatio; break;
-                                    case "shopify":
-                                        tempModel.shopifySizeTotal = plateSizeTotal;
-                                        tempModel.shopifySizeTotalRatio = tempRatio;
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            }
-                            dataList.Add(tempModel);
-                        }
-                        res.data = dataList;
+                        item.Total = total;
+                        decimal tempDec = (decimal)item.SizeTotal / item.Total * 100;
+                        item.SizeTotalRatio = Math.Round(tempDec, 2, MidpointRounding.AwayFromZero).ToString() + "%";
                     }
-                    else
-                    {
-                        res.code = ResCode.ServerError;
-                        res.msg = "Type不能为空";
-                    }
+                    res.data = dataList;
                 }
             }
             catch (Exception ex)
@@ -171,9 +91,11 @@ namespace Xin.WebApi.Controllers
         }
         [Route("GetDensity")]
         [HttpPost]
-        public GridPage<List<DensityReportModel>> GetDensity([FromBody]string startTime, string endTime)
+        public GridPage<List<DensityReportModel>> GetDensity([FromBody]ReqTimeBetween req)
         {
             DateTime dt = DateTime.Now;
+            string startTime = req.startTime;
+            string endTime = req.endTime;
             if (string.IsNullOrEmpty(startTime))
             {
                 startTime = dt.AddDays(1 - dt.Day).Date.ToString();
@@ -192,80 +114,42 @@ namespace Xin.WebApi.Controllers
 
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
-                    var repository = uow.GetRepository<SaleOrderDetail>(); ;
+                    var repository = uow.GetRepository<HeadgearDensity>(); ;
                     var sdatep = new SqlParameter("@startDate", startTime);
                     var edatep = new SqlParameter("@endDate", endTime);
-                    var sqltype = new SqlParameter("@type", "头套");
-                    var allResult = repository.FromProcedure("EXECUTE GetOrderDetail @startDate,@endDate,@type", sdatep, edatep, sqltype).ToList();
-                    var result = allResult.Where(a => a.HandArea != null).ToList();
-                    string[] handAreas = new string[] { "13*4|130%", "13*4|150%", "13*4|180%", "13*6|150%", "13*6|180%", "13*6|250%", "360|150%", "360|180%", "4*4|150%", "4*4|180%", "机制|130%", "机制|" };
-                    string[] styles = new string[] { "ST", "BW", "WW", "KC", "KS", "JC", "DW", "LW", "NW", "BOB", "BJC", "BKC", "BWW", "BST", "BST", "OBB", "0PT", "小配件", "上海头", "爆炸头", "MXC", "LJC", "18-WIG49-N", "OBH", "ALW", "其它" };
+                    var result = repository.FromProcedure("EXECUTE GetHeadgearDensity_sp @startDate,@endDate", sdatep, edatep).ToList();
                     List<DensityReportModel> list = new List<DensityReportModel>();
-                    foreach (var style in styles)
-                    {
-                        DensityReportModel tempModel = new DensityReportModel();
-                        var temp = result.Where(a => a.Style == style).ToList();
-                        tempModel.Total = temp.Sum(a => a.Qty);
-                        tempModel.Style = style;
-                        foreach (var handArea in handAreas)
-                        {
-                            string area = string.Empty;
-                            string denty = string.Empty;
-                            string[] hang = handArea.Split("|");
-                            area = hang[0];
-                            denty = hang[1] == "" ? null : hang[1];
-                            var tempList = temp.Where(a => a.Density == denty && a.HandArea == area).ToList();
-                            int sum = tempList.Sum(a => a.Qty);
-                            switch (handArea)
-                            {
-                                case "13*4|130%":
-                                    tempModel.Density134130Total = sum;
-                                    break;
-                                case "13*4|150%":
-                                    tempModel.Density134150Total = sum;
-                                    break;
-                                case "13*4|180%":
-                                    tempModel.Density134180Total = sum;
-                                    break;
-                                case "13*6|150%":
-                                    tempModel.Density136150Total = sum;
-                                    break;
-                                case "13*6|180%":
-                                    tempModel.Density136180Total = sum;
-                                    break;
-                                case "13*6|250%":
-                                    tempModel.Density136250Total = sum;
-                                    break;
-                                case "360|150%":
-                                    tempModel.Density360150Total = sum;
-                                    break;
-                                case "360|180%":
-                                    tempModel.Density360180Total = sum;
-                                    break;
-                                case "全手织|150%":
-                                    tempModel.DensityHand150Total = sum;
-                                    break;
-                                case "全手织|180%":
-                                    tempModel.DensityHand180Total = sum;
-                                    break;
-                                case "4*4|150%":
-                                    tempModel.Density44150Total = sum;
-                                    break;
-                                case "4*4|180%":
-                                    tempModel.Density44180Total = sum;
-                                    break;
-                                case "机制|130%":
-                                    tempModel.DensityMachine130Total = sum;
-                                    break;
-                                case "机制|":
-                                    tempModel.DensityMachineTotal = sum;
-                                    break;
 
-                                default:
-                                    break;
-                            }
-                        }
-                        list.Add(tempModel);
+                    foreach (var item in result)
+                    {
+                        DensityReportModel model = new DensityReportModel();
+                        model.Style = item.Style;
+                        model.Total = item.Density134130 + item.Density134150 + item.Density134180
+                            + item.Density136130 + item.Density136150 + item.Density136180 + item.Density136250
+                            + item.Density360130 + item.Density360150 + item.Density360180 + item.Density360250
+                            + item.Density44130 + item.Density44150 + item.Density44180
+                            + item.DensityHand130 + item.Densityhand150 + item.Densityhand180
+                            + item.Densitymachine + item.Densitymachine130;
+                        model.Density134130Total = item.Density134130;
+                        model.Density134150Total = item.Density134150;
+                        model.Density134180Total = item.Density134180;
+                        model.Density136130Total = item.Density136130;
+                        model.Density136150Total = item.Density136150;
+                        model.Density136180Total = item.Density136180;
+                        model.Density136250Total = item.Density136250;
+                        model.Density360130Total = item.Density360130;
+                        model.Density360150Total = item.Density360150;
+                        model.Density360180Total = item.Density360180;
+                        model.Density360250Total = item.Density360250;
+                        model.Density44130Total = item.Density44130;
+                        model.Density44150Total = item.Density44150;
+                        model.Density44180Total = item.Density44180;
+                        model.DensityHand130Total = item.DensityHand130;
+                        model.DensityHand150Total = item.Densityhand150;
+                        model.DensityHand180Total = item.Densityhand180;
+                        model.DensityMachine130Total = item.Densitymachine;
+                        model.DensityMachineTotal = item.Densitymachine130;
+                        list.Add(model);
                     }
                     res.data = list;
                 }
@@ -280,15 +164,15 @@ namespace Xin.WebApi.Controllers
 
         [Route("GetOddMinusSale")]
         [HttpPost]
-        public GridPage<List<OddMinusSale>> GetOddMinusSale(string startTime, string endTime)
+        public GridPage<List<OddMinusSale>> GetOddMinusSale([FromBody]ReqTimeBetween req)
         {
             var res = new GridPage<List<OddMinusSale>>() { code = ResCode.Success };
             try
             {
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
-                    var sdatep = new SqlParameter("@Sdate", startTime);
-                    var edatep = new SqlParameter("@Edate", endTime);
+                    var sdatep = new SqlParameter("@Sdate", req.startTime);
+                    var edatep = new SqlParameter("@Edate", req.endTime);
 
                     var repository = uow.GetRepository<OddMinusSale>();
                     var data = repository.FromProcedure("EXECUTE OddMinusSale_sp @Sdate,@Edate", sdatep, edatep).ToList();
@@ -302,6 +186,14 @@ namespace Xin.WebApi.Controllers
                 res.msg = ex.Message;
             }
             return res;
+        }
+
+        [Route("GetDensityStyle")]
+        [HttpGet]
+        public string[] GetDensityStyle()
+        {
+            string[] styles = new string[] { "ST", "BW", "WW", "KC", "KS", "JC", "DW", "LW", "NW", "BOB", "BJC", "BKC", "BWW", "BST", "BST", "OBB", "0PT", "小配件", "上海头", "爆炸头", "MXC", "LJC", "18-WIG49-N", "OBH", "ALW", "其它" };
+            return styles;
         }
     }
 }
