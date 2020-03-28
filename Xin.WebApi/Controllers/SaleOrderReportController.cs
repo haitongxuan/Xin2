@@ -192,6 +192,7 @@ namespace Xin.WebApi.Controllers
         [HttpGet]
         public string[] GetDensityStyle()
         {
+
             string[] styles = new string[] { "ST", "BW", "WW", "KC", "KS", "JC", "DW", "LW", "NW", "BOB", "BJC", "BKC", "BWW", "BST", "BST", "OBB", "0PT", "小配件", "上海头", "爆炸头", "MXC", "LJC", "18-WIG49-N", "OBH", "ALW", "其它" };
             return styles;
         }

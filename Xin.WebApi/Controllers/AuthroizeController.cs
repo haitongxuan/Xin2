@@ -73,7 +73,7 @@ namespace Xin.WebApi.Controllers
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSeetings.SecretKey));
                     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                    var expires = DateTime.Now.AddMinutes(30);
+                    var expires = DateTime.Now.AddMinutes(1440);
                     var token = new JwtSecurityToken(
                         _jwtSeetings.Issuer,
                         _jwtSeetings.Audience,

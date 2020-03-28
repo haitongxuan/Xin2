@@ -88,7 +88,7 @@ namespace Xin.WebApi.Controllers
         public GridPage<List<ECShipBatch>> addShipBatch([FromBody]string[] codes)
         {
             var res = new GridPage<List<ECShipBatch>>() { code = ResCode.Success };
-            if (codes != null & codes.Length<1)
+            if (codes != null & codes.Length < 1)
             {
                 res.code = ResCode.Error;
                 res.msg = "code不能为空";
@@ -106,21 +106,31 @@ namespace Xin.WebApi.Controllers
                         if (string.IsNullOrWhiteSpace(item))
                         {
                             res.code = ResCode.Error;
-                            continue;                        }
+                            continue;
+                        }
                         string order = item;
                         WMSGetShipBatchRequest request = new WMSGetShipBatchRequest(ecLogin.UserName, ecLogin.Password, order);
                         var re = request.Request().Result;
-                        if (repository.Get(item) == null)
+                        if (re.Body.OrderCode != null && repository.Get(item) == null)
                         {
                             list.Add(Mapper<EC_ShipBatch, ECShipBatch>.Map(re.Body));
                         }
                     }
-                    repository.BulkInsert(list, X => X.IncludeGraph = true);
-                    uow.SaveChanges();
-                    res.data = list;
+                    if (list.Count > 0)
+                    {
+                        repository.BulkInsert(list, X => X.IncludeGraph = true);
+                        uow.SaveChanges();
+                        res.data = list;
+                    }
+                    else
+                    {
+                        res.code = ResCode.NotFound;
+                        res.msg = "接口获取数据失败或者单号已存在,请检查单号正确性";
+                    }
+
                 }
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 res.code = ResCode.ServerError;
                 res.msg = ex.Message;

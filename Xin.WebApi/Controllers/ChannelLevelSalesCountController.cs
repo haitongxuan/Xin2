@@ -15,7 +15,7 @@ namespace Xin.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ChannelLevelSalesCountController : BaseController<ChannelLevelSalesCount>
     {
         private readonly IUowProvider _uowProvider;
@@ -24,34 +24,35 @@ namespace Xin.WebApi.Controllers
             _uowProvider = uowProvider;
         }
 
-        [PermissionFilter("ChannelLevelSalesCount.Read")]
+        //[PermissionFilter("ChannelLevelSalesCount.Read")]
+        [Route("index")]
         [HttpPost]
-        public ActionResult<DataRes<List<ChannelLevelSalesCount>>> Index(DateTime? startDatetime = null, DateTime? endDatetime = null)
+        public ActionResult<DataRes<List<ChannelLevelSalesCount>>> Index([FromBody]ReqTimeBetween req)
         {
             var res = new DataRes<List<ChannelLevelSalesCount>>() { code=ResCode.Success};
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 string dateFilterStr = "";
-                if (startDatetime != null && endDatetime != null)
+                if (req.startTime != null && req.endTime != null)
                 {
                     dateFilterStr = $"and a.DatePaidPlatform between " +
-                    $"'{startDatetime.ToString()}' and '{endDatetime.ToString()}' ";
+                    $"'{req.startTime}' and '{req.endTime}' ";
                 }
-                else if (startDatetime != null && endDatetime == null)
+                else if (req.startTime != null && req.endTime == null)
                 {
-                    dateFilterStr = $"and a.DatePaidPlatform>='{startDatetime.ToString()}'";
+                    dateFilterStr = $"and a.DatePaidPlatform>='{req.startTime}'";
                 }
-                else if (startDatetime == null && endDatetime != null)
+                else if (req.startTime == null && req.endTime != null)
                 {
-                    dateFilterStr = $"and a.DatePaidPlatform<='{endDatetime.ToString()}'";
+                    dateFilterStr = $"and a.DatePaidPlatform<='{req.startTime}'";
                 }
                 else
                 {
                     res.code = ResCode.NoValidate;
                     res.msg = "Please check date filter!";
                 }
-                string sql = $"select bb.Channel,bb.StoreProductCategory," +
-                    $"case when qty is null then 0 else qty end SalesCount from(" +
+                string sql = $"select  ROW_NUMBER () OVER (ORDER BY bb.Channel ) RowNumber, bb.Channel,bb.StoreProductCategory Level," +
+                    $"case when qty is null then 0 else qty end SalesCountQty from(" +
                     $"select* from (select distinct StoreProductCategory " +
                     $"from EC_Processed_SkuRelationItems) a join(select distinct case " +
                     $"when Plateform in ('ebay','aliexpress','amazon','shopify') then Plateform " +
