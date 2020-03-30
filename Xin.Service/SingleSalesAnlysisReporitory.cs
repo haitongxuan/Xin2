@@ -55,8 +55,7 @@ namespace Xin.Service
                 $"on tb1.SubProductSku=tb3.SubProductSku and tb1.WarehouseId=tb3.WarehouseId left join " +
                 $"({string.Format(subQueryStr, string.Format(daysFilterStr, filterdate.ToString(), forthDays.ToString()))}) as tb4 " +
                 $"on tb1.SubProductSku=tb4.SubProductSku and tb1.WarehouseId=tb4.WarehouseId left join " +
-                $"EC_Warehouse wh on wh.WarehouseId=tb0.WarehouseId ) tt WHERE 1=1 {filterStr} " +
-                $"order by rownumber";
+                $"EC_Warehouse wh on wh.WarehouseId=tb0.WarehouseId ) tt WHERE 1=1 {filterStr} ";
             return queryStr;
         }
 

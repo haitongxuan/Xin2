@@ -28,7 +28,7 @@ namespace XIn.QuartzService
             StdSchedulerFactory factory = new StdSchedulerFactory();
             var _scheduler = await factory.GetScheduler();
             await _scheduler.Start();
-            string quartzStartTime = "0 0 9 * * ? *";
+            string quartzStartTime = "0 0 4 * * ? *";
             #region EcSaleOrderDaily
             IJobDetail job = JobBuilder.Create<EcSaleOrderDaily>()
                 .WithIdentity("job1", "group1")
@@ -37,7 +37,7 @@ namespace XIn.QuartzService
             ITrigger trigger = TriggerBuilder.Create()
                 .WithIdentity("trigger1", "group1")
                 .StartNow()
-                .WithCronSchedule("0 0 9 * * ? *")//每日3点开始执行
+                .WithCronSchedule(quartzStartTime)//每日3点开始执行
                 .Build();
             //将任务加入到任务池
             await _scheduler.ScheduleJob(job, trigger);
