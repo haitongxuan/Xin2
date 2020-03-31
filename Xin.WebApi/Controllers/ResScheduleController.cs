@@ -59,7 +59,11 @@ namespace Xin.WebApi.Controllers
                     var fuc = FilterHelper<ResSchedule>.GetExpression(query, "schedulegetpage");
                     filter = new Repository.Filter<ResSchedule>(fuc);
                 }
-                var orderBy = new Repository.OrderBy<ResSchedule>(pageReq.order.columnName, pageReq.order.reverse);
+                OrderBy<ResSchedule> orderBy = null;
+                if (pageReq.order!=null &&!string.IsNullOrWhiteSpace(pageReq.order.columnName))
+                {
+                    orderBy = new Repository.OrderBy<ResSchedule>(pageReq.order.columnName, pageReq.order.reverse);
+                }
                 try
                 {
                     var result = await _dataPager.QueryAsync(

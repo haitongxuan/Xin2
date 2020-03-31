@@ -23,9 +23,28 @@ namespace Xin.Service.Context
             this.WavingBlockMapping(modelBuilder);
             this.HeadgearDensityMapping(modelBuilder);
             this.ListStringModelMapping(modelBuilder);
+            this.PlateformLevelMapping(modelBuilder);
         }
 
-
+        private void PlateformLevelMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"AliexpressQty").HasColumnName(@"AliexpressQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"AmazonQty").HasColumnName(@"AmazonQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"EbayQty").HasColumnName(@"EbayQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"ShopifyQty").HasColumnName(@"ShopifyQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"OtherQty").HasColumnName(@"OtherQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"AfricanmallQty").HasColumnName(@"AfricanmallQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"JuliahairQty").HasColumnName(@"JuliahairQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"NadulamallQty").HasColumnName(@"NadulamallQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"UnicemallQty").HasColumnName(@"UnicemallQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"BfmallQty").HasColumnName(@"BfmallQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"UnicefrQty").HasColumnName(@"UnicefrQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"ZyQty").HasColumnName(@"ZyQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"ZyItemQty").HasColumnName(@"ZyItemQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().Property<int>(@"ZQty").HasColumnName(@"ZQty").ValueGeneratedNever();
+            modelBuilder.Entity<PlateformLevel>().HasKey(@"SaleType");
+        }
+        public virtual DbSet<PlateformLevel> PlateformLevels { get; set; }
 
         public virtual DbSet<WavingBlock> WavingBlocks { get; set; }
         public virtual DbSet<HeadgearDensity> HeadgearDensitys { get; set; }

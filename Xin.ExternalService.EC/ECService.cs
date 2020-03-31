@@ -46,7 +46,7 @@ namespace Xin.ExternalService.EC
             }
 
             body = GetECResponse(responseJson);
-            if (body.Code != "200")
+            if (body.Code != "200"&&body.Message != "Success")
             {
                 throw new ECExceptoin(body.Service + " error:" + body.Message, body.Error);
             }

@@ -85,7 +85,5 @@ namespace Xin.Service
             return permissions;
         }
 
-
-
     }
 }

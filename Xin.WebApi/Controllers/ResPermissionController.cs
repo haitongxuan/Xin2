@@ -123,7 +123,7 @@ namespace Xin.WebApi.Controllers
         [Route("Delete/{id}")]
         [PermissionFilter("Permission.Delete")]
         [HttpPost]
-        public async Task<DataRes<bool>> DeleteAsync(string id)
+        public async Task<DataRes<bool>> DeleteAsync(int id)
         {
             DataRes<bool> res = new DataRes<bool>() { code = ResCode.Success, data = true };
             using (var uow = _uowProvider.CreateUnitOfWork())

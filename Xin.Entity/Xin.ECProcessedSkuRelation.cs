@@ -18,65 +18,23 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECAsnProductCost {
+    public partial class ECProcessedSkuRelation {
 
-        public ECAsnProductCost()
+        public ECProcessedSkuRelation()
         {
             OnCreated();
         }
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int Id
+        public virtual int RelationId
         {
             get;
             set;
         }
 
-        public virtual decimal? TotalCost
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? ShoppingCost
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? CcfCost
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? DtCost
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? OtherCost
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(32)]
-        public virtual string CustomerCurrency
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? HeadCost
-        {
-            get;
-            set;
-        }
-
-        public virtual ECAsnItem ECAsnItem
+        [System.ComponentModel.DataAnnotations.StringLength(256)]
+        public virtual string ProductSku
         {
             get;
             set;

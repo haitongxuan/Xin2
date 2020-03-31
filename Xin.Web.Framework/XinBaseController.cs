@@ -71,7 +71,7 @@ namespace Xin.Web.Framework
                     try
                     {
                         OrderBy<TEntity> order = null;
-                        if (req.order != null)
+                        if (req.order != null&&!string.IsNullOrWhiteSpace(req.order.columnName))
                         {
                             order = new OrderBy<TEntity>(req.order.columnName, req.order.reverse);
                         }
@@ -314,7 +314,7 @@ namespace Xin.Web.Framework
                         var query = pageReq.query;
                         var fuc = FilterHelper<TEntity>.GetExpression(query, parameterstr);
                         var filter = new Repository.Filter<TEntity>(fuc);
-                        if (string.IsNullOrEmpty(pageReq.order.columnName))
+                        if (pageReq.order == null || string.IsNullOrEmpty(pageReq.order.columnName))
                         {
                             pageReq.order.columnName = "Id";
                             pageReq.order.reverse = false;
@@ -432,8 +432,9 @@ namespace Xin.Web.Framework
                     try
                     {
                         var repository = uow.GetRepository<TEntity>(); 
-                        if (req.order.columnName == null)
+                        if (req.order == null ||string.IsNullOrWhiteSpace(req.order.columnName))
                         {
+                            req.order = new Order();
                             req.order.columnName = "Id";
                             req.order.reverse = false;
                         }
@@ -497,8 +498,9 @@ namespace Xin.Web.Framework
                         });
                         var fuc = FilterHelper<TEntity>.GetExpression(query, parameterstr);
                         var filter = new Repository.Filter<TEntity>(fuc);
-                        if (pageReq.order.columnName == null)
+                        if (pageReq.order == null|| pageReq.order.columnName==null)
                         {
+                            pageReq.order = new Order();
                             pageReq.order.columnName = "Id";
                             pageReq.order.reverse = false;
                         }

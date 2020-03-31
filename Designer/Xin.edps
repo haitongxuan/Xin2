@@ -4,56 +4,59 @@
     <Connection ConnectionString="Data Source=192.168.1.21;Initial Catalog=XinDB;Integrated Security=False;Persist Security Info=True;User ID=sa;Password=longqi.123" Provider="System.Data.SqlClient" />
     <Generation>
       <GeneratedFiles>
-        <File Name="Xin.XinDBContext.cs" DestinationFolder="D:\Project\XIN\Xin.Service\Context" />
-        <File Name="Xin.ResDepartment.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ResRole.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ResResource.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ResPermission.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ResUser.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ResUserRole.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ResRolePermission.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ResUserPermission.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ResAutoCode.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ResSchedule.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ResOperateLog.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECOrderConfigData.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECProduct.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECProductBox.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECProductCombination.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECProductCustomCategory.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECProductProperty.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECSalesOrder.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECSalesOrderAddress.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECSubProduct.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECWarehouse.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECSalesOrderDetail.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECReceivingDetail.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECDeliveryDetail.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECRMARefund.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECSkuRelation.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECSkuRelationItem.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.BnsOmsReceivingCodeRecord.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECAsn.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECAsnItem.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECAsnCost.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECAsnWarehouseAttr.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECAsnProductCost.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.BnsUsBaseInventory.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECShipBatch.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECShipBatchPackingInfo.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECShipBatchProductInfo.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECFbaBoxDetail.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECFbaFinalBox.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECFbaLog.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECFbaOmsBox.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECFbaOrder.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECFbaPackBox.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECFbaPackDetail.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECFbaQueryOrder.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECFbaTransitBox.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECFbaBox.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.ECProcessedSkuRelationItem.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
-        <File Name="Xin.BnsUsTagType.cs" DestinationFolder="D:\Project\XIN\Xin.Entity" />
+        <File Name="Xin.XinDBContext.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Service\Context" />
+        <File Name="Xin.ResDepartment.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResRole.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResResource.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResPermission.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResUser.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResUserRole.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResRolePermission.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResUserPermission.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResAutoCode.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResSchedule.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResOperateLog.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECOrderConfigData.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECProduct.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECProductBox.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECProductCombination.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECProductCustomCategory.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECProductProperty.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECSalesOrder.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECSalesOrderAddress.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECSubProduct.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECWarehouse.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECSalesOrderDetail.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECReceivingDetail.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECDeliveryDetail.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECRMARefund.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECSkuRelation.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECSkuRelationItem.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.BnsOmsReceivingCodeRecord.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECAsn.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECAsnItem.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECAsnCost.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECAsnWarehouseAttr.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECAsnProductCost.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.BnsUsBaseInventory.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECShipBatch.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECShipBatchPackingInfo.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECShipBatchProductInfo.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECFbaBoxDetail.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECFbaFinalBox.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECFbaLog.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECFbaOmsBox.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECFbaOrder.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECFbaPackBox.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECFbaPackDetail.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECFbaQueryOrder.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECFbaTransitBox.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECFbaBox.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECProcessedSkuRelationItem.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECProcessedSkuRelation.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ResMenu.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.ECCountry.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
+        <File Name="Xin.BnsUsTagType.cs" DestinationFolder="E:\LQAPP\XIN2\Xin.Entity" />
       </GeneratedFiles>
     </Generation>
     <DatabaseFirstNamingRules>
@@ -85,14 +88,14 @@
           <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <Project />
             <ProjectFolder />
-            <DestinationFolder>D:\Project\XIN\Xin.Entity</DestinationFolder>
+            <DestinationFolder>E:\LQAPP\XIN2\Xin.Entity</DestinationFolder>
           </OutputInfo>
         </ed:Property>
         <ed:Property Name="ContextOutput" Type="EntityDeveloper.TemplateEngine.OutputInfo, EntityDeveloper.Common, Version=6.5.823.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
           <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <Project />
             <ProjectFolder />
-            <DestinationFolder>D:\Project\XIN\Xin.Service\Context</DestinationFolder>
+            <DestinationFolder>E:\LQAPP\XIN2\Xin.Service\Context</DestinationFolder>
           </OutputInfo>
         </ed:Property>
         <ed:Property Name="FilePerClass" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -144,7 +147,7 @@
           <OutputInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <Project />
             <ProjectFolder />
-            <DestinationFolder>D:\Project\XIN\Xin.Entity</DestinationFolder>
+            <DestinationFolder>E:\LQAPP\XIN2\Xin.Entity</DestinationFolder>
           </OutputInfo>
         </ed:Property>
       </Template>

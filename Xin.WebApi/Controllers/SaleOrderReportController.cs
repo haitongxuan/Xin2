@@ -11,6 +11,9 @@ using Xin.Repository;
 using Xin.Service;
 using Xin.Web.Framework.Controllers;
 using Xin.Web.Framework.Model;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Xin.Web.Framework.Helper;
 
 namespace Xin.WebApi.Controllers
 {
@@ -171,6 +174,7 @@ namespace Xin.WebApi.Controllers
             {
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
+                   
                     var sdatep = new SqlParameter("@Sdate", req.startTime);
                     var edatep = new SqlParameter("@Edate", req.endTime);
 

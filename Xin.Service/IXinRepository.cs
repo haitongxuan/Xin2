@@ -17,5 +17,6 @@ namespace Xin.Service
         string GetCode();
 
         void Add(TEntity entity);
+
     }
 }

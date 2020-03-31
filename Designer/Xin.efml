@@ -2716,6 +2716,69 @@
     <property name="ProductCategory" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="6f6edc95-743c-4787-8d80-cdf63aabef4f">
       <column name="ProductCategory" not-null="False" length="50" sql-type="nvarchar" p1:unicode="True" />
     </property>
+    <property name="ProductType" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="e6f78abf-d8e0-4035-b22d-3fc552c9eef1">
+      <column name="ProductType" not-null="False" length="20" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECProcessedSkuRelation" entity-set="ECProcessedSkuRelations" table="EC_Processed_SkuRelation" schema="dbo" p1:Guid="51d3df69-56a0-464f-a127-edde917a4883">
+    <id name="RelationId" type="Int32" p1:ValidateRequired="true" p1:Guid="13f5edf1-c21f-4df8-94eb-35dfbc6718bd">
+      <column name="RelationId" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="977f6c09-0da9-4de0-9a30-8ead2fa237eb">
+      <column name="ProductSku" not-null="False" length="256" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="ResMenu" entity-set="ResMenus" table="Res_Menus" schema="dbo" p1:Guid="bf89f403-f3bd-4e70-be71-311fc3553e7a">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="41d0cbbf-896e-47bc-a877-afcb1b3cf6af">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ParentId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="2a605a66-adcd-4e0a-8849-b457f9a4e30a">
+      <column name="parent_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="Icon" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d2630b74-f05d-4965-9050-f2fc11ca5e46">
+      <column name="icon" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Url" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="247a3904-d2c7-44e1-9304-4ccf2a797347">
+      <column name="url" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Component" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="218e676f-1088-4092-9ee5-d2df9ba8b9c7">
+      <column name="component" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Name" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8c0bd3a6-4f39-4491-b6c8-0736dc6a1ee6">
+      <column name="name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BeforeCloseName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b7cebf28-874f-4529-9259-fb8f7f47cdf1">
+      <column name="before_close_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="NotCache" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7cf2af33-eb05-4e93-8f3b-44462a6d1a4a">
+      <column name="not_cache" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="Access" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="418d8cd0-e95a-4a5e-9479-9fa09c91b1ca">
+      <column name="access" not-null="False" length="4000" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="HideInMenu" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="30947348-72eb-4c1a-a885-526f05a32263">
+      <column name="hide_in_menu" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="HideInBread" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8f73e3a3-d962-4ba5-ac39-777261cddf59">
+      <column name="hide_in_bread" not-null="False" sql-type="bit" p1:unicode="False" />
+    </property>
+    <property name="Title" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="40f6df82-90f7-4305-a8cb-160f29e29e52">
+      <column name="title" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECCountry" entity-set="ECCountries" table="EC_Country" schema="dbo" p1:Guid="1b54bbc2-508a-4ae2-ad2f-9312a111809c">
+    <id name="CountryId" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="4d93f5c7-0a68-47e2-ad33-dc7ccde6e500">
+      <column name="country_id" not-null="True" length="255" sql-type="nvarchar" p1:unicode="True" />
+    </id>
+    <property name="CountryName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ad1b057e-acd5-4f89-a866-9965f0e4e75d">
+      <column name="country_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryNameEn" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d02e2eb7-7d17-4fff-949a-660a9e0f51e4">
+      <column name="country_name_en" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="76af5930-635c-4337-9e67-5ac3f4cd5ddd">
+      <column name="country_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
   </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
@@ -2980,6 +3043,14 @@
       </end1>
       <end2 multiplicity="Many" name="TransitBox" class="ECFbaBox" relation-class="ECFbaTransitBox" lazy="False" p1:Guid="eb21d2e6-d9f3-4b45-912a-895626d5b971">
         <property name="FbaBoxId" />
+      </end2>
+    </association>
+    <association name="ResMenu_ResMenu" cardinality="OneToMany" p1:Guid="0c77c0f9-8c26-402e-9a2e-04506feb2499">
+      <end1 multiplicity="ZeroOrOne" name="Parent" class="ResMenu" relation-class="ResMenu" constrained="True" lazy="False" p1:Guid="178c9be2-85b5-49f3-8544-e94fbe56a48d">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="Children" class="ResMenu" relation-class="ResMenu" lazy="False" p1:Guid="e1ba1446-9898-4614-82d4-6f474e4fefb6">
+        <property name="ParentId" />
       </end2>
     </association>
   </associations>

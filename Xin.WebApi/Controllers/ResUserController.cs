@@ -31,7 +31,6 @@ namespace Xin.WebApi.Controllers
             _dataPager = dataPager;
         }
 
-
         [HttpGet, Route("GetAccess")]
         public dynamic GetAccess()
         {
@@ -66,7 +65,46 @@ namespace Xin.WebApi.Controllers
                 return dr;
             }
         }
+        //public override async Task<ActionResult<DataRes<bool>>> Edit([FromBody]ResUser model) {
+        //    using (var uow = _uowProvider.CreateUnitOfWork())
+        //    {
+        //        IEnumerable<ResUserPermission> upl = from rup in model.ResUserPermissions
+        //                                             select new ResUserPermission
+        //                                             {
+        //                                                 PermissionId = rup.PermissionId,
+        //                                                 CreateDate = DateTime.Now,
+        //                                                 WriteDate = DateTime.Now,
+        //                                                 CreateUid = UserId,
+        //                                                 WriteUid = UserId
+        //                                             };
+        //        IEnumerable<ResUserRole> url = from rur in model.ResUserRoles
+        //                                       select new ResUserRole
+        //                                       {
+        //                                           RoleId = rur.RoleId,
+        //                                           CreateDate = DateTime.Now,
+        //                                           WriteDate = DateTime.Now,
+        //                                           WriteUid = UserId,
+        //                                           CreateUid = UserId
+        //                                       };
+        //        var repository = uow.GetRepository<ResUser>();
+        //        try
+        //        {
+        //            model.ResUserPermissions = upl.ToList();
+        //            model.ResUserRoles = url.ToList();
+        //            model.WriteUid = Convert.ToInt32(UserId);
+        //            model.CreateUid = Convert.ToInt32(UserId);
+        //            model.WriteDate = DateTime.Now;
+        //            repository.Update(model);
+        //            int i = await uow.SaveChangesAsync();
+        //            return new DataRes<bool>() { data = true };
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return new DataRes<bool>() { data = false, msg = ex.Message, code = ResCode.Error };
+        //        }
+        //    }
 
+        //}
         /// <summary>
         /// 添加用户
         /// </summary>

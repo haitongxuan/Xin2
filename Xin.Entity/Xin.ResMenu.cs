@@ -18,10 +18,11 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECAsnProductCost {
+    public partial class ResMenu {
 
-        public ECAsnProductCost()
+        public ResMenu()
         {
+            this.Children = new List<ResMenu>();
             OnCreated();
         }
 
@@ -33,50 +34,79 @@ namespace Xin.Entities
             set;
         }
 
-        public virtual decimal? TotalCost
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Icon
+        {
+            get;
+            set;
+        }
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Url
         {
             get;
             set;
         }
 
-        public virtual decimal? ShoppingCost
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Component
         {
             get;
             set;
         }
 
-        public virtual decimal? CcfCost
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Name
         {
             get;
             set;
         }
 
-        public virtual decimal? DtCost
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string BeforeCloseName
         {
             get;
             set;
         }
 
-        public virtual decimal? OtherCost
+        public virtual bool? NotCache
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(32)]
-        public virtual string CustomerCurrency
+        [System.ComponentModel.DataAnnotations.StringLength(4000)]
+        public virtual string Access
         {
             get;
             set;
         }
 
-        public virtual decimal? HeadCost
+        public virtual bool? HideInMenu
         {
             get;
             set;
         }
 
-        public virtual ECAsnItem ECAsnItem
+        public virtual bool? HideInBread
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Title
+        {
+            get;
+            set;
+        }
+
+        public virtual IList<ResMenu> Children
+        {
+            get;
+            set;
+        }
+
+        public virtual ResMenu Parent
         {
             get;
             set;
