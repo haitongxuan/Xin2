@@ -21,10 +21,6 @@ namespace Xin.Web.Framework.Helper
                 foreach (var item in children)
                 {
                     item.Children = ToTree(orignList, item.id);
-                    if (item.Children !=null)
-                    {
-                        item.path = null;
-                    }
                     list.Add(item);
                 }
             }

@@ -45,7 +45,7 @@ namespace Xin.WebApi.Controllers
         }
         [Route("AddMenus")]
         [HttpPost]
-        public DataRes<List<ResMenuResponse>> AddMenus([FromBody] ResMenu  menu,int? parentId )
+        public DataRes<List<ResMenuResponse>> AddMenus([FromBody] MenuRequestModel menu )
         {
             var res = new GridPage<List<ResMenuResponse>>() { code = ResCode.Success };
             try
@@ -53,10 +53,11 @@ namespace Xin.WebApi.Controllers
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
                     var repository = uow.GetRepository<ResMenu>();
-                    if (parentId!=null&&parentId!=0)
+                    if (menu.parentId != null&& menu.parentId != 0)
                     {
-                        menu.Parent = repository.Get(1);
+                        menu.Parent = repository.Get(menu.parentId);
                     }
+                    menu.Url = menu.path;
                     repository.Add(menu);
                     uow.SaveChanges();
                     res.data = null;
@@ -71,6 +72,67 @@ namespace Xin.WebApi.Controllers
             return res;
         }
 
+        [Route("EditMenu")]
+        [HttpPost]
+        public DataRes<List<ResMenuResponse>> EditMenus([FromBody] MenuRequestModel menu)
+        {
+            var res = new GridPage<List<ResMenuResponse>>() { code = ResCode.Success };
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+                    var repository = uow.GetRepository<ResMenu>();
+                    if (menu.parentId != null && menu.parentId != 0)
+                    {
+                        menu.Parent = repository.Get(menu.parentId);
+                    }
+                    menu.Url = menu.path;
+                    repository.Update(menu);
+                    uow.SaveChanges();
+                    res.data = null;
+                    res.msg = "修改成功";
+                }
+            }
+            catch (Exception ex)
+            {
+                res.code = ResCode.ServerError;
+                res.msg = ex.Message;
+            }
+            return res;
+        }
+        [Route("DeleteMenu")]
+        [HttpPost]
+        public DataRes<List<ResMenuResponse>> DeleteMenus(int id)
+        {
+            var res = new GridPage<List<ResMenuResponse>>() { code = ResCode.Success };
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+                    var repository = uow.GetRepository<ResMenu>();
+                    var menu = repository.Get(id);
+                    if (menu!=null)
+                    {
+                        repository.Remove(menu);
+                        uow.SaveChanges();
+                        res.data = null;
+                        res.msg = "删除成功";
+                    }
+                    else
+                    {
+                        res.code = ResCode.NotFound;
+                        res.data = null;
+                        res.msg = "未找到该记录";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.code = ResCode.ServerError;
+                res.msg = ex.Message;
+            }
+            return res;
+        }
 
     }
 }
