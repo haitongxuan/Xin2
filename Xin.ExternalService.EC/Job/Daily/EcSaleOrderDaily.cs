@@ -64,6 +64,7 @@ namespace Xin.ExternalService.EC.Job
                             log.Info($"日订单开始拉取:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
+                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "Detail", "新增数据详情", response.Body));
 
                         }
                         catch (Exception ex)
@@ -135,6 +136,8 @@ namespace Xin.ExternalService.EC.Job
                             log.Info($"日订单开始更新:更新时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
+                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "Detail", "更新数据详情", response.Body));
+
                         }
                         catch (Exception ex)
                         {

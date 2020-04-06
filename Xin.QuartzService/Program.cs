@@ -1,18 +1,8 @@
-﻿using log4net;
-using log4net.Config;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Quartz;
-using Quartz.Impl;
-using System;
-using System.Configuration;
+﻿using System;
 using System.IO;
 using Xin.Common;
-using Xin.ExternalService.EC;
 using Xin.ExternalService.EC.Job;
 using Xin.ExternalService.EC.Job.Daily;
-using Xin.Repository;
 
 namespace XIn.QuartzService
 {
@@ -21,7 +11,6 @@ namespace XIn.QuartzService
 
         public static async System.Threading.Tasks.Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             var repository = LogManager.CreateRepository(LogFactory.repositoryName);
             // 指定配置文件
             XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));

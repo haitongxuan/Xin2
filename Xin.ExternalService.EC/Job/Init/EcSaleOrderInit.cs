@@ -31,12 +31,14 @@ namespace Xin.ExternalService.EC.Job
         {
             var models = new List<ECSalesOrder>();
             var reqModel = new EBGetOrderListReqModel();
-            reqModel.PageSize = 1000;
+            reqModel.Page = 1;
+            reqModel.PageSize = 10;
             reqModel.GetDetail = IsOrNotEnum.Yes;
             reqModel.GetAddress = IsOrNotEnum.Yes;
-            bool finish = true;
-            int pageIndex = 1;
-            int submitPageQty = 5;
+            Conditions conditions = new Conditions();
+            conditions.CreatedDateAfter = DateTime.Parse("2020-03-15");
+            conditions.CreatedDateBefore = DateTime.Now;
+            reqModel.Condition = conditions;
 
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
@@ -53,101 +55,59 @@ namespace Xin.ExternalService.EC.Job
                     log.Error($"初始化产品信息,删除产品信息异常:{ex.Message}");
                     throw ex;
                 }
-                while (finish)
+                EBGetOrderListRequest req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
+                try
                 {
-                    reqModel.Page = pageIndex;
-                    Reqeust.EBGetOrderListRequest req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
-                    Response.EBGetOrderListResponse resp = null;
-                    try
+                    var response = await req.Request();
+                    response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
+                    int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
+                    for (int page = pageNum; page > 0; page--)
                     {
-                        resp = await req.Request();
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Error($"初始化产品信息,获取数据错误:{ex.Message}");
-                        throw ex;
-                    }
-                    if (resp.Body.Count == reqModel.PageSize)
-                    {
-                        foreach (var i in resp.Body)
+                        reqModel.PageSize = 1000;
+                        reqModel.Page = page;
+                        try
+                        {
+                            req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
+                            response = await req.Request();
+                        }
+                        catch (Exception ex)
+                        {
+                            log.Error($"订单信息,接口调用异常:时间区间{reqModel.Condition.CreatedDateAfter.ToString()}TO{reqModel.Condition.CreatedDateBefore.ToString()}第{page}页;异常信息:{ex.Message}");
+
+                            throw ex;
+                        }
+                        foreach (var item in response.Body)
                         {
                             try
                             {
-                                var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(i);
+                                var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
                                 models.Add(m);
                             }
                             catch (Exception ex)
                             {
+                                log.Error($"订单信息,接口调用异常:时间区间{reqModel.Condition.CreatedDateAfter.ToString()}TO{reqModel.Condition.CreatedDateBefore.ToString()}第{page}页;异常信息:{ex.Message}");
                                 throw ex;
                             }
                         }
-                        if (pageIndex % submitPageQty == 0)
-                        {
-                            #region
-                            //string sql = "";
-                            //string json = Newtonsoft.Json.JsonConvert.SerializeObject(models);
-                            #endregion
-                            try
-                            {
-                                #region
-                                //foreach (var mo in models)
-                                //{
-                                //    sql += $"INSERT INTO [dbo].[EC_SalesOrderAddress]([ShippingAddressId],[Name],[CompanyName],[CountryCode],[CountryName],[CityName],[PostalCode],[Line1],[Line2],[Line3],[District],[State],[Doorplate],[Phone],[CreatedDate],[UpdateDate])     VALUES(\'{mo.SalesOrderAddress.ShippingAddressId}\',\'{mo.SalesOrderAddress.Name.Replace("'", "''")}\',\'{mo.SalesOrderAddress.CompanyName.Replace("'", "''")}\',\'{mo.SalesOrderAddress.CountryCode.Replace("'", "''")}\',\'{mo.SalesOrderAddress.CountryName.Replace("'", "''")}\',\'{mo.SalesOrderAddress.CityName.Replace("'", "''")}\',\'{mo.SalesOrderAddress.PostalCode.Replace("'", "''")}\',\'{mo.SalesOrderAddress.Line1.Replace("'", "''")}\',\'{mo.SalesOrderAddress.Line2.Replace("'", "''")}\',\'{mo.SalesOrderAddress.Line3.Replace("'", "''")}\',\'{mo.SalesOrderAddress.District.Replace("'", "''")}\',\'{mo.SalesOrderAddress.State.Replace("'", "''")}\',\'{mo.SalesOrderAddress.Doorplate.Replace("'", "''")}\',\'{mo.SalesOrderAddress.Phone.Replace("'", "''")}\',\'{mo.SalesOrderAddress.CreatedDate}\',\'{mo.SalesOrderAddress.UpdateDate}\');\r\n";
-                                //    sql += $"INSERT INTO [dbo].[EC_SalesOrder]([OrderId],[Plateform],[OrderType],[Status],[ProcessAgain],[RefNo],[SaleOrderCode],[SysOrderCode]," +
-                                //        $"[WarehouseOrderCode],[CompanyCode],[UserAccount],[PlatformUserName],[ShippingMethod],[ShippingMethodNo],[ShippingMethodPlatform],[WarehouseId]," +
-                                //        $"[WarehouseCode],[CreatedDate],[UpdateDate],[DatePaidPlatform],[PlatformShipStatus],[PlatformShipTime],[DateWarehouseShipping],[DateLatestShip]," +
-                                //        $"[Currency],[Amountpaid],[Subtotal],[ShipFee],[PlatformFeeTotal],[FinalvaluefeeTotal],[OtherFee],[CostShipFee],[BuyerId],[BuyerName],[BuyerMail]," +
-                                //        $"[Site],[CountryCode],[ProductCount],[OrderWeight],[OrderDesc],[PaypalTransactionId],[PaymentMethod],[AbnormalType],[AbnormalReason],[ShippingAddressId],[OriginalOrderId]," +
-                                //        $"[SyncCode])     VALUES(\'{mo.OrderId}\',\'{mo.Plateform}\',\'{mo.OrderType}\',\'{mo.Status}\',\'{mo.ProcessAgain}\',\'{mo.RefNo}\',\'{mo.SaleOrderCode}\',\'{mo.SysOrderCode}\',\'{mo.WarehouseOrderCode}\',\'{mo.CompanyCode}\',\'{mo.UserAccount}\',\'{mo.PlatformUserName}\',\'{mo.ShippingMethod}\',\'{mo.ShippingMethodNo}\',\'{mo.ShippingMethodPlatform}\',\'{mo.WarehouseId}\',\'{mo.WarehouseCode}\',\'{mo.CreatedDate}\',\'{mo.UpdateDate}\',\'{mo.DatePaidPlatform}\',\'{mo.PlatformShipStatus}\',\'{mo.PlatformShipTime}\'," +
-                                //        $"\'{mo.DateWarehouseShipping}\',\'{mo.DateLatestShip}\',\'{mo.Currency.Replace("'", "''")}\',\'{mo.Amountpaid}\',\'{mo.Subtotal}\',\'{mo.ShipFee}\',\'{mo.PlatformFeeTotal}\',\'{mo.FinalvaluefeeTotal}\',\'{mo.OtherFee}\',\'{mo.CostShipFee}\',\'{mo.BuyerId}\',\'{mo.BuyerName.Replace("'", "''")}\',\'{mo.BuyerMail}\',\'{mo.Site}\',\'{mo.CountryCode}\',\'{mo.ProductCount}\',\'{mo.OrderWeight}\',\'{mo.OrderDesc.Replace("'", "''")}\',\'{mo.PaypalTransactionId}\',\'{mo.PaymentMethod}\',\'{mo.AbnormalType}\',\'{mo.AbnormalReason.Replace("'", "''")}\',\'{mo.SalesOrderAddress.ShippingAddressId}\',null,\'{mo.SyncCode}\');\r\n";
-                                //    foreach (var detail in mo.OrderDetails)
-                                //    {
-                                //        sql += $"INSERT INTO [dbo].[EC_SalesOrderDetail]([OpId],[OrderId],[ProductSku],[Sku],[WarehouseSku],[UnitPrice],[Qty],[ProductTitle],[Pic],[OpSite],[ProductUrl],[RefItemId],[OpRefItemLocation],[UnitFinalValueFee],[TransactionPrice],[OperTime])     VALUES(\'{detail.OpId}\',\'{mo.OrderId}\',\'{detail.ProductSku}\',\'{detail.Sku}\',\'{detail.WarehouseSku}\',\'{detail.UnitPrice}\',\'{detail.Qty}\',\'{detail.ProductTitle.Replace("'", "''")}\',\'{detail.Pic}\',\'{detail.OpSite}\',\'{detail.ProductUrl}\',\'{detail.RefItemId}\',\'{detail.OpRefItemLocation}\',\'{detail.UnitFinalValueFee}\',\'{detail.TransactionPrice}\',\'{detail.OperTime}\');\r\n";
-                                //    }
-                                //}
-                                //Console.Write(sql);
-                                #endregion
-                                await repository.BulkInsertAsync(models, x => x.IncludeGraph = true);
-                                uow.BulkSaveChanges();
-                                models.Clear();
-                            }
-                            catch (Exception ex)
-                            {
-                                log.Error($"初始化产品信息,批量导入产品异常:第{pageIndex}页,{ex.Message}");
-                                throw ex;
-                            }
-                        }
-                        pageIndex++;
-                    }
-                    else
-                    {
+
                         try
                         {
-                            foreach (var i in resp.Body)
-                            {
-                                try
-                                {
-                                    var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(i);
-                                    models.Add(m);
-                                }
-                                catch (Exception ex)
-                                {
-                                    throw ex;
-                                }
-                            }
                             await repository.BulkInsertAsync(models, x => x.IncludeGraph = true);
                             uow.BulkSaveChanges();
                             models.Clear();
                         }
                         catch (Exception ex)
                         {
-                            log.Error($"初始化产品信息,批量导入产品异常:第{pageIndex}页,{ex.Message}");
+                            log.Error($"订单信息,写入数据库异常:时间区间{reqModel.Condition.CreatedDateAfter.ToString()}TO{reqModel.Condition.CreatedDateBefore.ToString()}第{page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
-                        finish = false;
                     }
                 }
+                catch (Exception ex)
+                {
 
+                    log.Error("接口调用出现异常");
+                }
             }
         }
     }
