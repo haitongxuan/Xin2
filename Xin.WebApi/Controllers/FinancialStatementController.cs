@@ -205,7 +205,7 @@ namespace Xin.WebApi.Controllers
         /// <returns></returns>
         [Route("ImportAliLoan")]
         [HttpPost]
-        public GridPage<List<ECAliexpressLoaninfo>> ImportAliLoan([FromForm] IFormFile excelFile)
+        public GridPage<List<ECAliexpressLoaninfo>> ImportAliLoan([FromForm] IFormFile excelFile, string shopName)
         {
             var res = new GridPage<List<ECAliexpressLoaninfo>>() { code = ResCode.Success };
             try
@@ -217,6 +217,7 @@ namespace Xin.WebApi.Controllers
                     List<ECAliexpressLoaninfo> list = ExcelHelper<ECAliexpressLoaninfo>.ExcelToList(excelFile);
                     foreach (var item in list)
                     {
+                        item.StoreName = shopName;
                         var had = repository.Query(a => a.StoreName == item.StoreName && a.LoanDate == item.LoanDate
                         && a.LoanType == item.LoanType && a.TransactionInfo == item.TransactionInfo
                         && a.PlateForm == item.PlateForm && a.FundsDetail == item.FundsDetail).FirstOrDefault();
@@ -240,5 +241,17 @@ namespace Xin.WebApi.Controllers
             }
             return res;
         }
+        /// <summary>
+        /// 获取速卖通店铺数据
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetShop")]
+        [HttpGet]
+        public string[] GetShop()
+        {
+            string[] shops = new string[] { "Ali_Klaiyi", "Ali_Sunber", "Ali_wondess", "BF", "chifave franchised", "chifave official", "Julia", "LQ", "Nadula", "sviuse", "talever clothes", "talever official", "Unice", "zevrez" };
+            return shops;
+        }
+
     }
 }
