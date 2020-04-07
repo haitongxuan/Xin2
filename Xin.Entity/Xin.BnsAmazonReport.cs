@@ -18,10 +18,11 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECShipBatchPackingInfo {
+    public partial class BnsAmazonReport {
 
-        public ECShipBatchPackingInfo()
+        public BnsAmazonReport()
         {
+            this.BnsAmazonReportDetails = new List<BnsAmazonReportDetail>();
             OnCreated();
         }
 
@@ -34,39 +35,58 @@ namespace Xin.Entities
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ReferenceNo
+        public virtual string ReportRequestId
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppCode
+        public virtual string ReportType
         {
             get;
             set;
         }
 
-        public virtual int? TppQuantity
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? TppWeight
+        public virtual System.DateTime? CreateDate
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppVolume
+        public virtual string ReportId
         {
             get;
             set;
         }
 
-        public virtual ECShipBatch ECShipBatch
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Store
+        {
+            get;
+            set;
+        }
+
+        public virtual System.DateTime? AvailableDate
+        {
+            get;
+            set;
+        }
+
+        public virtual System.DateTime? EndDate
+        {
+            get;
+            set;
+        }
+
+        public virtual System.DateTime? StartDate
+        {
+            get;
+            set;
+        }
+
+        public virtual IList<BnsAmazonReportDetail> BnsAmazonReportDetails
         {
             get;
             set;

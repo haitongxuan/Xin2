@@ -18,9 +18,9 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECShipBatchPackingInfo {
+    public partial class BnsAmazonInstance {
 
-        public ECShipBatchPackingInfo()
+        public BnsAmazonInstance()
         {
             OnCreated();
         }
@@ -33,40 +33,69 @@ namespace Xin.Entities
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ReferenceNo
+        public virtual int? CreateUid
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppCode
-        {
-            get;
-            set;
-        }
-
-        public virtual int? TppQuantity
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? TppWeight
+        public virtual string AWSACCESSKEY
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppVolume
+        public virtual string MARKETPLACEID
         {
             get;
             set;
         }
 
-        public virtual ECShipBatch ECShipBatch
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string SELLERID
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string WriteUid
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string WriteDate
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CreateDate
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string SECRETKEY
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Store
+        {
+            get;
+            set;
+        }
+
+        public virtual int? PaypaInstanceId
         {
             get;
             set;

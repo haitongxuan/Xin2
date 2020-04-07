@@ -18,9 +18,9 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECShipBatchPackingInfo {
+    public partial class ECDHCost {
 
-        public ECShipBatchPackingInfo()
+        public ECDHCost()
         {
             OnCreated();
         }
@@ -33,40 +33,27 @@ namespace Xin.Entities
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ReferenceNo
+        [System.ComponentModel.DataAnnotations.StringLength(20)]
+        public virtual string Month
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppCode
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
+        public virtual string ProductSKU
         {
             get;
             set;
         }
 
-        public virtual int? TppQuantity
+        public virtual decimal? Price
         {
             get;
             set;
         }
 
-        public virtual decimal? TppWeight
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppVolume
-        {
-            get;
-            set;
-        }
-
-        public virtual ECShipBatch ECShipBatch
+        public virtual System.DateTime? Enterdate
         {
             get;
             set;

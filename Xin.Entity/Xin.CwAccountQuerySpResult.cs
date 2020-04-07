@@ -18,104 +18,133 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECFbaBoxDetail {
+    public partial class CwAccountQuerySpResult {
 
-        public ECFbaBoxDetail()
+        public CwAccountQuerySpResult()
         {
             OnCreated();
         }
 
-        [System.ComponentModel.DataAnnotations.Key]
+        public virtual string OrderDesc
+        {
+            get;
+            set;
+        }
+
+        public virtual System.DateTime? DatePaidPlatform
+        {
+            get;
+            set;
+        }
+
         [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int BoxDetailId
+        public virtual string FkType
         {
             get;
             set;
         }
 
-        public virtual int? BoxId
+        public virtual System.DateTime? DateWarehouseShipping
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string BoxCode
+        public virtual string Status
         {
             get;
             set;
         }
 
-        public virtual int? ProductId
+        public virtual string SaleOrderCode
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ProductBarcode
+        public virtual string RefNo
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string GoodsBarcode
+        public virtual string WarehouseOrderCode
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ProductTitle
+        public virtual string OrderType
         {
             get;
             set;
         }
 
-        public virtual decimal? Quantity
+        public virtual string CountryName
         {
             get;
             set;
         }
 
-        public virtual decimal? Length
+        public virtual string Warehousedesc
         {
             get;
             set;
         }
 
-        public virtual decimal? Width
+        public virtual string ProductSku
         {
             get;
             set;
         }
 
-        public virtual decimal? Height
+        public virtual string AmazonSKU
         {
             get;
             set;
         }
 
-        public virtual decimal? Weight
+        [System.ComponentModel.DataAnnotations.Required()]
+        public virtual string SpUnitPrice
         {
             get;
             set;
         }
 
-        public virtual decimal? TransitQty
+        [System.ComponentModel.DataAnnotations.Required()]
+        public virtual decimal ZSpUnitPrice
         {
             get;
             set;
         }
 
-        public virtual decimal? FinalQty
+        [System.ComponentModel.DataAnnotations.Required()]
+        public virtual decimal DhCost
         {
             get;
             set;
         }
 
-        public virtual ECFbaQueryOrder ECFbaQueryOrder
+        [System.ComponentModel.DataAnnotations.Required()]
+        public virtual decimal ProductNetWeight
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? ZproductNetWeight
+        {
+            get;
+            set;
+        }
+
+        public virtual int? Qty
+        {
+            get;
+            set;
+        }
+
+        public virtual string Company
         {
             get;
             set;

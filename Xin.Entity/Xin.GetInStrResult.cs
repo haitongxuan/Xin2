@@ -18,43 +18,15 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECSkuRelationItem {
+    public partial class GetInStrResult {
 
-        public ECSkuRelationItem()
+        public GetInStrResult()
         {
             OnCreated();
         }
 
-        [System.ComponentModel.DataAnnotations.Key]
-        [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int RelationItemId
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        public virtual string PcrProductSku
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        public virtual string PcrQuantity
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        public virtual string PcrPercent
-        {
-            get;
-            set;
-        }
-
-        public virtual ECSkuRelation ECSkuRelation
+        [System.ComponentModel.DataAnnotations.StringLength(40)]
+        public virtual string List
         {
             get;
             set;

@@ -44,17 +44,17 @@ namespace Xin.ExternalService.EC.Job
             {
                 var repository = uow.GetRepository<ECSalesOrder>();
                 var addRepository = uow.GetRepository<ECSalesOrderAddress>();
-                try
-                {
-                    await repository.DeleteAll();
-                    await addRepository.DeleteAll();
-                    await uow.SaveChangesAsync();
-                }
-                catch (Exception ex)
-                {
-                    log.Error($"初始化产品信息,删除产品信息异常:{ex.Message}");
-                    throw ex;
-                }
+                //try
+                //{
+                //    await repository.DeleteAll();
+                //    await addRepository.DeleteAll();
+                //    await uow.SaveChangesAsync();
+                //}
+                //catch (Exception ex)
+                //{
+                //    log.Error($"初始化产品信息,删除产品信息异常:{ex.Message}");
+                //    throw ex;
+                //}
                 EBGetOrderListRequest req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                 try
                 {
@@ -81,6 +81,10 @@ namespace Xin.ExternalService.EC.Job
                             try
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
+                                BnsSendDeliverdToEc temp = new BnsSendDeliverdToEc();
+                                temp.ShippingMethodNo = m.ShippingMethodNo;
+                                temp.PlatformShipTime = m.PlatformShipTime;
+                                m.BnsSendDeliverdToEc_DeliverId = temp;
                                 models.Add(m);
                             }
                             catch (Exception ex)

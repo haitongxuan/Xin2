@@ -1,4 +1,8 @@
-﻿using System;
+﻿using log4net;
+using log4net.Config;
+using Quartz;
+using Quartz.Impl;
+using System;
 using System.IO;
 using Xin.Common;
 using Xin.ExternalService.EC.Job;

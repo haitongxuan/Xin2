@@ -18,104 +18,108 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECFbaBoxDetail {
+    public partial class BnsSendDeliverdToEc {
 
-        public ECFbaBoxDetail()
+        public BnsSendDeliverdToEc()
         {
+            this.ECSalesOrders_DeliverId = new List<ECSalesOrder>();
             OnCreated();
         }
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int BoxDetailId
+        public virtual int Id
         {
             get;
             set;
         }
 
-        public virtual int? BoxId
+        /// <summary>
+        /// 运单号
+        /// </summary>
+        [System.ComponentModel.DataAnnotations.StringLength(64)]
+        public virtual string ShippingMethodNo
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 发货时间
+        /// </summary>
+        public virtual System.DateTime? PlatformShipTime
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 妥投状态
+        /// </summary>
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string DeliveredStatus
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 妥投时间
+        /// </summary>
+        public virtual System.DateTime? DeliveredTime
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 停留天数
+        /// </summary>
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string ResidenceTime
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 运输天数
+        /// </summary>
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string TransportationTime
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 物流明细
+        /// </summary>
+        [System.ComponentModel.DataAnnotations.StringLength(2147483647)]
+        public virtual string LogisticsDetails
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 对接商城物流明细
+        /// </summary>
+        [System.ComponentModel.DataAnnotations.StringLength(2147483647)]
+        public virtual string Trackinfo
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string BoxCode
+        public virtual string Ispush
         {
             get;
             set;
         }
 
-        public virtual int? ProductId
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ProductBarcode
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string GoodsBarcode
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ProductTitle
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? Quantity
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? Length
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? Width
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? Height
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? Weight
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? TransitQty
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? FinalQty
-        {
-            get;
-            set;
-        }
-
-        public virtual ECFbaQueryOrder ECFbaQueryOrder
+        public virtual IList<ECSalesOrder> ECSalesOrders_DeliverId
         {
             get;
             set;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Quartz;
 using Xin.Common;
 using Xin.Entities;
@@ -47,7 +48,7 @@ namespace Xin.ExternalService.EC.Job
                     var repository = uow.GetRepository<ECSalesOrder>();
                     //reqCondition.CreatedDateAfter = DateTime.Parse("2020-03-12T10:50:09");
                     reqCondition.CreatedDateAfter = repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreatedDate)).FirstOrDefault().CreatedDate;
-                     var updateTime= repository.GetPage(0, 1, x => x.OrderByDescending(c => c.UpdateDate)).FirstOrDefault().UpdateDate;
+                    var updateTime = repository.GetPage(0, 1, x => x.OrderByDescending(c => c.UpdateDate)).FirstOrDefault().UpdateDate;
                     //新增
                     Reqeust.EBGetOrderListRequest req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                     var response = await req.Request();
@@ -64,8 +65,7 @@ namespace Xin.ExternalService.EC.Job
                             log.Info($"日订单开始拉取:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
-                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "Detail", "新增数据详情", response.Body));
-
+                            log.Info(response.Body);
                         }
                         catch (Exception ex)
                         {
@@ -78,12 +78,21 @@ namespace Xin.ExternalService.EC.Job
                             try
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
-                                if (repository.Get(m.OrderId) != null)
+                                var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEc_DeliverId));
+
+                                if (had != null)
                                 {
+                                    had.BnsSendDeliverdToEc_DeliverId.ShippingMethodNo = m.ShippingMethodNo;
+                                    had.BnsSendDeliverdToEc_DeliverId.PlatformShipTime = m.PlatformShipTime;
+                                    m.BnsSendDeliverdToEc_DeliverId = had.BnsSendDeliverdToEc_DeliverId;
                                     updateList.Add(m);
                                 }
                                 else
                                 {
+                                    BnsSendDeliverdToEc temp = new BnsSendDeliverdToEc();
+                                    temp.ShippingMethodNo = m.ShippingMethodNo;
+                                    temp.PlatformShipTime = m.PlatformShipTime;
+                                    m.BnsSendDeliverdToEc_DeliverId = temp;
                                     insertList.Add(m);
                                 }
                             }
@@ -136,8 +145,7 @@ namespace Xin.ExternalService.EC.Job
                             log.Info($"日订单开始更新:更新时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
-                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "Detail", "更新数据详情", response.Body));
-
+                            log.Info(response.Body);
                         }
                         catch (Exception ex)
                         {
@@ -150,6 +158,10 @@ namespace Xin.ExternalService.EC.Job
                             try
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
+                                var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEc_DeliverId));
+                                had.BnsSendDeliverdToEc_DeliverId.ShippingMethodNo = m.ShippingMethodNo;
+                                had.BnsSendDeliverdToEc_DeliverId.PlatformShipTime = m.PlatformShipTime;
+                                m.BnsSendDeliverdToEc_DeliverId = had.BnsSendDeliverdToEc_DeliverId;
                                 updateList.Add(m);
                             }
                             catch (Exception ex)

@@ -18,9 +18,9 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECShipBatchPackingInfo {
+    public partial class ECRepeatCust {
 
-        public ECShipBatchPackingInfo()
+        public ECRepeatCust()
         {
             OnCreated();
         }
@@ -33,40 +33,61 @@ namespace Xin.Entities
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ReferenceNo
+        [System.ComponentModel.DataAnnotations.StringLength(50)]
+        public virtual string PlateForm
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppCode
+        [System.ComponentModel.DataAnnotations.StringLength(50)]
+        public virtual string StoreName
         {
             get;
             set;
         }
 
-        public virtual int? TppQuantity
+        [System.ComponentModel.DataAnnotations.StringLength(50)]
+        public virtual string DealMonth
         {
             get;
             set;
         }
 
-        public virtual decimal? TppWeight
+        [System.ComponentModel.DataAnnotations.StringLength(50)]
+        public virtual string Email
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppVolume
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
+        public virtual string PlateFormCode
         {
             get;
             set;
         }
 
-        public virtual ECShipBatch ECShipBatch
+        public virtual decimal? Amount
+        {
+            get;
+            set;
+        }
+
+        public virtual System.DateTime? FkDate
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
+        public virtual string FkType
+        {
+            get;
+            set;
+        }
+
+        public virtual System.DateTime? Enterdate
         {
             get;
             set;

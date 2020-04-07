@@ -23,6 +23,18 @@
             <param name="loginViewModel">登录实体信息</param>
             <returns></returns>
         </member>
+        <member name="T:Xin.WebApi.Controllers.FinancialStatementController">
+            <summary>
+            财务报表
+            </summary>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetDeliverList(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            物流详情
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Controllers.OmsAnsListController.AddRecivingCode(System.String[])">
             <summary>
             添加入库单

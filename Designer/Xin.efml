@@ -6,6 +6,75 @@
       <Member Name="Normal" Value="2" p1:Guid="8310f8e0-70ed-45a9-b5c5-f669a2c3ac26" />
     </EnumType>
   </class>
+  <class name="$ComplexTypes">
+    <component class="CwAccountQuerySpResult" p1:Guid="cfe98978-0504-4dee-b9c0-f1094ac1adc1">
+      <property name="OrderDesc" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="05936aaa-f360-4ce0-b46f-2de1f10f199d">
+        <column name="orderDesc" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+      </property>
+      <property name="DatePaidPlatform" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="db99a980-ef51-4470-b55b-516a066f170a">
+        <column name="DatePaidPlatform" not-null="False" sql-type="datetime" p1:unicode="False" />
+      </property>
+      <property name="FkType" type="String" p1:ValidateRequired="true" p1:Guid="14828cce-c107-4402-b05f-69ba3510f368">
+        <column name="FkType" not-null="True" sql-type="varchar(max)" p1:unicode="False" />
+      </property>
+      <property name="DateWarehouseShipping" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="99d3803c-853d-45de-ac5b-26409f992196">
+        <column name="DateWarehouseShipping" not-null="False" sql-type="datetime" p1:unicode="False" />
+      </property>
+      <property name="Status" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b98f00b6-2164-4063-b3f1-46534d6e80d8">
+        <column name="status" not-null="False" sql-type="varchar(max)" p1:unicode="False" />
+      </property>
+      <property name="SaleOrderCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="dd847d84-9674-4e2a-bba5-b7adb283c9ec">
+        <column name="saleOrderCode" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+      </property>
+      <property name="RefNo" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="36a70332-9aa3-408a-84bd-1104a100bf14">
+        <column name="refNo" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+      </property>
+      <property name="WarehouseOrderCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="288365fa-4bf2-462e-aac7-7482f46f82c0">
+        <column name="warehouseOrderCode" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+      </property>
+      <property name="OrderType" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="efced5ea-428e-4491-918b-8de3bc497bd5">
+        <column name="orderType" not-null="False" sql-type="varchar(max)" p1:unicode="False" />
+      </property>
+      <property name="CountryName" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ca775f14-0fd1-4186-995b-6d9b444d8180">
+        <column name="country_name" not-null="False" sql-type="varchar(max)" p1:unicode="False" />
+      </property>
+      <property name="Warehousedesc" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4cf04abf-3b35-46a3-86cf-1721ce0db7bd">
+        <column name="warehousedesc" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+      </property>
+      <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="aa48b0ec-4c67-4941-9fde-306c645cf110">
+        <column name="ProductSku" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+      </property>
+      <property name="AmazonSKU" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e368e0d7-56c7-47f9-b305-c13ac2a5e313">
+        <column name="AmazonSKU" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+      </property>
+      <property name="SpUnitPrice" type="String" p1:ValidateRequired="true" p1:Guid="e3d7c382-9862-4ca4-b22a-766a2696dea5">
+        <column name="SpUnitPrice" not-null="True" sql-type="nvarchar(max)" p1:unicode="True" />
+      </property>
+      <property name="ZSpUnitPrice" type="Decimal" p1:ValidateRequired="true" p1:Guid="fe0a4bab-f58b-409c-8bd1-df130daf06c4">
+        <column name="ZSpUnitPrice" not-null="True" sql-type="money" p1:unicode="False" />
+      </property>
+      <property name="DhCost" type="Decimal" p1:ValidateRequired="true" p1:Guid="7d39c227-f509-45f1-a702-49866491cd2e">
+        <column name="DhCost" not-null="True" sql-type="money" p1:unicode="False" />
+      </property>
+      <property name="ProductNetWeight" type="Decimal" p1:ValidateRequired="true" p1:Guid="826c7933-ae0c-494a-9d50-1c1c84478059">
+        <column name="productNetWeight" not-null="True" sql-type="decimal" p1:unicode="False" />
+      </property>
+      <property name="ZproductNetWeight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8d80e3e9-e511-41f2-b45c-e5b666918c87">
+        <column name="ZproductNetWeight" not-null="False" sql-type="decimal" p1:unicode="False" />
+      </property>
+      <property name="Qty" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1a639445-f214-46ed-9b2e-b88c6e0936e1">
+        <column name="Qty" not-null="False" sql-type="int" p1:unicode="False" />
+      </property>
+      <property name="Company" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b759e958-06f3-4236-b8e6-4d7e346e34e9">
+        <column name="Company" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+      </property>
+    </component>
+    <component class="GetInStrResult" p1:Guid="b99db093-2fe8-41e3-b40e-5c9b31055d20">
+      <property name="List" type="String" p1:nullable="True" p1:ValidateMaxLength="40" p1:ValidateRequired="false" p1:Guid="01b622e5-b3ba-4c1e-b7f0-f070e81e6857">
+        <column name="list" not-null="False" length="40" sql-type="varchar" p1:unicode="False" />
+      </property>
+    </component>
+  </class>
   <class name="ResDepartment" entity-set="ResDepartments" table="Res_Department" p1:Guid="f4a68ad8-7e12-497e-aa43-4cc0b856221f" p1:EntityBase="XinVDBaseEntity">
     <id name="Id" type="Int32" value-generated="OnAdd" shadow="True" p1:DisplayName="主键" p1:ValidateRequired="true" p1:Guid="0a89b445-e650-4fe1-8a73-5645dd59fffd">
       <column name="" not-null="True" precision="10" scale="0" p1:unicode="False" />
@@ -1117,6 +1186,9 @@
         <Summary>同步代码</Summary>
       </Documentation>
       <column name="SyncCode" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DeliverId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="7a5ea4c1-f211-457e-8d85-95a9491006d9">
+      <column name="deliver_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
   </class>
   <class name="ECSalesOrderAddress" entity-set="ECSalesOrderAddresses" table="EC_SalesOrderAddress" schema="dbo" p1:Guid="806c1577-d2fa-4066-8bec-9f7cae962e4b">
@@ -2780,6 +2852,753 @@
       <column name="country_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
     </property>
   </class>
+  <class name="BnsAmazonInstance" entity-set="BnsAmazonInstances" table="Bns_AmazonInstance" schema="dbo" p1:Guid="06370b71-af17-4760-ba06-99b261d29ec2">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="919109b9-f9ee-4854-a8ef-5e3da9488fc1">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="CreateUid" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="edaf9ce0-1fb7-447e-945c-c70606bfcd8f">
+      <column name="CreateUid" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="AWSACCESSKEY" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2d84f69f-3f13-495d-9cf3-111ec32db5a3">
+      <column name="AWS_ACCESS_KEY" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="MARKETPLACEID" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7de193c8-879a-4b9e-a465-b5c1e8e70cea">
+      <column name="MARKETPLACE_ID" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SELLERID" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e5aac451-e3a5-4665-8121-576227723603">
+      <column name="SELLER_ID" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WriteUid" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="37807c83-6596-4992-8318-52a654994649">
+      <column name="WriteUid" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WriteDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6edb3f81-d7f7-4006-92ea-4b180ea33636">
+      <column name="WriteDate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CreateDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e0c8fe50-2f84-4492-b6c6-93c0c3083f06">
+      <column name="CreateDate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SECRETKEY" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fe3c5f09-be55-415d-bed0-a6148182debf">
+      <column name="SECRET_KEY" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Store" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2e86c01f-b61a-43da-8854-eba45752224b">
+      <column name="Store" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PaypaInstanceId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e65163d0-6ec4-4841-bcca-8586697c4d48">
+      <column name="PaypaInstanceId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="BnsAmazonReport" entity-set="BnsAmazonReports" table="Bns_AmazonReport" schema="dbo" p1:Guid="247eb264-d99e-475a-9b82-c7f0fe52e501">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="46306077-e34a-4944-9680-6d08143ce88e">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ReportRequestId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ef43efdd-fe04-41ce-9b56-017d8bae294c">
+      <column name="ReportRequestId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ReportType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="250a746c-9d1f-40b8-a29b-95c2f045c78f">
+      <column name="ReportType" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CreateDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="63cb5db9-4e0f-456e-800a-435d63fbb3d0">
+      <column name="CreateDate" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="ReportId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4dea66e9-1ff6-427c-85a2-02ff8fd0a344">
+      <column name="ReportId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Store" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3f77b504-d237-4086-ad7d-e6139bb55ede">
+      <column name="Store" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="AvailableDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="df32ca5b-5d71-4901-9ef3-540add612423">
+      <column name="AvailableDate" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="EndDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="04074dda-2a73-4793-a2bd-d500417c3359">
+      <column name="EndDate" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="StartDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="486e755d-a2cd-486b-b4d8-43cdd4981d35">
+      <column name="StartDate" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="BnsAmazonReportDetail" entity-set="BnsAmazonReportDetails" table="Bns_AmazonReportDetail" schema="dbo" p1:Guid="6c30eef3-976c-4503-b403-6394f04b5349">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="984c1971-6828-4402-9a97-20a653b34236">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="PostedDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d940b17b-ef6e-4d49-992d-4880faa4539a">
+      <column name="PostedDate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShipmentFeeType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="98447b67-f5c6-4b73-ab93-1315252881b2">
+      <column name="ShipmentFeeType" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="DepositDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="372182c2-ec22-4712-9e96-9d309be4e98c">
+      <column name="DepositDate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PromotionType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8d54e49c-968e-41f8-87f8-c4d7b3802960">
+      <column name="PromotionType" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OtherFeeReasonDescription" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6bc34333-5773-437b-897b-a6a42318e6e8">
+      <column name="OtherFeeReasonDescription" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Currency" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d3c1a4db-abbd-4df1-9ba8-78af21b27043">
+      <column name="Currency" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="QuantityPurchased" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5af40ed1-88f0-44f3-96bb-0e4d262cf4bc">
+      <column name="QuantityPurchased" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SettlementId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c189fc26-3afb-4df8-a9fe-184549f142eb">
+      <column name="SettlementId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="MerchantAdjustmentItemId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="95893b80-01a3-4e65-8d4e-c67ccabc1466">
+      <column name="MerchantAdjustmentItemId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="FulfillmentId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9eef3434-3dae-4db0-bef7-d8308ddd911e">
+      <column name="FulfillmentId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PromotionId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="86ac765d-60f8-40f8-9df5-6700750409ae">
+      <column name="PromotionId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="MarketplaceName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4cae997a-d5f5-4495-84d8-6e5269af9c49">
+      <column name="MarketplaceName" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Sku" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="22dc9590-d6b5-4867-aaeb-8f718be9d3f2">
+      <column name="Sku" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SettlementStartDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a9cd419b-56ce-4f3d-85ba-360c04e4dc59">
+      <column name="SettlementStartDate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="644d1c30-651c-48eb-a970-76c8d2727b79">
+      <column name="OrderId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="DirectPaymentType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9ebe86a4-4af7-41eb-ab59-b9f8239cedf7">
+      <column name="DirectPaymentType" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="MerchantOrderId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d4e198db-4827-4a80-8036-100d6e803687">
+      <column name="MerchantOrderId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="AmazonReportId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="d5488673-70b3-4323-9722-b60eccb09044">
+      <column name="AmazonReportId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="OrderItemCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0747b841-c0d4-4fcc-90b6-4fa80a55f7fe">
+      <column name="OrderItemCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SettlementEndDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="16c5ff4c-ad8d-4325-acea-42d225b63206">
+      <column name="SettlementEndDate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PriceType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9ba09071-be54-423c-80d1-20c9e6405261">
+      <column name="PriceType" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="AdjustmentId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fc76f6cf-84a3-41e9-ba49-a61dcab55c77">
+      <column name="AdjustmentId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b237ab57-f7e7-45c4-8153-b4641dae67b3">
+      <column name="TransactionType" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="MerchantOrderItemId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="cb1d23e8-70ca-483b-a7fe-dc6140a5989b">
+      <column name="MerchantOrderItemId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderFeeType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="43667484-6015-4ab2-8781-57b0d63fc4e4">
+      <column name="OrderFeeType" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShipmentId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5caa7c76-7d7c-4b23-a7d3-d295d8b3c910">
+      <column name="ShipmentId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ItemRelatedFeeType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="562831d3-b5f2-435d-bf26-44cbbcbd3fc1">
+      <column name="ItemRelatedFeeType" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ItemRelatedFeeAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d9c3e5c1-8394-4797-af52-2b176b726c93">
+      <column name="ItemRelatedFeeAmount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OtherFeeAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c9d221c4-f8be-4aaa-ae1e-efbb7a6b1dc8">
+      <column name="OtherFeeAmount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="DirectPaymentAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b5d7dea2-c293-47de-9a2f-4694128aef4a">
+      <column name="DirectPaymentAmount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PromotionAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d37ce871-a381-4289-8e32-5091894de5e0">
+      <column name="PromotionAmount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PriceAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="87275db4-9dae-4286-b2fb-19be3ee65be6">
+      <column name="PriceAmount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="MiscFeeAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="95f4b879-7dc0-40b7-a728-25a23dfe96a2">
+      <column name="MiscFeeAmount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OtherAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4b2d2260-d67f-4675-b714-da4fbbcefe1a">
+      <column name="OtherAmount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderFeeAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2b94e301-c0cf-40ee-a2f1-7bc39036124e">
+      <column name="OrderFeeAmount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="AmazonReportOrderId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="24f6a095-598b-4527-96f2-d9cc746d9e05">
+      <column name="AmazonReportOrderId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="TotalAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6510115a-79c4-48c0-8dba-989aadac9b50">
+      <column name="TotalAmount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShipmentFeeAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="585b5b19-c850-4b6e-949e-a98d1d5d4b6d">
+      <column name="ShipmentFeeAmount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Store" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8846d3e5-45d7-489e-931e-9df539cfa090">
+      <column name="Store" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="BnsPaypalInstance" entity-set="BnsPaypalInstances" table="Bns_PaypalInstance" schema="dbo" p1:Guid="cb821285-7824-4090-b441-089ca4a5298b">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="37c37a37-7033-4409-9d98-17bb2b3b1203">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="CreateDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c378070d-de0d-41b8-804b-0c64a5123c4e">
+      <column name="CreateDate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Name" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9186a83a-cb2b-4447-9bb9-5510735e01ab">
+      <column name="Name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ClientId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fd505d3a-c88c-4855-98d7-4a9f21d1da72">
+      <column name="ClientId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ClientSecret" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1e3feff8-f5fd-49f1-be06-695628bb1f6d">
+      <column name="ClientSecret" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Zone" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7a7811af-5be3-462c-8440-369a077daf68">
+      <column name="Zone" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Store" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0ca36d76-2fc5-4c04-935a-c2810255e1c8">
+      <column name="Store" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Zone1" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="94dcb92a-0c1d-4b60-b2ce-dd9e083acc42">
+      <column name="Zone1" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShopMark" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a386a0c4-fff6-465f-b1c8-586b592ce686">
+      <column name="ShopMark" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="BnsPaypalTransactionDetail" entity-set="BnsPaypalTransactionDetails" table="Bns_PaypalTransactionDetails" schema="dbo" p1:Guid="4257f686-ab72-45ca-b63c-014d563080e1">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="784966d8-39a6-411e-84d7-45ab76f9602e">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="TransactionInfoTransactionId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c26d0f5a-e724-4b44-8107-3ab4a7866a94">
+      <Documentation>
+        <Summary>交易号</Summary>
+      </Documentation>
+      <column name="TransactionInfoTransactionId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoPaypalReferenceId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="aff6bb07-329d-4543-99b8-22a796aae72f">
+      <Documentation>
+        <Summary>交易参考号</Summary>
+      </Documentation>
+      <column name="TransactionInfoPaypalReferenceId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoPaypalReferenceIdType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="74c045c0-66da-4df9-b71e-251855fa11ce">
+      <Documentation>
+        <Summary>交易号状态</Summary>
+      </Documentation>
+      <column name="TransactionInfoPaypalReferenceIdType" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoTransactionEventCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3b2934c7-a326-483a-8e6a-d924520bb513">
+      <Documentation>
+        <Summary>交易类型</Summary>
+      </Documentation>
+      <column name="TransactionInfoTransactionEventCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoTransactionInitiationDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="85376ab1-a42c-490f-8f79-77f2ea8a7bcd">
+      <Documentation>
+        <Summary>交易开始时间</Summary>
+      </Documentation>
+      <column name="TransactionInfoTransactionInitiationDate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoTransactionUpdatedDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4a0ac23b-8e78-4bc7-a81a-360ecb5193c8">
+      <Documentation>
+        <Summary>交易更新时间</Summary>
+      </Documentation>
+      <column name="TransactionInfoTransactionUpdatedDate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoTransactionAmountCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b7b5d806-9995-4d91-bfe2-fff3f161cee2">
+      <Documentation>
+        <Summary>交易币种</Summary>
+      </Documentation>
+      <column name="TransactionInfoTransactionAmountCurrencyCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoTransactionAmountValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d3f09ace-e505-4b44-8106-268245279421">
+      <Documentation>
+        <Summary>交易总额</Summary>
+      </Documentation>
+      <column name="TransactionInfoTransactionAmountValue" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoFeeAmountCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c01b5058-6182-4162-8f3e-ea68c751a53b">
+      <Documentation>
+        <Summary>交易费用币种</Summary>
+      </Documentation>
+      <column name="TransactionInfoFeeAmountCurrencyCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoFeeAmountValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6b91908d-f42e-4731-9f32-1770784d3261">
+      <Documentation>
+        <Summary>交易费用</Summary>
+      </Documentation>
+      <column name="TransactionInfoFeeAmountValue" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoSalesTaxAmountCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f7781af9-5db5-4017-a1c9-5b59764d3b4e">
+      <Documentation>
+        <Summary>营业税币种</Summary>
+      </Documentation>
+      <column name="TransactionInfoSalesTaxAmountCurrencyCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoSalesTaxAmountValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0c837ea5-9fb4-4d62-a75f-9fd02538e5f8">
+      <Documentation>
+        <Summary>营业税</Summary>
+      </Documentation>
+      <column name="TransactionInfoSalesTaxAmountValue" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoEndingBalance" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="18da5218-7585-49a1-886f-9a496bc81b4c">
+      <Documentation>
+        <Summary>账户期末余额</Summary>
+      </Documentation>
+      <column name="TransactionInfoEndingBalance" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoAvailableBalance" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ca729952-909d-48a7-b902-b1d5246c40cf">
+      <Documentation>
+        <Summary>可用余额</Summary>
+      </Documentation>
+      <column name="TransactionInfoAvailableBalance" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoTransactionStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2ceda4a2-5bbc-4635-8291-388a27cca525">
+      <Documentation>
+        <Summary>交易状态</Summary>
+      </Documentation>
+      <column name="TransactionInfoTransactionStatus" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoInvoiceId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="be76590b-540e-4808-a50f-c69660098a04">
+      <Documentation>
+        <Summary>原始平台账单号</Summary>
+      </Documentation>
+      <column name="TransactionInfoInvoiceId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoInsuranceAmountCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4b65489a-7869-45b9-93a8-99cc3a0ef777">
+      <Documentation>
+        <Summary>保险费币种</Summary>
+      </Documentation>
+      <column name="TransactionInfoInsuranceAmountCurrencyCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoInsuranceAmountVlaue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fb1fa1e2-9fd0-4b4b-a882-b3811aa4e444">
+      <Documentation>
+        <Summary>保险费用</Summary>
+      </Documentation>
+      <column name="TransactionInfoInsuranceAmountVlaue" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoShippingAmountCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8b53591a-e742-4114-b267-ddd793593cf6">
+      <Documentation>
+        <Summary>运费币种</Summary>
+      </Documentation>
+      <column name="TransactionInfoShippingAmountCurrencyCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoShippingAmountValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="77786386-0597-4342-aec0-1513b426c326">
+      <Documentation>
+        <Summary>运费金额</Summary>
+      </Documentation>
+      <column name="TransactionInfoShippingAmountValue" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoShippingDiscountAmountCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="dcaa8afc-fb15-40ef-a520-2c0d63400690">
+      <Documentation>
+        <Summary>运费折扣币种</Summary>
+      </Documentation>
+      <column name="TransactionInfoShippingDiscountAmountCurrencyCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoShippingDiscountAmountValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="49ade5c1-ccee-4730-9e50-144b71c658b0">
+      <Documentation>
+        <Summary>运费折扣费用</Summary>
+      </Documentation>
+      <column name="TransactionInfoShippingDiscountAmountValue" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoTransactionSubject" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e9e25e71-0836-47af-8f23-f04949b702e8">
+      <Documentation>
+        <Summary>交易主题</Summary>
+      </Documentation>
+      <column name="TransactionInfoTransactionSubject" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoTransactionNote" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="96e32fb7-850b-47d1-ae11-c44863641843">
+      <Documentation>
+        <Summary>交易备注</Summary>
+      </Documentation>
+      <column name="TransactionInfoTransactionNote" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoCustomField" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="88da5c40-3a91-4ade-9f8d-b35c57fc24ec">
+      <Documentation>
+        <Summary>交易 自定义范围</Summary>
+      </Documentation>
+      <column name="TransactionInfoCustomField" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoProtectionEligibility" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e685e4b8-4d97-4bd1-ba6b-c31ef2155f30">
+      <Documentation>
+        <Summary>交易保护资格</Summary>
+      </Documentation>
+      <column name="TransactionInfoProtectionEligibility" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PayerInfoAccountId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="79549280-d525-45b7-8fbe-d24a6722cf11">
+      <Documentation>
+        <Summary>paypa买家账户id</Summary>
+      </Documentation>
+      <column name="PayerInfoAccountId" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PayerInfoEmailAddress" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="961d4539-1863-447e-a155-a3d15ce264ff">
+      <Documentation>
+        <Summary>paypal 买家email</Summary>
+      </Documentation>
+      <column name="PayerInfoEmailAddress" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PayerInfoPhoneNumberCountryCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4982400c-3d6d-4a4c-9bfd-1974807d5632">
+      <Documentation>
+        <Summary>买家手机号国家前缀</Summary>
+      </Documentation>
+      <column name="PayerInfoPhoneNumberCountryCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PayerInfoPhoneNumberNationalNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2e95d6ca-14bd-42fc-8bef-90398790a9c7">
+      <Documentation>
+        <Summary>买家手机号</Summary>
+      </Documentation>
+      <column name="PayerInfoPhoneNumberNationalNumber" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PayerInfoAddressStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c38df4cf-9891-4345-a833-ef0be652be81">
+      <Documentation>
+        <Summary>买家地址状态</Summary>
+      </Documentation>
+      <column name="PayerInfoAddressStatus" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PayerInfoPayerStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6eb6a704-4871-4171-9df6-71010ecf82ca">
+      <Documentation>
+        <Summary>买家状态</Summary>
+      </Documentation>
+      <column name="PayerInfoPayerStatus" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PayerInfoPayerNameGivenName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3f30cf27-5419-4d4e-a418-b04615b3b427">
+      <Documentation>
+        <Summary>买家姓名</Summary>
+      </Documentation>
+      <column name="PayerInfoPayerNameGiven_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PayerInfoPayerNameSurname" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="da62c4ed-49a8-447c-ab6d-1ed071102250">
+      <Documentation>
+        <Summary>买家姓</Summary>
+      </Documentation>
+      <column name="PayerInfoPayerNameSurname" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PayerInfoPayerNameAlternateFullName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f00887e5-fad6-452f-8e28-8a4414b4234c">
+      <Documentation>
+        <Summary>买家备用的全名</Summary>
+      </Documentation>
+      <column name="PayerInfoPayerNameAlternateFullName" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PayerInfoCountryCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ba8631ee-8e29-452f-b775-f38e04f1f414">
+      <Documentation>
+        <Summary>买家国家简称号</Summary>
+      </Documentation>
+      <column name="PayerInfoCountryCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShippingInfoName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e111c509-680d-4f8f-8cc0-ee5a944e57a4">
+      <Documentation>
+        <Summary>物流信息（收件人姓名）</Summary>
+      </Documentation>
+      <column name="ShippingInfoName" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShippingInfoAddressLine1" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d84341b2-1f22-441a-a005-bd6a8798046d">
+      <Documentation>
+        <Summary>地址第一行</Summary>
+      </Documentation>
+      <column name="ShippingInfoAddressLine1" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShippingInfoAddressLine2" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="64872e6e-0ba9-4a0b-91a5-862a67e6afe3">
+      <Documentation>
+        <Summary>地址第二行</Summary>
+      </Documentation>
+      <column name="ShippingInfoAddressLine2" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShippingInfoAddressCity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="97605851-28a6-4e7f-a2ac-b556f2c1a7d7">
+      <Documentation>
+        <Summary>城镇/城市</Summary>
+      </Documentation>
+      <column name="ShippingInfoAddressCity" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShippingInfoAddressState" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="cedd4cf8-fba9-4c19-8c1b-9e1a284a01c0">
+      <Documentation>
+        <Summary>省/市/自治区/直辖市/特别行政区</Summary>
+      </Documentation>
+      <column name="ShippingInfoAddressState" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShippingInfoAddressCountryCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6dd36f28-cb71-449f-aa3b-277030de5d42">
+      <Documentation>
+        <Summary>国家/地区</Summary>
+      </Documentation>
+      <column name="ShippingInfoAddressCountryCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShippingInfoAddressPostalCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="42bf69e4-e25d-4d1e-ab43-4312fc5997a3">
+      <Documentation>
+        <Summary>邮政编码</Summary>
+      </Documentation>
+      <column name="ShippingInfoAddressPostalCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShopMark" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="688344c6-874b-4af1-ab77-58ced8a95505">
+      <Documentation>
+        <Summary>店铺标识</Summary>
+      </Documentation>
+      <column name="ShopMark" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="BnsPaypalTransactionDetailsCartInfo" entity-set="BnsPaypalTransactionDetailsCartInfos" table="Bns_PaypalTransactionDetailsCartInfo" schema="dbo" p1:Guid="7d8e25d7-3e64-42e8-b4a9-54521f0fdaa8">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="a2410b31-2ab1-4f1d-add9-a5021bec2c28">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="CartInfoItemDetailsItemCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e6386c2b-b0c1-4b55-95e9-e0778ce1492e">
+      <Documentation>
+        <Summary>产品编号</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsItemCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsItemName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="002aba64-70f9-412b-a12a-82453460e23a">
+      <Documentation>
+        <Summary>产品姓名</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsItemName" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsItemDescription" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ab2de61c-72c4-4028-ac46-4beafac468c3">
+      <Documentation>
+        <Summary>产品描述</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsItemDescription" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsItemQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fc2a5bb2-48e8-4135-bfea-3bc18bedf958">
+      <Documentation>
+        <Summary>数量</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsItemQuantity" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsItemUnitPriceCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2ca37d9d-7999-4c7f-8afd-737205b80d92">
+      <Documentation>
+        <Summary>单价币种</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsItemUnitPriceCurrencyCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsItemUnitPriceValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b827d0ab-23c5-4a3d-ac1e-1ee8f7fc5e38">
+      <Documentation>
+        <Summary>单价</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsItemUnitPriceValue" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsItemAmountCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="91f795a7-6d82-4842-8773-9cc2992b2b99">
+      <Documentation>
+        <Summary>总价币种</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsItemAmountCurrencyCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsItemAmountValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b1105e82-eb89-40e0-98b3-715171ef979a">
+      <Documentation>
+        <Summary>总价</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsItemAmountValue" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsTaxAmountTaxAmountCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="04c0feae-8d23-4c7c-a03b-2a6a0d90bff7">
+      <Documentation>
+        <Summary>税额币种</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsTaxAmountTaxAmountCurrencyCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsTaxAmountTaxAmountValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c22d7b7d-3cd4-4a59-a883-34174db2895e">
+      <Documentation>
+        <Summary>税额</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsTaxAmountTaxAmountValue" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsTotalItemAmountCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="859ec0a0-7665-4e17-b64b-8b2718442507">
+      <Documentation>
+        <Summary>总额币种</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsTotalItemAmountCurrencyCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsTotalItemAmountValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="33f8cc00-7c7d-4495-aba4-8b097c94b025">
+      <Documentation>
+        <Summary>总额</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsTotalItemAmountValue" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CartInfoItemDetailsInvoiceNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="251e972f-20c8-4943-b682-a2abd6ebb50b">
+      <Documentation>
+        <Summary>发票号码</Summary>
+      </Documentation>
+      <column name="CartInfoItemDetailsInvoiceNumber" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfoId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="2f40851e-fe95-482e-9038-f9fdd0f33bb1">
+      <column name="TransactionInfoId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="BnsSendDeliverdToEc" entity-set="BnsSendDeliverdToEcs" table="Bns_SendDeliverdToEc" schema="dbo" p1:Guid="020ba9ba-f081-486a-9762-67ea01ab261b">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="5a3a947f-1f68-43be-b204-5acdcf00f058">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ShippingMethodNo" type="String" p1:nullable="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="66f3ca41-e03e-491d-bafe-4e7ef6e3a3ed">
+      <Documentation>
+        <Summary>运单号</Summary>
+      </Documentation>
+      <column name="ShippingMethodNo" not-null="False" length="64" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PlatformShipTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1c9acef5-0eb5-4606-928a-0325cbaa9d9f">
+      <Documentation>
+        <Summary>发货时间</Summary>
+      </Documentation>
+      <column name="PlatformShipTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="DeliveredStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ace9b23e-7a30-4dd3-9012-e29482b0f8a7">
+      <Documentation>
+        <Summary>妥投状态</Summary>
+      </Documentation>
+      <column name="DeliveredStatus" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="DeliveredTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="88f236f9-b87f-4afa-adcc-7166df755a07">
+      <Documentation>
+        <Summary>妥投时间</Summary>
+      </Documentation>
+      <column name="DeliveredTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="ResidenceTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="703e2797-8dd5-4558-9485-f37d4595423e">
+      <Documentation>
+        <Summary>停留天数</Summary>
+      </Documentation>
+      <column name="ResidenceTime" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransportationTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="45711fdd-a307-4838-89eb-a1712e2ad233">
+      <Documentation>
+        <Summary>运输天数</Summary>
+      </Documentation>
+      <column name="TransportationTime" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="LogisticsDetails" type="Clob" p1:nullable="True" p1:ValidateMaxLength="2147483647" p1:ValidateRequired="false" p1:Guid="d3fc5543-6c66-43b9-8f05-59598aa08f46">
+      <Documentation>
+        <Summary>物流明细</Summary>
+      </Documentation>
+      <column name="LogisticsDetails" not-null="False" length="2147483647" sql-type="text" p1:unicode="False" />
+    </property>
+    <property name="Trackinfo" type="Clob" p1:nullable="True" p1:ValidateMaxLength="2147483647" p1:ValidateRequired="false" p1:Guid="3a2172cf-ed22-4f27-9c8a-ed3469269e90">
+      <Documentation>
+        <Summary>对接商城物流明细</Summary>
+      </Documentation>
+      <column name="Trackinfo" not-null="False" length="2147483647" sql-type="text" p1:unicode="False" />
+    </property>
+    <property name="SalesorderId" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="50da2f44-c9b5-4917-93b1-863208a3304c">
+      <column name="SalesorderId" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Ispush" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c4f83c46-5609-4300-add7-ff1156a051d9">
+      <column name="Ispush" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="BnsShippingEcToTrackingMore" entity-set="BnsShippingEcToTrackingMores" table="Bns_ShippingEcToTrackingMore" schema="dbo" p1:Guid="8b12fb60-9341-4855-b97a-47fb1d15b142">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="519c67e6-ae46-4ff8-9f05-6771c86ce45e">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="Shiping" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8d90e436-f0a2-4d6a-9e0d-5c929e2ca1b9">
+      <Documentation>
+        <Summary>物流方式</Summary>
+      </Documentation>
+      <column name="Shiping" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ServerName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="29369a06-4663-480d-b1a7-a48bdb5f8158">
+      <Documentation>
+        <Summary>tracking_more物流对照码</Summary>
+      </Documentation>
+      <column name="ServerName" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TrackingMoreCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6a473f42-9a40-49b3-bd78-5ef662795f55">
+      <Documentation>
+        <Summary>trac</Summary>
+      </Documentation>
+      <column name="TrackingMoreCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECAliexpressLoaninfo" entity-set="ECAliexpressLoaninfos" table="EC_AliexpressLoaninfo" schema="dbo" p1:Guid="9064bd40-5aa4-4cbd-afcf-b37f681537d9">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="87fc3ae8-7f63-4013-8950-bb8c9ce0cdbe">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="StoreName" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="6b6886b7-66d8-43a1-8bde-c77ab31e66e5">
+      <column name="StoreName" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="LoanDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f150ded5-4e79-4b3b-ad5d-a31e4fb1586a">
+      <column name="LoanDate" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="LoanType" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="1bc80e22-b106-48cd-8b3d-fa4554474231">
+      <column name="LoanType" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransactionInfo" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="a3681001-8987-478f-a5d2-4550f9829e20">
+      <column name="TransactionInfo" not-null="False" length="200" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PlateForm" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="152b41ac-93e5-4e4c-9bc2-1bacbd1410cc">
+      <column name="PlateForm" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="FundsDetail" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="1a407c14-fbbf-4200-be64-c78530d8cb2d">
+      <column name="FundsDetail" not-null="False" length="200" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Enterdate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7f0db445-8ac8-4caa-a6bf-9a87c404dbae">
+      <column name="enterdate" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECDHCost" entity-set="ECDHCosts" table="EC_DHCost" schema="dbo" p1:Guid="5025092f-00a8-4708-9fa2-f8c5423b37c8">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="c5d61d76-e9c5-42b0-8ed7-0f344ec64005">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="Month" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="c589fa11-bd59-49a8-9d24-28d4f27613e7">
+      <column name="Month" not-null="False" length="20" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductSKU" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="db49a874-19b5-496b-8e64-10726d5ec580">
+      <column name="ProductSKU" not-null="False" length="100" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Price" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a40f7353-ad7b-4147-bd70-6dd63aa74f5a">
+      <column name="price" not-null="False" precision="19" scale="4" sql-type="money" p1:unicode="False" />
+    </property>
+    <property name="Enterdate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="58331ea5-0a84-4b6a-864c-65b572768059">
+      <column name="enterdate" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECRepeatCust" entity-set="ECRepeatCusts" table="EC_RepeatCust" schema="dbo" p1:Guid="7f2247d3-f2b6-4a7a-8e6b-bda2bac405e4">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="c55d1d9f-7508-4e6d-8b15-b5928d434aa0">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="PlateForm" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="16e07295-1b3c-4775-a111-1128b31731ff">
+      <column name="PlateForm" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="StoreName" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="648baaa9-0d57-49f9-b66d-b22df695165b">
+      <column name="StoreName" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="DealMonth" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="66ac61f0-8da1-4223-a4fc-9611af4753ed">
+      <column name="DealMonth" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Email" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="4267977b-afe8-49d7-a275-29a8d7028602">
+      <column name="Email" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PlateFormCode" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="30b1020b-83e0-4c9b-9e06-b4e348f24924">
+      <column name="PlateFormCode" not-null="False" length="100" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Amount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c3c523ce-ec28-4909-8d10-a7953e28e43c">
+      <column name="Amount" not-null="False" precision="19" scale="4" sql-type="money" p1:unicode="False" />
+    </property>
+    <property name="FkDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="63a37cf3-aa1f-4504-8e05-f273ba89eff6">
+      <column name="FkDate" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="FkType" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="809637b0-aa4a-4838-94d9-ca2df64e4536">
+      <column name="FkType" not-null="False" length="100" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Enterdate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="476da058-6059-4f59-ada8-34fe74d962ae">
+      <column name="Enterdate" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECShippingMethod" entity-set="ECShippingMethods" table="EC_ShippingMethod" schema="dbo" p1:Guid="2b126e56-83d4-4eca-b35c-18b6ea7cdf9c">
+    <id name="SmId" type="Int32" p1:ValidateRequired="true" p1:Guid="deca8f2d-a6e1-47a7-a96b-9d8d5b06ad90">
+      <column name="sm_id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="SmCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e66026e7-ed68-4b08-9422-fcc0d3a9715e">
+      <column name="sm_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SmName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6457fe7a-92cb-47e5-bbb3-777ac4f19c95">
+      <column name="sm_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SmNameCn" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="416a919b-42b4-4797-9cce-091851ea461e">
+      <column name="sm_name_cn" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SmCarrierName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6f61247d-b4b6-47d5-8bef-6083a518e1ac">
+      <column name="sm_carrier_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SmCarrierNameCn" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="06d852c0-98ff-4963-85cf-dfc5fc33bbd6">
+      <column name="sm_carrier_name_cn" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">
@@ -3053,10 +3872,96 @@
         <property name="ParentId" />
       </end2>
     </association>
+    <association name="BnsAmazonReport_BnsAmazonReportDetail" cardinality="OneToMany" on-delete="Cascade" p1:Guid="26da6808-89da-4893-bedc-7fccf59f89e8">
+      <end1 multiplicity="ZeroOrOne" name="BnsAmazonReport" class="BnsAmazonReportDetail" relation-class="BnsAmazonReport" constrained="True" lazy="False" p1:Guid="ade371ec-84f8-44bf-8bd9-47e2802fa953">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="BnsAmazonReportDetails" class="BnsAmazonReport" relation-class="BnsAmazonReportDetail" lazy="False" p1:Guid="ae852a28-427c-4840-ba32-5cf820625b44">
+        <property name="AmazonReportId" />
+      </end2>
+    </association>
+    <association name="BnsPaypalTransactionDetail_BnsPaypalTransactionDetailsCartInfo" cardinality="OneToMany" p1:Guid="754409be-7071-480c-bad3-969da0be9382">
+      <end1 multiplicity="ZeroOrOne" name="BnsPaypalTransactionDetail" class="BnsPaypalTransactionDetailsCartInfo" relation-class="BnsPaypalTransactionDetail" constrained="True" lazy="False" p1:Guid="b5c93313-07a6-446a-8caa-58e3c6749140">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="BnsPaypalTransactionDetailsCartInfos" class="BnsPaypalTransactionDetail" relation-class="BnsPaypalTransactionDetailsCartInfo" lazy="False" p1:Guid="226d79db-2944-4ed7-855c-c3c914aaa176">
+        <property name="TransactionInfoId" />
+      </end2>
+    </association>
+    <association name="BnsSendDeliverdToEc_ECSalesOrder" cardinality="OneToMany" p1:Guid="c27c8c45-bcb9-4307-8bc6-7b03e755e6f5">
+      <end1 multiplicity="ZeroOrOne" name="BnsSendDeliverdToEc_DeliverId" class="ECSalesOrder" relation-class="BnsSendDeliverdToEc" constrained="True" lazy="False" p1:Guid="843cb687-3b69-4074-b39f-d86f532fa948">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="ECSalesOrders_DeliverId" class="BnsSendDeliverdToEc" relation-class="ECSalesOrder" lazy="False" p1:Guid="22ab2190-3e04-4b87-b81f-d4e5043db930">
+        <property name="DeliverId" />
+      </end2>
+    </association>
   </associations>
   <method name="GetAutoCode" p1:procedure="dbo.GetAutoCode" p1:Guid="ff65e527-f5a5-41bd-8c0b-03cc15517c5d">
     <parameter name="fixHeader" type="String" sql-type="nvarchar" length="20" />
     <parameter name="length" type="Int32" sql-type="int" precision="10" scale="0" />
     <parameter name="code" p1:parameter-direction="InOut" type="String" sql-type="nvarchar" length="60" />
+  </method>
+  <method name="CwAccountQuerySp" p1:procedure="dbo.CwAccountQuery_sp" p1:Guid="a8ca437e-2ad1-4631-8080-855b599d0b12">
+    <return class="CwAccountQuerySpResult">
+      <return-property name="OrderDesc" column="orderDesc" />
+      <return-property name="DatePaidPlatform" column="DatePaidPlatform" />
+      <return-property name="FkType" column="FkType" />
+      <return-property name="DateWarehouseShipping" column="DateWarehouseShipping" />
+      <return-property name="Status" column="status" />
+      <return-property name="SaleOrderCode" column="saleOrderCode" />
+      <return-property name="RefNo" column="refNo" />
+      <return-property name="WarehouseOrderCode" column="warehouseOrderCode" />
+      <return-property name="OrderType" column="orderType" />
+      <return-property name="CountryName" column="country_name" />
+      <return-property name="Warehousedesc" column="warehousedesc" />
+      <return-property name="ProductSku" column="ProductSku" />
+      <return-property name="AmazonSKU" column="AmazonSKU" />
+      <return-property name="SpUnitPrice" column="SpUnitPrice" />
+      <return-property name="ZSpUnitPrice" column="ZSpUnitPrice" />
+      <return-property name="DhCost" column="DhCost" />
+      <return-property name="ProductNetWeight" column="productNetWeight" />
+      <return-property name="ZproductNetWeight" column="ZproductNetWeight" />
+      <return-property name="Qty" column="Qty" />
+      <return-property name="Company" column="Company" />
+    </return>
+  </method>
+  <method name="GetHeadgearDensitySp" p1:procedure="dbo.GetHeadgearDensity_sp" p1:Guid="a0e35b74-c522-4199-b6ae-1c4293fcb0da">
+    <parameter name="startDate" type="String" sql-type="varchar" length="255" />
+    <parameter name="endDate" type="String" sql-type="varchar" length="255" />
+  </method>
+  <method name="GetOrderDetail" p1:procedure="dbo.GetOrderDetail" p1:Guid="7fb16e98-90ff-4931-9239-d6783dd4c5c6">
+    <parameter name="startDate" type="String" sql-type="varchar" length="255" />
+    <parameter name="endDate" type="String" sql-type="varchar" length="255" />
+    <parameter name="type" type="String" sql-type="varchar" length="255" />
+  </method>
+  <method name="GetWavingBlockSp" p1:procedure="dbo.GetWavingBlock_sp" p1:Guid="4606117b-a62e-4f3f-9e74-f60c6fa4a113">
+    <parameter name="startDate" type="String" sql-type="varchar" length="255" />
+    <parameter name="endDate" type="String" sql-type="varchar" length="255" />
+    <parameter name="type" type="String" sql-type="varchar" length="255" />
+  </method>
+  <method name="HairWeftStyleSaleSp" p1:procedure="dbo.HairWeftStyleSale_sp" p1:Guid="ca6c1f1f-c54e-47e0-81ba-ecbfa5795bd4">
+    <parameter name="Sdate" type="DateTime" sql-type="datetime" />
+    <parameter name="Edate" type="DateTime" sql-type="datetime" />
+  </method>
+  <method name="OddMinusSaleSp" p1:procedure="dbo.OddMinusSale_sp" p1:Guid="95ac445b-9b91-4a11-bb52-a472643d015a">
+    <parameter name="Sdate" type="DateTime" sql-type="datetime" />
+    <parameter name="Edate" type="DateTime" sql-type="datetime" />
+  </method>
+  <method name="PlateformLevelSp" p1:procedure="dbo.PlateformLevel_Sp" p1:Guid="d47cb7af-74ca-4335-b5cd-132d2883c2f5">
+    <parameter name="Sdate" type="DateTime" sql-type="datetime" />
+    <parameter name="Edate" type="DateTime" sql-type="datetime" />
+    <parameter name="SaleType" type="String" sql-type="varchar" length="20" />
+  </method>
+  <method name="RefreshProcessedSkuRelation" p1:procedure="dbo.RefreshProcessedSkuRelation" p1:Guid="65e9e61c-06cc-4bc7-a991-d45340cd09b1" />
+  <method name="TotalSaleSp" p1:procedure="dbo.TotalSale_sp" p1:Guid="59883580-0ebc-421f-a3fb-10fe8a0419e3">
+    <parameter name="Sdate" type="DateTime" sql-type="datetime" />
+    <parameter name="Edate" type="DateTime" sql-type="datetime" />
+  </method>
+  <method name="GetInStr" p1:procedure="dbo.GetInStr" p1:table-valued-function="true" p1:Guid="84075143-4e2f-4d9f-b73c-85d2103163f3">
+    <return class="GetInStrResult">
+      <return-property name="List" column="list" />
+    </return>
+    <parameter name="SourceStr" type="String" sql-type="varchar" length="8000" />
   </method>
 </efcore>

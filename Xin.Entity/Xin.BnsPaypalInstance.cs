@@ -18,9 +18,9 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECShipBatchPackingInfo {
+    public partial class BnsPaypalInstance {
 
-        public ECShipBatchPackingInfo()
+        public BnsPaypalInstance()
         {
             OnCreated();
         }
@@ -34,39 +34,56 @@ namespace Xin.Entities
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ReferenceNo
+        public virtual string CreateDate
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppCode
-        {
-            get;
-            set;
-        }
-
-        public virtual int? TppQuantity
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? TppWeight
+        public virtual string Name
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppVolume
+        public virtual string ClientId
         {
             get;
             set;
         }
 
-        public virtual ECShipBatch ECShipBatch
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string ClientSecret
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Zone
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Store
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Zone1
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string ShopMark
         {
             get;
             set;

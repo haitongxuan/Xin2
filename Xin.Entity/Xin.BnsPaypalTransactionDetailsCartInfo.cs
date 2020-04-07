@@ -18,59 +18,46 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECSalesOrderDetail {
+    public partial class BnsPaypalTransactionDetailsCartInfo {
 
-        public ECSalesOrderDetail()
+        public BnsPaypalTransactionDetailsCartInfo()
         {
             OnCreated();
         }
 
-        /// <summary>
-        /// 原系统主键
-        /// </summary>
         [System.ComponentModel.DataAnnotations.Key]
-        [System.ComponentModel.DataAnnotations.StringLength(20)]
         [System.ComponentModel.DataAnnotations.Required()]
-        public virtual string OpId
+        public virtual int Id
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 销售sku
+        /// 产品编号
         /// </summary>
-        [System.ComponentModel.DataAnnotations.StringLength(100)]
-        public virtual string ProductSku
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsItemCode
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 仓库sku对应关系 ：sku数量费用比例
+        /// 产品姓名
         /// </summary>
-        [System.ComponentModel.DataAnnotations.StringLength(400)]
-        public virtual string Sku
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsItemName
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 仓库sku
+        /// 产品描述
         /// </summary>
-        [System.ComponentModel.DataAnnotations.StringLength(100)]
-        public virtual string WarehouseSku
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 单价
-        /// </summary>
-        public virtual decimal? UnitPrice
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsItemDescription
         {
             get;
             set;
@@ -79,100 +66,104 @@ namespace Xin.Entities
         /// <summary>
         /// 数量
         /// </summary>
-        public virtual int? Qty
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsItemQuantity
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 产品名称
+        /// 单价币种
         /// </summary>
-        [System.ComponentModel.DataAnnotations.StringLength(512)]
-        public virtual string ProductTitle
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsItemUnitPriceCurrencyCode
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 产品封面图片
+        /// 单价
         /// </summary>
-        [System.ComponentModel.DataAnnotations.StringLength(512)]
-        public virtual string Pic
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsItemUnitPriceValue
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 产品站点
+        /// 总价币种
         /// </summary>
-        [System.ComponentModel.DataAnnotations.StringLength(200)]
-        public virtual string OpSite
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsItemAmountCurrencyCode
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 产品url
+        /// 总价
         /// </summary>
-        [System.ComponentModel.DataAnnotations.StringLength(512)]
-        public virtual string ProductUrl
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsItemAmountValue
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 跟踪明细id，产品明细唯一标识
+        /// 税额币种
         /// </summary>
-        [System.ComponentModel.DataAnnotations.StringLength(128)]
-        public virtual string RefItemId
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsTaxAmountTaxAmountCurrencyCode
         {
             get;
             set;
         }
 
         /// <summary>
-        /// ebay Item产地,Amazon商品ASIN值
+        /// 税额
         /// </summary>
-        [System.ComponentModel.DataAnnotations.StringLength(128)]
-        public virtual string OpRefItemLocation
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsTaxAmountTaxAmountValue
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 单个交易费
+        /// 总额币种
         /// </summary>
-        public virtual decimal? UnitFinalValueFee
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsTotalItemAmountCurrencyCode
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 单个手续费
+        /// 总额
         /// </summary>
-        public virtual decimal? TransactionPrice
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsTotalItemAmountValue
         {
             get;
             set;
         }
 
         /// <summary>
-        /// 最后更新时间
+        /// 发票号码
         /// </summary>
-        public virtual System.DateTime? OperTime
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CartInfoItemDetailsInvoiceNumber
         {
             get;
             set;
         }
 
-        public virtual ECSalesOrder ECSalesOrder
+        public virtual BnsPaypalTransactionDetail BnsPaypalTransactionDetail
         {
             get;
             set;

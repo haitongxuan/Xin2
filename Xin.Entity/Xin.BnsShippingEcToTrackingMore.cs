@@ -18,9 +18,9 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECShipBatchPackingInfo {
+    public partial class BnsShippingEcToTrackingMore {
 
-        public ECShipBatchPackingInfo()
+        public BnsShippingEcToTrackingMore()
         {
             OnCreated();
         }
@@ -33,40 +33,31 @@ namespace Xin.Entities
             set;
         }
 
+        /// <summary>
+        /// 物流方式
+        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ReferenceNo
+        public virtual string Shiping
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// tracking_more物流对照码
+        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppCode
+        public virtual string ServerName
         {
             get;
             set;
         }
 
-        public virtual int? TppQuantity
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? TppWeight
-        {
-            get;
-            set;
-        }
-
+        /// <summary>
+        /// trac
+        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppVolume
-        {
-            get;
-            set;
-        }
-
-        public virtual ECShipBatch ECShipBatch
+        public virtual string TrackingMoreCode
         {
             get;
             set;

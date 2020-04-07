@@ -18,55 +18,51 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECShipBatchPackingInfo {
+    public partial class ECShippingMethod {
 
-        public ECShipBatchPackingInfo()
+        public ECShippingMethod()
         {
             OnCreated();
         }
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int Id
+        public virtual int SmId
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ReferenceNo
+        public virtual string SmCode
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppCode
-        {
-            get;
-            set;
-        }
-
-        public virtual int? TppQuantity
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? TppWeight
+        public virtual string SmName
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TppVolume
+        public virtual string SmNameCn
         {
             get;
             set;
         }
 
-        public virtual ECShipBatch ECShipBatch
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string SmCarrierName
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string SmCarrierNameCn
         {
             get;
             set;
