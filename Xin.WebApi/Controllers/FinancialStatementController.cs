@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Xin.Common;
 using Xin.Entities;
 using Xin.Repository;
+using Xin.Web.Framework.Helper;
 using Xin.Web.Framework.Model;
 
 namespace Xin.WebApi.Controllers
@@ -84,7 +85,7 @@ namespace Xin.WebApi.Controllers
             return res;
         }
         /// <summary>
-        /// paypal交易信息
+        /// paypal放款信息
         /// </summary>
         /// <param name="pageReq"></param>
         /// <returns></returns>
@@ -141,7 +142,7 @@ namespace Xin.WebApi.Controllers
             return res;
         }
         /// <summary>
-        /// 亚马逊交易信息
+        /// 亚马逊放款信息
         /// </summary>
         /// <param name="pageReq"></param>
         /// <returns></returns>
@@ -193,6 +194,48 @@ namespace Xin.WebApi.Controllers
             catch (Exception ex)
             {
                 res.code = ResCode.ServerError;
+                res.msg = ex.Message;
+            }
+            return res;
+        }
+        /// <summary>
+        /// 导入速卖通放款信息
+        /// </summary>
+        /// <param name="excelFile"></param>
+        /// <returns></returns>
+        [Route("ImportAliLoan")]
+        [HttpPost]
+        public GridPage<List<ECAliexpressLoaninfo>> ImportAliLoan([FromForm] IFormFile excelFile)
+        {
+            var res = new GridPage<List<ECAliexpressLoaninfo>>() { code = ResCode.Success };
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+                    List<ECAliexpressLoaninfo> insertList = new List<ECAliexpressLoaninfo>();
+                    var repository = uow.GetRepository<ECAliexpressLoaninfo>();
+                    List<ECAliexpressLoaninfo> list = ExcelHelper<ECAliexpressLoaninfo>.ExcelToList(excelFile);
+                    foreach (var item in list)
+                    {
+                        var had = repository.Query(a => a.StoreName == item.StoreName && a.LoanDate == item.LoanDate
+                        && a.LoanType == item.LoanType && a.TransactionInfo == item.TransactionInfo
+                        && a.PlateForm == item.PlateForm && a.FundsDetail == item.FundsDetail).FirstOrDefault();
+                        if (had != null)
+                        {
+                            continue;
+                        }
+                        insertList.Add(item);
+                    }
+                    repository.BulkInsert(insertList, a => a.IncludeGraph = true);
+                    uow.SaveChanges();
+                    res.data = insertList;
+                    res.totalCount = insertList.Count;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.code = ResCode.Error;
+                res.data = null;
                 res.msg = ex.Message;
             }
             return res;

@@ -3599,6 +3599,20 @@
       <column name="sm_carrier_name_cn" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
     </property>
   </class>
+  <class name="ECUser" entity-set="ECUsers" table="EC_User" schema="dbo" p1:Guid="cde0312f-5545-436c-a77d-ef236083992c">
+    <id name="UserId" type="Int32" p1:ValidateRequired="true" p1:Guid="dee51392-38c5-4194-b766-4b56ef8d92c2">
+      <column name="user_id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="UserCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b3973bac-f6b8-4eed-b959-6bc7d930dc0d">
+      <column name="user_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="UserName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e0d0d801-cd91-4d33-9921-5d7f86eb4683">
+      <column name="user_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="UserNameEn" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="838d8a3e-57f8-488f-971b-ae20e686f99d">
+      <column name="user_name_en" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">

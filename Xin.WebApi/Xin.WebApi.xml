@@ -35,6 +35,27 @@
             <param name="pageReq"></param>
             <returns></returns>
         </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetPaypalList(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            paypal放款信息
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetAmazonList(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            亚马逊放款信息
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.ImportAliLoan(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            导入速卖通放款信息
+            </summary>
+            <param name="excelFile"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Controllers.OmsAnsListController.AddRecivingCode(System.String[])">
             <summary>
             添加入库单

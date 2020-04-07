@@ -18,75 +18,37 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECShipBatchProductInfo {
+    public partial class ECUser {
 
-        public ECShipBatchProductInfo()
+        public ECUser()
         {
             OnCreated();
         }
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int Id
+        public virtual int UserId
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ProductTitle
+        public virtual string UserCode
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ProductBarcode
+        public virtual string UserName
         {
             get;
             set;
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string BarcodeCode
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string OpQuantity
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? ProductWeight
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string Volume
-        {
-            get;
-            set;
-        }
-
-        public virtual System.DateTime? OpRefPaydate
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? TotalWeight
-        {
-            get;
-            set;
-        }
-
-        public virtual ECShipBatch ECShipBatch
+        public virtual string UserNameEn
         {
             get;
             set;
