@@ -130,7 +130,64 @@ namespace Xin.WebApi.Controllers
                         orderBy = new Repository.OrderBy<BnsPaypalTransactionDetail>(pageReq.order.columnName, pageReq.order.reverse);
                     }
                     res.totalCount = repository.Query(filter.Expression, orderBy.Expression).Count();
-                    res.data = repository.QueryPage(startRow, pageReq.pageSize, filter.Expression, orderBy.Expression,x=>x.Include(a=>a.BnsPaypalTransactionDetailsCartInfos)).ToList();
+                    res.data = repository.QueryPage(startRow, pageReq.pageSize, filter.Expression, orderBy.Expression, x => x.Include(a => a.BnsPaypalTransactionDetailsCartInfos)).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                res.code = ResCode.ServerError;
+                res.msg = ex.Message;
+            }
+            return res;
+        }
+        /// <summary>
+        /// 亚马逊交易信息
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [Route("GetAmazonList")]
+        [HttpPost]
+        public GridPage<List<BnsAmazonReport>> GetAmazonList(DatetimePointPageReq pageReq)
+        {
+
+            var res = new GridPage<List<BnsAmazonReport>>() { code = ResCode.Success };
+
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+                    var repository = uow.GetRepository<BnsAmazonReport>();
+
+                    if (pageReq == null)
+                    {
+                        res.data = repository.GetPage(0, 50).ToList();
+                        return res;
+                    }
+                    else
+                    {
+                        if (pageReq.pageSize == 0)
+                        {
+                            pageReq.pageSize = 50;
+                        }
+                        if (pageReq.pageNum == 0)
+                        {
+                            pageReq.pageNum = 1;
+                        }
+                    }
+                    int startRow = (pageReq.pageNum - 1) * pageReq.pageSize;
+                    Filter<BnsAmazonReport> filter = new Filter<BnsAmazonReport>(null);
+                    if (pageReq.query.Count > 0)
+                    {
+                        var fuc = FilterHelper<BnsAmazonReport>.GetExpression(pageReq.query, "BnsAmazonReport");
+                        filter = new Repository.Filter<BnsAmazonReport>(fuc);
+                    }
+                    OrderBy<BnsAmazonReport> orderBy = new OrderBy<BnsAmazonReport>(null);
+                    if (pageReq.order != null)
+                    {
+                        orderBy = new Repository.OrderBy<BnsAmazonReport>(pageReq.order.columnName, pageReq.order.reverse);
+                    }
+                    res.totalCount = repository.Query(filter.Expression, orderBy.Expression).Count();
+                    res.data = repository.QueryPage(startRow, pageReq.pageSize, filter.Expression, orderBy.Expression, x => x.Include(a => a.BnsAmazonReportDetails)).ToList();
                 }
             }
             catch (Exception ex)
