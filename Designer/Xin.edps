@@ -68,6 +68,7 @@
         <File Name="Xin.ECDHCost.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.ECRepeatCust.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.ECShippingMethod.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECUser.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.CwAccountQuerySpResult.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.GetInStrResult.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.BnsUsTagType.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />

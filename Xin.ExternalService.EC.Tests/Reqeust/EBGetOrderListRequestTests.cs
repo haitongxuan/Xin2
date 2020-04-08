@@ -57,14 +57,14 @@ namespace Xin.ExternalService.EC.Reqeust.Tests
                 foreach (var item in rr.Body)
                 {
                     var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
-                    BnsSendDeliverdToEc temp = new BnsSendDeliverdToEc();
-                    temp.ShippingMethodNo = m.ShippingMethodNo;
-                    temp.PlatformShipTime = m.PlatformShipTime;
-                    m.BnsSendDeliverdToEc_DeliverId = temp;
-                    var had = repos.Get(m.OrderId,x=>x.Include(a=>a.BnsSendDeliverdToEc_DeliverId));
-                    if (had  != null)
+                    var had = repos.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
+                    if (had != null)
                     {
-                        temp.Id = had.BnsSendDeliverdToEc_DeliverId.Id;
+                        List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();
+                        had.BnsSendDeliverdToEcs[0].ShippingMethodNo = m.ShippingMethodNo;
+                        had.BnsSendDeliverdToEcs[0].PlatformShipTime = m.PlatformShipTime;
+                        templist.Add(had.BnsSendDeliverdToEcs[0]);
+                        m.BnsSendDeliverdToEcs = templist;
                         updateList.Add(m);
                     }
                     else

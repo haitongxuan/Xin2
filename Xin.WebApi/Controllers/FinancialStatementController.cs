@@ -241,6 +241,7 @@ namespace Xin.WebApi.Controllers
             }
             return res;
         }
+        
         /// <summary>
         /// 获取速卖通店铺数据
         /// </summary>

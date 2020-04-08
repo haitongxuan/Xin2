@@ -11,6 +11,7 @@ using Xin.ExternalService.EC.Reqeust;
 using Xin.ExternalService.EC.Reqeust.Model;
 using Xin.ExternalService.EC.Response.Model;
 using Xin.Repository;
+using Xin.Service.Context;
 
 namespace Xin.ExternalService.EC.Job
 {
@@ -43,7 +44,7 @@ namespace Xin.ExternalService.EC.Job
                 reqModel.GetAddress = IsOrNotEnum.Yes;
                 reqCondition.CreatedDateBefore = DateTime.Now;
                 reqModel.Condition = reqCondition;
-                using (var uow = _uowProvider.CreateUnitOfWork(false))
+                using (var uow = _uowProvider.CreateUnitOfWork(false, false))
                 {
                     var repository = uow.GetRepository<ECSalesOrder>();
                     //reqCondition.CreatedDateAfter = DateTime.Parse("2020-03-12T10:50:09");
@@ -78,21 +79,25 @@ namespace Xin.ExternalService.EC.Job
                             try
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
-                                var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEc_DeliverId));
+                                var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
 
                                 if (had != null)
                                 {
-                                    had.BnsSendDeliverdToEc_DeliverId.ShippingMethodNo = m.ShippingMethodNo;
-                                    had.BnsSendDeliverdToEc_DeliverId.PlatformShipTime = m.PlatformShipTime;
-                                    m.BnsSendDeliverdToEc_DeliverId = had.BnsSendDeliverdToEc_DeliverId;
+                                    List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();
+                                    had.BnsSendDeliverdToEcs[0].ShippingMethodNo = m.ShippingMethodNo;
+                                    had.BnsSendDeliverdToEcs[0].PlatformShipTime = m.PlatformShipTime;
+                                    templist.Add(had.BnsSendDeliverdToEcs[0]);
+                                    m.BnsSendDeliverdToEcs = templist;
                                     updateList.Add(m);
                                 }
                                 else
                                 {
+                                    List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();
                                     BnsSendDeliverdToEc temp = new BnsSendDeliverdToEc();
                                     temp.ShippingMethodNo = m.ShippingMethodNo;
                                     temp.PlatformShipTime = m.PlatformShipTime;
-                                    m.BnsSendDeliverdToEc_DeliverId = temp;
+                                    templist.Add(temp);
+                                    m.BnsSendDeliverdToEcs = templist;
                                     insertList.Add(m);
                                 }
                             }
@@ -150,7 +155,7 @@ namespace Xin.ExternalService.EC.Job
                         catch (Exception ex)
                         {
                             RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,接口调用出现异常:{ex.Message},第{page}页", reqModel));
-                            log.Error($"订单更新信息,接口调用出现异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;异常信息:{ex.Message}");
+                            log.Error($"订单更新信息,接口调用出现异常:时间区间{reqModel.Condition.UpdateDateBefore.ToString()}TO{reqModel.Condition.UpdateDateAfter.ToString()}第{page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
                         foreach (var item in response.Body)
@@ -158,16 +163,21 @@ namespace Xin.ExternalService.EC.Job
                             try
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
-                                var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEc_DeliverId));
-                                had.BnsSendDeliverdToEc_DeliverId.ShippingMethodNo = m.ShippingMethodNo;
-                                had.BnsSendDeliverdToEc_DeliverId.PlatformShipTime = m.PlatformShipTime;
-                                m.BnsSendDeliverdToEc_DeliverId = had.BnsSendDeliverdToEc_DeliverId;
-                                updateList.Add(m);
+                                var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
+                                if (had != null)
+                                {
+                                    List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();
+                                    had.BnsSendDeliverdToEcs[0].ShippingMethodNo = m.ShippingMethodNo;
+                                    had.BnsSendDeliverdToEcs[0].PlatformShipTime = m.PlatformShipTime;
+                                    templist.Add(had.BnsSendDeliverdToEcs[0]);
+                                    m.BnsSendDeliverdToEcs = templist;
+                                    updateList.Add(m);
+                                }
                             }
                             catch (Exception ex)
                             {
                                 RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,转换实体类出现异常:{ex.Message},第{page}页", null));
-                                log.Error($"订单信息,转换实体类出现异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;异常信息:{ex.Message}");
+                                log.Error($"订单信息,转换实体类出现异常:时间区间{reqModel.Condition.UpdateDateAfter.ToString()}TO{reqModel.Condition.UpdateDateBefore.ToString()}第{page}页;异常信息:{ex.Message}");
                                 throw ex;
                             }
 
@@ -179,6 +189,7 @@ namespace Xin.ExternalService.EC.Job
                             await repository.BulkUpdateAsync(updateList, x => x.IncludeGraph = true);
                             uow.BulkSaveChanges();
                             updateList.Clear();
+
                         }
                         catch (Exception ex)
                         {

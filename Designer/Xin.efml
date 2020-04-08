@@ -1187,9 +1187,6 @@
       </Documentation>
       <column name="SyncCode" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="DeliverId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="7a5ea4c1-f211-457e-8d85-95a9491006d9">
-      <column name="deliver_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
-    </property>
   </class>
   <class name="ECSalesOrderAddress" entity-set="ECSalesOrderAddresses" table="EC_SalesOrderAddress" schema="dbo" p1:Guid="806c1577-d2fa-4066-8bec-9f7cae962e4b">
     <id name="ShippingAddressId" type="String" p1:ValidateMaxLength="11" p1:ValidateRequired="true" p1:Guid="286b069e-2d5e-405e-862b-1fce34f9638e">
@@ -3480,6 +3477,9 @@
     <property name="Ispush" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c4f83c46-5609-4300-add7-ff1156a051d9">
       <column name="Ispush" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
     </property>
+    <property name="OrderId" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="aac09eb4-6b38-419d-9f80-fbaa6ae23d54">
+      <column name="OrderId" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+    </property>
   </class>
   <class name="BnsShippingEcToTrackingMore" entity-set="BnsShippingEcToTrackingMores" table="Bns_ShippingEcToTrackingMore" schema="dbo" p1:Guid="8b12fb60-9341-4855-b97a-47fb1d15b142">
     <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="519c67e6-ae46-4ff8-9f05-6771c86ce45e">
@@ -3902,12 +3902,12 @@
         <property name="TransactionInfoId" />
       </end2>
     </association>
-    <association name="BnsSendDeliverdToEc_ECSalesOrder" cardinality="OneToMany" p1:Guid="c27c8c45-bcb9-4307-8bc6-7b03e755e6f5">
-      <end1 multiplicity="ZeroOrOne" name="BnsSendDeliverdToEc_DeliverId" class="ECSalesOrder" relation-class="BnsSendDeliverdToEc" constrained="True" lazy="False" p1:Guid="843cb687-3b69-4074-b39f-d86f532fa948">
-        <property name="Id" />
+    <association name="ECSalesOrder_BnsSendDeliverdToEc" cardinality="OneToMany" on-delete="Cascade" p1:Guid="e43c2a12-2df2-4763-9689-5efcaed6765b">
+      <end1 multiplicity="ZeroOrOne" name="ECSalesOrder" class="BnsSendDeliverdToEc" relation-class="ECSalesOrder" constrained="True" lazy="False" p1:Guid="955dd176-9715-433b-8557-415a1f64e20b">
+        <property name="OrderId" />
       </end1>
-      <end2 multiplicity="Many" name="ECSalesOrders_DeliverId" class="BnsSendDeliverdToEc" relation-class="ECSalesOrder" lazy="False" p1:Guid="22ab2190-3e04-4b87-b81f-d4e5043db930">
-        <property name="DeliverId" />
+      <end2 multiplicity="Many" name="BnsSendDeliverdToEcs" class="ECSalesOrder" relation-class="BnsSendDeliverdToEc" lazy="False" p1:Guid="8e2d6da6-0edb-463d-b8ff-379e1a07a3a4">
+        <property name="OrderId" />
       </end2>
     </association>
   </associations>

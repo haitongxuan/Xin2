@@ -49,6 +49,10 @@ namespace Xin.ExternalService.EC.Job
 
             sp.Setup((o) => o.GetService(typeof(IRepository<ECSkuRelation>)))
                 .Returns(new GenericEntityRepository<ECSkuRelation>(logger.Object));
+
+            sp.Setup((o) => o.GetService(typeof(IRepository<BnsSendDeliverdToEc>)))
+              .Returns(new GenericEntityRepository<BnsSendDeliverdToEc>(logger.Object));
+
             _uowProvider = new UowProvider(logger.Object, sp.Object);
             var config = new AppConfigurationServices().Configuration;
             login = new LoginModel()
