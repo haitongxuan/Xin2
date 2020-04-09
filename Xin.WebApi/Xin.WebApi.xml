@@ -64,7 +64,7 @@
         </member>
         <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetPlateform">
             <summary>
-            获取速卖通店铺数据
+            获取平台数据
             </summary>
             <returns></returns>
         </member>
@@ -98,7 +98,7 @@
         </member>
         <member name="M:Xin.WebApi.Controllers.FinancialStatementController.ImportRepeatCust(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String)">
             <summary>
-            导入东恒成本价
+            导入复购客户
             </summary>
             <param name="excelFile"></param>
             <returns></returns>
