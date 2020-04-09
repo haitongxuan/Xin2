@@ -62,6 +62,47 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetPlateform">
+            <summary>
+            获取速卖通店铺数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetAliLoanList(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            获取速卖通导入数据
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.ImportDHCoust(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            导入东恒成本价
+            </summary>
+            <param name="excelFile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetDHCostList(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            获取东恒成本价导入数据
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetRepeatCustList(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            获取复购客户导入数据
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.ImportRepeatCust(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String)">
+            <summary>
+            导入东恒成本价
+            </summary>
+            <param name="excelFile"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Controllers.OmsAnsListController.AddRecivingCode(System.String[])">
             <summary>
             添加入库单

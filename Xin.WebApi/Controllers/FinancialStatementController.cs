@@ -38,51 +38,7 @@ namespace Xin.WebApi.Controllers
         {
 
             var res = new GridPage<List<BnsSendDeliverdToEc>>() { code = ResCode.Success };
-
-            try
-            {
-                using (var uow = _uowProvider.CreateUnitOfWork())
-                {
-                    var repository = uow.GetRepository<BnsSendDeliverdToEc>();
-
-                    if (pageReq == null)
-                    {
-                        res.data = repository.GetPage(0, 50).ToList();
-                        return res;
-                    }
-                    else
-                    {
-                        if (pageReq.pageSize == 0)
-                        {
-                            pageReq.pageSize = 1;
-                        }
-                        if (pageReq.pageNum == 0)
-                        {
-                            pageReq.pageNum = 1;
-                        }
-                    }
-                    int startRow = (pageReq.pageNum - 1) * pageReq.pageSize;
-                    Filter<BnsSendDeliverdToEc> filter = new Filter<BnsSendDeliverdToEc>(null);
-                    if (pageReq.query.Count > 0)
-                    {
-                        var fuc = FilterHelper<BnsSendDeliverdToEc>.GetExpression(pageReq.query, "OrderDeliver");
-                        filter = new Repository.Filter<BnsSendDeliverdToEc>(fuc);
-                    }
-                    OrderBy<BnsSendDeliverdToEc> orderBy = new OrderBy<BnsSendDeliverdToEc>(null);
-                    if (pageReq.order != null)
-                    {
-                        orderBy = new Repository.OrderBy<BnsSendDeliverdToEc>(pageReq.order.columnName, pageReq.order.reverse);
-                    }
-                    res.totalCount = repository.Query(filter.Expression, orderBy.Expression).Count();
-                    res.data = repository.QueryPage(startRow, pageReq.pageSize, filter.Expression, orderBy.Expression).ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                res.code = ResCode.ServerError;
-                res.msg = ex.Message;
-            }
-            return res;
+            return DataBaseHelper<BnsSendDeliverdToEc>.GetList(_uowProvider, res, pageReq);
         }
         /// <summary>
         /// paypal放款信息
@@ -95,51 +51,7 @@ namespace Xin.WebApi.Controllers
         {
 
             var res = new GridPage<List<BnsPaypalTransactionDetail>>() { code = ResCode.Success };
-
-            try
-            {
-                using (var uow = _uowProvider.CreateUnitOfWork())
-                {
-                    var repository = uow.GetRepository<BnsPaypalTransactionDetail>();
-
-                    if (pageReq == null)
-                    {
-                        res.data = repository.GetPage(0, 50).ToList();
-                        return res;
-                    }
-                    else
-                    {
-                        if (pageReq.pageSize == 0)
-                        {
-                            pageReq.pageSize = 50;
-                        }
-                        if (pageReq.pageNum == 0)
-                        {
-                            pageReq.pageNum = 1;
-                        }
-                    }
-                    int startRow = (pageReq.pageNum - 1) * pageReq.pageSize;
-                    Filter<BnsPaypalTransactionDetail> filter = new Filter<BnsPaypalTransactionDetail>(null);
-                    if (pageReq.query.Count > 0)
-                    {
-                        var fuc = FilterHelper<BnsPaypalTransactionDetail>.GetExpression(pageReq.query, "BnsPaypalTransactionDetail");
-                        filter = new Repository.Filter<BnsPaypalTransactionDetail>(fuc);
-                    }
-                    OrderBy<BnsPaypalTransactionDetail> orderBy = new OrderBy<BnsPaypalTransactionDetail>(null);
-                    if (pageReq.order != null)
-                    {
-                        orderBy = new Repository.OrderBy<BnsPaypalTransactionDetail>(pageReq.order.columnName, pageReq.order.reverse);
-                    }
-                    res.totalCount = repository.Query(filter.Expression, orderBy.Expression).Count();
-                    res.data = repository.QueryPage(startRow, pageReq.pageSize, filter.Expression, orderBy.Expression, x => x.Include(a => a.BnsPaypalTransactionDetailsCartInfos)).ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                res.code = ResCode.ServerError;
-                res.msg = ex.Message;
-            }
-            return res;
+            return DataBaseHelper<BnsPaypalTransactionDetail>.GetList(_uowProvider, res, pageReq, x => x.Include(a => a.BnsPaypalTransactionDetailsCartInfos));
         }
         /// <summary>
         /// 亚马逊放款信息
@@ -153,50 +65,8 @@ namespace Xin.WebApi.Controllers
 
             var res = new GridPage<List<BnsAmazonReport>>() { code = ResCode.Success };
 
-            try
-            {
-                using (var uow = _uowProvider.CreateUnitOfWork())
-                {
-                    var repository = uow.GetRepository<BnsAmazonReport>();
+            return DataBaseHelper<BnsAmazonReport>.GetList(_uowProvider, res, pageReq, x => x.Include(a => a.BnsAmazonReportDetails));
 
-                    if (pageReq == null)
-                    {
-                        res.data = repository.GetPage(0, 50).ToList();
-                        return res;
-                    }
-                    else
-                    {
-                        if (pageReq.pageSize == 0)
-                        {
-                            pageReq.pageSize = 50;
-                        }
-                        if (pageReq.pageNum == 0)
-                        {
-                            pageReq.pageNum = 1;
-                        }
-                    }
-                    int startRow = (pageReq.pageNum - 1) * pageReq.pageSize;
-                    Filter<BnsAmazonReport> filter = new Filter<BnsAmazonReport>(null);
-                    if (pageReq.query.Count > 0)
-                    {
-                        var fuc = FilterHelper<BnsAmazonReport>.GetExpression(pageReq.query, "BnsAmazonReport");
-                        filter = new Repository.Filter<BnsAmazonReport>(fuc);
-                    }
-                    OrderBy<BnsAmazonReport> orderBy = new OrderBy<BnsAmazonReport>(null);
-                    if (pageReq.order != null)
-                    {
-                        orderBy = new Repository.OrderBy<BnsAmazonReport>(pageReq.order.columnName, pageReq.order.reverse);
-                    }
-                    res.totalCount = repository.Query(filter.Expression, orderBy.Expression).Count();
-                    res.data = repository.QueryPage(startRow, pageReq.pageSize, filter.Expression, orderBy.Expression, x => x.Include(a => a.BnsAmazonReportDetails)).ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                res.code = ResCode.ServerError;
-                res.msg = ex.Message;
-            }
-            return res;
         }
         /// <summary>
         /// 导入速卖通放款信息
@@ -229,6 +99,10 @@ namespace Xin.WebApi.Controllers
                     }
                     repository.BulkInsert(insertList, a => a.IncludeGraph = true);
                     uow.SaveChanges();
+                    if (insertList.Count != list.Count)
+                    {
+                        res.msg = "部分数据重复";
+                    }
                     res.data = insertList;
                     res.totalCount = insertList.Count;
                 }
@@ -241,7 +115,7 @@ namespace Xin.WebApi.Controllers
             }
             return res;
         }
-        
+
         /// <summary>
         /// 获取速卖通店铺数据
         /// </summary>
@@ -250,8 +124,169 @@ namespace Xin.WebApi.Controllers
         [HttpGet]
         public string[] GetShop()
         {
-            string[] shops = new string[] { "Ali_Klaiyi", "Ali_Sunber", "Ali_wondess", "BF", "chifave franchised", "chifave official", "Julia", "LQ", "Nadula", "sviuse", "talever clothes", "talever official", "Unice", "zevrez" };
-            return shops;
+            using (var uow = _uowProvider.CreateUnitOfWork())
+            {
+                var reps = uow.GetRepository<ECSalesOrder>();
+                var sql = reps.Query(a => a.Plateform == "aliexpress").GroupBy(item => new { item.Plateform, item.PlatformUserName }).ToList();
+                string[] shops = new string[sql.Count];
+                for (int i = 0; i < sql.Count; i++)
+                {
+                    shops[i] = sql[i].Key.PlatformUserName;
+                }
+                return shops;
+            }
+        }
+        /// <summary>
+        /// 获取速卖通店铺数据
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetPlateform")]
+        [HttpGet]
+        public string[] GetPlateform()
+        {
+            using (var uow = _uowProvider.CreateUnitOfWork())
+            {
+                var reps = uow.GetRepository<ECSalesOrder>();
+                var sql = reps.GetAll().GroupBy(item => item.Plateform).ToList();
+                string[] shops = new string[sql.Count];
+                for (int i = 0; i < sql.Count; i++)
+                {
+                    shops[i] = sql[i].Key;
+                }
+                return shops;
+            }
+        }
+
+
+        /// <summary>
+        /// 获取速卖通导入数据
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [Route("GetAliLoanList")]
+        [HttpPost]
+        public GridPage<List<ECAliexpressLoaninfo>> GetAliLoanList(DatetimePointPageReq pageReq)
+        {
+            var res = new GridPage<List<ECAliexpressLoaninfo>>() { code = ResCode.Success };
+            return DataBaseHelper<ECAliexpressLoaninfo>.GetList(_uowProvider, res, pageReq);
+        }
+
+        /// <summary>
+        /// 导入东恒成本价
+        /// </summary>
+        /// <param name="excelFile"></param>
+        /// <returns></returns>
+        [Route("ImportDHCoust")]
+        [HttpPost]
+        public GridPage<List<ECDHCost>> ImportDHCoust([FromForm] IFormFile excelFile)
+        {
+            var res = new GridPage<List<ECDHCost>>() { code = ResCode.Success };
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+
+                    List<ECDHCost> list = ExcelHelper<ECDHCost>.ExcelToList(excelFile);
+                    List<ECDHCost> insertList = new List<ECDHCost>();
+                    var repository = uow.GetRepository<ECDHCost>();
+                    foreach (var item in list)
+                    {
+                        if (repository.Query(a => a.Month == item.Month && a.ProductSKU == item.ProductSKU
+                        && a.Price == item.Price).FirstOrDefault() == null)
+                        {
+                            item.Enterdate = DateTime.Now;
+                            insertList.Add(item);
+                        }
+                    }
+                    repository.BulkInsert(insertList);
+                    uow.SaveChanges();
+                    if (insertList.Count != list.Count)
+                    {
+                        res.msg = "部分数据重复";
+                    }
+                    res.data = insertList;
+                    res.totalCount = insertList.Count;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                res.code = ResCode.Error;
+                res.data = null;
+                res.msg = ex.Message;
+            }
+
+            return res;
+
+        }
+        /// <summary>
+        /// 获取东恒成本价导入数据
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [Route("GetDHCostList")]
+        [HttpPost]
+        public GridPage<List<ECDHCost>> GetDHCostList(DatetimePointPageReq pageReq)
+        {
+            var res = new GridPage<List<ECDHCost>>() { code = ResCode.Success };
+            return DataBaseHelper<ECDHCost>.GetList(_uowProvider, res, pageReq);
+        }
+
+        /// <summary>
+        /// 获取复购客户导入数据
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [Route("GetRepeatCustList")]
+        [HttpPost]
+        public GridPage<List<ECRepeatCust>> GetRepeatCustList(DatetimePointPageReq pageReq)
+        {
+            var res = new GridPage<List<ECRepeatCust>>() { code = ResCode.Success };
+            return DataBaseHelper<ECRepeatCust>.GetList(_uowProvider, res, pageReq);
+        }
+
+        /// <summary>
+        /// 导入东恒成本价
+        /// </summary>
+        /// <param name="excelFile"></param>
+        /// <returns></returns>
+        [Route("ImportRepeatCust")]
+        [HttpPost]
+        public GridPage<List<ECRepeatCust>> ImportRepeatCust([FromForm] IFormFile excelFile, string plateForm, string shopName)
+        {
+            var res = new GridPage<List<ECRepeatCust>>() { code = ResCode.Success };
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+
+                    List<ECRepeatCust> list = ExcelHelper<ECRepeatCust>.ExcelToList(excelFile);
+                    List<ECRepeatCust> insertList = new List<ECRepeatCust>();
+                    var repository = uow.GetRepository<ECRepeatCust>();
+                    foreach (var item in list)
+                    {
+
+                    }
+                    repository.BulkInsert(insertList);
+                    uow.SaveChanges();
+                    if (insertList.Count != list.Count)
+                    {
+                        res.msg = "部分数据重复";
+                    }
+                    res.data = insertList;
+                    res.totalCount = insertList.Count;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                res.code = ResCode.Error;
+                res.data = null;
+                res.msg = ex.Message;
+            }
+
+            return res;
+
         }
 
     }

@@ -69,6 +69,19 @@
         <File Name="Xin.ECRepeatCust.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.ECShippingMethod.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.ECUser.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfo.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoBarcode.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoOdaTypeArr.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoOpNode.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoOrder.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoOrderLog.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoProduct.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoShip.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoOrderStatu.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoAddrCountry.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoAdress.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoPackageInfo.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECOrderInfoPackageList.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.CwAccountQuerySpResult.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.GetInStrResult.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.BnsUsTagType.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />

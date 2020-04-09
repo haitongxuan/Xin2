@@ -3613,6 +3613,773 @@
       <column name="user_name_en" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
     </property>
   </class>
+  <class name="ECOrderInfo" entity-set="ECOrderInfos" table="EC_OrderInfo" schema="dbo" p1:Guid="c93cd5a5-e619-4b39-97c0-e1e094a183c4">
+    <id name="OrderCode" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="ff213c25-8f31-4d5d-b5cc-2ea62b9f0b31">
+      <column name="orderCode" not-null="True" length="255" sql-type="varchar" p1:unicode="False" />
+    </id>
+    <property name="OrderLog" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5a9ef08f-7750-4b26-8fe8-d2b068494b36">
+      <column name="orderLog" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f6c568c5-7b70-4bfe-8962-33d27a1f47c5">
+      <column name="orderStatus" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpNode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="63d7c37f-9d5a-4571-9c44-4ca9bfc45764">
+      <column name="opNode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Product" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="59410f64-f306-400f-bbb0-63137f21e16f">
+      <column name="product" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Order" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e2f195c2-72eb-42d2-a50a-054e375e6327">
+      <column name="`order`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderAddress" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6adb8205-484b-4e68-b4df-10fa7d7a5deb">
+      <column name="orderAddress" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PackingList" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="82b04a67-bee5-426e-8a6e-a16a81c20775">
+      <column name="packingList" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BbServiceProviderCurrency" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ad1e39e9-c574-4d9c-978e-e3552d2c0efc">
+      <column name="bb_service_provider_currency" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderTrack" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2e5b17a8-45af-4315-9fd1-42bcecff1c48">
+      <column name="orderTrack" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncConfirmShipStatusArr" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6ccc749f-fa43-41ca-8955-3e5d914b2360">
+      <column name="syncConfirmShipStatusArr" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OdaTypeArr" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9461dd04-7f88-40ab-9a34-de2ae114c886">
+      <column name="odaTypeArr" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoBarcode" entity-set="ECOrderInfoBarcodes" table="EC_OrderInfoBarcode" schema="dbo" p1:Guid="594efe3c-5232-4017-a883-c5adf4f3e965">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="b5f69750-c0bf-4871-a491-69bcbc2b5548">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="WarehouseProductBarcode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6282791b-cfb8-4af8-ab88-72b074d72ff0">
+      <column name="warehouse_product_barcode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WarehouseDesc" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8ac96702-a2fd-4d18-9c6b-e6d9479e1ee1">
+      <column name="warehouse_desc" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WarehouseCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="278e981e-ded5-4176-817f-c9b4b9de664a">
+      <column name="warehouse_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoOdaTypeArr" entity-set="ECOrderInfoOdaTypeArrs" table="EC_OrderInfoOdaTypeArr" schema="dbo" p1:Guid="78bf7c01-3f9f-4833-90f0-7b6da033f0da">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="46931eb7-157d-4054-8134-44ff574b1f26">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="OrderCode" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ea901cda-f6f2-48f4-b963-b8dc0228aa19">
+      <column name="order_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_0" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="41a8e4d1-c767-4c37-97d1-32959db1a6d4">
+      <column name="`0`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_1" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a9265a4b-1131-4cc8-971a-ce2b2b51cb8c">
+      <column name="`1`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_2" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7f82073e-90d8-4aac-8f56-d58479b08e05">
+      <column name="`2`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoOpNode" entity-set="ECOrderInfoOpNodes" table="EC_OrderInfoOpNode" schema="dbo" p1:Guid="397709c6-3314-4b28-8dc2-bc62971f071c">
+    <id name="OpNode" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="76032884-1dc3-4d87-8a20-b886bee09f24">
+      <column name="OpNode" not-null="True" length="255" sql-type="varchar" p1:unicode="False" />
+    </id>
+    <property name="OrderId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="55c25813-4797-4d6e-a707-a3e333f7b0d3">
+      <column name="order_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderCode" type="String" shadow="True" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="75464dcf-3650-4383-adb4-a480b656c212">
+      <column name="order_code" not-null="True" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OotCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="516ea12f-1b74-4c83-ba7e-6a7435c5e223">
+      <column name="oot_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OonNote" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="560b2908-6ea0-4152-8d0e-9abb7e8f208c">
+      <column name="oon_note" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OonAddTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="21baa7a8-3145-47ec-8283-f5377ab4a3b0">
+      <column name="oon_add_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="UserId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9025b672-ad3c-4c53-a9b7-89c4e651d7d8">
+      <column name="user_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="UserName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1f868fb8-03bd-4a0d-8586-867ac4676d05">
+      <column name="user_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OotName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="65e070ac-3dd0-4162-a574-cc60c8989ba4">
+      <column name="oot_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OotNameEn" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ab0d9961-768d-4641-81d4-6e0c54c6cf10">
+      <column name="oot_name_en" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoOrder" entity-set="ECOrderInfoOrders" table="EC_OrderInfoOrder" schema="dbo" p1:Guid="d5658c11-bb13-469c-b754-73c7bbede4b0">
+    <id name="OrderId" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="ef56450d-c44f-4825-b503-ff0c18e79977">
+      <column name="order_id" not-null="True" length="255" sql-type="varchar" p1:unicode="False" />
+    </id>
+    <property name="OrderCode" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="48854fb0-67d2-4871-9fae-6abc8daf0f80">
+      <column name="order_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CustomerId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="26a06f94-79a3-419e-a5a0-3fe94263d34b">
+      <column name="customer_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CustomerCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1ee8f81f-3fe0-4600-bf10-1a4a9de31bff">
+      <column name="customer_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Platform" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d1a85ec4-0108-42bd-8b08-4f886d973f6f">
+      <column name="platform" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderPlatformType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="12feba5c-890b-4ea0-a5c2-720e07cc5bbb">
+      <column name="order_platform_type" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderPlatformCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7dd04e60-8ede-4e16-ab1b-4bb7327fdf13">
+      <column name="order_platform_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CreateType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="98c27a1a-7a72-47ef-a303-c7ef0207df4b">
+      <column name="create_type" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WarehouseId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a1084629-b532-4137-bc3a-504d809a4f60">
+      <column name="warehouse_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ToWarehouseId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="06077050-5230-4b88-a35b-27b8b7163942">
+      <column name="to_warehouse_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b6e6b929-d34a-4c74-bf04-42710b67395e">
+      <column name="order_type" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9d4c8a3d-f7c8-440f-ba9f-30ceb7a867fd">
+      <column name="country_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SmCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="aed4de61-f56e-4091-90ca-8b1ccef8d114">
+      <column name="sm_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ParcelDeclaredValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c06f9d4b-b63f-43c2-91f6-0cb127064a10">
+      <column name="parcel_declared_value" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="DeclaredWeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4c8b7b88-64c1-4d00-a810-d9f70f847b9c">
+      <column name="declared_weight" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShippingFeeEstimate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="de626007-35e3-4cdd-89ee-b1e3a18c727c">
+      <column name="shipping_fee_estimate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5b310677-8336-49b0-966a-147a7728ec3e">
+      <column name="currency_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ParcelContents" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d2226d21-c924-4ea7-b969-8c7fb2ca2b1a">
+      <column name="parcel_contents" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ParcelQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8609385e-9a66-4404-b460-58adeb18a168">
+      <column name="parcel_quantity" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1ca81830-8a3f-46b1-b4a1-71e9d05e461d">
+      <column name="order_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderOutboundStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e0c54634-fa24-469e-a1b9-3d0e1a009cb4">
+      <column name="order_outbound_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderHoldInventory" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="90c930c7-2103-4384-bb1d-3e5314621b74">
+      <column name="order_hold_inventory" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderHoldStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="388f6c43-427b-4384-ac3f-e137cd395a6b">
+      <column name="order_hold_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderExceptionStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="61e9c5f9-3613-4ba6-8ca2-3321ebbb193b">
+      <column name="order_exception_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProblemStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f5d7d75f-1c35-40e8-ad8d-0e74aa238374">
+      <column name="problem_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="UnderreviewStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="eedb901a-730f-430f-83df-a3f9449d5b24">
+      <column name="underreview_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="InterceptStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f0f144ec-51a1-40b9-8f1c-5ed34f1f1df2">
+      <column name="intercept_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncCostStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a74b9b91-b743-4d83-bcdb-411a9d4ca7bd">
+      <column name="sync_cost_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="cd26e4a0-8ee3-4c34-992f-a0ee393c70f2">
+      <column name="sync_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderWaitingStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c2ea93f5-cc5f-4c09-a01f-fbce9502f4c6">
+      <column name="order_waiting_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PrintSort" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="45924f11-969f-43da-894f-c19af3b2c1cf">
+      <column name="print_sort" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PrintQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0602ff1c-9a2c-42a9-b2d1-bc343f976f36">
+      <column name="print_quantity" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="AddTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="65b40012-071e-4086-b93c-ad4bf74965c9">
+      <column name="add_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="UpdateTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f22a6d8a-6423-4016-a645-7a9903621f73">
+      <column name="update_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderPaydate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d9de0329-b656-4836-857c-3013fff507b1">
+      <column name="order_paydate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderPickType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c68bf607-19a1-4efe-bc32-a68f29fe562b">
+      <column name="order_pick_type" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ReferenceNo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f0037461-5414-4f24-a8ab-d1a18bf96cf7">
+      <column name="reference_no" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PickerId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3bfe8461-7ea8-476c-a253-57d511190c83">
+      <column name="picker_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PickingBasket" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="56bd2dde-3282-405b-b6f3-f4bbc0b79252">
+      <column name="picking_basket" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Remark" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="37834bad-2a87-435a-8f08-6d189d2cb45b">
+      <column name="remark" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SiteId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="09eaea38-a9c3-46ca-b0b5-90ce4be5fece">
+      <column name="site_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SellerId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c388cf85-58b6-47a2-9142-c28be3c59246">
+      <column name="seller_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PlatformSellerId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ce9e4e35-7a1e-49bf-8a2b-235731172f04">
+      <column name="platform_seller_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncServiceStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="dd7cf505-ba60-4238-8ac5-57f1d2deb82d">
+      <column name="sync_service_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncCount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2953adca-8319-467b-be37-3b23c4a33429">
+      <column name="sync_count" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncConfirmshipStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e95220ef-2e9a-4c54-a157-eeed6d53fe28">
+      <column name="sync_confirmship_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncExpressStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="071585d8-0815-4b8f-9cb1-be593a42dcef">
+      <column name="sync_express_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncExpressShip" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="589763d3-8d41-4a57-a402-4200e8045325">
+      <column name="sync_express_ship" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncRequiredSign" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a0adab92-f16a-4222-8547-2d006df351b2">
+      <column name="sync_required_sign" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OperatorNote" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="517e4930-09cc-4cdd-aa8f-2fe4f45e1f4d">
+      <column name="operator_note" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncWmsStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="08cd034c-b4b5-40f1-a40d-77487114115e">
+      <column name="sync_wms_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncWmsSign" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e20ae38e-1346-46d9-bf15-46e91487344f">
+      <column name="sync_wms_sign" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SyncWmsTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="451fbe20-42f8-4caa-aced-a3532398de7d">
+      <column name="sync_wms_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CheckShippingMethod" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1871fb8c-9ac1-4b90-8d69-2e269cbe421f">
+      <column name="check_shipping_method" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="AnewExpressStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="cf16a873-ec4b-4984-a49b-9e4f1e3c807b">
+      <column name="anew_express_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="RefTrackingNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="048c673d-58c3-466a-9588-7c573079f86a">
+      <column name="ref_tracking_number" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderAdvancePickup" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b7e8c474-629d-4487-99c6-80dd513fbff6">
+      <column name="order_advance_pickup" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="FbaFee" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7720c73c-51a0-40e8-b91d-b1d2d52eabdb">
+      <column name="fba_fee" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CreateUserId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5472f918-d33e-4d84-b343-d2819de85a24">
+      <column name="create_user_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="IsOda" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d89ac941-51a4-4560-a01f-90a96c81a5fe">
+      <column name="is_oda" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OdaType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7176f7ca-b3ae-4765-a659-70fbfb8b8648">
+      <column name="oda_type" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="IsFba" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="75d41aa7-0bc6-4d0d-8619-2ecc89efcc88">
+      <column name="is_fba" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="IsShared" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="354272d5-0065-4a8e-9030-a71f8603cc1a">
+      <column name="is_shared" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="IsImportLabel" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6427c59c-961e-4a5e-88fa-9e122ede41a2">
+      <column name="is_import_label" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="UserAccount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4116038b-a420-4fa8-962b-db1554a07ff5">
+      <column name="user_account" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PlatformUserName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="607d238d-d410-43db-b503-057b0b9045c7">
+      <column name="platform_user_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WarehouseCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="29ec2f54-71fb-48d5-8012-e430ef57711b">
+      <column name="warehouse_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Picker" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="431cad63-28e7-474c-ba45-61764893c1d0">
+      <column name="picker" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShipId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="9cef2c58-4f7a-4440-9a7d-10c2055e0cce">
+      <column name="ship_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoOrderLog" entity-set="ECOrderInfoOrderLogs" table="EC_OrderInfoOrderLog" schema="dbo" p1:Guid="d050291b-2356-4760-a5bd-4772a055ab29">
+    <id name="OlId" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="bed0705a-0720-47a4-a1c5-43c856ee7507">
+      <column name="ol_id" not-null="True" length="255" sql-type="varchar" p1:unicode="False" />
+    </id>
+    <property name="OrderId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="bc39adaa-7ba9-4db7-b5c5-03b7ec9b2c11">
+      <column name="order_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderCode" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ee958fdc-7ebc-47af-92d6-073e1514652b">
+      <column name="order_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OlType" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="adbce918-84d3-4b21-9034-f6033fe00873">
+      <column name="ol_type" not-null="False" length="4000" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderStatusFrom" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="7a68d386-5bf9-4340-9ac4-52c6436e0b7d">
+      <column name="order_status_from" not-null="False" length="4000" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderStatusTo" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="3a94b2fb-25df-42ca-999d-cb48a40ed49c">
+      <column name="order_status_to" not-null="False" length="4000" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OlAddTime" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="9ca6badc-1f69-451c-8a2d-e3ba02e95f8a">
+      <column name="ol_add_time" not-null="False" length="4000" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="UserId" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="5fd8c784-b649-424b-8f2f-2bb7ebae9afb">
+      <column name="user_id" not-null="False" length="4000" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OlIp" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="ab6e4a98-1ea9-4819-9b24-f1e6be33a107">
+      <column name="ol_ip" not-null="False" length="4000" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OlComments" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="606d718f-1e33-4bd2-b4e2-88cc5dc19006">
+      <column name="ol_comments" not-null="False" length="4000" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="UserName" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="30abba80-821e-4544-b63d-b12906c24604">
+      <column name="user_name" not-null="False" length="4000" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoProduct" entity-set="ECOrderInfoProducts" table="EC_OrderInfoProduct" schema="dbo" p1:Guid="6cb39ff7-bb97-4f3d-8b1e-4a92f925ba09">
+    <id name="OpId" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="7e3556dd-0a5f-4f8b-83b7-0d4d70acadaf">
+      <column name="op_id" not-null="True" length="255" sql-type="varchar" p1:unicode="False" />
+    </id>
+    <property name="OrderId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e3c17e94-32e6-45d3-8b98-3acaee650343">
+      <column name="order_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderCode" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b916e36a-0ac1-40a1-8efc-7c9adbd04249">
+      <column name="order_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="95937724-5f72-4f9b-86e0-640ff45cf81d">
+      <column name="product_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductBarcode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a578bd94-78ba-43fe-95ab-f23b8af895fa">
+      <column name="product_barcode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpOos" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c0a1a773-a960-4092-bd1f-57f47f5c2f47">
+      <column name="op_oos" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpOosDays" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="bf3c97cc-e74b-4d6a-a7d1-77ff367f2bf2">
+      <column name="op_oos_days" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9758e3e9-71e6-440c-87e0-36ce625d4ff3">
+      <column name="op_quantity" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpInventory" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3df49a0e-d98e-4c81-9a98-7577f741decf">
+      <column name="op_inventory" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpFinalValueFee" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="84b84ded-d155-48f4-993f-397ea046e7bb">
+      <column name="op_final_value_fee" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpPaypalFee" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1157e6a9-a118-4dec-866f-551b99e8c639">
+      <column name="op_paypal_fee" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpSalesPrice" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1dd07455-92e1-4fed-b319-a216cfab89b3">
+      <column name="op_sales_price" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpDeclaredValue" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1dd540c9-d9c4-4476-b366-efc60ba99c19">
+      <column name="op_declared_value" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpDeclaredWeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e8a3f4cd-d529-4de6-b79e-f81ae6653717">
+      <column name="op_declared_weight" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpCategory" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="63b0c01a-9c0a-436f-990c-2cd89e1d0ad9">
+      <column name="op_category" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpRecvAccount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="99f25918-da04-43ad-b650-809a05afc79d">
+      <column name="op_recv_account" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpRefTnx" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5ced5395-9e09-4620-8caa-246b7855b788">
+      <column name="op_ref_tnx" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpRefItemId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d494f0d1-caeb-48f4-869a-206678fe7b46">
+      <column name="op_ref_item_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpRefBuyerId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b9331de5-744e-45ce-90be-13bba5b7974c">
+      <column name="op_ref_buyer_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpRefPaydate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b5a20eca-963b-4b57-930d-b5b8b2e4cf77">
+      <column name="op_ref_paydate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpAddTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ccfd5570-da44-41c6-8c66-67a57a05a92c">
+      <column name="op_add_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpUpdateTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="00a10c65-a63b-454c-bd62-f140def3c93e">
+      <column name="op_update_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ItemListType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="54b62e93-0b7f-4ce1-95ce-b3cd0aed8ee2">
+      <column name="item_list_type" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpFbaFee" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6c0ee647-0dda-4391-9e21-da49614e47fd">
+      <column name="op_fba_fee" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpOtherFee" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0a52ea67-1040-4d5a-8514-692c01d33929">
+      <column name="op_other_fee" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpPlatformSalesSku" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6c2616e8-90f2-419b-8f53-e79b09664f59">
+      <column name="op_platform_sales_sku" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpPlatformSalesQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ae4b142c-d8a0-4365-8c7f-9892ee737e62">
+      <column name="op_platform_sales_quantity" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OpShippingFee" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="663b1e9b-cf9f-435d-abf1-cba8e5e88344">
+      <column name="op_shipping_fee" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductWeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="49311626-665d-4be7-93c6-33d8d85803fe">
+      <column name="product_weight" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductHeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9b61ae5c-4678-405f-93d0-b0e52f090766">
+      <column name="product_height" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductLength" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="67c08b50-6402-4548-a27d-65f7a1c66fda">
+      <column name="product_length" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductWidth" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="926e9fc7-b67d-4e5d-98a9-438e38ffccc3">
+      <column name="product_width" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductTitle" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2219f25c-9f2b-420d-b544-db69137858f7">
+      <column name="product_title" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BarcodeCodeId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="46cf0698-44f7-417b-9bbe-488030fa8432">
+      <column name="barcode_code_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoShip" entity-set="ECOrderInfoShips" table="EC_OrderInfoShip" schema="dbo" p1:Guid="22b1176e-9288-4aac-9c96-88994b91693b">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="6ee7534a-c4a2-4199-9875-94e6cb5f6f8a">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="TrackingNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0338be10-458e-4f25-b6bb-81508d2d66d2">
+      <column name="tracking_number" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ServiceNumberConvert" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8a734234-417a-417c-a47d-9d2412f6b2f5">
+      <column name="service_number_convert" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ServiceNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2bbb54af-eb88-4f93-9a9a-b597573f7c3a">
+      <column name="service_number" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SoWeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a4eb085f-f682-4649-a626-eb8b42bfd1e9">
+      <column name="so_weight" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SoShippingFee" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4fda52fe-dac9-4f0b-a641-70f2256d48f5">
+      <column name="so_shipping_fee" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d0cfdab6-f41b-4cae-9b42-800ffaba6852">
+      <column name="currency_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoOrderStatu" entity-set="ECOrderInfoOrderStatus" table="EC_OrderInfoOrderStatus" schema="dbo" p1:Guid="091ca467-545a-4bf1-92a3-98cc490d4451">
+    <id name="OrderCode" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="ad6a8a22-5873-4b34-b72c-e6fe62616b41">
+      <column name="order_code" not-null="True" length="255" sql-type="varchar" p1:unicode="False" />
+    </id>
+    <property name="_0" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ec9602da-1bc3-4349-8c64-8f1920925cb0">
+      <column name="`0`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_1" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="075acb72-3751-4365-a533-2ad817f33246">
+      <column name="`1`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_2" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9ee525e9-a74d-498a-9114-237b704eb035">
+      <column name="`2`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_3" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b4144b1f-3766-4b18-9004-6a4e68aeaa98">
+      <column name="`3`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_4" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3411d358-366f-4b89-a18c-849ec0731027">
+      <column name="`4`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_5" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5f464801-f838-4f0a-8485-37dfb3afdebf">
+      <column name="`5`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_7" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="58c99578-6406-41f1-8bec-f454b3064b2a">
+      <column name="`7`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_8" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d136fd0c-ddb3-4b80-b8b5-840f96cf1675">
+      <column name="`8`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_9" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="40f87274-dfff-4200-9dd1-5dad8736b895">
+      <column name="`9`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="_10" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3ac8baba-612e-4d5d-9a8c-1ee84d85e9fc">
+      <column name="`10`" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoAddrCountry" entity-set="ECOrderInfoAddrCountries" table="EC_OrderInfoAddrCountry" schema="dbo" p1:Guid="ecc22878-59d6-4c9c-a014-04d1ee26e26d">
+    <id name="CountryId" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="82c5a084-46e3-4792-8338-bf4b0a7790fc">
+      <column name="country_id" not-null="True" length="255" sql-type="varchar" p1:unicode="False" />
+    </id>
+    <property name="CountryName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="41ab9de5-3a24-4c80-bae2-4b33ff0b814e">
+      <column name="country_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryNameEn" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="19a1e7dc-bcdf-4b4a-b0cf-5bd289704477">
+      <column name="country_name_en" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryLocalName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9381928f-4283-44a9-807f-2a6715796fa5">
+      <column name="country_local_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryAlias" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e4e49969-3878-4813-b7c3-546c1c54f978">
+      <column name="country_alias" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="29f409ab-21dd-4a65-8171-db7589e438ff">
+      <column name="country_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryCodeIso" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ecac36a4-3cf7-4919-abfa-812d0ba27328">
+      <column name="country_code_iso" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryNum" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="93f1ccda-5ca2-4907-905b-73ff4562a43a">
+      <column name="country_num" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountrySort" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ef96a29c-5406-43e4-82f9-67f542ea8d15">
+      <column name="country_sort" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryShortName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d2537e67-cea4-4e89-8cc2-95f685750ea2">
+      <column name="country_short_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TradeCountry" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c71e07c8-e3f2-4002-8269-375e14f99f54">
+      <column name="trade_country" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryMatch" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2fc45e68-1f9f-4e65-9a0a-5b894a0e8c16">
+      <column name="country_match" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b8a34854-ea78-4c4e-989b-0ca369489bb0">
+      <column name="country_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CountryUpdateTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="14b4ab4a-b1db-445d-8fce-6d9414cf34cb">
+      <column name="country_update_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoAdress" entity-set="ECOrderInfoAdresses" table="EC_OrderInfoAdress" schema="dbo" p1:Guid="97d51f92-4271-47e8-842e-72c862c9a71b">
+    <id name="OabId" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="01dcfe8a-2b7e-49c0-ba27-d8ce3ce22977">
+      <column name="oab_id" not-null="True" length="255" sql-type="varchar" p1:unicode="False" />
+    </id>
+    <property name="OrderId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="aa0e036d-34bf-4c83-8981-ecf3123cae6d">
+      <column name="order_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="OrderCode" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e6783e03-58df-4513-9e15-8f99cd91e161">
+      <column name="order_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabFirstname" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="97ad8721-b4ea-40d1-8b03-0d63ebcd10f5">
+      <column name="oab_firstname" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabLastname" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c9759744-47fd-409e-af51-153870fedfc3">
+      <column name="oab_lastname" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabCompany" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="442b8c99-59a6-41f2-8436-59d6638f93f1">
+      <column name="oab_company" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabCountryId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d6a63518-a38f-4a7b-b36c-75dc87b8629d">
+      <column name="oab_country_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabZoneId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e2c78666-c66a-4e30-9e1d-b5726d4f09d0">
+      <column name="oab_zone_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabPostcode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8ee6dab2-4baf-4131-b338-2939b8fb8083">
+      <column name="oab_postcode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabState" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="38efb184-253c-4bef-8579-9212994bf908">
+      <column name="oab_state" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabCity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="17e1f101-522b-4701-9e64-594167cd9b02">
+      <column name="oab_city" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabSuburb" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="589e72ab-a8f4-4a87-8c63-f4055a0e3691">
+      <column name="oab_suburb" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabStreetAddress1" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ebf634ac-2437-4a45-be9b-c85340e4ad43">
+      <column name="oab_street_address1" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabStreetAddress2" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="60e14202-a68f-4efc-bbd1-ce71092eed29">
+      <column name="oab_street_address2" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabDoorplate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="05bef59d-342e-498d-b6ca-931e73487bc4">
+      <column name="oab_doorplate" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabPhone" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6937a507-bd4b-4c28-814a-2be67a1a9a26">
+      <column name="oab_phone" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabCellPhone" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="af72a7a1-a3c9-43ee-b34e-d1cd8cfdb6c4">
+      <column name="oab_cell_phone" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabFax" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8b5dab7f-ff96-4ccd-9509-a5653432efc7">
+      <column name="oab_fax" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabEmail" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="636e4f08-01d6-4406-bef1-1ed54ef5bc90">
+      <column name="oab_email" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabNote" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="568ac2f0-63bf-45f7-aa5b-fc5c179d86ba">
+      <column name="oab_note" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OabUpdateTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6712358f-604e-4935-9ebe-60514f619094">
+      <column name="oab_update_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Country" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="25d197ea-597b-4fea-978a-df47f9be9164">
+      <column name="country" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoPackageInfo" entity-set="ECOrderInfoPackageInfos" table="EC_OrderInfoPackageInfo" schema="dbo" p1:Guid="f70dc647-187e-4d6f-88fc-958f2f1fefb1">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="a94a15f5-a853-4553-8f94-3223088fbb4a">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="WarehouseId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="31c6e8a6-f1f3-479b-a931-e644d56d18bb">
+      <column name="warehouse_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpuCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="35960666-6ada-4839-9929-74d2b7c7410a">
+      <column name="ppu_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CustomerCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9517ca9c-0d95-4eb4-81b7-bd5ae840e55d">
+      <column name="customer_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CustomerId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0c5786bb-a066-40a7-92d9-b9ddd06a5488">
+      <column name="customer_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpBarcode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f95672cf-cce6-463b-bb08-598804d5262f">
+      <column name="pp_barcode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e5676f80-c048-4c19-82d7-69cb1d2d8520">
+      <column name="pp_type" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f96f89a6-2649-4959-b104-14e468632fdb">
+      <column name="pp_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpActionType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7b1f346e-5e23-428c-a85c-0c7495d4bf61">
+      <column name="pp_action_type" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="25571831-ae51-4d68-a6aa-1b29db8fa712">
+      <column name="pp_quantity" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpCost" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="03d411e7-c902-4789-901e-0f8b84ce4f01">
+      <column name="pp_cost" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d2ff76be-dd4c-420f-bffa-76ef4c56307d">
+      <column name="currency_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d24c6c4b-ed4a-4940-9d7c-6c28131c87c4">
+      <column name="pp_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpLength" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="010491be-dc66-4cab-ac79-a9e92732b2a5">
+      <column name="pp_length" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpNameEn" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3124153b-d4b8-44b9-9a30-ec129ef9a97d">
+      <column name="pp_name_en" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpHeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="059f3980-826a-484d-ad79-d061e67604cc">
+      <column name="pp_height" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpWidth" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a15fb959-8725-4042-b75a-60515d87a7ed">
+      <column name="pp_width" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpWeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="73ad562c-1f6d-4572-8d6c-3c5d782ec52a">
+      <column name="pp_weight" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpAddTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5be088fd-62ab-452c-ae98-5aae832380b3">
+      <column name="pp_add_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpUpdateTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="988b9060-3696-4d5f-88af-c7705e85f33d">
+      <column name="pp_update_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PpPath" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="65df5069-8e1c-4ce4-841f-2e9592e5f5c3">
+      <column name="pp_path" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECOrderInfoPackageList" entity-set="ECOrderInfoPackageLists" table="EC_OrderInfoPackageList" schema="dbo" p1:Guid="489aa3db-b7ce-4e8b-be97-45fadd8bd337">
+    <id name="TppId" type="String" p1:ValidateMaxLength="255" p1:ValidateRequired="true" p1:Guid="6aa9f158-5edf-4c8a-bab1-96f5b14a620b">
+      <column name="tpp_id" not-null="True" length="255" sql-type="varchar" p1:unicode="False" />
+    </id>
+    <property name="TppCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ba7bd20b-d8fc-4c86-9c0d-df23ef049f75">
+      <column name="tpp_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppSn" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="16b084aa-9fdf-4773-b109-cee5dd367f4c">
+      <column name="tpp_sn" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ReferenceNo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="30b802f2-414b-4c35-be6d-ebb1d509aed9">
+      <column name="reference_no" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TptCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4eb7034b-ddcf-4dd0-b531-9cc70648fd0f">
+      <column name="tpt_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SmCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2f1ac3cf-dbbe-4273-810e-ef5b6fc0436e">
+      <column name="sm_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="52bf2d77-4a4d-4b09-acf2-4ae896bad6e9">
+      <column name="order_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderCode" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2409eb46-84e2-469f-b873-b958d9e98ea9">
+      <column name="order_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WarehouseId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9bcc33b2-92be-4f40-a0f7-72d259c84e70">
+      <column name="warehouse_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ToWarehouseId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ac29efaf-a01b-4300-a84a-774a0f42a791">
+      <column name="to_warehouse_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppCreaterId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e2162b70-7d2e-4fa5-aae7-7ff9ae0964d5">
+      <column name="tpp_creater_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppCompleteId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f99f4947-d4e9-4985-a5fc-b348ddfdc9bf">
+      <column name="tpp_complete_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppQuantity" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5aa51d86-9b3f-4162-ba98-da3bc64a59b5">
+      <column name="tpp_quantity" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppLength" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="56e7785c-f56b-4bb3-a441-115f5c78791e">
+      <column name="tpp_length" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppWidth" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="981abe09-4259-4a48-a842-b8fc84d54df1">
+      <column name="tpp_width" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppHeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="dff67d4c-5794-44ae-8732-1d1a50c1e2a8">
+      <column name="tpp_height" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppWeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="12e80135-8974-42a4-9efe-1256724e1f36">
+      <column name="tpp_weight" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppNetWeight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="eea4b593-c217-4f2f-85d8-09d72f6435c1">
+      <column name="tpp_net_weight" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppIsverify" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a314f7d2-f95f-4363-829e-711d13c9a3ca">
+      <column name="tpp_isverify" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3ffaa98c-0b9f-4b5e-869b-c12d6adfd577">
+      <column name="tpp_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppReceivingStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="533d0aca-30e6-43af-8e82-5f2af0ca2b29">
+      <column name="tpp_receiving_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppIsbattery" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b90ce3ad-262b-4a8b-b3e7-b1f277f3d13c">
+      <column name="tpp_isbattery" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppAddTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="913a155d-895c-47e0-bd0c-5fc0236a6cae">
+      <column name="tpp_add_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppUpdateTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ab6e34a3-9231-4972-95f4-74277d18041e">
+      <column name="tpp_update_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppExcuteTime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d7b142e3-78d1-45d0-b638-d3d30ed519c3">
+      <column name="tpp_excute_time" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TppPutawayStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="dfd3f401-fcbf-40a1-951b-158d1cfdc3c4">
+      <column name="tpp_putaway_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PackageInfoId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="b4f9d506-8d45-4658-81d8-2d5ac73eca37">
+      <column name="package_info_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">
@@ -3908,6 +4675,102 @@
       </end1>
       <end2 multiplicity="Many" name="BnsSendDeliverdToEcs" class="ECSalesOrder" relation-class="BnsSendDeliverdToEc" lazy="False" p1:Guid="8e2d6da6-0edb-463d-b8ff-379e1a07a3a4">
         <property name="OrderId" />
+      </end2>
+    </association>
+    <association name="ECOrderInfo_ECOrderInfoOpNode" cardinality="OneToMany" on-delete="Cascade" p1:Guid="da29f67c-1a6d-40c1-aa23-ef26c4ee4389">
+      <end1 multiplicity="One" name="ECOrderInfo" class="ECOrderInfoOpNode" relation-class="ECOrderInfo" constrained="True" lazy="False" p1:Guid="fda7a21e-119e-4750-86fd-0b5a7d9b0aa5">
+        <property name="OrderCode" />
+      </end1>
+      <end2 multiplicity="Many" name="opNode" class="ECOrderInfo" relation-class="ECOrderInfoOpNode" lazy="False" p1:Guid="50f1ed98-5060-4ff7-9b27-a9d0f69fc9d8">
+        <property name="OrderCode" />
+      </end2>
+    </association>
+    <association name="ECOrderInfo_ECOrderInfoOrder" cardinality="OneToMany" on-delete="Cascade" p1:Guid="7c367b2d-dec7-40b7-9286-c4125d26fa51">
+      <end1 multiplicity="ZeroOrOne" name="ECOrderInfo" class="ECOrderInfoOrder" relation-class="ECOrderInfo" constrained="True" lazy="False" p1:Guid="3712d7e6-3f50-450a-8320-2d7ab7b96228">
+        <property name="OrderCode" />
+      </end1>
+      <end2 multiplicity="Many" name="order" class="ECOrderInfo" relation-class="ECOrderInfoOrder" lazy="False" p1:Guid="d694da36-8758-4fea-b1f2-9b9c2b065e7c">
+        <property name="OrderCode" />
+      </end2>
+    </association>
+    <association name="ECOrderInfoShip_ECOrderInfoOrder" cardinality="OneToMany" on-delete="Cascade" p1:Guid="f2b6dd63-9a47-49b1-8d16-d10a89e123e5">
+      <end1 multiplicity="ZeroOrOne" name="ECOrderInfoShip" class="ECOrderInfoOrder" relation-class="ECOrderInfoShip" constrained="True" lazy="False" p1:Guid="f1e95239-6656-45d5-8594-807383c9ffec">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="ECOrderInfoOrders" class="ECOrderInfoShip" relation-class="ECOrderInfoOrder" lazy="False" p1:Guid="45fa6b10-8892-4bc5-9d4f-706c818f9943">
+        <property name="ShipId" />
+      </end2>
+    </association>
+    <association name="ECOrderInfo_ECOrderInfoOrderLog" cardinality="OneToMany" on-delete="Cascade" p1:Guid="b3441c48-309c-491c-84ec-6316dedd4f99">
+      <end1 multiplicity="ZeroOrOne" name="ECOrderInfo" class="ECOrderInfoOrderLog" relation-class="ECOrderInfo" constrained="True" lazy="False" p1:Guid="3dc32476-513e-43fc-be18-ccbbff1a20e2">
+        <property name="OrderCode" />
+      </end1>
+      <end2 multiplicity="Many" name="orderLog" class="ECOrderInfo" relation-class="ECOrderInfoOrderLog" lazy="False" p1:Guid="ab4dc913-9bea-4031-ba8c-8b4939f9d7a4">
+        <property name="OrderCode" />
+      </end2>
+    </association>
+    <association name="ECOrderInfo_ECOrderInfoProduct" cardinality="OneToMany" on-delete="Cascade" p1:Guid="9e7b93bf-9ea6-4c82-bbbc-48bb04c91eb5">
+      <end1 multiplicity="ZeroOrOne" name="ECOrderInfo" class="ECOrderInfoProduct" relation-class="ECOrderInfo" constrained="True" lazy="False" p1:Guid="a23bbdfe-5624-4434-a187-4a05c9b890e9">
+        <property name="OrderCode" />
+      </end1>
+      <end2 multiplicity="Many" name="product" class="ECOrderInfo" relation-class="ECOrderInfoProduct" lazy="False" p1:Guid="75182b2a-79a0-40bc-b3b2-c43e45348ae0">
+        <property name="OrderCode" />
+      </end2>
+    </association>
+    <association name="ECOrderInfoBarcode_ECOrderInfoProduct" cardinality="OneToMany" on-delete="Cascade" p1:Guid="27789e4b-b820-420b-a832-4a618249821c">
+      <end1 multiplicity="ZeroOrOne" name="ECOrderInfoBarcode" class="ECOrderInfoProduct" relation-class="ECOrderInfoBarcode" constrained="True" lazy="False" p1:Guid="b5a97ddc-ee08-4c62-8894-2f3236e41198">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="ECOrderInfoProducts" class="ECOrderInfoBarcode" relation-class="ECOrderInfoProduct" lazy="False" p1:Guid="d7e34bbb-ce1d-4c5a-94e6-0716737b4628">
+        <property name="BarcodeCodeId" />
+      </end2>
+    </association>
+    <association name="ECOrderInfo_ECOrderInfoOdaTypeArr" cardinality="OneToMany" on-delete="Cascade" p1:Guid="5a48e820-9ca2-4b55-929b-40842eb0833c">
+      <end1 multiplicity="ZeroOrOne" name="ECOrderInfo" class="ECOrderInfoOdaTypeArr" relation-class="ECOrderInfo" constrained="True" lazy="False" p1:Guid="ef893737-f0b6-4006-8fef-f638c825044d">
+        <property name="OrderCode" />
+      </end1>
+      <end2 multiplicity="Many" name="odaTypeArr" class="ECOrderInfo" relation-class="ECOrderInfoOdaTypeArr" lazy="False" p1:Guid="819704be-89d0-4f9c-a4aa-064c61b62beb">
+        <property name="OrderCode" />
+      </end2>
+    </association>
+    <association name="ECOrderInfo_ECOrderInfoOrderStatu" cardinality="OneToOne" on-delete="Cascade" p1:Guid="1f81ffd3-6a4b-4e2b-89f5-5ed6235f98a6">
+      <end1 multiplicity="One" name="ECOrderInfo" class="ECOrderInfoOrderStatu" relation-class="ECOrderInfo" constrained="True" lazy="False" p1:Guid="809afa4c-c528-456e-b4cc-fe750a7bb3d1">
+        <property name="OrderCode" />
+      </end1>
+      <end2 multiplicity="One" name="orderStatus" class="ECOrderInfo" relation-class="ECOrderInfoOrderStatu" constrained="False" lazy="False" p1:Guid="0ed97fc9-4632-49df-88ed-f444ca8a50a0">
+        <property name="OrderCode" />
+      </end2>
+    </association>
+    <association name="ECOrderInfo_ECOrderInfoAdress" cardinality="OneToMany" on-delete="Cascade" p1:Guid="acdfe03d-e2b2-426e-9811-52e7fb27c433">
+      <end1 multiplicity="ZeroOrOne" name="ECOrderInfo" class="ECOrderInfoAdress" relation-class="ECOrderInfo" constrained="True" lazy="False" p1:Guid="6b22058c-fba5-40ef-ab5a-d5050b67c69d">
+        <property name="OrderCode" />
+      </end1>
+      <end2 multiplicity="Many" name="orderAddress" class="ECOrderInfo" relation-class="ECOrderInfoAdress" lazy="False" p1:Guid="4b46cc88-9bdd-4c63-b50c-2b666773f917">
+        <property name="OrderCode" />
+      </end2>
+    </association>
+    <association name="ECOrderInfoAddrCountry_ECOrderInfoAdress" cardinality="OneToMany" on-delete="Cascade" p1:Guid="6c988e65-1e55-4585-a407-0d1edf32f3d1">
+      <end1 multiplicity="ZeroOrOne" name="ECOrderInfoAddrCountry" class="ECOrderInfoAdress" relation-class="ECOrderInfoAddrCountry" constrained="True" lazy="False" p1:Guid="995d7d42-c8a5-48f5-912d-bff56cffb880">
+        <property name="CountryId" />
+      </end1>
+      <end2 multiplicity="Many" name="ECOrderInfoAdresses" class="ECOrderInfoAddrCountry" relation-class="ECOrderInfoAdress" lazy="False" p1:Guid="20d794ef-d14a-4d34-93e6-d0b07ad6fa79">
+        <property name="Country" />
+      </end2>
+    </association>
+    <association name="ECOrderInfo_ECOrderInfoPackageList" cardinality="OneToMany" on-delete="Cascade" p1:Guid="c43256c2-38ad-4af8-a3a5-20b210218ecd">
+      <end1 multiplicity="ZeroOrOne" name="ECOrderInfo" class="ECOrderInfoPackageList" relation-class="ECOrderInfo" constrained="True" lazy="False" p1:Guid="2ca88654-54e5-4440-b961-0914923e68b5">
+        <property name="OrderCode" />
+      </end1>
+      <end2 multiplicity="Many" name="packingList" class="ECOrderInfo" relation-class="ECOrderInfoPackageList" lazy="False" p1:Guid="6a8d69d5-ffa8-44a9-81da-d3338aae2b8b">
+        <property name="OrderCode" />
+      </end2>
+    </association>
+    <association name="ECOrderInfoPackageInfo_ECOrderInfoPackageList" cardinality="OneToMany" on-delete="Cascade" p1:Guid="37fc2ca6-761d-4a5f-8d90-7642612ee34a">
+      <end1 multiplicity="ZeroOrOne" name="ECOrderInfoPackageInfo" class="ECOrderInfoPackageList" relation-class="ECOrderInfoPackageInfo" constrained="True" lazy="False" p1:Guid="6163a3e7-1750-4923-88df-b596914a2efd">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="ECOrderInfoPackageLists" class="ECOrderInfoPackageInfo" relation-class="ECOrderInfoPackageList" lazy="False" p1:Guid="8f4f96c8-c645-4775-b4f5-bc8ba9d5f142">
+        <property name="PackageInfoId" />
       </end2>
     </association>
   </associations>
