@@ -265,7 +265,13 @@ namespace Xin.WebApi.Controllers
                     var repository = uow.GetRepository<ECRepeatCust>();
                     foreach (var item in list)
                     {
-
+                        if (repository.Query(a=>a.PlateForm == plateForm&&a.StoreName == shopName
+                        &&a.Email == item.Email&&a.FkDate==item.FkDate&&a.FkType == item.FkType
+                        &&a.DealMonth == item.DealMonth).FirstOrDefault()!=null)
+                        {
+                            item.PlateForm = plateForm;
+                            item.StoreName = shopName;
+                        }
                     }
                     repository.BulkInsert(insertList);
                     uow.SaveChanges();
