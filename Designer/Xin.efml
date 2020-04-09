@@ -3480,6 +3480,12 @@
     <property name="OrderId" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="aac09eb4-6b38-419d-9f80-fbaa6ae23d54">
       <column name="OrderId" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
     </property>
+    <property name="Status" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4b5639ab-a077-4c3f-af89-3746553f2164">
+      <Documentation>
+        <Summary>是否推入erp</Summary>
+      </Documentation>
+      <column name="Status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
   </class>
   <class name="BnsShippingEcToTrackingMore" entity-set="BnsShippingEcToTrackingMores" table="Bns_ShippingEcToTrackingMore" schema="dbo" p1:Guid="8b12fb60-9341-4855-b97a-47fb1d15b142">
     <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="519c67e6-ae46-4ff8-9f05-6771c86ce45e">
@@ -3511,20 +3517,20 @@
     <property name="StoreName" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="6b6886b7-66d8-43a1-8bde-c77ab31e66e5">
       <column name="StoreName" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
     </property>
-    <property name="LoanDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f150ded5-4e79-4b3b-ad5d-a31e4fb1586a">
-      <column name="LoanDate" not-null="False" sql-type="datetime" p1:unicode="False" />
+    <property name="FkType" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="b3ce910b-622d-401c-912f-3dad03e1e68a">
+      <column name="FkType" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
     </property>
-    <property name="LoanType" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="1bc80e22-b106-48cd-8b3d-fa4554474231">
-      <column name="LoanType" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
+    <property name="FkDATE" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="1dc1aced-6a33-4e20-83ae-2b9751203e7d">
+      <column name="FkDATE" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
     </property>
-    <property name="TransactionInfo" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="a3681001-8987-478f-a5d2-4550f9829e20">
-      <column name="TransactionInfo" not-null="False" length="200" sql-type="varchar" p1:unicode="False" />
+    <property name="Currency" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="463022d6-2460-4571-a3e8-f5124347b496">
+      <column name="Currency" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="FkAmount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f49f34b6-4cbf-4830-aa26-d9ae7fc4c414">
+      <column name="FkAmount" not-null="False" precision="19" scale="4" sql-type="money" p1:unicode="False" />
     </property>
     <property name="PlateForm" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="152b41ac-93e5-4e4c-9bc2-1bacbd1410cc">
       <column name="PlateForm" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
-    </property>
-    <property name="FundsDetail" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="1a407c14-fbbf-4200-be64-c78530d8cb2d">
-      <column name="FundsDetail" not-null="False" length="200" sql-type="varchar" p1:unicode="False" />
     </property>
     <property name="Enterdate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7f0db445-8ac8-4caa-a6bf-9a87c404dbae">
       <column name="enterdate" not-null="False" sql-type="datetime" p1:unicode="False" />

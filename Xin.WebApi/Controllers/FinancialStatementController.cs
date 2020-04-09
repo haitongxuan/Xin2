@@ -27,6 +27,7 @@ namespace Xin.WebApi.Controllers
             var config = new AppConfigurationServices().Configuration;
             _uowProvider = uowProvider;
         }
+
         /// <summary>
         /// 物流详情
         /// </summary>
@@ -40,6 +41,7 @@ namespace Xin.WebApi.Controllers
             var res = new GridPage<List<BnsSendDeliverdToEc>>() { code = ResCode.Success };
             return DataBaseHelper<BnsSendDeliverdToEc>.GetList(_uowProvider, res, pageReq);
         }
+
         /// <summary>
         /// paypal放款信息
         /// </summary>
@@ -53,6 +55,7 @@ namespace Xin.WebApi.Controllers
             var res = new GridPage<List<BnsPaypalTransactionDetail>>() { code = ResCode.Success };
             return DataBaseHelper<BnsPaypalTransactionDetail>.GetList(_uowProvider, res, pageReq, x => x.Include(a => a.BnsPaypalTransactionDetailsCartInfos));
         }
+
         /// <summary>
         /// 亚马逊放款信息
         /// </summary>
@@ -68,6 +71,7 @@ namespace Xin.WebApi.Controllers
             return DataBaseHelper<BnsAmazonReport>.GetList(_uowProvider, res, pageReq, x => x.Include(a => a.BnsAmazonReportDetails));
 
         }
+
         /// <summary>
         /// 导入速卖通放款信息
         /// </summary>
@@ -88,9 +92,9 @@ namespace Xin.WebApi.Controllers
                     foreach (var item in list)
                     {
                         item.StoreName = shopName;
-                        var had = repository.Query(a => a.StoreName == item.StoreName && a.LoanDate == item.LoanDate
-                        && a.LoanType == item.LoanType && a.TransactionInfo == item.TransactionInfo
-                        && a.PlateForm == item.PlateForm && a.FundsDetail == item.FundsDetail).FirstOrDefault();
+                        var had = repository.Query(a => a.StoreName == item.StoreName && a.FkType == item.FkType
+                        && a.FkDATE == item.FkDATE && a.Currency == item.Currency
+                        && a.PlateForm == item.PlateForm && a.FkAmount == item.FkAmount).FirstOrDefault();
                         if (had != null)
                         {
                             continue;
@@ -136,8 +140,9 @@ namespace Xin.WebApi.Controllers
                 return shops;
             }
         }
+
         /// <summary>
-        /// 获取速卖通店铺数据
+        /// 获取平台数据
         /// </summary>
         /// <returns></returns>
         [Route("GetPlateform")]
@@ -219,6 +224,7 @@ namespace Xin.WebApi.Controllers
             return res;
 
         }
+
         /// <summary>
         /// 获取东恒成本价导入数据
         /// </summary>
@@ -246,7 +252,7 @@ namespace Xin.WebApi.Controllers
         }
 
         /// <summary>
-        /// 导入东恒成本价
+        /// 导入复购客户
         /// </summary>
         /// <param name="excelFile"></param>
         /// <returns></returns>
@@ -265,9 +271,9 @@ namespace Xin.WebApi.Controllers
                     var repository = uow.GetRepository<ECRepeatCust>();
                     foreach (var item in list)
                     {
-                        if (repository.Query(a=>a.PlateForm == plateForm&&a.StoreName == shopName
-                        &&a.Email == item.Email&&a.FkDate==item.FkDate&&a.FkType == item.FkType
-                        &&a.DealMonth == item.DealMonth).FirstOrDefault()!=null)
+                        if (repository.Query(a => a.PlateForm == plateForm && a.StoreName == shopName
+                        && a.Email == item.Email && a.FkDate == item.FkDate && a.FkType == item.FkType
+                        && a.DealMonth == item.DealMonth).FirstOrDefault() != null)
                         {
                             item.PlateForm = plateForm;
                             item.StoreName = shopName;
