@@ -298,12 +298,13 @@ namespace Xin.WebApi.Controllers
                     var repository = uow.GetRepository<ECRepeatCust>();
                     foreach (var item in list)
                     {
-                        if (repository.Query(a => a.PlateForm == plateForm && a.StoreName == shopName
+                        item.PlateForm = plateForm;
+                        item.StoreName = shopName;
+                        if (repository.Query(a => a.PlateForm == item.PlateForm && a.StoreName == item.StoreName
                         && a.Email == item.Email && a.FkDate == item.FkDate && a.FkType == item.FkType
-                        && a.DealMonth == item.DealMonth).FirstOrDefault() != null)
+                        && a.DealMonth == item.DealMonth).FirstOrDefault() == null)
                         {
-                            item.PlateForm = plateForm;
-                            item.StoreName = shopName;
+                            insertList.Add(item);
                         }
                     }
                     repository.BulkInsert(insertList);
@@ -328,5 +329,15 @@ namespace Xin.WebApi.Controllers
 
         }
 
+        [Route("GetFinancialStatement")]
+        [HttpPost]
+        public GridPage<List<CwAccountQuerySpResult>> GetFinancialStatement(DatetimePointPageReq pageReq)
+        {
+            var res = new GridPage<List<CwAccountQuerySpResult>> { code = ResCode.Success };
+            res = DataBaseHelper<CwAccountQuerySpResult>.GetFromProcedure(_uowProvider, res, pageReq, "EXECUTE CwAccountQuery_sp");
+            return res;
+
+
+        }
     }
 }

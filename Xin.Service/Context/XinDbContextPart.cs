@@ -24,8 +24,110 @@ namespace Xin.Service.Context
             this.HeadgearDensityMapping(modelBuilder);
             this.ListStringModelMapping(modelBuilder);
             this.PlateformLevelMapping(modelBuilder);
+            this.CwAccountQueryReportMapping(modelBuilder);
+
         }
 
+        private void CwAccountQueryReportMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CwAccountQueryReport>().Property<int>(x => x.Id).HasColumnName(@"id").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.OrderDesc).HasColumnName(@"orderDesc").HasColumnType(@"varchar(500)").ValueGeneratedNever().HasMaxLength(500);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<System.DateTime?>(x => x.DatePaidPlatform).HasColumnName(@"DatePaidPlatform").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.FkWay).HasColumnName(@"FkWay").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<System.DateTime?>(x => x.DateWarehouseShipping).HasColumnName(@"DateWarehouseShipping").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<System.DateTime?>(x => x.ShDate).HasColumnName(@"ShDate").HasColumnType(@"datetime").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Status).HasColumnName(@"Status").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.SaleOrderCode).HasColumnName(@"SaleOrderCode").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.RefNo).HasColumnName(@"RefNo").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.WareHouseOrderCode).HasColumnName(@"WareHouseOrderCode").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.OrderType).HasColumnName(@"OrderType").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.WareCountryName).HasColumnName(@"WareCountryName").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.WareHouseDesc).HasColumnName(@"WareHouseDesc").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ProductSku).HasColumnName(@"ProductSku").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.AmazonSKU).HasColumnName(@"AmazonSKU").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.SpUnitPrice).HasColumnName(@"SpUnitPrice").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.ZSpUnitPrice).HasColumnName(@"ZSpUnitPrice").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.DhCost).HasColumnName(@"DhCost").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.ProductNetWeight).HasColumnName(@"ProductNetWeight").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.ZproductNetWeight).HasColumnName(@"ZproductNetWeight").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<int?>(x => x.Qty).HasColumnName(@"Qty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Company).HasColumnName(@"Company").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Plateform).HasColumnName(@"Plateform").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.StoreName).HasColumnName(@"StoreName").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.PaypalTransactionId).HasColumnName(@"PaypalTransactionId").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Currency).HasColumnName(@"Currency").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.LoanType).HasColumnName(@"LoanType").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Loandate).HasColumnName(@"Loandate").HasColumnType(@"varchar(50)").ValueGeneratedNever().HasMaxLength(50);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.PaypalType).HasColumnName(@"PaypalType").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Amountpaid).HasColumnName(@"amountpaid").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.AmountpaidItem).HasColumnName(@"amountpaidItem").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.CompanyAmount).HasColumnName(@"CompanyAmount").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.DiscountAmount).HasColumnName(@"DiscountAmount").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.FinalvaluefeeTotal).HasColumnName(@"finalvaluefeeTotal").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.FinalvaluefeeTotalItem).HasColumnName(@"finalvaluefeeTotalItem").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.AllianceCommission).HasColumnName(@"AllianceCommission").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.AllianceCommissionItem).HasColumnName(@"AllianceCommissionItem").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Tax).HasColumnName(@"tax").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.ShipFee).HasColumnName(@"ShipFee").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.PlatformFeeTotal).HasColumnName(@"PlatformFeeTotal").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.PlatformFee).HasColumnName(@"PlatformFee").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.ProductSales).HasColumnName(@"ProductSales").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.ShippingCredits).HasColumnName(@"ShippingCredits").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.SellingFees).HasColumnName(@"SellingFees").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.PromotionalRebates).HasColumnName(@"PromotionalRebates").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.FbaFees).HasColumnName(@"FbaFees").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.SalesTaxCollected).HasColumnName(@"SalesTaxCollected").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.OtherTransactionFees).HasColumnName(@"OtherTransactionFees").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.GiftWrapCredits).HasColumnName(@"GiftWrapCredits").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.MarketplaceFacilitatorTax).HasColumnName(@"MarketplaceFacilitatorTax").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Other).HasColumnName(@"Other").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Receamount).HasColumnName(@"Receamount").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Receamountitem).HasColumnName(@"Receamountitem").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.AmountRefund).HasColumnName(@"AmountRefund").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.MakeAmount).HasColumnName(@"MakeAmount").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ShipChannel).HasColumnName(@"ShipChannel").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.CostShipFee).HasColumnName(@"CostShipFee").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ShipCurrency).HasColumnName(@"ShipCurrency").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ShippingMethodNo).HasColumnName(@"shippingMethodNo").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.BuyerName).HasColumnName(@"buyerName").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Phone).HasColumnName(@"Phone").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.CountryName).HasColumnName(@"CountryName").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.State).HasColumnName(@"State").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Name).HasColumnName(@"Name").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Adress).HasColumnName(@"Adress").HasColumnType(@"varchar(500)").ValueGeneratedNever().HasMaxLength(500);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.BuyerMail).HasColumnName(@"BuyerMail").HasColumnType(@"varchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.IsE).HasColumnName(@"isE").HasColumnType(@"varchar(10)").ValueGeneratedNever().HasMaxLength(10);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.PersonDevelopname).HasColumnName(@"PersonDevelopname").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.PersonSellername).HasColumnName(@"PersonSellername").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.IsFg).HasColumnName(@"IsFg").HasColumnType(@"varchar(10)").ValueGeneratedNever().HasMaxLength(10);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.IsHk).HasColumnName(@"IsHk").HasColumnType(@"varchar(10)").ValueGeneratedNever().HasMaxLength(10);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.IsWg).HasColumnName(@"IsWg").HasColumnType(@"varchar(10)").ValueGeneratedNever().HasMaxLength(10);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.IsCb).HasColumnName(@"IsCb").HasColumnType(@"varchar(10)").ValueGeneratedNever().HasMaxLength(10);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.HeadTariff).HasColumnName(@"HeadTariff").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.BfType).HasColumnName(@"BfType").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.BfMemo).HasColumnName(@"BfMemo").HasColumnType(@"varchar(200)").ValueGeneratedNever().HasMaxLength(200);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.IsSm).HasColumnName(@"IsSm").HasColumnType(@"varchar(10)").ValueGeneratedNever().HasMaxLength(10);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.AmazonClaim).HasColumnName(@"AmazonClaim").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.AmazonClaimCost).HasColumnName(@"AmazonClaimCost").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.AmazonClaimNo).HasColumnName(@"AmazonClaimNo").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.CostRatio).HasColumnName(@"CostRatio").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ShipRatio).HasColumnName(@"ShipRatio").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.NetweightRatio).HasColumnName(@"NetweightRatio").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.PaypalArgue).HasColumnName(@"PaypalArgue").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.BcAmount).HasColumnName(@"BcAmount").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.TcAmount).HasColumnName(@"TcAmount").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.ByAamount).HasColumnName(@"ByAamount").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.TyAamount).HasColumnName(@"TyAamount").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.SaleType).HasColumnName(@"SaleType").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.IsFh).HasColumnName(@"IsFh").HasColumnType(@"varchar(10)").ValueGeneratedNever().HasMaxLength(10);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ProcutCategoryName).HasColumnName(@"ProcutCategoryName").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ProcutCategoryName1).HasColumnName(@"ProcutCategoryName1").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ProcutCategoryName2).HasColumnName(@"ProcutCategoryName2").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ProcutCategoryName3).HasColumnName(@"ProcutCategoryName3").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Gross).HasColumnName(@"Gross").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.GrossRate).HasColumnName(@"GrossRate").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
+            modelBuilder.Entity<CwAccountQueryReport>().HasKey(@"Id");
+        }
         private void PlateformLevelMapping(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PlateformLevel>().Property<int>(@"AliexpressQty").HasColumnName(@"AliexpressQty").ValueGeneratedNever();
@@ -43,6 +145,11 @@ namespace Xin.Service.Context
             modelBuilder.Entity<PlateformLevel>().Property<int>(@"ZyItemQty").HasColumnName(@"ZyItemQty").ValueGeneratedNever();
             modelBuilder.Entity<PlateformLevel>().Property<int>(@"ZQty").HasColumnName(@"ZQty").ValueGeneratedNever();
             modelBuilder.Entity<PlateformLevel>().HasKey(@"SaleType");
+        }
+        public virtual DbSet<CwAccountQueryReport> CwAccountQueryReports
+        {
+            get;
+            set;
         }
         public virtual DbSet<PlateformLevel> PlateformLevels { get; set; }
 
