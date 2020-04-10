@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Xin.Common;
 using Xin.Entities;
+using Xin.Entities.VirtualEntity;
 using Xin.Repository;
 using Xin.Web.Framework.Helper;
 using Xin.Web.Framework.Model;
@@ -328,13 +329,17 @@ namespace Xin.WebApi.Controllers
             return res;
 
         }
-
+        /// <summary>
+        /// 财务报表
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
         [Route("GetFinancialStatement")]
         [HttpPost]
-        public GridPage<List<CwAccountQuerySpResult>> GetFinancialStatement(DatetimePointPageReq pageReq)
+        public GridPage<List<CwAccountQueryReport>> GetFinancialStatement(DatetimePointPageReq pageReq)
         {
-            var res = new GridPage<List<CwAccountQuerySpResult>> { code = ResCode.Success };
-            res = DataBaseHelper<CwAccountQuerySpResult>.GetFromProcedure(_uowProvider, res, pageReq, "EXECUTE CwAccountQuery_sp");
+            var res = new GridPage<List<CwAccountQueryReport>> { code = ResCode.Success };
+            res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, "EXECUTE CwAccountQuery_sp");
             return res;
 
 
