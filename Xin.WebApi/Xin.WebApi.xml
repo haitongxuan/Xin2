@@ -49,6 +49,13 @@
             <param name="pageReq"></param>
             <returns></returns>
         </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetAmazonDetailList(Xin.Web.Framework.Model.DatetimePointPageReq,System.Nullable{System.Int32})">
+            <summary>
+            亚马逊放款信息详情数据
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Controllers.FinancialStatementController.ImportAliLoan(Microsoft.AspNetCore.Http.IFormFile,System.String)">
             <summary>
             导入速卖通放款信息

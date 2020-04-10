@@ -47,7 +47,12 @@ namespace Xin.Common
 
         private static Expression ParseCondition(FilterNode condition, ParameterExpression parameter)
         {
-            Expression key = Expression.Property(parameter, condition.key);
+            var par = condition.key.Split(".");
+            Expression key = Expression.Property(parameter, par[0]);
+            for (int i = 1; i < par.Count(); i++)
+            {
+                key = Expression.Property(key, par[1]);
+            }
             Expression value = Expression.Constant(condition.value);
             try
             {

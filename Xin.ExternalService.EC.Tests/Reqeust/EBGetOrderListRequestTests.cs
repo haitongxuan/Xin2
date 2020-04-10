@@ -26,13 +26,13 @@ namespace Xin.ExternalService.EC.Reqeust.Tests
             EBGetOrderListReqModel reqModel = new EBGetOrderListReqModel();
             reqModel.GetDetail = IsOrNotEnum.Yes;
             reqModel.Page = 1;
-            reqModel.PageSize = 10;
-            Conditions c = new Conditions();
-            c.Platform = "aliexpress";
-            List<string> list = new List<string>();
-            list.Add("8011740556136553");
-            c.RefNos = list;
-            reqModel.Condition = c;
+            reqModel.PageSize = 100;
+            //Conditions c = new Conditions();
+            //c.Platform = "aliexpress";
+            //List<string> list = new List<string>();
+            //list.Add("8011740556136553");
+            //c.RefNos = list;
+            //reqModel.Condition = c;
             EBGetOrderListRequest req = new EBGetOrderListRequest("admin", "eccang123456", reqModel);
             var rr = await req.Request();
 

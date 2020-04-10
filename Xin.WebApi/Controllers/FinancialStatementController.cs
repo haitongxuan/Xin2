@@ -68,10 +68,37 @@ namespace Xin.WebApi.Controllers
 
             var res = new GridPage<List<BnsAmazonReport>>() { code = ResCode.Success };
 
-            return DataBaseHelper<BnsAmazonReport>.GetList(_uowProvider, res, pageReq, x => x.Include(a => a.BnsAmazonReportDetails));
+            return DataBaseHelper<BnsAmazonReport>.GetList(_uowProvider, res, pageReq);
 
         }
+        /// <summary>
+        /// 亚马逊放款信息详情数据
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [Route("GetAmazonDetailList")]
+        [HttpPost]
+        public GridPage<List<BnsAmazonReportDetail>> GetAmazonDetailList(DatetimePointPageReq pageReq, int? id)
+        {
+            if (id != null)
+            {
+                FilterNode node = new FilterNode();
+                node.andorop = "and";
+                node.binaryop = "eq";
+                node.key = "BnsAmazonReport.Id";
+                node.value = id;
+                if (pageReq == null)
+                {
+                    pageReq = new DatetimePointPageReq();
+                }
+                pageReq.query.Add(node);
 
+            }
+            var res = new GridPage<List<BnsAmazonReportDetail>>() { code = ResCode.Success };
+
+            return DataBaseHelper<BnsAmazonReportDetail>.GetList(_uowProvider, res, pageReq);
+
+        }
         /// <summary>
         /// 导入速卖通放款信息
         /// </summary>

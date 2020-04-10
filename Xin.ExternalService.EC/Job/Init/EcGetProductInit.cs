@@ -11,7 +11,7 @@ using Xin.Common;
 using Xin.ExternalService.EC.Response.Model;
 using Xin.ExternalService.EC.Reqeust.Model;
 using Z.BulkOperations;
-
+using System.Linq;
 
 namespace Xin.ExternalService.EC.Job
 {
@@ -33,15 +33,16 @@ namespace Xin.ExternalService.EC.Job
         {
             var models = new List<ECProduct>();
             var reqModel = new Reqeust.Model.WMSGetProductListReqModel();
-            reqModel.PageSize = 500;
+            reqModel.PageSize = 10;
             reqModel.GetProductBox = IsOrNotEnum.Yes;
             reqModel.GetProductCombination = IsOrNotEnum.Yes;
             reqModel.GetProductCustomCategory = IsOrNotEnum.Yes;
-            reqModel.IsCombination = IsOrNotEnum.Yes;
             reqModel.GetProperty = IsOrNotEnum.Yes;
-            int submitPageQty = 10;
+            reqModel.ProductAddTimeFrom = DateTime.Parse("2018-03-04");
+            reqModel.ProductAddTimeTo = DateTime.Now;
             bool finish = true;
             int pageIndex = 1;
+            var addList = new List<ECProduct>();
 
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
@@ -59,76 +60,32 @@ namespace Xin.ExternalService.EC.Job
                 while (finish)
                 {
                     reqModel.Page = pageIndex;
-                    Reqeust.WMSGetProductListRequest req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
-                    Response.WMSGetProductListResponse resp = null;
+                    reqModel.PageSize = 1000;
+                    var req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
+                    var resp = await req.Request();
+                    foreach (var i in resp.Body)
+                    {
+                       addList.Add(Mapper<Response.Model.EC_Product, ECProduct>.Map(i));
+                    }
+                    if (resp.Body.Count != 1000)
+                    {
+                        finish = false;
+                    }
                     try
                     {
-                        resp = await req.Request();
+                        addList = addList.GroupBy(item => item.ProductSku).Select(item => item.First()).ToList();
+                        await repository.BulkInsertAsync(addList,x=>x.IncludeGraph = true);
+                        uow.BulkSaveChanges();
+                        addList.Clear();
                     }
                     catch (Exception ex)
                     {
-                        log.Error($"初始化产品信息,获取数据错误:{ex.Message}");
+                        log.Error($"产品信息,新增出现错误:{ex.Message}");
+
                         throw ex;
                     }
-                    if (resp.Body.Count == reqModel.PageSize)
-                    {
-                        foreach (var i in resp.Body)
-                        {
-                            try
-                            {
-                                var m = Mapper<EC_Product, ECProduct>.Map(i);
-                                models.Add(m);
-                            }
-                            catch (Exception ex)
-                            {
-                                throw ex;
-                            }
-                        }
-                        if (pageIndex % submitPageQty == 0)
-                        {
-                            try
-                            {
-                                await repository.BulkInsertAsync(models, x => x.IncludeGraph = true);
-                                uow.BulkSaveChanges();
-                                models.Clear();
-                            }
-                            catch (Exception ex)
-                            {
-                                log.Error($"初始化产品信息,批量导入产品异常:第{pageIndex}页,{ex.Message}");
-                                throw ex;
-                            }
-                        }
-                        pageIndex++;
-                    }
-                    else
-                    {
-                        try
-                        {
-                            foreach (var i in resp.Body)
-                            {
-                                try
-                                {
-                                    var m = Mapper<EC_Product, ECProduct>.Map(i);
-                                    models.Add(m);
-                                }
-                                catch (Exception ex)
-                                {
-                                    throw ex;
-                                }
-                            }
-                            await repository.BulkInsertAsync(models, x => x.IncludeGraph = true);
-                            uow.BulkSaveChanges();
-                            models.Clear();
-                        }
-                        catch (Exception ex)
-                        {
-                            log.Error($"初始化产品信息,批量导入产品异常:第{pageIndex}页,{ex.Message}");
-                            throw ex;
-                        }
-                        finish = false;
-                    }
+                    pageIndex++;
                 }
-
             }
         }
     }
