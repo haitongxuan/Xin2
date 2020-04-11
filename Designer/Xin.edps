@@ -82,6 +82,7 @@
         <File Name="Xin.ECOrderInfoAdress.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.ECOrderInfoPackageInfo.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.ECOrderInfoPackageList.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
+        <File Name="Xin.ECRmaRefa.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.Tmp.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.CwAccountQuerySpResult.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />
         <File Name="Xin.GetInStrResult.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Entity" />

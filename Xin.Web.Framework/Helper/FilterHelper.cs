@@ -53,7 +53,39 @@ namespace Xin.Common
             {
                 key = Expression.Property(key, par[1]);
             }
-            Expression value = Expression.Constant(condition.value);
+
+            Expression value = null;
+            if (key.Type == typeof(Int32) || key.Type == typeof(Int32?))
+            {
+                var value1 = condition.value.ToString().Replace(".0", "");
+                int val = Convert.ToInt32(value1);
+                value = Expression.Constant(val, key.Type);
+            }
+            else if (key.Type == typeof(Decimal) || key.Type == typeof(Decimal?))
+            {
+                Decimal val = Convert.ToDecimal(condition.value);
+                value = Expression.Constant(val, key.Type);
+            }
+            else if (key.Type == typeof(Byte) || key.Type == typeof(Byte?))
+            {
+                Byte val = Convert.ToByte(condition.value);
+                value = Expression.Constant(val, key.Type);
+            }
+            else if (key.Type == typeof(Boolean) || key.Type == typeof(Boolean?))
+            {
+                Boolean val = Convert.ToBoolean(condition.value);
+                value = Expression.Constant(val, key.Type);
+            }
+            else if (key.Type == typeof(DateTime) || key.Type == typeof(DateTime?))
+            {
+                DateTime val = Convert.ToDateTime(condition.value);
+                value = Expression.Constant(val, key.Type);
+            }
+            else
+            {
+                value = Expression.Constant(condition.value, key.Type);
+            }
+
             try
             {
                 switch (condition.binaryop)
@@ -61,17 +93,17 @@ namespace Xin.Common
                     case "like":
                         return Expression.Call(key, typeof(string).GetMethod("Contains", new Type[] { typeof(string) }), value);
                     case "eq":
-                        return Expression.Equal(key, Expression.Convert(value, key.Type));
+                        return Expression.Equal(key, value);
                     case "gt":
-                        return Expression.GreaterThan(key, Expression.Convert(value, key.Type));
+                        return Expression.GreaterThan(key, value);
                     case "gte":
-                        return Expression.GreaterThanOrEqual(key, Expression.Convert(value, key.Type));
+                        return Expression.GreaterThanOrEqual(key, value);
                     case "lt":
-                        return Expression.LessThan(key, Expression.Convert(value, key.Type));
+                        return Expression.LessThan(key, value);
                     case "lte":
-                        return Expression.LessThanOrEqual(key, Expression.Convert(value, key.Type));
+                        return Expression.LessThanOrEqual(key, value);
                     case "neq":
-                        return Expression.NotEqual(key, Expression.Convert(value, key.Type));
+                        return Expression.NotEqual(key, value);
                     case "in":
                         return ParaseIn(parameter, condition);
                     case "between":
@@ -85,6 +117,7 @@ namespace Xin.Common
                 throw ex;
             }
         }
+
         private static Expression ParaseBetween(ParameterExpression parameter, FilterNode conditions)
         {
             ParameterExpression p = parameter;

@@ -4386,6 +4386,161 @@
       <column name="package_info_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
   </class>
+  <class name="ECRmaRefa" entity-set="ECRmaRefas" table="EC_RmaRefa" schema="dbo" p1:Guid="9303fffb-1fdb-44ab-8921-86840608da17">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="f39e1091-14a9-48f7-b6ea-92feb654131d">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="CreateDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="94850a27-ba05-4793-bb95-74869fc843c4">
+      <Documentation>
+        <Summary>创建时间</Summary>
+      </Documentation>
+      <column name="create_date" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CreateUser" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="be315ac4-59b6-49e7-9fb8-9121b956a47c">
+      <Documentation>
+        <Summary>创建人</Summary>
+      </Documentation>
+      <column name="create_user" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Note" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="51f497e0-10b4-432e-b5a6-5ef43da12d23">
+      <Documentation>
+        <Summary>备注</Summary>
+      </Documentation>
+      <column name="note" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Reason" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6fb6cc8c-2c78-40d8-b35d-00fbc737c72e">
+      <Documentation>
+        <Summary>退件原因</Summary>
+      </Documentation>
+      <column name="reason" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="SellerAccount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c7a7cf34-ff85-41b2-84a2-49d2e100b0b7">
+      <Documentation>
+        <Summary>卖家账户</Summary>
+      </Documentation>
+      <column name="seller_account" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BuyerId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f8c1c3de-6812-4219-b6fc-bae9280496ef">
+      <Documentation>
+        <Summary>买家ID</Summary>
+      </Documentation>
+      <column name="buyer_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OldOrderId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="84345337-2ae9-43d5-8079-58a4c2ff52a5">
+      <Documentation>
+        <Summary>原始订单</Summary>
+      </Documentation>
+      <column name="old_order_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OldWarehouseOrderId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="17ffccc0-7ee3-46ad-8640-9619565285a4">
+      <Documentation>
+        <Summary>原始订单的仓库单号</Summary>
+      </Documentation>
+      <column name="old_warehouse_order_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="RefrenceNoPlatform" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3032dde4-e406-4d97-bd84-3935a49aa2d1">
+      <Documentation>
+        <Summary>重发订单</Summary>
+      </Documentation>
+      <column name="refrence_no_platform" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="RefrenceNoWarehouse" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="199810c0-601f-4be3-aa62-244a74daf811">
+      <Documentation>
+        <Summary>重发订单的仓库单号</Summary>
+      </Documentation>
+      <column name="refrence_no_warehouse" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderStatus" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="51e3bf10-9949-4bdd-b11a-6e56ec84b3ad">
+      <Documentation>
+        <Summary>重发订单状态</Summary>
+      </Documentation>
+      <column name="order_status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Country" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9816df09-17be-4162-9f6b-100e54142879">
+      <Documentation>
+        <Summary>重发订单国家</Summary>
+      </Documentation>
+      <column name="country" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Sku" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b0526232-419d-418f-a0af-cecd0ce111c4">
+      <Documentation>
+        <Summary>SKU</Summary>
+      </Documentation>
+      <column name="sku" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Qty" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a7b65722-f62a-4829-afa8-bb4b2b4a8b33">
+      <Documentation>
+        <Summary>数量</Summary>
+      </Documentation>
+      <column name="qty" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductTitle" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e8a5784f-51b1-4f3e-aaff-56e47111f15d">
+      <Documentation>
+        <Summary>产品名称</Summary>
+      </Documentation>
+      <column name="product_title" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Price" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a4f8d027-6fd0-4735-803e-d1ce445d76f5">
+      <Documentation>
+        <Summary>SKU单价</Summary>
+      </Documentation>
+      <column name="price" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="172251d0-97f3-4d34-8397-064e347d6082">
+      <Documentation>
+        <Summary>重发SKU</Summary>
+      </Documentation>
+      <column name="product_sku" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="302b6c43-5516-4b35-b233-c96d62a41095">
+      <Documentation>
+        <Summary>PayPal交易号</Summary>
+      </Documentation>
+      <column name="trans_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="AmountPaid" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="913b3be1-e03c-4d97-aff3-cffcb8d3a5b3">
+      <Documentation>
+        <Summary>交易金额</Summary>
+      </Documentation>
+      <column name="amount_paid" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="AmountOrder" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="bf73d96b-4abe-4530-97a5-8e23f045c2c3">
+      <Documentation>
+        <Summary>销售额</Summary>
+      </Documentation>
+      <column name="amount_order" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Currency" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b5fe45dd-8360-4808-84fe-25c232dbb8e4">
+      <Documentation>
+        <Summary>币种</Summary>
+      </Documentation>
+      <column name="currency" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WarehousId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ab46e7c2-e219-44a0-aa20-b77caf243bea">
+      <Documentation>
+        <Summary>仓库</Summary>
+      </Documentation>
+      <column name="warehous_id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShippingMethod" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e8fe1e86-8821-4b4a-9b5b-5c11d7525251">
+      <Documentation>
+        <Summary>运输方式</Summary>
+      </Documentation>
+      <column name="shipping_method" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CustomerServiceNote" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e85ea932-67a9-43e1-81e9-cb5ff51b1fc6">
+      <Documentation>
+        <Summary>客服备注</Summary>
+      </Documentation>
+      <column name="customer_service_note" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Status" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3283168e-09c5-43e8-9ec7-480168a0297c">
+      <Documentation>
+        <Summary>状态</Summary>
+      </Documentation>
+      <column name="status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">

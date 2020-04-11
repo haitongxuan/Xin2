@@ -30,7 +30,7 @@ namespace Xin.Service.Context
 
         private void CwAccountQueryReportMapping(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CwAccountQueryReport>().Property<int>(x => x.Id).HasColumnName(@"id").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<int>(x => x.Id).HasColumnName(@"id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.OrderDesc).HasColumnName(@"orderDesc").HasColumnType(@"varchar(500)").ValueGeneratedNever().HasMaxLength(500);
             modelBuilder.Entity<CwAccountQueryReport>().Property<System.DateTime?>(x => x.DatePaidPlatform).HasColumnName(@"DatePaidPlatform").HasColumnType(@"datetime").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.FkWay).HasColumnName(@"FkWay").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
@@ -57,7 +57,7 @@ namespace Xin.Service.Context
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.PaypalTransactionId).HasColumnName(@"PaypalTransactionId").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Currency).HasColumnName(@"Currency").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.LoanType).HasColumnName(@"LoanType").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
-            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Loandate).HasColumnName(@"Loandate").HasColumnType(@"varchar(50)").ValueGeneratedNever().HasMaxLength(50);
+            modelBuilder.Entity<CwAccountQueryReport>().Property<System.DateTime?>(x => x.Loandate).HasColumnName(@"Loandate").HasColumnType(@"datetime").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.PaypalType).HasColumnName(@"PaypalType").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Amountpaid).HasColumnName(@"amountpaid").HasColumnType(@"money").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.AmountpaidItem).HasColumnName(@"amountpaidItem").HasColumnType(@"money").ValueGeneratedNever();

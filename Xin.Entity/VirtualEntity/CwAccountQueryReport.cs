@@ -9,12 +9,15 @@ namespace Xin.Entities.VirtualEntity
     /// </summary>
    public class CwAccountQueryReport
     {
+        [System.ComponentModel.DataAnnotations.Key]
+        [System.ComponentModel.DataAnnotations.Required()]
         public virtual int Id
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(500)]
         public virtual string OrderDesc
         {
             get;
@@ -27,6 +30,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string FkWay
         {
             get;
@@ -45,54 +49,63 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string Status
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string SaleOrderCode
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string RefNo
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string WareHouseOrderCode
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string OrderType
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string WareCountryName
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string WareHouseDesc
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string ProductSku
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string AmazonSKU
         {
             get;
@@ -135,48 +148,55 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string Company
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string Plateform
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string StoreName
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string PaypalTransactionId
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string Currency
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string LoanType
         {
             get;
             set;
         }
 
-        public virtual string Loandate
+        public virtual System.DateTime? Loandate
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string PaypalType
         {
             get;
@@ -339,6 +359,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string ShipChannel
         {
             get;
@@ -351,96 +372,112 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string ShipCurrency
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string ShippingMethodNo
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string BuyerName
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string Phone
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string CountryName
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string State
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string Name
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(500)]
         public virtual string Adress
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(200)]
         public virtual string BuyerMail
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(10)]
         public virtual string IsE
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string PersonDevelopname
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string PersonSellername
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(10)]
         public virtual string IsFg
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(10)]
         public virtual string IsHk
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(10)]
         public virtual string IsWg
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(10)]
         public virtual string IsCb
         {
             get;
@@ -453,18 +490,21 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string BfType
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(200)]
         public virtual string BfMemo
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(10)]
         public virtual string IsSm
         {
             get;
@@ -483,30 +523,35 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string AmazonClaimNo
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string CostRatio
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string ShipRatio
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string NetweightRatio
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string PaypalArgue
         {
             get;
@@ -537,36 +582,42 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string SaleType
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(10)]
         public virtual string IsFh
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string ProcutCategoryName
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string ProcutCategoryName1
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string ProcutCategoryName2
         {
             get;
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string ProcutCategoryName3
         {
             get;
@@ -579,6 +630,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string GrossRate
         {
             get;

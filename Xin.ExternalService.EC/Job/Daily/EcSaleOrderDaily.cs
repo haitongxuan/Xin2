@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Quartz;
 using Xin.Common;
 using Xin.Entities;
@@ -66,7 +67,7 @@ namespace Xin.ExternalService.EC.Job
                             log.Info($"日订单开始拉取:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
-                            log.Info(response.Body);
+                            log.Info(JsonConvert.SerializeObject(response.Body));
                         }
                         catch (Exception ex)
                         {
