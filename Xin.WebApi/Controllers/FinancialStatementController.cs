@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -343,7 +344,66 @@ namespace Xin.WebApi.Controllers
         public GridPage<List<CwAccountQueryReport>> GetFinancialStatement(DatetimePointPageReq pageReq)
         {
             var res = new GridPage<List<CwAccountQueryReport>> { code = ResCode.Success };
-            res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, "EXECUTE CwAccountQuery_sp");
+            string PlateForm = "";
+            string StoreName = "";
+            string WareHouseDesc = "";
+            string ProductSku = "";
+            string ProcutCategoryName1 = "";
+            string ProcutCategoryName2 = "";
+            string OrderType = "";
+            string Status = "";
+            string RefNo = "";
+            List<FilterNode> list = new List<FilterNode>();
+            foreach (var item in pageReq.query)
+            {
+                switch (item.key.ToLower())
+                {
+                    case "plateform":
+                        PlateForm = item.value == null ? "" : item.value.ToString();
+                        break;
+                    case "storename":
+                        StoreName = item.value == null ? "" : item.value.ToString();
+                        break;
+                    case "warehousedesc":
+                        WareHouseDesc = item.value == null ? "" : item.value.ToString();
+                        break;
+                    case "productsku":
+                        ProductSku = item.value == null ? "" : item.value.ToString();
+                        break;
+                    case "procutcategoryname1":
+                        ProcutCategoryName1 = item.value == null ? "" : item.value.ToString();
+                        break;
+                    case "procutcategoryname2":
+                        ProcutCategoryName2 = item.value == null ? "" : item.value.ToString();
+                        break;
+                    case "status":
+                        Status = item.value == null ? "" : item.value.ToString();
+                        break;
+                    case "refno":
+                        RefNo = item.value == null ? "" : item.value.ToString();
+                        break;
+                    case "ordertype":
+                        OrderType = item.value == null ? "" : item.value.ToString();
+                        break;
+                    default:
+                        list.Add(item);
+                        break;
+                }
+            }
+            var sqlPlateForm = new SqlParameter("@PlateForm", PlateForm);
+            var sqlStoreName = new SqlParameter("@StoreName", StoreName);
+            var sqlWareHouseDesc = new SqlParameter("@WareHouseDesc", WareHouseDesc);
+            var sqlProductSku = new SqlParameter("@ProductSku", ProductSku);
+            var sqlProcutCategoryName1 = new SqlParameter("@ProcutCategoryName1", ProcutCategoryName1);
+            var sqlProcutCategoryName2 = new SqlParameter("@ProcutCategoryName2", ProcutCategoryName2);
+            var sqlOrderType = new SqlParameter("@OrderType", OrderType);
+            var sqlStatus = new SqlParameter("@Status", Status);
+            var sqlRefNo = new SqlParameter("@RefNo", RefNo);
+            pageReq.query = list;
+            res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq,
+                "EXECUTE CwAccountQuery_sp " +
+                "@PlateForm,@StoreName,@WareHouseDesc,@ProductSku,@ProcutCategoryName1,@ProcutCategoryName2,@OrderType,@Status,@RefNo",
+                sqlPlateForm, sqlStoreName, sqlWareHouseDesc, sqlProductSku, sqlProcutCategoryName1, sqlProcutCategoryName2, sqlOrderType, sqlStatus, sqlRefNo);
             return res;
 
 
@@ -351,7 +411,8 @@ namespace Xin.WebApi.Controllers
 
         [Route("GetDeliver")]
         [HttpPost]
-        public MangatoDeliverReturn GetDeliver(MagentoReqModel data) {
+        public MangatoDeliverReturn GetDeliver(MagentoReqModel data)
+        {
             MangatoDeliverReturn res = new MangatoDeliverReturn();
             res.Status = "success";
             try
@@ -373,7 +434,7 @@ namespace Xin.WebApi.Controllers
                 res.Status = "fail";
                 res.message = ex.Message;
             }
-           
+
             return res;
         }
     }
