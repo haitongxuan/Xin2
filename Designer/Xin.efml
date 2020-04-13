@@ -3514,6 +3514,9 @@
     <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="87fc3ae8-7f63-4013-8950-bb8c9ce0cdbe">
       <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </id>
+    <property name="PlateformCode" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="c6dcdd47-c068-4de2-b7cc-72e36148384c">
+      <column name="PlateformCode" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
+    </property>
     <property name="StoreName" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="6b6886b7-66d8-43a1-8bde-c77ab31e66e5">
       <column name="StoreName" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
     </property>
@@ -3528,9 +3531,6 @@
     </property>
     <property name="FkAmount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f49f34b6-4cbf-4830-aa26-d9ae7fc4c414">
       <column name="FkAmount" not-null="False" precision="19" scale="4" sql-type="money" p1:unicode="False" />
-    </property>
-    <property name="PlateForm" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="152b41ac-93e5-4e4c-9bc2-1bacbd1410cc">
-      <column name="PlateForm" not-null="False" length="50" sql-type="varchar" p1:unicode="False" />
     </property>
     <property name="Enterdate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7f0db445-8ac8-4caa-a6bf-9a87c404dbae">
       <column name="enterdate" not-null="False" sql-type="datetime" p1:unicode="False" />

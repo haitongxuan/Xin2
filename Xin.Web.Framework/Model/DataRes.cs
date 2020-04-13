@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace Xin.Web.Framework.Model
 {
+    public class MangatoDeliverReturn
+    {
+        public string Status { get; set; }
+        public string message { get; set; }
+        public Object data { get; set; }
+
+    }
     public class GridPage<T> : DataRes<T>
     {
         public int totalCount { get; set; }

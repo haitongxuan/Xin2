@@ -122,7 +122,7 @@ namespace Xin.WebApi.Controllers
                         item.StoreName = shopName;
                         var had = repository.Query(a => a.StoreName == item.StoreName && a.FkType == item.FkType
                         && a.FkDATE == item.FkDATE && a.Currency == item.Currency
-                        && a.PlateForm == item.PlateForm && a.FkAmount == item.FkAmount).FirstOrDefault();
+                        && a.PlateformCode == item.PlateformCode && a.FkAmount == item.FkAmount).FirstOrDefault();
                         if (had != null)
                         {
                             continue;
@@ -347,6 +347,34 @@ namespace Xin.WebApi.Controllers
             return res;
 
 
+        }
+
+        [Route("GetDeliver")]
+        [HttpPost]
+        public MangatoDeliverReturn GetDeliver(MagentoReqModel data) {
+            MangatoDeliverReturn res = new MangatoDeliverReturn();
+            res.Status = "success";
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+                    var repo = uow.GetRepository<BnsSendDeliverdToEc>();
+                    BnsSendDeliverdToEc model = repo.Query(a => a.ShippingMethodNo == data.express_num).FirstOrDefault();
+                    Dictionary<string, Object> dic = new Dictionary<string, Object>();
+                    dic.Add("trackinfo", model.Trackinfo);
+                    //dic.Add("carrier_code", model.carr);
+                    dic.Add("express_num", model.Trackinfo);
+                    dic.Add("delivered_status", model.DeliveredStatus);
+                    res.data = dic;
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Status = "fail";
+                res.message = ex.Message;
+            }
+           
+            return res;
         }
     }
 }
