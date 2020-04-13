@@ -17,7 +17,15 @@ namespace Xin.Common
         public static Expression<Func<T, bool>> GetExpression(IEnumerable<FilterNode> conditions, string name)
         {
             ParameterExpression parameter = Expression.Parameter(typeof(T), name);
-            var query = ParseExpressionBody(conditions, parameter);
+            List<FilterNode> lst = new List<FilterNode>();
+            foreach (var item in conditions)
+            {
+                if (item.value==null)
+                {
+                    lst.Add(item);
+                }
+            }
+            var query = ParseExpressionBody(lst, parameter);
             return Expression.Lambda<Func<T, bool>>(query, parameter);
         }
 

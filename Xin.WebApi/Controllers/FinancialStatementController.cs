@@ -149,17 +149,21 @@ namespace Xin.WebApi.Controllers
         }
 
         /// <summary>
-        /// 获取速卖通店铺数据
+        /// 获取店铺数据
         /// </summary>
         /// <returns></returns>
         [Route("GetShop")]
         [HttpGet]
-        public string[] GetShop()
+        public string[] GetShop(string Plateform)
         {
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
+                if (string.IsNullOrWhiteSpace(Plateform))
+                {
+                    Plateform = "aliexpress";
+                }
                 var reps = uow.GetRepository<ECSalesOrder>();
-                var sql = reps.Query(a => a.Plateform == "aliexpress").GroupBy(item => new { item.Plateform, item.PlatformUserName }).ToList();
+                var sql = reps.Query(a => a.Plateform == Plateform).GroupBy(item => new { item.Plateform, item.PlatformUserName }).ToList();
                 string[] shops = new string[sql.Count];
                 for (int i = 0; i < sql.Count; i++)
                 {

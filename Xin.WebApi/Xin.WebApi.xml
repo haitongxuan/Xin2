@@ -63,9 +63,9 @@
             <param name="excelFile"></param>
             <returns></returns>
         </member>
-        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetShop">
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetShop(System.String)">
             <summary>
-            获取速卖通店铺数据
+            获取店铺数据
             </summary>
             <returns></returns>
         </member>
