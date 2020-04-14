@@ -21,7 +21,7 @@ namespace XIn.QuartzService
             StdSchedulerFactory factory = new StdSchedulerFactory();
             var _scheduler = await factory.GetScheduler();
             await _scheduler.Start();
-            string quartzStartTime = "0 0 4 * * ? *";
+            string quartzStartTime = "0 0 9 * * ? *";
             #region EcSaleOrderDaily
             IJobDetail job = JobBuilder.Create<EcSaleOrderDaily>()
                 .WithIdentity("job1", "group1")

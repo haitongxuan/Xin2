@@ -399,11 +399,13 @@ namespace Xin.WebApi.Controllers
             var sqlOrderType = new SqlParameter("@OrderType", OrderType);
             var sqlStatus = new SqlParameter("@Status", Status);
             var sqlRefNo = new SqlParameter("@RefNo", RefNo);
+            var sqlPageIndex = new SqlParameter("@PageIndex", pageReq.pageNum == 0 ? 1 : pageReq.pageNum);
+            var sqlPageSize = new SqlParameter("@PageSize", pageReq.pageSize == 0 ? 50 : pageReq.pageSize);
             pageReq.query = list;
             res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq,
                 "EXECUTE CwAccountQuery_sp " +
-                "@PlateForm,@StoreName,@WareHouseDesc,@ProductSku,@ProcutCategoryName1,@ProcutCategoryName2,@OrderType,@Status,@RefNo",
-                sqlPlateForm, sqlStoreName, sqlWareHouseDesc, sqlProductSku, sqlProcutCategoryName1, sqlProcutCategoryName2, sqlOrderType, sqlStatus, sqlRefNo);
+                "@PlateForm,@StoreName,@WareHouseDesc,@ProductSku,@ProcutCategoryName1,@ProcutCategoryName2,@OrderType,@Status,@RefNo,@PageIndex,PageSize",
+                sqlPlateForm, sqlStoreName, sqlWareHouseDesc, sqlProductSku, sqlProcutCategoryName1, sqlProcutCategoryName2, sqlOrderType, sqlStatus, sqlRefNo, sqlPageIndex,sqlPageSize);
             return res;
 
 
