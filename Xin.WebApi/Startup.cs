@@ -111,7 +111,7 @@ namespace Xin.WebApi
                 c.IncludeXmlComments(xmlPath);
             });
 
-            services.AddJobService();
+            services.AddJobServiceAsync();
 
         }
 

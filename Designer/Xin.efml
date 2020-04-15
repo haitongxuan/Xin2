@@ -4963,6 +4963,17 @@
       <return-property name="Qty" column="Qty" />
       <return-property name="Company" column="Company" />
     </return>
+    <parameter name="PlateForm" type="String" sql-type="varchar" length="100" />
+    <parameter name="StoreName" type="String" sql-type="varchar" length="100" />
+    <parameter name="WareHouseDesc" type="String" sql-type="varchar" length="100" />
+    <parameter name="ProductSku" type="String" sql-type="varchar" length="100" />
+    <parameter name="ProcutCategoryName1" type="String" sql-type="varchar" length="100" />
+    <parameter name="ProcutCategoryName2" type="String" sql-type="varchar" length="100" />
+    <parameter name="OrderType" type="String" sql-type="varchar" length="100" />
+    <parameter name="Status" type="String" sql-type="varchar" length="100" />
+    <parameter name="RefNo" type="String" sql-type="varchar" length="100" />
+    <parameter name="PageIndex" type="Int32" sql-type="int" precision="10" scale="0" />
+    <parameter name="PageSize" type="Int32" sql-type="int" precision="10" scale="0" />
   </method>
   <method name="GetHeadgearDensitySp" p1:procedure="dbo.GetHeadgearDensity_sp" p1:Guid="a0e35b74-c522-4199-b6ae-1c4293fcb0da">
     <parameter name="startDate" type="String" sql-type="varchar" length="255" />

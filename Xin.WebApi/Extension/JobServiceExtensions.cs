@@ -9,6 +9,9 @@ using Xin.Entities;
 using System.Linq;
 using Xin.Common;
 using Xin.Job.Model;
+using Quartz.Impl;
+using System.Reflection;
+using Xin.Web.Framework.Helper;
 
 namespace Xin.WebApi.Extension
 {
@@ -19,7 +22,7 @@ namespace Xin.WebApi.Extension
         /// </summary>
         /// <param name="serviceCollection"></param>
         /// <returns></returns>
-        public static IServiceCollection AddJobService(this IServiceCollection serviceCollection)
+        public static async System.Threading.Tasks.Task<IServiceCollection> AddJobServiceAsync(this IServiceCollection serviceCollection)
         {
             serviceCollection.BuildServiceProvider().RegisterServiceProvider();
             var jobListner = ServiceCollectionExtension.Get<IJobListener>();
@@ -29,13 +32,15 @@ namespace Xin.WebApi.Extension
             {
                 var repository = uow.GetRepository<ResSchedule>();
                 var schedule = repository.Query(x => x.JobStatus.Equals(1));
-                foreach (var item in schedule)
+                QuartzHelper._scheduler.Start();
+                foreach (var resSchedule in schedule)
                 {
-                    if (!string.IsNullOrEmpty(item.AssemblyName))
+                    if (!string.IsNullOrEmpty(resSchedule.AssemblyName))
                     {
-                        var scheduleEntity = Mapper<ResSchedule, ScheduleEntity>.Map(item);
-                        ScheduleManage.Instance.AddScheduleList(scheduleEntity);
-                        var result = jobCenter.RunScheduleJob<ScheduleManage>(item.JobGroup, item.JobName).Result;
+                        //var scheduleEntity = Mapper<ResSchedule, ScheduleEntity>.Map(item);
+                        //ScheduleManage.Instance.AddScheduleList(scheduleEntity);
+                        //var result = jobCenter.RunScheduleJob<ScheduleManage>(item.JobGroup, item.JobName).Result;
+                        QuartzHelper.ResumeScheduleAsync(resSchedule);
                     }
 
                 }

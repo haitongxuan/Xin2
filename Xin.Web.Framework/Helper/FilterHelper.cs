@@ -20,7 +20,7 @@ namespace Xin.Common
             List<FilterNode> lst = new List<FilterNode>();
             foreach (var item in conditions)
             {
-                if (item.value==null)
+                if (item.value!=null)
                 {
                     lst.Add(item);
                 }

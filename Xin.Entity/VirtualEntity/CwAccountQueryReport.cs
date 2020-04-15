@@ -147,7 +147,11 @@ namespace Xin.Entities.VirtualEntity
             get;
             set;
         }
-
+        public virtual int? Total
+        {
+            get;
+            set;
+        }
         [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string Company
         {

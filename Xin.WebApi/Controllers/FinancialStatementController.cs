@@ -399,13 +399,14 @@ namespace Xin.WebApi.Controllers
             var sqlOrderType = new SqlParameter("@OrderType", OrderType);
             var sqlStatus = new SqlParameter("@Status", Status);
             var sqlRefNo = new SqlParameter("@RefNo", RefNo);
-            var sqlPageIndex = new SqlParameter("@PageIndex", pageReq.pageNum == 0 ? 1 : pageReq.pageNum);
-            var sqlPageSize = new SqlParameter("@PageSize", pageReq.pageSize == 0 ? 50 : pageReq.pageSize);
+            var sqlPageIndex = new SqlParameter("@reqIndex", pageReq.pageNum == 0 ? 1 : pageReq.pageNum);
+            var sqlPageSize = new SqlParameter("@reqSize", pageReq.pageSize == 0 ? 50 : pageReq.pageSize);
             pageReq.query = list;
             res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq,
                 "EXECUTE CwAccountQuery_sp " +
-                "@PlateForm,@StoreName,@WareHouseDesc,@ProductSku,@ProcutCategoryName1,@ProcutCategoryName2,@OrderType,@Status,@RefNo,@PageIndex,PageSize",
-                sqlPlateForm, sqlStoreName, sqlWareHouseDesc, sqlProductSku, sqlProcutCategoryName1, sqlProcutCategoryName2, sqlOrderType, sqlStatus, sqlRefNo, sqlPageIndex,sqlPageSize);
+                "@PlateForm,@StoreName,@WareHouseDesc,@ProductSku,@ProcutCategoryName1,@ProcutCategoryName2,@OrderType,@Status,@RefNo,@reqIndex,@reqSize",
+                sqlPlateForm, sqlStoreName, sqlWareHouseDesc, sqlProductSku, sqlProcutCategoryName1, sqlProcutCategoryName2, sqlOrderType, sqlStatus, sqlRefNo,sqlPageIndex,sqlPageSize);
+            res.totalCount = res.data.Count > 0 ? (int)res.data[0].Total : 0 ;
             return res;
 
 

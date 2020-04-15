@@ -21,7 +21,7 @@ using Xin.Web.Framework.Helper;
 namespace Xin.WebApi.Controllers
 {
     [Produces("application/json")]
-    [Authorize]
+    //[Authorize]
     [Route("api/Schedule")]
     public class ResScheduleController : Controller
     {
@@ -163,30 +163,31 @@ namespace Xin.WebApi.Controllers
         public DataRes<bool> Execute(int id)
         {
             var res = new DataRes<bool>() { code = ResCode.Success, data = true };
-            using (var uow = _uowProvider.CreateUnitOfWork())
+            using (var uow = _uowProvider.CreateUnitOfWork(false,false))
             {
                 var repository = uow.GetRepository<ResSchedule>();
                 var model = repository.Get(id);
-                var scheduleEntity = Mapper<ResSchedule, ScheduleEntity>.Map(model);
-                //给IJob设置参数
-                scheduleEntity.Agrs = new Dictionary<string, object> { { "orderId", id } };
-                ScheduleManage.Instance.AddScheduleList(scheduleEntity);
-                // 运行任务调度
+                //var scheduleEntity = Mapper<ResSchedule, ScheduleEntity>.Map(model);
+                ////给IJob设置参数
+                //scheduleEntity.Agrs = new Dictionary<string, object> { { "orderId", id } };
+                //ScheduleManage.Instance.AddScheduleList(scheduleEntity);
+                //// 运行任务调度
                 BaseQuartzNetResult result;
-                if (model.TriggerType == 0)
-                {
-                    result = _schedulerCenter.RunScheduleJob<ScheduleManage, SubmitJobTask>(model.JobGroup, model.JobName).Result;
-                }
-                else
-                {
-                    result = _schedulerCenter.RunScheduleJob<ScheduleManage>(model.JobGroup, model.JobName).Result;
-                }
+                result = QuartzHelper.ResumeScheduleAsync(model).Result;
+                //if (model.TriggerType == 0)
+                //{
+                //    result = _schedulerCenter.RunScheduleJob<ScheduleManage, SubmitJobTask>(model.JobGroup, model.JobName).Result;
+                //}
+                //else
+                //{
+                //    result = _schedulerCenter.RunScheduleJob<ScheduleManage>(model.JobGroup, model.JobName).Result;
+                //}
                 Console.Out.WriteLineAsync("任务执行状态：" + result.Msg);
                 if (result.Code == 1000)
                 {
                     model.JobStatus = 1;
                     model.WriteDate = DateTime.Now;
-                    var t10 = repository.Update(model);
+                    var t10 = repository.UpdateWithNavigationProperties(model);
                     res.msg = result.Msg;
                     logger.Info($"任务执行中:{model.JobGroup}-{model.JobName},{result.Msg}");
                 }
@@ -217,7 +218,7 @@ namespace Xin.WebApi.Controllers
                 //根据任务编号获取任务详情
                 var model = repository.Get(id);
                 //停止指定任务
-                var result = _schedulerCenter.StopScheduleJob<ScheduleManage>(model.JobGroup, model.JobName);
+                var result = QuartzHelper.StopScheduleAsync(model);
                 if (result.Result.Code == 1000)
                 {
                     model.JobStatus = 0;
@@ -253,7 +254,7 @@ namespace Xin.WebApi.Controllers
                 //根据任务编号获取任务详情
                 var model = repository.Get(id);
                 //恢复指定任务
-                var result = _schedulerCenter.ResumeJob(model.JobGroup, model.JobName);
+                var result = QuartzHelper.ResumeScheduleAsync(model);
                 if (result.Result.Code == 1000)
                 {
                     model.JobStatus = 1;
@@ -288,7 +289,7 @@ namespace Xin.WebApi.Controllers
                 //根据任务编号获取任务详情
                 var model = repository.Get(id);
                 //恢复指定任务
-                var result = _schedulerCenter.StopScheduleJob<ScheduleManage>(model.JobGroup, model.JobName);
+                var result = QuartzHelper.StopScheduleAsync(model);
                 if (result.Result.Code == 1000)
                 {
                     repository.Remove(model);

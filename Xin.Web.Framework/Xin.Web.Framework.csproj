@@ -9,9 +9,11 @@
     <PackageReference Include="IdentityServer4" Version="2.5.4" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" />
+    <PackageReference Include="Quartz" Version="3.0.7" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Xin.Job\Xin.Job.csproj" />
     <ProjectReference Include="..\Xin.Service\Xin.Service.csproj" />
   </ItemGroup>
 

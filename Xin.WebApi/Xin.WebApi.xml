@@ -232,7 +232,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Xin.WebApi.Extension.JobServiceExtensions.AddJobService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Xin.WebApi.Extension.JobServiceExtensions.AddJobServiceAsync(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             程序启动将任务调度表里所有状态为 执行中 任务启动起来
             </summary>
