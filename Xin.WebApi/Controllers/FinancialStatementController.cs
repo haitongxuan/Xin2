@@ -121,6 +121,7 @@ namespace Xin.WebApi.Controllers
                     foreach (var item in list)
                     {
                         item.StoreName = shopName;
+                        item.Enterdate = DateTime.Now;
                         var had = repository.Query(a => a.StoreName == item.StoreName && a.FkType == item.FkType
                         && a.FkDATE == item.FkDATE && a.Currency == item.Currency
                         && a.PlateformCode == item.PlateformCode && a.FkAmount == item.FkAmount).FirstOrDefault();

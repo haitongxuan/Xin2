@@ -98,7 +98,16 @@ namespace Xin.Web.Framework.Helper
                         resAll = orderBy.Expression(resAll);
                     }
                     res.totalCount = resAll.Count();
-                    res.data = resAll.Skip((pageReq.pageNum - 1) * pageReq.pageSize).Take(pageReq.pageSize).ToList();
+                    if (res.totalCount == pageReq.pageSize)
+                    {
+                        //存储过程分页
+                        res.data = resAll.ToList();
+                    }
+                    else
+                    {
+                        res.data = resAll.Skip((pageReq.pageNum - 1) * pageReq.pageSize).Take(pageReq.pageSize).ToList();
+                    }
+                    
                 }
             }
             catch (Exception ex)
