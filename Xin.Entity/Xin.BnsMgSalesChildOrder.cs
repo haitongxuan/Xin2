@@ -18,11 +18,15 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class BnsPaypalTransactionDetail {
+    public partial class BnsMgSalesChildOrder {
 
-        public BnsPaypalTransactionDetail()
+        public BnsMgSalesChildOrder()
         {
-            this.BnsPaypalTransactionDetailsCartInfos = new List<BnsPaypalTransactionDetailsCartInfo>();
+            this.QtyInvoiced = @"";
+            this.QtyRefunded = @"";
+            this.QtyShipped = @"";
+            this.BasePrice = @"";
+            this.OriginalPrice = @"";
             OnCreated();
         }
 
@@ -34,439 +38,405 @@ namespace Xin.Entities
             set;
         }
 
-        /// <summary>
-        /// 交易号
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoTransactionId
+        public virtual string ItemId
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易参考号
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoPaypalReferenceId
+        public virtual string OrderId
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易号状态
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoPaypalReferenceIdType
+        public virtual string QuoteItemId
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易类型
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoTransactionEventCode
+        public virtual string CreatedAt
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易开始时间
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoTransactionInitiationDate
+        public virtual string UpdatedAt
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易更新时间
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoTransactionUpdatedDate
+        public virtual string ProductId
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易币种
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoTransactionAmountCurrencyCode
+        public virtual string ProductType
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易总额
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoTransactionAmountValue
+        public virtual string ProductOptions
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易费用币种
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoFeeAmountCurrencyCode
+        public virtual string Weight
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易费用
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoFeeAmountValue
+        public virtual string IsVirtual
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 营业税币种
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoSalesTaxAmountCurrencyCode
+        public virtual string Sku
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 营业税
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoSalesTaxAmountValue
+        public virtual string Name
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 账户期末余额
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoEndingBalance
+        public virtual string AppliedRuleIds
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 可用余额
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoAvailableBalance
+        public virtual string FreeShipping
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易状态
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoTransactionStatus
+        public virtual string IsQtyDecimal
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 原始平台账单号
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoInvoiceId
+        public virtual string NoDiscount
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 保险费币种
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoInsuranceAmountCurrencyCode
+        public virtual string QtyCanceled
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 保险费用
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoInsuranceAmountVlaue
+        public virtual string QtyInvoiced
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 运费币种
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoShippingAmountCurrencyCode
+        public virtual string QtyOrdered
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 运费金额
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoShippingAmountValue
+        public virtual string QtyRefunded
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 运费折扣币种
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoShippingDiscountAmountCurrencyCode
+        public virtual string QtyShipped
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 运费折扣费用
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoShippingDiscountAmountValue
+        public virtual string Cost
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易主题
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoTransactionSubject
+        public virtual string Price
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易备注
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoTransactionNote
+        public virtual string BasePrice
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易 自定义范围
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoCustomField
+        public virtual string OriginalPrice
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 交易保护资格
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TransactionInfoProtectionEligibility
+        public virtual string BaseOriginalPrice
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// paypa买家账户id
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string PayerInfoAccountId
+        public virtual string TaxPercent
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// paypal 买家email
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string PayerInfoEmailAddress
+        public virtual string TaxAmount
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 买家手机号国家前缀
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string PayerInfoPhoneNumberCountryCode
+        public virtual string BaseTaxAmount
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 买家手机号
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string PayerInfoPhoneNumberNationalNumber
+        public virtual string TaxInvoiced
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 买家地址状态
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string PayerInfoAddressStatus
+        public virtual string BaseTaxInvoiced
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 买家状态
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string PayerInfoPayerStatus
+        public virtual string DiscountPercent
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 买家姓名
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string PayerInfoPayerNameGivenName
+        public virtual string DiscountAmount
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 买家姓
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string PayerInfoPayerNameSurname
+        public virtual string BaseDiscountAmount
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 买家备用的全名
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string PayerInfoPayerNameAlternateFullName
+        public virtual string DiscountInvoiced
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 买家国家简称号
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string PayerInfoCountryCode
+        public virtual string BaseDiscountInvoiced
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 物流信息（收件人姓名）
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ShippingInfoName
+        public virtual string AmountRefunded
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 地址第一行
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ShippingInfoAddressLine1
+        public virtual string BaseAmountRefunded
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 地址第二行
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ShippingInfoAddressLine2
+        public virtual string RowTotal
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 城镇/城市
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ShippingInfoAddressCity
+        public virtual string BaseRowTotal
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 省/市/自治区/直辖市/特别行政区
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ShippingInfoAddressState
+        public virtual string RowInvoiced
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 国家/地区
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ShippingInfoAddressCountryCode
+        public virtual string BaseRowInvoiced
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 邮政编码
-        /// </summary>
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ShippingInfoAddressPostalCode
+        public virtual string RowWeight
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// 店铺标识
-        /// </summary>
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string GiftMessageId
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string GiftMessage
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string GiftMessageAvailable
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string BaseTaxBeforeDiscount
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string TaxBeforeDiscount
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string WeeeTaxApplied
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string WeeeTaxAppliedAmount
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string WeeeTaxAppliedRowAmount
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string BaseWeeeTaxAppliedAmount
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string BaseWeeeTaxAppliedRowAmount
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string WeeeTaxDisposition
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string WeeeTaxRowDisposition
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string BaseWeeeTaxDisposition
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string BaseWeeeTaxRowDisposition
+        {
+            get;
+            set;
+        }
+
         [System.ComponentModel.DataAnnotations.StringLength(255)]
         public virtual string ShopMark
         {
@@ -474,7 +444,22 @@ namespace Xin.Entities
             set;
         }
 
-        public virtual IList<BnsPaypalTransactionDetailsCartInfo> BnsPaypalTransactionDetailsCartInfos
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string EtlDate
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string EtlDatetime
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string EtlMonth
         {
             get;
             set;

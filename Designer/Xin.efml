@@ -403,8 +403,8 @@
     <property name="IntervalSecond" type="Int32" p1:nullable="True" p1:DisplayName="执行间隔时间, 秒为单位" p1:ValidateRequired="false" p1:Guid="3871413d-15c8-40b7-bf64-75b4a093a830">
       <column name="" />
     </property>
-    <property name="Url" type="String" p1:DisplayName="job调用外部的url" p1:ValidateMaxLength="300" p1:ValidateRequired="true" p1:Guid="53bb35ba-55e8-4df5-9ce7-2524c37cf219">
-      <column name="" length="300" />
+    <property name="Url" type="String" p1:nullable="True" p1:DisplayName="job调用外部的url" p1:ValidateMaxLength="300" p1:ValidateRequired="false" p1:Guid="53bb35ba-55e8-4df5-9ce7-2524c37cf219">
+      <column name="Url" not-null="False" length="300" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="NextRunTime" type="DateTime" p1:DisplayName="下次运行时间" p1:ValidateRequired="true" p1:Guid="318dbc6a-f7ae-4704-b215-f0cb4d9404d7">
       <column name="" />
@@ -3532,8 +3532,8 @@
     <property name="FkAmount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f49f34b6-4cbf-4830-aa26-d9ae7fc4c414">
       <column name="FkAmount" not-null="False" precision="19" scale="4" sql-type="money" p1:unicode="False" />
     </property>
-    <property name="Enterdate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7f0db445-8ac8-4caa-a6bf-9a87c404dbae">
-      <column name="enterdate" not-null="False" sql-type="datetime" p1:unicode="False" />
+    <property name="Enterdate" type="DateTime" p1:nullable="True" value-generated="OnAdd" p1:ValidateRequired="false" p1:Guid="7f0db445-8ac8-4caa-a6bf-9a87c404dbae">
+      <column name="enterdate" default="getdate()" not-null="False" sql-type="datetime" p1:unicode="False" />
     </property>
   </class>
   <class name="ECDHCost" entity-set="ECDHCosts" table="EC_DHCost" schema="dbo" p1:Guid="5025092f-00a8-4708-9fa2-f8c5423b37c8">
@@ -4541,6 +4541,194 @@
       <column name="status" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
     </property>
   </class>
+  <class name="BnsMgSalesChildOrder" entity-set="BnsMgSalesChildOrders" table="Bns_MgSalesChildOrder" schema="dbo" p1:Guid="9aa11b6e-e9cb-4f66-a797-e5c5400bb5de">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="e7b22c81-3053-46a9-a574-6672f9aa25d8">
+      <column name="Id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ItemId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fdf90982-7f31-4b38-81d1-cfd5909f802d">
+      <column name="Item_Id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OrderId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5350d6e5-efba-4568-9325-50046257b7ea">
+      <column name="Order_Id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="QuoteItemId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8a0304f6-0202-4916-a9e7-d2d098edda37">
+      <column name="Quote_Item_Id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CreatedAt" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ef0f951e-ed2f-4fd9-8dd9-dd1bda0f979e">
+      <column name="Created_At" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="UpdatedAt" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="79f2f916-f3d6-47d2-9253-9d7b4d7940e8">
+      <column name="Updated_At" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1fc407ab-9fb7-4493-a3ef-4bcb802b81eb">
+      <column name="Product_Id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7528f53d-70aa-4482-b1c4-191496f87022">
+      <column name="Product_Type" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ProductOptions" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1288dd8a-6ad7-4295-97f7-b28b7efb64ec">
+      <column name="Product_Options" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Weight" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1f3aec50-1f02-403a-bf89-c53dcc1093b9">
+      <column name="Weight" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="IsVirtual" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="606a2a8b-b774-4267-9442-7188b682155f">
+      <column name="Is_Virtual" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Sku" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0f4dc10f-c8a5-4dca-9418-f92445808f8d">
+      <column name="Sku" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Name" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="191027c6-47ee-48b2-a7e4-ee020cf39986">
+      <column name="Name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="AppliedRuleIds" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a9e043a3-61e1-4889-8116-965d2b3821fb">
+      <column name="Applied_Rule_Ids" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="FreeShipping" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="be7983ff-6eb2-4129-b035-faa6321367ac">
+      <column name="Free_Shipping" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="IsQtyDecimal" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5e579ccc-a553-4a1b-bebb-71ad5ce41a7e">
+      <column name="Is_Qty_Decimal" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="NoDiscount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9f04f6c3-39ed-4d02-ae91-dcc7fff1d40c">
+      <column name="No_Discount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="QtyCanceled" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e6e3546c-8f1d-40bd-b29b-566702d09278">
+      <column name="Qty_Canceled" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="QtyInvoiced" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e3f8842a-dbd9-47cc-86f1-05d93d19451c">
+      <column name="Qty_Invoiced" default="''" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="QtyOrdered" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8c51b164-3f9b-425f-a473-790c50c8c869">
+      <column name="Qty_Ordered" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="QtyRefunded" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0b2d3e01-5219-4d7b-ad75-42d4dfc8ad6d">
+      <column name="Qty_Refunded" default="''" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="QtyShipped" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="251ac221-17f6-47f9-9049-f8775204b650">
+      <column name="Qty_Shipped" default="''" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Cost" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="dde20be8-0b71-41da-b57d-292c190b008e">
+      <column name="Cost" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Price" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7aaae379-2ddc-40c6-a5ed-7dd9e5360d3a">
+      <column name="Price" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BasePrice" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="20c125c4-7d44-47eb-9fed-86a9dfc6b6af">
+      <column name="Base_Price" default="''" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="OriginalPrice" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="32893bc3-f531-4f33-87a2-4c555ed83a46">
+      <column name="Original_Price" default="''" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseOriginalPrice" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c67374d1-8068-4c10-a40a-aaccee710e23">
+      <column name="Base_Original_Price" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TaxPercent" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d028f0ae-a95c-434c-b547-dd17dcca2f91">
+      <column name="Tax_Percent" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TaxAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="517086ad-6652-4ab6-a7d6-9d8bec30f2a5">
+      <column name="Tax_Amount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseTaxAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="394bb2fe-aac5-4643-a7ed-82b0e34065e6">
+      <column name="Base_Tax_Amount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TaxInvoiced" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a700bed9-90a3-4f62-980e-7cdc871c2cf2">
+      <column name="Tax_Invoiced" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseTaxInvoiced" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1918ee78-7b5b-43f9-95be-48fdd81165e5">
+      <column name="Base_Tax_Invoiced" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="DiscountPercent" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4d76a5f1-9ea6-4d92-a8c4-228e02e30324">
+      <column name="Discount_Percent" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="DiscountAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="66512db8-567a-43d3-b3fa-3a5497e9af5b">
+      <column name="Discount_Amount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseDiscountAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b98be898-f6ce-46b2-b9f3-936b797e77ce">
+      <column name="Base_Discount_Amount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="DiscountInvoiced" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2cd1b8ae-1b6d-4602-8968-a71845475e11">
+      <column name="Discount_Invoiced" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseDiscountInvoiced" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="6ed7520a-caa1-4a9d-a166-f5ddd23f9a70">
+      <column name="Base_Discount_Invoiced" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="AmountRefunded" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d377dc5c-6663-43f0-9dbd-ae5c2a758b7c">
+      <column name="Amount_Refunded" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseAmountRefunded" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9d8f9ea7-c4dc-4a52-9f24-e0a2dff216ba">
+      <column name="Base_Amount_Refunded" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="RowTotal" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8fca51cd-cccb-4654-904a-c2680ed52336">
+      <column name="Row_Total" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseRowTotal" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="bcb3e1fc-7147-47d6-9fdd-a5b6228e0d98">
+      <column name="Base_Row_Total" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="RowInvoiced" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7f51b1ed-b13c-4ccd-bc26-f4229b5a9cda">
+      <column name="Row_Invoiced" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseRowInvoiced" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="29bf69c4-ab40-44a7-9291-85e25cfee219">
+      <column name="Base_Row_Invoiced" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="RowWeight" type="String" p1:nullable="True" value-generated="OnAdd" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="76120e6c-6f80-4c99-8186-347acef78d96">
+      <column name="Row_Weight" default="NULL" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="GiftMessageId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c232a27c-b63e-4208-bdab-22619f2c7fc5">
+      <column name="Gift_Message_Id" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="GiftMessage" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="dbe9a623-2ea7-4692-90ba-5da6b48bc58c">
+      <column name="Gift_Message" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="GiftMessageAvailable" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3fb1c40f-ae27-4718-969c-ee4fed85291d">
+      <column name="Gift_Message_Available" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseTaxBeforeDiscount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a294988b-0fd4-4e72-974c-efb812ca1c95">
+      <column name="Base_Tax_Before_Discount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TaxBeforeDiscount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b8a049c0-c334-4c15-a686-d7c8865ae11a">
+      <column name="Tax_Before_Discount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WeeeTaxApplied" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0ebcfd2c-a5a9-4c3e-bab5-10c5769b3f12">
+      <column name="Weee_Tax_Applied" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WeeeTaxAppliedAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="750ec02d-9557-4a21-9e53-ec1f5ee964e7">
+      <column name="Weee_Tax_Applied_Amount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WeeeTaxAppliedRowAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="b6e6ccd7-f222-4bf5-9c85-c0e8afe0c99e">
+      <column name="Weee_Tax_Applied_Row_Amount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseWeeeTaxAppliedAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="879077b1-7eb0-4ea5-b0ef-ac4565d4f89d">
+      <column name="Base_Weee_Tax_Applied_Amount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseWeeeTaxAppliedRowAmount" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ea1d550f-581b-4d2b-ae67-16eff08c2aa3">
+      <column name="Base_Weee_Tax_Applied_Row_Amount" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WeeeTaxDisposition" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c79d96cc-96d4-45a2-9372-9b65e4dd13ac">
+      <column name="Weee_Tax_Disposition" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="WeeeTaxRowDisposition" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="80f9f2ba-a634-4262-8e75-54c25bb92baa">
+      <column name="Weee_Tax_Row_Disposition" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseWeeeTaxDisposition" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7ef046df-ab21-423a-af8a-67e32e95fe03">
+      <column name="Base_Weee_Tax_Disposition" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="BaseWeeeTaxRowDisposition" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="203fa9b7-bf2c-424c-ad32-4f84fe330456">
+      <column name="Base_Weee_Tax_Row_Disposition" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="ShopMark" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="bf8cab5c-6118-4360-8897-524d62160aac">
+      <column name="Shop_Mark" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="EtlDate" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="17a5b03c-83aa-43bd-9a94-f16e8754de6e">
+      <column name="Etl_Date" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="EtlDatetime" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a47b55f4-894b-4fe5-b61d-a4f776227d5e">
+      <column name="Etl_Datetime" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="EtlMonth" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2eb48273-6aae-4f19-a7af-63210b51b3ba">
+      <column name="Etl_Month" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">
@@ -4972,8 +5160,8 @@
     <parameter name="OrderType" type="String" sql-type="varchar" length="100" />
     <parameter name="Status" type="String" sql-type="varchar" length="100" />
     <parameter name="RefNo" type="String" sql-type="varchar" length="100" />
-    <parameter name="PageIndex" type="Int32" sql-type="int" precision="10" scale="0" />
-    <parameter name="PageSize" type="Int32" sql-type="int" precision="10" scale="0" />
+    <parameter name="reqIndex" type="String" sql-type="varchar" length="100" />
+    <parameter name="reqSize" type="String" sql-type="varchar" length="100" />
   </method>
   <method name="GetHeadgearDensitySp" p1:procedure="dbo.GetHeadgearDensity_sp" p1:Guid="a0e35b74-c522-4199-b6ae-1c4293fcb0da">
     <parameter name="startDate" type="String" sql-type="varchar" length="255" />

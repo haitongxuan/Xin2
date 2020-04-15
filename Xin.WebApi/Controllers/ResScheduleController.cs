@@ -163,7 +163,7 @@ namespace Xin.WebApi.Controllers
         public DataRes<bool> Execute(int id)
         {
             var res = new DataRes<bool>() { code = ResCode.Success, data = true };
-            using (var uow = _uowProvider.CreateUnitOfWork(false,false))
+            using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ResSchedule>();
                 var model = repository.Get(id);
@@ -187,7 +187,7 @@ namespace Xin.WebApi.Controllers
                 {
                     model.JobStatus = 1;
                     model.WriteDate = DateTime.Now;
-                    var t10 = repository.UpdateWithNavigationProperties(model);
+                    var t10 = repository.Update(model);
                     res.msg = result.Msg;
                     logger.Info($"任务执行中:{model.JobGroup}-{model.JobName},{result.Msg}");
                 }

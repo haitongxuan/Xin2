@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -345,74 +346,49 @@ namespace Xin.WebApi.Controllers
         public GridPage<List<CwAccountQueryReport>> GetFinancialStatement(DatetimePointPageReq pageReq)
         {
             var res = new GridPage<List<CwAccountQueryReport>> { code = ResCode.Success };
-            string PlateForm = "";
-            string StoreName = "";
-            string WareHouseDesc = "";
-            string ProductSku = "";
-            string ProcutCategoryName1 = "";
-            string ProcutCategoryName2 = "";
-            string OrderType = "";
-            string Status = "";
-            string RefNo = "";
-            List<FilterNode> list = new List<FilterNode>();
+            StringBuilder sbCommon = new StringBuilder();
+            StringBuilder sbLoandate = new StringBuilder();
             foreach (var item in pageReq.query)
             {
-                switch (item.key.ToLower())
+                if (item.value != null)
                 {
-                    case "plateform":
-                        PlateForm = item.value == null ? "" : item.value.ToString();
-                        break;
-                    case "storename":
-                        StoreName = item.value == null ? "" : item.value.ToString();
-                        break;
-                    case "warehousedesc":
-                        WareHouseDesc = item.value == null ? "" : item.value.ToString();
-                        break;
-                    case "productsku":
-                        ProductSku = item.value == null ? "" : item.value.ToString();
-                        break;
-                    case "procutcategoryname1":
-                        ProcutCategoryName1 = item.value == null ? "" : item.value.ToString();
-                        break;
-                    case "procutcategoryname2":
-                        ProcutCategoryName2 = item.value == null ? "" : item.value.ToString();
-                        break;
-                    case "status":
-                        Status = item.value == null ? "" : item.value.ToString();
-                        break;
-                    case "refno":
-                        RefNo = item.value == null ? "" : item.value.ToString();
-                        break;
-                    case "ordertype":
-                        OrderType = item.value == null ? "" : item.value.ToString();
-                        break;
-                    default:
-                        list.Add(item);
-                        break;
+                    switch (item.key.ToLower())
+                    {
+                        case "loandate":
+                            sbLoandate.Append($" where loandate {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
+                            break;
+                        case "status":
+                            sbCommon.Append($" and '{item.value}' = CASE WHEN t1.Status = 0 THEN '已废弃' WHEN t1.Status = 1 THEN '付款未完成' " +
+                                $"WHEN t1.Status = 2 THEN '待发货审核' WHEN t1.Status = 3 THEN '待发货' WHEN t1.Status = 4 THEN '已发货' " +
+                                $"WHEN t1.Status = 5 THEN '冻结中' WHEN t1.Status = 6 THEN '缺货' WHEN t1.Status = 7 THEN '问题件' " +
+                                $"WHEN t1.Status = 8 THEN '未付款' END ");
+                            break;
+                        case "ordertype":
+                            sbCommon.Append($" and '{item.value}'= CASE WHEN orderType = 'sale' THEN '正常销售订单' WHEN orderType = 'resend' " +
+                                $"THEN '重发订单' WHEN orderType = 'line' AND LEFT(t1.refno, 1) NOT IN('Y', 'H', 'S', 'A') " +
+                                $"THEN '线下订单' WHEN orderType = 'line' AND LEFT(t1.refno, 1) IN('Y', 'H', 'S', 'A') " +
+                                $"THEN '营销订单' END ");
+                            break;
+                        case "storename":
+                            sbCommon.Append($" and platformUserName {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                        default:
+                            sbCommon.Append($" and {item.key} {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                    }
                 }
             }
-            var sqlPlateForm = new SqlParameter("@PlateForm", PlateForm);
-            var sqlStoreName = new SqlParameter("@StoreName", StoreName);
-            var sqlWareHouseDesc = new SqlParameter("@WareHouseDesc", WareHouseDesc);
-            var sqlProductSku = new SqlParameter("@ProductSku", ProductSku);
-            var sqlProcutCategoryName1 = new SqlParameter("@ProcutCategoryName1", ProcutCategoryName1);
-            var sqlProcutCategoryName2 = new SqlParameter("@ProcutCategoryName2", ProcutCategoryName2);
-            var sqlOrderType = new SqlParameter("@OrderType", OrderType);
-            var sqlStatus = new SqlParameter("@Status", Status);
-            var sqlRefNo = new SqlParameter("@RefNo", RefNo);
+            var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
+            var loandateSql = new SqlParameter("@loandateSql", sbLoandate.ToString());
             var sqlPageIndex = new SqlParameter("@reqIndex", pageReq.pageNum == 0 ? 1 : pageReq.pageNum);
             var sqlPageSize = new SqlParameter("@reqSize", pageReq.pageSize == 0 ? 50 : pageReq.pageSize);
-            pageReq.query = list;
+            pageReq.query = new List<FilterNode>();
             res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq,
                 "EXECUTE CwAccountQuery_sp " +
-                "@PlateForm,@StoreName,@WareHouseDesc,@ProductSku,@ProcutCategoryName1,@ProcutCategoryName2,@OrderType,@Status,@RefNo,@reqIndex,@reqSize",
-                sqlPlateForm, sqlStoreName, sqlWareHouseDesc, sqlProductSku, sqlProcutCategoryName1, sqlProcutCategoryName2, sqlOrderType, sqlStatus, sqlRefNo,sqlPageIndex,sqlPageSize);
-            res.totalCount = res.data.Count > 0 ? (int)res.data[0].Total : 0 ;
+                "@whereSql,@loandateSql,@reqIndex,@reqSize", whereSql, loandateSql, sqlPageIndex, sqlPageSize);
+            res.totalCount = res.data.Count > 0 ? (int)res.data[0].Total : 0;
             return res;
-
-
         }
-
         [Route("GetDeliver")]
         [HttpPost]
         public MangatoDeliverReturn GetDeliver(MagentoReqModel data)
