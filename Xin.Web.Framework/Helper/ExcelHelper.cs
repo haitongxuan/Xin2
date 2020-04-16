@@ -292,8 +292,15 @@ namespace Xin.Web.Framework.Helper
                             headerRow.GetCell(column.Ordinal).CellStyle = headStyle;
 
                             //设置列宽
-                            sheet.SetColumnWidth(column.Ordinal, (arrColWidth[column.Ordinal] + 1) * 256);
-                        }
+                            if (arrColWidth[column.Ordinal] > 255)
+                            {
+                                arrColWidth[column.Ordinal] = 254;
+                            }
+                            else
+                            {
+                                sheet.SetColumnWidth(column.Ordinal, (arrColWidth[column.Ordinal] + 1) * 256);
+                            }
+                      }
                     }
                     #endregion
 
