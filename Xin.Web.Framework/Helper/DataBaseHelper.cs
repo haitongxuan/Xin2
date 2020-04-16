@@ -105,7 +105,7 @@ namespace Xin.Web.Framework.Helper
                     {
                         res.data = resAll.Skip((pageReq.pageNum - 1) * pageReq.pageSize).Take(pageReq.pageSize).ToList();
                     }
-                    res.totalCount = res.data.Count();
+                    res.totalCount = resAll.Count();
                     
                 }
             }
