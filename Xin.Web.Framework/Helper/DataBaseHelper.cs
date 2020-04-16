@@ -61,7 +61,7 @@ namespace Xin.Web.Framework.Helper
             return res;
         }
 
-        public static GridPage<List<T>> GetFromProcedure(IUowProvider _uowProvider, GridPage<List<T>> res, DatetimePointPageReq pageReq,string procedure, params SqlParameter[] sqlParameters)
+        public static GridPage<List<T>> GetFromProcedure(IUowProvider _uowProvider, GridPage<List<T>> res, DatetimePointPageReq pageReq,bool getAll,string procedure, params SqlParameter[] sqlParameters)
         {
             try
             {
@@ -97,16 +97,15 @@ namespace Xin.Web.Framework.Helper
                         orderBy = new OrderBy<T>(pageReq.order.columnName, pageReq.order.reverse);
                         resAll = orderBy.Expression(resAll);
                     }
-                    res.totalCount = resAll.Count();
-                    if (res.totalCount == pageReq.pageSize)
+                    if (getAll)
                     {
-                        //存储过程分页
                         res.data = resAll.ToList();
                     }
                     else
                     {
                         res.data = resAll.Skip((pageReq.pageNum - 1) * pageReq.pageSize).Take(pageReq.pageSize).ToList();
                     }
+                    res.totalCount = res.data.Count();
                     
                 }
             }

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -98,9 +99,8 @@ namespace Xin.WebApi.Controllers
 
             }
             var res = new GridPage<List<BnsAmazonReportDetail>>() { code = ResCode.Success };
-
-            return DataBaseHelper<BnsAmazonReportDetail>.GetList(_uowProvider, res, pageReq);
-
+            res = DataBaseHelper<BnsAmazonReportDetail>.GetList(_uowProvider, res, pageReq);
+            return res;
         }
         /// <summary>
         /// 导入速卖通放款信息
@@ -348,6 +348,7 @@ namespace Xin.WebApi.Controllers
             var res = new GridPage<List<CwAccountQueryReport>> { code = ResCode.Success };
             StringBuilder sbCommon = new StringBuilder();
             StringBuilder sbLoandate = new StringBuilder();
+            List<FilterNode> list = new List<FilterNode>();
             foreach (var item in pageReq.query)
             {
                 if (item.value != null)
@@ -355,7 +356,7 @@ namespace Xin.WebApi.Controllers
                     switch (item.key.ToLower())
                     {
                         case "loandate":
-                            sbLoandate.Append($" where loandate {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
+                            list.Add(item);
                             break;
                         case "status":
                             sbCommon.Append($" and '{item.value}' = CASE WHEN t1.Status = 0 THEN '已废弃' WHEN t1.Status = 1 THEN '付款未完成' " +
@@ -379,16 +380,71 @@ namespace Xin.WebApi.Controllers
                 }
             }
             var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
-            var loandateSql = new SqlParameter("@loandateSql", sbLoandate.ToString());
-            var sqlPageIndex = new SqlParameter("@reqIndex", pageReq.pageNum == 0 ? 1 : pageReq.pageNum);
-            var sqlPageSize = new SqlParameter("@reqSize", pageReq.pageSize == 0 ? 50 : pageReq.pageSize);
-            pageReq.query = new List<FilterNode>();
-            res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq,
-                "EXECUTE CwAccountQuery_sp " +
-                "@whereSql,@loandateSql,@reqIndex,@reqSize", whereSql, loandateSql, sqlPageIndex, sqlPageSize);
-            res.totalCount = res.data.Count > 0 ? (int)res.data[0].Total : 0;
+
+            pageReq.query = list;
+            res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, false,"EXECUTE CwAccountQuery_sp @whereSql", whereSql);
             return res;
         }
+
+        /// <summary>
+        /// 财务报表导出
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [Route("ExportFinancialStatement")]
+        [HttpPost]
+        public void ExportFinancialStatement(DatetimePointPageReq pageReq)
+        {
+            var res = new GridPage<List<CwAccountQueryReport>> { code = ResCode.Success };
+            StringBuilder sbCommon = new StringBuilder();
+            StringBuilder sbLoandate = new StringBuilder();
+            List<FilterNode> list = new List<FilterNode>();
+            foreach (var item in pageReq.query)
+            {
+                if (item.value != null)
+                {
+                    switch (item.key.ToLower())
+                    {
+                        case "loandate":
+                            list.Add(item);
+                            break;
+                        case "status":
+                            sbCommon.Append($" and '{item.value}' = CASE WHEN t1.Status = 0 THEN '已废弃' WHEN t1.Status = 1 THEN '付款未完成' " +
+                                $"WHEN t1.Status = 2 THEN '待发货审核' WHEN t1.Status = 3 THEN '待发货' WHEN t1.Status = 4 THEN '已发货' " +
+                                $"WHEN t1.Status = 5 THEN '冻结中' WHEN t1.Status = 6 THEN '缺货' WHEN t1.Status = 7 THEN '问题件' " +
+                                $"WHEN t1.Status = 8 THEN '未付款' END ");
+                            break;
+                        case "ordertype":
+                            sbCommon.Append($" and '{item.value}'= CASE WHEN orderType = 'sale' THEN '正常销售订单' WHEN orderType = 'resend' " +
+                                $"THEN '重发订单' WHEN orderType = 'line' AND LEFT(t1.refno, 1) NOT IN('Y', 'H', 'S', 'A') " +
+                                $"THEN '线下订单' WHEN orderType = 'line' AND LEFT(t1.refno, 1) IN('Y', 'H', 'S', 'A') " +
+                                $"THEN '营销订单' END ");
+                            break;
+                        case "storename":
+                            sbCommon.Append($" and platformUserName {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                        default:
+                            sbCommon.Append($" and {item.key} {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                    }
+                }
+            }
+            var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
+            pageReq.query = list;
+            res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, true, "EXECUTE CwAccountQuery_sp @whereSql", whereSql);
+            var dt = ExcelHelper<CwAccountQueryReport>.ListToDataTable(res.data);
+            var ms = ExcelHelper<CwAccountQueryReport>.Export(dt, "财务报表", "报表");
+            Encoding utf8 = Encoding.UTF8;
+            //将已经解码的字符再次进行编码.
+            string encode = HttpUtility.UrlEncode("报表.xlsx", utf8).ToUpper();
+            Response.Headers.Add("Content-Disposition", "attachment;filename=" + encode);
+            Response.ContentType = "application/excel";
+            Response.Body.Write(ms.GetBuffer());
+            Response.Body.Flush();
+            Response.Body.Close();
+        }
+
+
         [Route("GetDeliver")]
         [HttpPost]
         public MangatoDeliverReturn GetDeliver(MagentoReqModel data)

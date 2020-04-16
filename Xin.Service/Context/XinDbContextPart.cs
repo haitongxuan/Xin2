@@ -51,7 +51,6 @@ namespace Xin.Service.Context
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.ProductNetWeight).HasColumnName(@"ProductNetWeight").HasColumnType(@"money").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.ZproductNetWeight).HasColumnName(@"ZproductNetWeight").HasColumnType(@"money").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<int?>(x => x.Qty).HasColumnName(@"Qty").HasColumnType(@"int").ValueGeneratedNever();
-            modelBuilder.Entity<CwAccountQueryReport>().Property<int?>(x => x.Total).HasColumnName(@"Total").HasColumnType(@"int").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Company).HasColumnName(@"Company").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Plateform).HasColumnName(@"Plateform").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.StoreName).HasColumnName(@"StoreName").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);

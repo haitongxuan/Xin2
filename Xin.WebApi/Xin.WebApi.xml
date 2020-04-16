@@ -117,6 +117,13 @@
             <param name="pageReq"></param>
             <returns></returns>
         </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.ExportFinancialStatement(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            财务报表导出
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Controllers.OmsAnsListController.AddRecivingCode(System.String[])">
             <summary>
             添加入库单
