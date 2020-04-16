@@ -432,14 +432,13 @@ namespace Xin.WebApi.Controllers
             var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
             pageReq.query = list;
             res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, true, "EXECUTE CwAccountQuery_sp @whereSql", whereSql);
-            var dt = ExcelHelper<CwAccountQueryReport>.ListToDataTable(res.data);
-            var ms = ExcelHelper<CwAccountQueryReport>.Export(dt, "财务报表", "报表");
+            var ms = ExcelHelper<CwAccountQueryReport>.CollectionsToExcel(res.data, new Dictionary<string, string>());
             Encoding utf8 = Encoding.UTF8;
             //将已经解码的字符再次进行编码.
             string encode = HttpUtility.UrlEncode("报表.xlsx", utf8).ToUpper();
             Response.Headers.Add("Content-Disposition", "attachment;filename=" + encode);
             Response.ContentType = "application/excel";
-            Response.Body.Write(ms.GetBuffer());
+            Response.Body.Write(ms);
             Response.Body.Flush();
             Response.Body.Close();
         }

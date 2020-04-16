@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
@@ -229,7 +230,7 @@ namespace Xin.Web.Framework.Helper
             XSSFWorkbook workbook = new XSSFWorkbook();
             ISheet sheet = workbook.CreateSheet(strSheetName);
 
-            ICellStyle dateStyle = workbook.CreateCellStyle();
+            ICellStyle dateStyle = (XSSFCellStyle)workbook.CreateCellStyle();
             IDataFormat format = workbook.CreateDataFormat();
             dateStyle.DataFormat = format.GetFormat("yyyy-mm-dd");
 
@@ -267,7 +268,7 @@ namespace Xin.Web.Framework.Helper
                         headerRow.HeightInPoints = 25;
                         headerRow.CreateCell(0).SetCellValue(strHeaderText);
 
-                        ICellStyle headStyle = workbook.CreateCellStyle();
+                        ICellStyle headStyle = (XSSFCellStyle)workbook.CreateCellStyle();
                         headStyle.Alignment = HorizontalAlignment.Center;
                         IFont font = workbook.CreateFont();
                         font.FontHeightInPoints = 20;
@@ -281,7 +282,7 @@ namespace Xin.Web.Framework.Helper
                     #region 列头及样式
                     {
                         IRow headerRow = sheet.CreateRow(1);
-                        ICellStyle headStyle = workbook.CreateCellStyle();
+                        ICellStyle headStyle = (XSSFCellStyle)workbook.CreateCellStyle();
                         headStyle.Alignment = HorizontalAlignment.Center;
                         IFont font = workbook.CreateFont();
                         font.FontHeightInPoints = 10;
@@ -369,6 +370,112 @@ namespace Xin.Web.Framework.Helper
                 workbook=null;//一般只用写这一个就OK了，他会遍历并释放所有资源，但当前版本有问题所以只释放sheet
                 return ms;
             }
+        }
+
+        /// <summary>
+        /// 集合导出Excel
+        /// </summary>
+        /// <param name="list">集合</param>
+        /// <param name="columnNames">列名转换</param>
+        /// <param name="dicOnly">部分转换</param>
+        /// <returns></returns>
+        public static byte[] CollectionsToExcel(List<T> list, Dictionary<string, string> columnNames, bool dicOnly = false)
+        {
+            if (list.Count() <= 0)
+            {
+                return null;
+            }
+            DataTable dt = ListToDataTable(list);
+            IWorkbook workbook;
+            ICellStyle cellStyle;
+            ICellStyle headerCellStyle;
+           
+                workbook = new XSSFWorkbook();
+                cellStyle = (XSSFCellStyle)workbook.CreateCellStyle();
+                headerCellStyle = (XSSFCellStyle)workbook.CreateCellStyle();
+           
+
+            ISheet sheet = string.IsNullOrEmpty(dt.TableName) ? workbook.CreateSheet("Sheet1") : workbook.CreateSheet(dt.TableName);
+
+            IFont font = workbook.CreateFont();
+            font.FontName = "宋体";
+            font.FontHeightInPoints = 9;
+
+            cellStyle.Alignment = HorizontalAlignment.Left;
+            cellStyle.VerticalAlignment = VerticalAlignment.Center;
+            cellStyle.BorderBottom = BorderStyle.Thin;
+            cellStyle.BorderTop = BorderStyle.Thin;
+            cellStyle.BorderLeft = BorderStyle.Thin;
+            cellStyle.BorderRight = BorderStyle.Thin;
+            cellStyle.SetFont(font);
+
+            IFont headerFont = workbook.CreateFont();
+            headerFont.FontName = "宋体";
+            headerFont.FontHeightInPoints = 9;
+            headerFont.Boldweight = short.MaxValue;
+            headerCellStyle.Alignment = HorizontalAlignment.Center;
+            headerCellStyle.VerticalAlignment = VerticalAlignment.Center;
+            headerCellStyle.FillForegroundColor = 22;
+            headerCellStyle.FillPattern = FillPattern.SolidForeground;
+            headerCellStyle.BorderBottom = BorderStyle.Thin;
+            headerCellStyle.BorderTop = BorderStyle.Medium;
+            headerCellStyle.BorderLeft = BorderStyle.Thin;
+            headerCellStyle.BorderRight = BorderStyle.Thin;
+            headerCellStyle.SetFont(headerFont);
+
+            if (dicOnly == true)
+            {
+                for (int i = dt.Columns.Count - 1; i >= 0; i--)
+                {
+                    string rowName = dt.Columns[i].ColumnName;
+                    if (!columnNames.Keys.Contains(rowName))
+                    {
+                        dt.Columns.RemoveAt(i);
+                    }
+                }
+            }
+
+            //表头
+            IRow row = sheet.CreateRow(0);
+            row.HeightInPoints = 20;
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                sheet.SetColumnWidth(i, 25 * 256);
+                ICell cell = row.CreateCell(i);
+                cell.CellStyle = headerCellStyle;
+                string rowName = dt.Columns[i].ColumnName;
+                if (columnNames.Keys.Contains(rowName))
+                {
+                    cell.SetCellValue(columnNames[rowName]);
+                }
+                else
+                {
+                    cell.SetCellValue(dt.Columns[i].ColumnName);
+                }
+            }
+
+            //数据
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                //将数据从表格第二行开始填入
+                IRow row1 = sheet.CreateRow(i + 1);
+                row1.HeightInPoints = 15;
+                for (int j = 0; j < dt.Columns.Count; j++)
+                {
+                    ICell cell = row1.CreateCell(j);
+                    cell.CellStyle = cellStyle;
+                    cell.SetCellValue(dt.Rows[i][j].ToString());
+                }
+            }
+
+            //转为字节数组
+            MemoryStream stream = new MemoryStream();
+            workbook.Write(stream);
+            var buf = stream.ToArray();
+            workbook.Close();
+            stream.Close();
+            stream.Dispose();
+            return buf;
         }
     }
 }
