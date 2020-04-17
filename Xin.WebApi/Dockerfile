@@ -25,6 +25,7 @@ RUN dotnet publish "Xin.WebApi.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
+# 使用RUN命令设置时区
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai'>/etc/timezone
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Xin.WebApi.dll"]
-ENTRYPOINT ["TZ", "Asia/Shanghai"]
