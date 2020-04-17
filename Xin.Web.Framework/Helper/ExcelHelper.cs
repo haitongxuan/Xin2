@@ -219,159 +219,6 @@ namespace Xin.Web.Framework.Helper
             return dt;
         }
 
-
-        /// <summary>
-        /// DataTable导出到Excel的MemoryStream
-        /// </summary>
-        /// <param name="dtSource">源DataTable</param>
-        /// <param name="strHeaderText">表头文本</param>
-        public static MemoryStream Export(DataTable dtSource, string strHeaderText,string strSheetName)
-        {
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            ISheet sheet = workbook.CreateSheet(strSheetName);
-
-            ICellStyle dateStyle = (XSSFCellStyle)workbook.CreateCellStyle();
-            IDataFormat format = workbook.CreateDataFormat();
-            dateStyle.DataFormat = format.GetFormat("yyyy-mm-dd");
-
-            //取得列宽
-            int[] arrColWidth = new int[dtSource.Columns.Count];
-            foreach (DataColumn item in dtSource.Columns)
-            {
-                arrColWidth[item.Ordinal] = Encoding.GetEncoding(936).GetBytes(item.ColumnName.ToString()).Length;
-            }
-            for (int i = 0; i < dtSource.Rows.Count; i++)
-            {
-                for (int j = 0; j < dtSource.Columns.Count; j++)
-                {
-                    int intTemp = Encoding.GetEncoding(936).GetBytes(dtSource.Rows[i][j].ToString()).Length;
-                    if (intTemp > arrColWidth[j])
-                    {
-                        arrColWidth[j] = intTemp;
-                    }
-                }
-            }
-            int rowIndex = 0;
-            foreach (DataRow row in dtSource.Rows)
-            {
-                #region 新建表，填充表头，填充列头，样式
-                if (rowIndex == 1048575 || rowIndex == 0)
-                {
-                    if (rowIndex != 0)
-                    {
-                        sheet = workbook.CreateSheet(strSheetName + ((int)rowIndex / 1048575).ToString());
-                    }
-
-                    #region 表头及样式
-                    {
-                        IRow headerRow = sheet.CreateRow(0);
-                        headerRow.HeightInPoints = 25;
-                        headerRow.CreateCell(0).SetCellValue(strHeaderText);
-
-                        ICellStyle headStyle = (XSSFCellStyle)workbook.CreateCellStyle();
-                        headStyle.Alignment = HorizontalAlignment.Center;
-                        IFont font = workbook.CreateFont();
-                        font.FontHeightInPoints = 20;
-                        headStyle.SetFont(font);
-                        headerRow.GetCell(0).CellStyle = headStyle;
-                        sheet.AddMergedRegion(new NPOI.SS.Util.CellRangeAddress(0, 0, 0, dtSource.Columns.Count - 1));
-                    }
-                    #endregion
-
-
-                    #region 列头及样式
-                    {
-                        IRow headerRow = sheet.CreateRow(1);
-                        ICellStyle headStyle = (XSSFCellStyle)workbook.CreateCellStyle();
-                        headStyle.Alignment = HorizontalAlignment.Center;
-                        IFont font = workbook.CreateFont();
-                        font.FontHeightInPoints = 10;
-                        headStyle.SetFont(font);
-                        foreach (DataColumn column in dtSource.Columns)
-                        {
-                            headerRow.CreateCell(column.Ordinal).SetCellValue(column.ColumnName);
-                            headerRow.GetCell(column.Ordinal).CellStyle = headStyle;
-
-                            //设置列宽
-                            if (arrColWidth[column.Ordinal] > 255)
-                            {
-                                arrColWidth[column.Ordinal] = 254;
-                            }
-                            else
-                            {
-                                sheet.SetColumnWidth(column.Ordinal, (arrColWidth[column.Ordinal] + 1) * 256);
-                            }
-                      }
-                    }
-                    #endregion
-
-                    rowIndex = 2;
-                }
-                #endregion
-
-
-                #region 填充内容
-                IRow dataRow = sheet.CreateRow(rowIndex);
-                foreach (DataColumn column in dtSource.Columns)
-                {
-                    ICell newCell = dataRow.CreateCell(column.Ordinal);
-
-                    string drValue = row[column].ToString();
-
-                    switch (column.DataType.ToString())
-                    {
-                        case "System.String"://字符串类型
-                            newCell.SetCellValue(drValue);
-                            break;
-                        case "System.DateTime"://日期类型
-                            DateTime dateV;
-                            DateTime.TryParse(drValue, out dateV);
-                            newCell.SetCellValue(dateV);
-
-                            newCell.CellStyle = dateStyle;//格式化显示
-                            break;
-                        case "System.Boolean"://布尔型
-                            bool boolV = false;
-                            bool.TryParse(drValue, out boolV);
-                            newCell.SetCellValue(boolV);
-                            break;
-                        case "System.Int16"://整型
-                        case "System.Int32":
-                        case "System.Int64":
-                        case "System.Byte":
-                            int intV = 0;
-                            int.TryParse(drValue, out intV);
-                            newCell.SetCellValue(intV);
-                            break;
-                        case "System.Decimal"://浮点型
-                        case "System.Double":
-                            double doubV = 0;
-                            double.TryParse(drValue, out doubV);
-                            newCell.SetCellValue(doubV);
-                            break;
-                        case "System.DBNull"://空值处理
-                            newCell.SetCellValue("");
-                            break;
-                        default:
-                            newCell.SetCellValue("");
-                            break;
-                    }
-
-                }
-                #endregion
-
-                rowIndex++;
-            }
-            using (MemoryStream ms = new MemoryStream())
-            {
-                workbook.Write(ms);
-                ms.Flush();
-                sheet= null;
-                workbook=null;//一般只用写这一个就OK了，他会遍历并释放所有资源，但当前版本有问题所以只释放sheet
-                return ms;
-            }
-        }
-
         /// <summary>
         /// 集合导出Excel
         /// </summary>
@@ -379,103 +226,60 @@ namespace Xin.Web.Framework.Helper
         /// <param name="columnNames">列名转换</param>
         /// <param name="dicOnly">部分转换</param>
         /// <returns></returns>
-        public static byte[] CollectionsToExcel(List<T> list, Dictionary<string, string> columnNames, bool dicOnly = false)
+        public static byte[] NpoiListToExcel(List<T> list ,string sheetName = "Sheet1")
         {
-            if (list.Count() <= 0)
+            IWorkbook workbook = new XSSFWorkbook();
+            ISheet sheet = workbook.CreateSheet(sheetName);
+
+            var headRow = sheet.CreateRow(0);
+            PropertyInfo[] props = typeof(T).GetProperties();
+            for (var i = 0; i < props.Length; ++i)
             {
-                return null;
+                headRow.CreateCell(i).SetCellValue(props[i].Name);
             }
-            DataTable dt = ListToDataTable(list);
-            IWorkbook workbook;
-            ICellStyle cellStyle;
-            ICellStyle headerCellStyle;
-           
-                workbook = new XSSFWorkbook();
-                cellStyle = (XSSFCellStyle)workbook.CreateCellStyle();
-                headerCellStyle = (XSSFCellStyle)workbook.CreateCellStyle();
-           
-
-            ISheet sheet = string.IsNullOrEmpty(dt.TableName) ? workbook.CreateSheet("Sheet1") : workbook.CreateSheet(dt.TableName);
-
-            IFont font = workbook.CreateFont();
-            font.FontName = "宋体";
-            font.FontHeightInPoints = 9;
-
-            cellStyle.Alignment = HorizontalAlignment.Left;
-            cellStyle.VerticalAlignment = VerticalAlignment.Center;
-            cellStyle.BorderBottom = BorderStyle.Thin;
-            cellStyle.BorderTop = BorderStyle.Thin;
-            cellStyle.BorderLeft = BorderStyle.Thin;
-            cellStyle.BorderRight = BorderStyle.Thin;
-            cellStyle.SetFont(font);
-
-            IFont headerFont = workbook.CreateFont();
-            headerFont.FontName = "宋体";
-            headerFont.FontHeightInPoints = 9;
-            headerFont.Boldweight = short.MaxValue;
-            headerCellStyle.Alignment = HorizontalAlignment.Center;
-            headerCellStyle.VerticalAlignment = VerticalAlignment.Center;
-            headerCellStyle.FillForegroundColor = 22;
-            headerCellStyle.FillPattern = FillPattern.SolidForeground;
-            headerCellStyle.BorderBottom = BorderStyle.Thin;
-            headerCellStyle.BorderTop = BorderStyle.Medium;
-            headerCellStyle.BorderLeft = BorderStyle.Thin;
-            headerCellStyle.BorderRight = BorderStyle.Thin;
-            headerCellStyle.SetFont(headerFont);
-
-            if (dicOnly == true)
+            for (var i = 0; i < list.Count; ++i)
             {
-                for (int i = dt.Columns.Count - 1; i >= 0; i--)
+                var row = sheet.CreateRow(i + 1);
+                for (var j = 0; j < props.Length; ++j)
                 {
-                    string rowName = dt.Columns[i].ColumnName;
-                    if (!columnNames.Keys.Contains(rowName))
-                    {
-                        dt.Columns.RemoveAt(i);
-                    }
+                    row.CreateCell(j).SetCellValue(props[j].GetValue(list[i]).ToString());
                 }
             }
-
-            //表头
-            IRow row = sheet.CreateRow(0);
-            row.HeightInPoints = 20;
-            for (int i = 0; i < dt.Columns.Count; i++)
-            {
-                sheet.SetColumnWidth(i, 25 * 256);
-                ICell cell = row.CreateCell(i);
-                cell.CellStyle = headerCellStyle;
-                string rowName = dt.Columns[i].ColumnName;
-                if (columnNames.Keys.Contains(rowName))
-                {
-                    cell.SetCellValue(columnNames[rowName]);
-                }
-                else
-                {
-                    cell.SetCellValue(dt.Columns[i].ColumnName);
-                }
-            }
-
-            //数据
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                //将数据从表格第二行开始填入
-                IRow row1 = sheet.CreateRow(i + 1);
-                row1.HeightInPoints = 15;
-                for (int j = 0; j < dt.Columns.Count; j++)
-                {
-                    ICell cell = row1.CreateCell(j);
-                    cell.CellStyle = cellStyle;
-                    cell.SetCellValue(dt.Rows[i][j].ToString());
-                }
-            }
-
             //转为字节数组
             MemoryStream stream = new MemoryStream();
             workbook.Write(stream);
+            stream.Seek(0, SeekOrigin.Begin);
             var buf = stream.ToArray();
             workbook.Close();
             stream.Close();
             stream.Dispose();
             return buf;
+        }
+
+       public static byte[] EppListToExcel(List<T> data,string seetName = "Seet1")
+        {
+            using (ExcelPackage excel = new ExcelPackage())
+            {
+                ExcelWorksheet sheet = excel.Workbook.Worksheets.Add(seetName);
+                PropertyInfo[] props = typeof(T).GetProperties();
+                for (var i = 0; i < props.Length; ++i)
+                {
+                    sheet.Cells[1, i + 1].Value = props[i].Name;
+                }
+                for (var i = 0; i < data.Count; ++i)
+                {
+                    for (var j = 0; j < props.Length; ++j)
+                    {
+                        sheet.Cells[i + 2, j + 1].Value = props[j].GetValue(data[i]);
+                    }
+                }
+                MemoryStream stream = new MemoryStream();
+                excel.SaveAs(stream);
+                stream.Seek(0, SeekOrigin.Begin);
+                stream.Close();
+                stream.Dispose();
+                return stream.ToArray();
+            }
         }
     }
 }

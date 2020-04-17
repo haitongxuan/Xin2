@@ -23,9 +23,7 @@ namespace Xin.Web.Framework.Helper
                 ITrigger trigger = TriggerBuilder.Create()
                        .WithIdentity(resSchedule.JobName, resSchedule.JobGroup)
                        .StartAt(resSchedule.BeginTime)
-                       .EndAt(resSchedule.EndTime)
                        .WithCronSchedule(resSchedule.Cron)//指定cron表达式
-                       .ForJob(resSchedule.JobName, resSchedule.JobGroup)
                        .Build();
                 await _scheduler.ScheduleJob(job, trigger);
                 return new BaseQuartzNetResult

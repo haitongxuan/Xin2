@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -432,13 +435,10 @@ namespace Xin.WebApi.Controllers
             var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
             pageReq.query = list;
             res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, true, "EXECUTE CwAccountQuery_sp @whereSql", whereSql);
-            var ms = ExcelHelper<CwAccountQueryReport>.CollectionsToExcel(res.data, new Dictionary<string, string>());
-            Encoding utf8 = Encoding.UTF8;
             //将已经解码的字符再次进行编码.
-            string encode = HttpUtility.UrlEncode("报表.xlsx", utf8).ToUpper();
-            Response.Headers.Add("Content-Disposition", "attachment;filename=" + encode);
-            Response.ContentType = "application/excel";
-            Response.Body.Write(ms);
+            Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("FinancialStatementReport.xlsx"));
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
+            Response.Body.Write(ExcelHelper<CwAccountQueryReport>.EppListToExcel(res.data));
             Response.Body.Flush();
             Response.Body.Close();
         }
