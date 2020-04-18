@@ -14,6 +14,9 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
+using Xin.Common.CustomAttribute;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Xin.Web.Framework.Helper
 {
@@ -235,7 +238,17 @@ namespace Xin.Web.Framework.Helper
             PropertyInfo[] props = typeof(T).GetProperties();
             for (var i = 0; i < props.Length; ++i)
             {
-                headRow.CreateCell(i).SetCellValue(props[i].Name);
+                Object obj = props[i].GetCustomAttribute(typeof(ExcelAttribute));
+                if (obj != null)
+                {
+                    ExcelAttribute head = (ExcelAttribute)obj;
+                    headRow.CreateCell(i).SetCellValue(head.Header);
+                }
+                else
+                {
+                    headRow.CreateCell(i).SetCellValue(props[i].Name);
+                }
+
             }
             for (var i = 0; i < list.Count; ++i)
             {
@@ -255,7 +268,6 @@ namespace Xin.Web.Framework.Helper
             stream.Dispose();
             return buf;
         }
-
        public static byte[] EppListToExcel(List<T> data,string seetName = "Seet1")
         {
             using (ExcelPackage excel = new ExcelPackage())
@@ -264,7 +276,17 @@ namespace Xin.Web.Framework.Helper
                 PropertyInfo[] props = typeof(T).GetProperties();
                 for (var i = 0; i < props.Length; ++i)
                 {
-                    sheet.Cells[1, i + 1].Value = props[i].Name;
+                    Object obj = props[i].GetCustomAttribute(typeof(ExcelAttribute));
+                    if (obj!=null)
+                    {
+                        ExcelAttribute head = (ExcelAttribute)obj;
+                        sheet.Cells[1, i + 1].Value = head.Header;
+                    }
+                    else
+                    {
+                        sheet.Cells[1, i + 1].Value = props[i].Name;
+                    }
+                   
                 }
                 for (var i = 0; i < data.Count; ++i)
                 {
@@ -281,5 +303,28 @@ namespace Xin.Web.Framework.Helper
                 return stream.ToArray();
             }
         }
+        public static Dictionary<string, string> getExcelHead() {
+            Type t = new T().GetType();
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+
+            foreach (var item in t.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                Object obj = item.GetCustomAttribute(typeof(ExcelAttribute));
+                ExcelAttribute excel;
+                string head = "";
+                if (obj!=null)
+                {
+                    excel = (ExcelAttribute)obj;
+                    head = excel.Header;
+                }
+                else
+                {
+                    head = item.Name;
+                }
+                dic.Add(item.Name, head);
+            }
+            return dic;
+        }
+
     }
 }

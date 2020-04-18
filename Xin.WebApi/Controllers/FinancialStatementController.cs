@@ -385,7 +385,7 @@ namespace Xin.WebApi.Controllers
             var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
 
             pageReq.query = list;
-            res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, false,"EXECUTE CwAccountQuery_sp @whereSql", whereSql);
+            res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE CwAccountQuery_sp @whereSql", whereSql);
             return res;
         }
 
