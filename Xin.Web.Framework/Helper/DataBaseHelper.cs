@@ -97,16 +97,12 @@ namespace Xin.Web.Framework.Helper
                         orderBy = new OrderBy<T>(pageReq.order.columnName, pageReq.order.reverse);
                         resAll = orderBy.Expression(resAll);
                     }
-                    if (getAll)
+                    res.data = resAll.ToList();
+                    res.totalCount = res.data.Count();
+                    if (!getAll)
                     {
-                        res.data = resAll.ToList();
+                        res.data = res.data.Skip((pageReq.pageNum - 1) * pageReq.pageSize).Take(pageReq.pageSize).ToList();
                     }
-                    else
-                    {
-                        res.data = resAll.Skip((pageReq.pageNum - 1) * pageReq.pageSize).Take(pageReq.pageSize).ToList();
-                    }
-                    res.totalCount = resAll.Count();
-                    
                 }
             }
             catch (Exception ex)

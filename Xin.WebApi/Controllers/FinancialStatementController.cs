@@ -438,18 +438,29 @@ namespace Xin.WebApi.Controllers
             //将已经解码的字符再次进行编码.
             Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("FinancialStatementReport.xlsx"));
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
-            Response.Body.Write(ExcelHelper<CwAccountQueryReport>.EppListToExcel(res.data.OrderBy(a=>a.RefNo).ToList()));
+            Response.Body.Write(ExcelHelper<CwAccountQueryReport>.EppListToExcel(res.data.OrderBy(a=>a.RefNo).ThenByDescending(a=>a.Amountpaid).ToList()));
             Response.Body.Flush();
             Response.Body.Close();
         }
 
 
+        /// <summary>
+        /// 商城API获取物流详情
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [Route("GetDeliver")]
         [HttpPost]
         public MangatoDeliverReturn GetDeliver(MagentoReqModel data)
         {
             MangatoDeliverReturn res = new MangatoDeliverReturn();
             res.Status = "success";
+            if (string.IsNullOrWhiteSpace(data.express_num))
+            {
+                res.Status = "false";
+                res.message = "express_num不能为空";
+                return res;
+            }
             try
             {
                 using (var uow = _uowProvider.CreateUnitOfWork())

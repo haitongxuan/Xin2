@@ -124,6 +124,13 @@
             <param name="pageReq"></param>
             <returns></returns>
         </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.GetDeliver(Xin.Web.Framework.Model.MagentoReqModel)">
+            <summary>
+            商城API获取物流详情
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Controllers.OmsAnsListController.AddRecivingCode(System.String[])">
             <summary>
             添加入库单
