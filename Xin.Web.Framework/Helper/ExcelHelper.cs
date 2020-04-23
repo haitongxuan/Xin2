@@ -229,7 +229,7 @@ namespace Xin.Web.Framework.Helper
         /// <param name="columnNames">列名转换</param>
         /// <param name="dicOnly">部分转换</param>
         /// <returns></returns>
-        public static byte[] NpoiListToExcel(List<T> list ,string sheetName = "Sheet1")
+        public static byte[] NpoiListToExcel(List<T> list, string sheetName = "Sheet1")
         {
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet = workbook.CreateSheet(sheetName);
@@ -268,7 +268,7 @@ namespace Xin.Web.Framework.Helper
             stream.Dispose();
             return buf;
         }
-       public static byte[] EppListToExcel(List<T> data,string seetName = "Seet1")
+        public static byte[] EppListToExcel(List<T> data, string seetName = "Seet1")
         {
             using (ExcelPackage excel = new ExcelPackage())
             {
@@ -277,16 +277,19 @@ namespace Xin.Web.Framework.Helper
                 for (var i = 0; i < props.Length; ++i)
                 {
                     Object obj = props[i].GetCustomAttribute(typeof(ExcelAttribute));
-                    if (obj!=null)
+                    if (obj != null)
                     {
                         ExcelAttribute head = (ExcelAttribute)obj;
                         sheet.Cells[1, i + 1].Value = head.Header;
+                        if (!string.IsNullOrWhiteSpace(head.DateTime))
+                        {
+                            sheet.Cells[1, i + 1,data.Count+1,i+1].Style.Numberformat.Format = head.DateTime;
+                        }
                     }
                     else
                     {
                         sheet.Cells[1, i + 1].Value = props[i].Name;
                     }
-                   
                 }
                 for (var i = 0; i < data.Count; ++i)
                 {
@@ -303,7 +306,8 @@ namespace Xin.Web.Framework.Helper
                 return stream.ToArray();
             }
         }
-        public static Dictionary<string, string> getExcelHead() {
+        public static Dictionary<string, string> getExcelHead()
+        {
             Type t = new T().GetType();
             Dictionary<string, string> dic = new Dictionary<string, string>();
 
@@ -312,7 +316,7 @@ namespace Xin.Web.Framework.Helper
                 Object obj = item.GetCustomAttribute(typeof(ExcelAttribute));
                 ExcelAttribute excel;
                 string head = "";
-                if (obj!=null)
+                if (obj != null)
                 {
                     excel = (ExcelAttribute)obj;
                     head = excel.Header;

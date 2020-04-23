@@ -454,14 +454,25 @@ namespace Xin.WebApi.Controllers
             {
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
-                    var repo = uow.GetRepository<BnsSendDeliverdToEc>();
-                    BnsSendDeliverdToEc model = repo.Query(a => a.ShippingMethodNo == data.express_num).FirstOrDefault();
+                    var saleOrderRepository = uow.GetRepository<ECSalesOrder>();
+                    var carryRepository = uow.GetRepository<BnsShippingEcToTrackingMore>();
+
+                    ECSalesOrder model = saleOrderRepository.Query(a => a.ShippingMethodNo == data.express_num,null,x=>x.Include(a=>a.BnsSendDeliverdToEcs)).FirstOrDefault();
                     Dictionary<string, Object> dic = new Dictionary<string, Object>();
-                    dic.Add("trackinfo", model.Trackinfo);
-                    //dic.Add("carrier_code", model.carr);
-                    dic.Add("express_num", model.Trackinfo);
-                    dic.Add("delivered_status", model.DeliveredStatus);
-                    res.data = dic;
+                    if (model!= null)
+                    {
+                        BnsShippingEcToTrackingMore carModel = carryRepository.Query(a => a.Shiping == model.ShippingMethod).FirstOrDefault();
+                        dic.Add("trackinfo", model.BnsSendDeliverdToEcs[0].LogisticsDetails);
+                        dic.Add("carrier_code", carModel.ServerName);
+                        dic.Add("express_num", model.BnsSendDeliverdToEcs[0].ShippingMethodNo);
+                        dic.Add("delivered_status", model.BnsSendDeliverdToEcs[0].DeliveredStatus);
+                        res.data = dic;
+                    }
+                    else
+                    {
+                        res.Status = "false";
+                        res.message = "单号不存在";
+                    }
                 }
             }
             catch (Exception ex)

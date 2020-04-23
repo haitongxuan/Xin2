@@ -27,7 +27,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
-        [Excel(Header = "付款时间")]
+        [Excel(Header = "付款时间", DateTime = "yyyy-MM-dd HH:mm:ss")]
         public virtual System.DateTime? DatePaidPlatform
         {
             get;
@@ -42,14 +42,14 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
-        [Excel(Header = "发货时间")]
+        [Excel(Header = "发货时间", DateTime = "yyyy-MM-dd HH:mm:ss")]
         public virtual System.DateTime? DateWarehouseShipping
         {
             get;
             set;
         }
 
-        [Excel(Header = "收货时间")]
+        [Excel(Header = "收货时间", DateTime = "yyyy-MM-dd HH:mm:ss")]
         public virtual System.DateTime? ShDate
         {
             get;
@@ -194,7 +194,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
-        [Excel(Header = "店铺")]
+        [Excel(Header = "交易ID")]
         [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string PaypalTransactionId
         {
@@ -218,7 +218,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
-        [Excel(Header = "放款时间")]
+        [Excel(Header = "放款时间",DateTime = "yyyy-MM-dd HH:mm:ss")]
         public virtual System.DateTime? Loandate
         {
             get;
