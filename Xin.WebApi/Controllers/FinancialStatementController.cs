@@ -438,7 +438,7 @@ namespace Xin.WebApi.Controllers
             //将已经解码的字符再次进行编码.
             Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("FinancialStatementReport.xlsx"));
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
-            Response.Body.Write(ExcelHelper<CwAccountQueryReport>.EppListToExcel(res.data));
+            Response.Body.Write(ExcelHelper<CwAccountQueryReport>.EppListToExcel(res.data.OrderBy(a=>a.RefNo).ToList()));
             Response.Body.Flush();
             Response.Body.Close();
         }
