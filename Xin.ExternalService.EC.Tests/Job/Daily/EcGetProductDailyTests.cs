@@ -32,7 +32,7 @@ namespace Xin.ExternalService.EC.Job.Tests
             try
             {
                 EcGetProductDaily job = new EcGetProductDaily();
-                await job.Job(DateTime.Parse("2020-03-02"));
+                await job.Job(DateTime.Parse("2020-04-23"));
             }
             catch (Exception ex)
             {

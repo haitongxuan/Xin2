@@ -23,7 +23,8 @@ namespace Xin.ExternalService.EC.Reqeust
                 EC_ShipBatch model = new EC_ShipBatch();
                 var body = await service.ResponseServiceAsync();
                 WMSGetShipBatchResponse response = new WMSGetShipBatchResponse(body);
-                string data = body.Data;
+                string data = body.Data.Replace("0000-00-00 00:00:00", "");
+
                 if (data!= "[]")
                 {
                     model = JsonConvert.DeserializeObject<EC_ShipBatch>(data);

@@ -386,6 +386,7 @@ namespace Xin.WebApi.Controllers
 
             pageReq.query = list;
             res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE CwAccountQuery_sp @whereSql", whereSql);
+            res.data = res.data.OrderBy(a => a.RefNo).ThenByDescending(a => a.Amountpaid).ToList();
             return res;
         }
 
@@ -438,7 +439,7 @@ namespace Xin.WebApi.Controllers
             //将已经解码的字符再次进行编码.
             Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("FinancialStatementReport.xlsx"));
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
-            Response.Body.Write(ExcelHelper<CwAccountQueryReport>.EppListToExcel(res.data.OrderBy(a=>a.RefNo).ThenByDescending(a=>a.Amountpaid).ToList()));
+            Response.Body.Write(ExcelHelper<CwAccountQueryReport>.EppListToExcel(res.data.OrderBy(a => a.RefNo).ThenByDescending(a => a.Amountpaid).ToList()));
             Response.Body.Flush();
             Response.Body.Close();
         }
@@ -468,9 +469,9 @@ namespace Xin.WebApi.Controllers
                     var saleOrderRepository = uow.GetRepository<ECSalesOrder>();
                     var carryRepository = uow.GetRepository<BnsShippingEcToTrackingMore>();
 
-                    ECSalesOrder model = saleOrderRepository.Query(a => a.ShippingMethodNo == data.express_num,null,x=>x.Include(a=>a.BnsSendDeliverdToEcs)).FirstOrDefault();
+                    ECSalesOrder model = saleOrderRepository.Query(a => a.ShippingMethodNo == data.express_num, null, x => x.Include(a => a.BnsSendDeliverdToEcs)).FirstOrDefault();
                     Dictionary<string, Object> dic = new Dictionary<string, Object>();
-                    if (model!= null)
+                    if (model != null)
                     {
                         BnsShippingEcToTrackingMore carModel = carryRepository.Query(a => a.Shiping == model.ShippingMethod).FirstOrDefault();
                         dic.Add("trackinfo", model.BnsSendDeliverdToEcs[0].LogisticsDetails);

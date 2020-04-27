@@ -70,8 +70,8 @@ namespace Xin.WebApi.Controllers
                     res.totalCount = repository.Query(filter.Expression, orderBy.Expression).Count();
                     res.data = repository.QueryPage(startRow, pageReq.pageSize, filter.Expression, orderBy.Expression,
                         x =>
-                        x.Include(a => a.PackingInfos)
-                        .Include(a => a.ProductInfos)).ToList();
+                        x.Include(a => a.PackingInfo)
+                        .Include(a => a.ProductInfo)).ToList();
                 }
             }
             catch (Exception ex)

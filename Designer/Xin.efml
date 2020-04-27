@@ -4910,7 +4910,7 @@
       <end1 multiplicity="ZeroOrOne" name="ECShipBatch" class="ECShipBatchPackingInfo" relation-class="ECShipBatch" constrained="True" lazy="False" p1:Guid="51856955-3c62-4ba9-82fb-c047a2aac0db">
         <property name="OrderCode" />
       </end1>
-      <end2 multiplicity="Many" name="PackingInfos" class="ECShipBatch" relation-class="ECShipBatchPackingInfo" lazy="False" p1:Guid="8797fde8-f055-492f-912c-f006108c8eaf">
+      <end2 multiplicity="Many" name="PackingInfo" class="ECShipBatch" relation-class="ECShipBatchPackingInfo" lazy="False" p1:Guid="8797fde8-f055-492f-912c-f006108c8eaf">
         <property name="OrderCode" />
       </end2>
     </association>
@@ -4918,7 +4918,7 @@
       <end1 multiplicity="ZeroOrOne" name="ECShipBatch" class="ECShipBatchProductInfo" relation-class="ECShipBatch" constrained="True" lazy="False" p1:Guid="c0fe43f3-25ad-4ac1-8dcd-a17397abd6c8">
         <property name="OrderCode" />
       </end1>
-      <end2 multiplicity="Many" name="ProductInfos" class="ECShipBatch" relation-class="ECShipBatchProductInfo" lazy="False" p1:Guid="cc0cd511-42da-419b-af32-17c93ee9bb79">
+      <end2 multiplicity="Many" name="ProductInfo" class="ECShipBatch" relation-class="ECShipBatchProductInfo" lazy="False" p1:Guid="cc0cd511-42da-419b-af32-17c93ee9bb79">
         <property name="OrderCode" />
       </end2>
     </association>

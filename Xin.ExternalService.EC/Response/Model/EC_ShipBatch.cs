@@ -181,12 +181,12 @@ namespace Xin.ExternalService.EC.Response.Model
         ///订单产品信息
         /// <summary> 
         [JsonProperty(PropertyName = "product_info", NullValueHandling = NullValueHandling.Ignore)]
-        public ProductInfo ProductInfo { get; set; }
+        public List<ProductInfo> ProductInfo { get; set; }
         /// <summary> 
         ///装箱单信息
         /// <summary> 
         [JsonProperty(PropertyName = "packing_info", NullValueHandling = NullValueHandling.Ignore)]
-        public PackingInfo PackingInfo { get; set; }
+        public List<PackingInfo> PackingInfo { get; set; }
     }
     /// <summary>
     /// 订单产品信息
