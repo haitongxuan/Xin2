@@ -74,6 +74,17 @@
         <column name="list" not-null="False" length="40" sql-type="varchar" p1:unicode="False" />
       </property>
     </component>
+    <component class="TCResult" p1:Guid="903139dd-2905-486d-8232-aaa3e158e4e5">
+      <property name="TableName" type="String" p1:nullable="True" p1:ValidateMaxLength="80" p1:ValidateRequired="false" p1:Guid="5640566c-039a-405c-8c93-ad684a2b77be">
+        <column name="tableName" not-null="False" length="80" sql-type="varchar" p1:unicode="False" />
+      </property>
+      <property name="ColumnsList" type="String" p1:nullable="True" p1:ValidateMaxLength="7000" p1:ValidateRequired="false" p1:Guid="6ba9d6ae-5a5d-47a3-8deb-6ae605ea7061">
+        <column name="ColumnsList" not-null="False" length="7000" sql-type="varchar" p1:unicode="False" />
+      </property>
+      <property name="ParaList" type="String" p1:nullable="True" p1:ValidateMaxLength="950" p1:ValidateRequired="false" p1:Guid="7e143642-a9ca-4216-9414-0d811af49293">
+        <column name="ParaList" not-null="False" length="950" sql-type="varchar" p1:unicode="False" />
+      </property>
+    </component>
   </class>
   <class name="ResDepartment" entity-set="ResDepartments" table="Res_Department" p1:Guid="f4a68ad8-7e12-497e-aa43-4cc0b856221f" p1:EntityBase="XinVDBaseEntity">
     <id name="Id" type="Int32" value-generated="OnAdd" shadow="True" p1:DisplayName="主键" p1:ValidateRequired="true" p1:Guid="0a89b445-e650-4fe1-8a73-5645dd59fffd">
@@ -745,6 +756,18 @@
         <Summary>图片链接</Summary>
       </Documentation>
       <column name="ProductImages" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DefaulBuyWarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ca4570a4-8d24-4872-9a0f-bed819731a5d">
+      <column name="" />
+    </property>
+    <property name="LogisticAttribute" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3d7ca6c2-a6e4-48d4-8d41-c9a5f4a87735">
+      <column name="" />
+    </property>
+    <property name="SuggestPrice" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ce601667-8e03-4bce-b507-231a30286eaf">
+      <column name="" />
+    </property>
+    <property name="SuggestPriceCurrencyCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5bb1d175-58e6-4d0c-bd5a-f3b6251ea73c">
+      <column name="" />
     </property>
   </class>
   <class name="ECProductBox" entity-set="ECProductBoxes" table="EC_ProductBox" schema="dbo" p1:Guid="89c82382-00a6-42d9-bd9c-599f7e757780">
@@ -4729,6 +4752,124 @@
       <column name="Etl_Month" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
     </property>
   </class>
+  <class name="ECInventoryBatch" entity-set="ECInventoryBatches" table="EC_InventoryBatch" schema="dbo" p1:Guid="b5c4174f-0b0f-41aa-bb5c-b109864e1dfb">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="7c079587-5f90-4fae-b494-98db30f064b7">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="WarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="385a284f-eae9-4d8a-b9ef-a42e9e398acd">
+      <Documentation>
+        <Summary>仓库Id</Summary>
+      </Documentation>
+      <column name="warehouseId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="016744ea-e996-4710-a537-913ee9776e45">
+      <Documentation>
+        <Summary>产品SKU代码</Summary>
+      </Documentation>
+      <column name="productSku" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="LcCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="5cac7c2c-04db-4f7b-91aa-ded449a2d27e">
+      <Documentation>
+        <Summary>库位</Summary>
+      </Documentation>
+      <column name="lcCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="IbQuantity" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="359612d1-6d12-4fb3-b458-802ef760d56c">
+      <Documentation>
+        <Summary>可用数量</Summary>
+      </Documentation>
+      <column name="ibQuantity" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="OutQuantity" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="d43504f3-73ac-4d8d-a2c5-c238f424535f">
+      <Documentation>
+        <Summary>待出数量</Summary>
+      </Documentation>
+      <column name="outQuantity" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ReferenceNo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="c3b168b2-3905-4aa6-938c-419580bc277c">
+      <Documentation>
+        <Summary>参考单号</Summary>
+      </Documentation>
+      <column name="referenceNo" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="RoCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="080527a5-bcf6-4dd8-9949-0ea1b902f83f">
+      <Documentation>
+        <Summary>入库单号</Summary>
+      </Documentation>
+      <column name="roCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="PoCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="25baea91-3a5f-495c-8e5d-4644f3a08954">
+      <Documentation>
+        <Summary>采购单号</Summary>
+      </Documentation>
+      <column name="poCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Status" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c0e3b73b-ee8c-4a26-8b7b-84a32b6f326e">
+      <Documentation>
+        <Summary>状态 0已用完/不可用 1可用</Summary>
+      </Documentation>
+      <column name="status" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="HoldStatus" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5215bc36-d560-441a-b2d7-53c9b7eda214">
+      <Documentation>
+        <Summary>锁状态 0无 1盘点锁 2借领用锁</Summary>
+      </Documentation>
+      <column name="holdStatus" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="Type" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1d32c316-5ae5-4983-afa2-19f1326be633">
+      <Documentation>
+        <Summary>库存类型 0标准 1不良品</Summary>
+      </Documentation>
+      <column name="type" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="FifoTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="678092ef-c3fb-4dfc-be06-0fe6269b1fba">
+      <Documentation>
+        <Summary>上架时间</Summary>
+      </Documentation>
+      <column name="fifoTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="UpdateTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="d6ca4f91-ba9a-452c-ac56-aa8929b9e236">
+      <Documentation>
+        <Summary>更新时间</Summary>
+      </Documentation>
+      <column name="updateTime" not-null="False" sql-type="datetime" p1:unicode="False" />
+    </property>
+    <property name="IsNeedDeclare" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="04502305-124c-483a-9c63-57165da51251">
+      <Documentation>
+        <Summary>是否需要报关 0否 1是</Summary>
+      </Documentation>
+      <column name="isNeedDeclare" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="ECTransitBatchNumber" entity-set="ECTransitBatchNumbers" table="EC_TransitBatchNumber" schema="dbo" p1:Guid="f395e2ee-8c84-43b2-9c70-f7f4b9599606">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="67020ca2-317d-4dcc-8890-8858379f0f3d">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="WarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="2def604f-b06e-4342-8bfe-747e3d794506">
+      <Documentation>
+        <Summary>仓库Id</Summary>
+      </Documentation>
+      <column name="warehouseId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="ProductSku" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="62a54182-9039-44e9-8091-7fa36e764c50">
+      <Documentation>
+        <Summary>产品SKU代码</Summary>
+      </Documentation>
+      <column name="productSku" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="RoCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="11f822cd-dbb3-4594-be19-5581bf6b7fec">
+      <Documentation>
+        <Summary>入库单号</Summary>
+      </Documentation>
+      <column name="roCode" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="TransitBatchNumber" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b167d80a-060c-4ef3-83e8-b058c3892a43">
+      <Documentation>
+        <Summary>在途数量</Summary>
+      </Documentation>
+      <column name="transitBatchNumber" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">
@@ -5151,17 +5292,7 @@
       <return-property name="Qty" column="Qty" />
       <return-property name="Company" column="Company" />
     </return>
-    <parameter name="PlateForm" type="String" sql-type="varchar" length="100" />
-    <parameter name="StoreName" type="String" sql-type="varchar" length="100" />
-    <parameter name="WareHouseDesc" type="String" sql-type="varchar" length="100" />
-    <parameter name="ProductSku" type="String" sql-type="varchar" length="100" />
-    <parameter name="ProcutCategoryName1" type="String" sql-type="varchar" length="100" />
-    <parameter name="ProcutCategoryName2" type="String" sql-type="varchar" length="100" />
-    <parameter name="OrderType" type="String" sql-type="varchar" length="100" />
-    <parameter name="Status" type="String" sql-type="varchar" length="100" />
-    <parameter name="RefNo" type="String" sql-type="varchar" length="100" />
-    <parameter name="reqIndex" type="String" sql-type="varchar" length="100" />
-    <parameter name="reqSize" type="String" sql-type="varchar" length="100" />
+    <parameter name="whereSql" type="String" sql-type="varchar" length="4000" />
   </method>
   <method name="GetHeadgearDensitySp" p1:procedure="dbo.GetHeadgearDensity_sp" p1:Guid="a0e35b74-c522-4199-b6ae-1c4293fcb0da">
     <parameter name="startDate" type="String" sql-type="varchar" length="255" />
@@ -5200,5 +5331,18 @@
       <return-property name="List" column="list" />
     </return>
     <parameter name="SourceStr" type="String" sql-type="varchar" length="8000" />
+  </method>
+  <method name="DealRepeatCustSp" p1:procedure="dbo.DealRepeatCust_sp" p1:Guid="a71d07a3-fd35-4341-954c-ffc43c02847c" />
+  <method name="InsertStorageLocationCodeSp" p1:procedure="dbo.InsertStorageLocationCode_sp" p1:Guid="1d880c08-7831-405c-a83c-e4f03ac73d56">
+    <parameter name="KK" type="String" sql-type="varchar" length="20" />
+    <parameter name="qty" type="Int32" sql-type="int" precision="10" scale="0" />
+  </method>
+  <method name="TC" p1:procedure="dbo.TC" p1:table-valued-function="true" p1:Guid="ec2c3fb9-8dc4-4782-ae17-b82bf6acaa74">
+    <return class="TCResult">
+      <return-property name="TableName" column="tableName" />
+      <return-property name="ColumnsList" column="ColumnsList" />
+      <return-property name="ParaList" column="ParaList" />
+    </return>
+    <parameter name="tableName" type="String" sql-type="varchar" length="200" />
   </method>
 </efcore>

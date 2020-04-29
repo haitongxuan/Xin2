@@ -246,6 +246,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Xin.WebApi.Controllers.UsUiceNomalSkuQtyController">
+            <summary>
+            美国仓unice货物和通用货物剩余库存报表
+            </summary>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.UsUiceNomalSkuQtyController.GetList(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            物流详情
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Extension.JobServiceExtensions.AddJobServiceAsync(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             程序启动将任务调度表里所有状态为 执行中 任务启动起来

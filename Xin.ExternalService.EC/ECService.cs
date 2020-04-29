@@ -46,7 +46,7 @@ namespace Xin.ExternalService.EC
             }
 
             body = GetECResponse(responseJson);
-            if (body.Code != "200"&&body.Message != "Success")
+            if (body.Code != "200" && body.Message != "Success")
             {
                 throw new ECExceptoin(body.Service + " error:" + body.Message, body.Error);
             }
@@ -74,7 +74,13 @@ namespace Xin.ExternalService.EC
             if (jobject.ContainsKey("pageSize"))
                 data.PageSize = jobject["pageSize"].ToString();
             if (jobject.ContainsKey("totalCount"))
+            {
                 data.TotalCount = jobject["totalCount"].ToString();
+            }
+            else if (jobject.ContainsKey("count"))
+            {
+                data.TotalCount = jobject["count"].ToString();
+            };
             if (jobject.ContainsKey("service"))
                 data.Service = jobject["service"].ToString();
             if (jobject.ContainsKey("responseTime"))

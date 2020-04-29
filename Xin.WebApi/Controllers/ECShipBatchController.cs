@@ -100,7 +100,8 @@ namespace Xin.WebApi.Controllers
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
                     var repository = uow.GetRepository<ECShipBatch>();
-                    List<ECShipBatch> list = new List<ECShipBatch>();
+                    List<ECShipBatch> insertList = new List<ECShipBatch>();
+                    List<ECShipBatch> updateList = new List<ECShipBatch>();
                     foreach (var item in codes)
                     {
                         if (string.IsNullOrWhiteSpace(item))
@@ -113,14 +114,21 @@ namespace Xin.WebApi.Controllers
                         var re = request.Request().Result;
                         if (re.Body.OrderCode != null && repository.Get(item) == null)
                         {
-                            list.Add(Mapper<EC_ShipBatch, ECShipBatch>.Map(re.Body));
+                            insertList.Add(Mapper<EC_ShipBatch, ECShipBatch>.Map(re.Body));
+                        }
+                        else
+                        {
+                            updateList.Add(Mapper<EC_ShipBatch, ECShipBatch>.Map(re.Body));
                         }
                     }
-                    if (list.Count > 0)
+                    if (insertList.Count > 0||updateList.Count>0)
                     {
-                        repository.BulkInsert(list, X => X.IncludeGraph = true);
+                        updateList = updateList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
+                        insertList = insertList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
+                        repository.BulkInsert(insertList, X => X.IncludeGraph = true);
+                        repository.BulkUpdate(updateList, X => X.IncludeGraph = true);
                         uow.SaveChanges();
-                        res.data = list;
+                        res.data = insertList;
                     }
                     else
                     {

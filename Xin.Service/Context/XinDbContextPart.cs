@@ -25,9 +25,28 @@ namespace Xin.Service.Context
             this.ListStringModelMapping(modelBuilder);
             this.PlateformLevelMapping(modelBuilder);
             this.CwAccountQueryReportMapping(modelBuilder);
+            this.ResultTableMapping(modelBuilder);
 
         }
-
+        private void ResultTableMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int>(x => x.Id).HasColumnName(@"Id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<string>(x => x.Sku).HasColumnName(@"Sku").HasColumnType(@"varchar(255)").ValueGeneratedNever().HasMaxLength(255);
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<string>(x => x.CategoryParent).HasColumnName(@"CategoryParent").HasColumnType(@"varchar(255)").ValueGeneratedNever().HasMaxLength(255);
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<string>(x => x.Category).HasColumnName(@"Category").HasColumnType(@"varchar(255)").ValueGeneratedNever().HasMaxLength(255);
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<string>(x => x.Picture).HasColumnName(@"Picture").HasColumnType(@"varchar(255)").ValueGeneratedNever().HasMaxLength(255);
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<string>(x => x.Name).HasColumnName(@"Name").HasColumnType(@"varchar(255)").ValueGeneratedNever().HasMaxLength(255);
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int?>(x => x.UnicePeriodQty).HasColumnName(@"UnicePeriodQty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int?>(x => x.UncieToUsQty).HasColumnName(@"UncieToUsQty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int?>(x => x.DhToUsQty).HasColumnName(@"DhToUsQty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int?>(x => x.UniceSaleQty).HasColumnName(@"UniceSaleQty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int?>(x => x.UsTransAmazingQty).HasColumnName(@"UsTransAmazingQty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int?>(x => x.OffLineQty).HasColumnName(@"OffLineQty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int?>(x => x.UniceEndingQty).HasColumnName(@"UniceEndingQty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int?>(x => x.UsEndingQty).HasColumnName(@"UsEndingQty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int?>(x => x.NomalEnndingQty).HasColumnName(@"NomalEnndingQty").HasColumnType(@"int").ValueGeneratedNever();
+            modelBuilder.Entity<UsUiceNomalSkuQtyReport>().HasKey(@"Id");
+        }
         private void CwAccountQueryReportMapping(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CwAccountQueryReport>().Property<int>(x => x.Id).HasColumnName(@"id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
@@ -152,6 +171,7 @@ namespace Xin.Service.Context
             set;
         }
         public virtual DbSet<PlateformLevel> PlateformLevels { get; set; }
+        public virtual DbSet<UsUiceNomalSkuQtyReport> UsUiceNomalSkuQtyReports { get; set; }
 
         public virtual DbSet<WavingBlock> WavingBlocks { get; set; }
         public virtual DbSet<HeadgearDensity> HeadgearDensitys { get; set; }

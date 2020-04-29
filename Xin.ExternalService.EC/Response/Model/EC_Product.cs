@@ -254,7 +254,29 @@ namespace Xin.ExternalService.EC.Response.Model
         [JsonProperty(PropertyName = "productCustomCategory")]
         public List<EC_ProductCustomCategory> ProductCustomCategories { get; set; }
         [JsonProperty(PropertyName = "property")]
-        public List<EC_ProductProperty> ProductProperties { get; set; } 
+        public List<EC_ProductProperty> ProductProperties { get; set; }
+
+        /// <summary>
+        /// 默认采购仓库
+        /// </summary>
+        [JsonProperty(PropertyName = "defaulBuyWarehouseId")]
+        public int? DefaulBuyWarehouseId { get; set; }
+
+        /// <summary>
+        /// 产品物流属性
+        /// </summary>
+        [JsonProperty(PropertyName = "logisticAttribute")]
+        public string LogisticAttribute { get; set; }
+        /// <summary>
+        /// /建议售价
+        /// </summary>
+        [JsonProperty(PropertyName = "suggestPrice")]
+        public Decimal? SuggestPrice { get; set; }
+        /// <summary>
+        /// 建议售价币种
+        /// </summary>
+        [JsonProperty(PropertyName = "suggestPriceCurrencyCode")]
+        public string SuggestPriceCurrencyCode { get; set; }
     }
 }
 

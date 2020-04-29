@@ -56,6 +56,12 @@ namespace Xin.ExternalService.EC.Job
             sp.Setup((o) => o.GetService(typeof(IRepository<ECRmaRefa>)))
               .Returns(new GenericEntityRepository<ECRmaRefa>(logger.Object));
 
+            sp.Setup((o) => o.GetService(typeof(IRepository<ECInventoryBatch>)))
+                .Returns(new GenericEntityRepository<ECInventoryBatch>(logger.Object));
+
+            sp.Setup((o) => o.GetService(typeof(IRepository<ECTransitBatchNumber>)))
+                .Returns(new GenericEntityRepository<ECTransitBatchNumber>(logger.Object));
+
             _uowProvider = new UowProvider(logger.Object, sp.Object);
             var config = new AppConfigurationServices().Configuration;
 
