@@ -50,16 +50,16 @@ namespace Xin.ExternalService.EC.Job
                 EBGetSkuRelationReqModel reqModel = new EBGetSkuRelationReqModel();
                 RelationCondition condition = new RelationCondition();
                 condition.AddTimeStart = "2018-01-01";
-                condition.AddTimeEnd = "2020-03-10";
+                condition.AddTimeEnd = "2020-05-10";
                 while (finish)
                 {
                     reqModel.Page = page;
-                    reqModel.PageSize = 5000;
+                    reqModel.PageSize = 1000;
                     reqModel.Condition = condition;
                     EBGetSkuRelationRequest request = new EBGetSkuRelationRequest(login.Username, login.Password, reqModel);
                     var response = await request.Request();
                     System.Diagnostics.Debug.WriteLine($"第{page}页获取成功");
-                    if (response.Body.Count == 5000)
+                    if (response.Body.Count == 1000)
                     {
                         foreach (var item in response.Body)
                         {
@@ -108,7 +108,7 @@ namespace Xin.ExternalService.EC.Job
                             throw ex;
                         }
                     }
-                    if (page % 4 == 0 && skuRelation.Count > 0)
+                    if (page % 5 == 0 && skuRelation.Count > 0)
                     {
                         try
                         {

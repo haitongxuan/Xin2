@@ -42,13 +42,13 @@ namespace Xin.ExternalService.EC.Job.Daily
                 while (finish)
                 {
                     reqModel.Page = page;
-                    reqModel.PageSize = 5000;
+                    reqModel.PageSize = 1000;
                     reqModel.Condition = condition;
                     RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetSkuRelationDaily", "INFO", $"SKU映射信息开始拉取,第{page}页", reqModel));
                     log.Info($"SKU映射信息开始拉取,第{page}页");
                     EBGetSkuRelationRequest request = new EBGetSkuRelationRequest(login.Username, login.Password, reqModel);
                     var response = await request.Request();
-                    if (response.Body.Count == 5000)
+                    if (response.Body.Count == 1000)
                     {
                         foreach (var item in response.Body)
                         {
