@@ -37,16 +37,16 @@ namespace Xin.ExternalService.EC.Job
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ECSkuRelation>();
-                //try
-                //{
-                //    await repository.DeleteAll();
-                //    await uow.SaveChangesAsync();
-                //}
-                //catch (Exception ex)
-                //{
-                //    log.Error($"初始化Sku映射信息,删除Sku映射信息异常:{ex.Message}");
-                //    throw ex;
-                //}
+                try
+                {
+                    await repository.DeleteAll();
+                    await uow.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    log.Error($"初始化Sku映射信息,删除Sku映射信息异常:{ex.Message}");
+                    throw ex;
+                }
                 EBGetSkuRelationReqModel reqModel = new EBGetSkuRelationReqModel();
                 RelationCondition condition = new RelationCondition();
                 condition.AddTimeStart = "2018-01-01";
