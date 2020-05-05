@@ -26,6 +26,13 @@ namespace Xin.Entities.VirtualEntity
             get;
             set;
         }
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
+        [Excel(Header = "订单成本占比")]
+        public virtual string OrderCostRatio
+        {
+            get;
+            set;
+        }
 
         [Excel(Header = "付款时间", DateTime = "yyyy-MM-dd HH:mm:ss")]
         public virtual System.DateTime? DatePaidPlatform

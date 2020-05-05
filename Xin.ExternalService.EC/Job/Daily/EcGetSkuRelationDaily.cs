@@ -99,7 +99,7 @@ namespace Xin.ExternalService.EC.Job.Daily
                         catch (Exception ex)
                         {
                             RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "ERROR", $"入库单信息,写入数据库异常:{ex.Message},第{page}页", reqModel));
-                            log.Error($"入库单信息,写入数据库异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
+                            log.Error($"SKU映射信息,写入数据库异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
                     }
@@ -115,14 +115,14 @@ namespace Xin.ExternalService.EC.Job.Daily
                         catch (Exception ex)
                         {
                             RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "ERROR", $"入库单信息,写入数据库异常:{ex.Message},第{page}页" + ex.Message, reqModel));
-                            log.Error($"入库单信息,写入数据库异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
+                            log.Error($"SKU映射信息,写入数据库异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
                             throw ex;
                         }
                     }
                     page++;
                 }
             }
-            RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "INFO", $"入库单信息,写入完成", null));
+            RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "INFO", $"SKU映射信息,写入完成", null));
         }
     }
 }

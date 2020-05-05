@@ -23,20 +23,11 @@ namespace Xin.ExternalService.EC.Job
         }
         public override async Task Execute(IJobExecutionContext context)
         {
-            var preTime = context.Trigger.GetPreviousFireTimeUtc();
-            if (preTime == null)
-            {
-                preTime = DateTime.Now.AddDays(-1);
-            }
-            await Job(preTime.Value.LocalDateTime);
+            await Job();
         }
 
         public override async Task Job(DateTime? preTime = null)
         {
-            if (preTime == null)
-            {
-                throw new Exception("返回为空！");
-            }
             var models = new List<ECProduct>();
             var reqModel = new Reqeust.Model.WMSGetProductListReqModel();
             reqModel.PageSize = 1000;
@@ -47,7 +38,6 @@ namespace Xin.ExternalService.EC.Job
             bool finish = true;
             int pageIndex = 1;
             DateTime now = DateTime.Now;
-            DateTime lastTime = preTime.Value;
             var addList = new List<ECProduct>();
             var updateList = new List<ECProduct>();
 
@@ -57,12 +47,14 @@ namespace Xin.ExternalService.EC.Job
                 {
                     var repository = uow.GetRepository<ECProduct>();
                     RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "INFO", $"产品信息新增,开始拉取", reqModel));
+                    DateTime? lastAddTime = repository.QueryPage(0, 1, null, x => x.OrderByDescending(a => a.ProductAddTime)).FirstOrDefault().ProductAddTime;
+                    DateTime? lastUpdateTime = repository.QueryPage(0, 1, null, x => x.OrderByDescending(a => a.ProductUpdateTime)).FirstOrDefault().ProductUpdateTime;
 
                     //新增
                     while (finish)
                     {
                         reqModel.Page = pageIndex;
-                        reqModel.ProductAddTimeFrom = lastTime;
+                        reqModel.ProductAddTimeFrom = lastAddTime;
                         reqModel.ProductAddTimeTo = now;
                         var req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
                         var resp = await req.Request();
@@ -108,7 +100,7 @@ namespace Xin.ExternalService.EC.Job
                         reqModel.Page = pageIndex;
                         reqModel.ProductAddTimeFrom = null;
                         reqModel.ProductAddTimeTo = null;
-                        reqModel.ProductUpdateTimeFrom = preTime;
+                        reqModel.ProductUpdateTimeFrom = lastUpdateTime;
                         reqModel.ProductUpdateTimeTo = now;
                         var req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
                         var resp = await req.Request();

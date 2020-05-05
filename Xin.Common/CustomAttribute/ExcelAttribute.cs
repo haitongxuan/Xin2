@@ -6,14 +6,20 @@ namespace Xin.Common.CustomAttribute
 {
 
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Class, Inherited = true)]
-    public class ExcelAttribute:Attribute
+    public class ExcelAttribute : Attribute
     {
         private string header;
         private string dateTime;
+        private bool picture;
         public string Header
         {
             get { return header; }
             set { header = value; }
+        }
+        public bool Picture
+        {
+            get { return picture; }
+            set { picture = value; }
         }
         public string DateTime
         {

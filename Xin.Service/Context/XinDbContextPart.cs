@@ -49,6 +49,8 @@ namespace Xin.Service.Context
         }
         private void CwAccountQueryReportMapping(ModelBuilder modelBuilder)
         {
+            
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.OrderCostRatio).HasColumnName(@"OrderCostRatio").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
             modelBuilder.Entity<CwAccountQueryReport>().Property<int>(x => x.Id).HasColumnName(@"id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.OrderDesc).HasColumnName(@"orderDesc").HasColumnType(@"varchar(500)").ValueGeneratedNever().HasMaxLength(500);
             modelBuilder.Entity<CwAccountQueryReport>().Property<System.DateTime?>(x => x.DatePaidPlatform).HasColumnName(@"DatePaidPlatform").HasColumnType(@"datetime").ValueGeneratedNever();
