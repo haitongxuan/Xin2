@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\upload\images\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommonMark.NET" Version="0.15.1" />
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>

@@ -23,6 +23,48 @@
             <param name="loginViewModel">登录实体信息</param>
             <returns></returns>
         </member>
+        <member name="T:Xin.WebApi.Controllers.DingTalkNewsController">
+            <summary>
+            钉钉小程序
+            </summary>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.UploadPic(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            图片上传
+            </summary>
+            <param name="picName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.GetTypes(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            获取新闻分类
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.GetNews(Xin.Web.Framework.Model.DatetimePointPageReq,System.Int32)">
+            <summary>
+            根据分类ID获取新闻
+            </summary>
+            <param name="pageReq"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.UploadPic(Xin.Entities.DingNew,System.Int32)">
+            <summary>
+            添加新闻
+            </summary>
+            <param name="newsDetail"></param>
+            <param name="classifyId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.addTypes(Xin.Entities.DingClassify)">
+            <summary>
+            添加分类
+            </summary>
+            <param name="classify"></param>
+            <returns></returns>
+        </member>
         <member name="T:Xin.WebApi.Controllers.FinancialStatementController">
             <summary>
             财务报表

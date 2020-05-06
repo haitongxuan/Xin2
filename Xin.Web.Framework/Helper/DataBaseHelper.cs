@@ -61,7 +61,7 @@ namespace Xin.Web.Framework.Helper
             return res;
         }
 
-        public static GridPage<List<T>> GetFromProcedure(IUowProvider _uowProvider, GridPage<List<T>> res, DatetimePointPageReq pageReq,bool getAll,string procedure, params SqlParameter[] sqlParameters)
+        public static GridPage<List<T>> GetFromProcedure(IUowProvider _uowProvider, GridPage<List<T>> res, DatetimePointPageReq pageReq, bool getAll, string procedure, params SqlParameter[] sqlParameters)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace Xin.Web.Framework.Helper
                             pageReq.pageNum = 1;
                         }
                     }
-                    var resAll = repository.FromProcedure(procedure,sqlParameters);
+                    var resAll = repository.FromProcedure(procedure, sqlParameters);
                     if (pageReq.query.Count > 0)
                     {
                         var fuc = FilterHelper<T>.GetExpression(pageReq.query, "commonProcedure");
@@ -103,6 +103,43 @@ namespace Xin.Web.Framework.Helper
                     {
                         res.data = res.data.Skip((pageReq.pageNum - 1) * pageReq.pageSize).Take(pageReq.pageSize).ToList();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.code = ResCode.ServerError;
+                res.msg = ex.Message;
+            }
+            return res;
+        }
+
+        public static GridPage<T> Get(IUowProvider _uowProvider, GridPage<T> res, object classifyId, Func<IQueryable<T>, IQueryable<T>> includes = null)
+        {
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+                    var repository = uow.GetRepository<T>();
+                    res.data = repository.Get(classifyId, includes);
+                }
+            }
+            catch (Exception ex)
+            {
+                res.code = ResCode.ServerError;
+                res.msg = ex.Message;
+            }
+            return res;
+        }
+
+        public static GridPage<T> Create(IUowProvider _uowProvider, T newsDetail, GridPage<T> res, bool v)
+        {
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+                    var repository = uow.GetRepository<T>();
+                    repository.Attach(newsDetail);
+                    uow.SaveChanges();
                 }
             }
             catch (Exception ex)

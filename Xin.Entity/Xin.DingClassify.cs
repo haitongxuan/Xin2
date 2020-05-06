@@ -18,43 +18,43 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECSkuRelationItem {
+    public partial class DingClassify {
 
-        public ECSkuRelationItem()
+        public DingClassify()
         {
+            this.DingNews = new List<DingNew>();
             OnCreated();
         }
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int RelationItemId
+        public virtual int Id
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        public virtual string PcrProductSku
+        /// <summary>
+        /// 分类
+        /// </summary>
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Name
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        public virtual string PcrQuantity
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Remark
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        public virtual string PcrPercent
-        {
-            get;
-            set;
-        }
-
-        public virtual ECSkuRelation ECSkuRelation
+        public virtual IList<DingNew> DingNews
         {
             get;
             set;

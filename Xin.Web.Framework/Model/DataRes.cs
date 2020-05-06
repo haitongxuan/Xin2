@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace Xin.Web.Framework.Model
 {
+    public class BaseResponse {
+        [Description("e.g. 200:success; 500:system error; 404:not found; 401:Unauthorized ")]
+        public ResCode code { get; set; } = ResCode.Success;
+
+        public string msg { get; set; } = "成功";
+
+        public Object data { get; set; }
+    }
     public class MangatoDeliverReturn
     {
         public string Status { get; set; }

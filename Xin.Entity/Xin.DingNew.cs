@@ -18,43 +18,55 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECSkuRelationItem {
+    public partial class DingNew {
 
-        public ECSkuRelationItem()
+        public DingNew()
         {
             OnCreated();
         }
 
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
-        public virtual int RelationItemId
+        public virtual int Id
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        public virtual string PcrProductSku
+        [System.ComponentModel.DataAnnotations.StringLength(2147483647)]
+        public virtual string OriginalContent
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        public virtual string PcrQuantity
+        [System.ComponentModel.DataAnnotations.StringLength(2147483647)]
+        public virtual string HtmlContent
         {
             get;
             set;
         }
 
-        [System.ComponentModel.DataAnnotations.StringLength(4000)]
-        public virtual string PcrPercent
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Editer
         {
             get;
             set;
         }
 
-        public virtual ECSkuRelation ECSkuRelation
+        public virtual System.DateTime? CreateTime
+        {
+            get;
+            set;
+        }
+
+        public virtual System.DateTime? UpdateTime
+        {
+            get;
+            set;
+        }
+
+        public virtual DingClassify DingClassify
         {
             get;
             set;
