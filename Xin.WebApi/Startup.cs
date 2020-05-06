@@ -32,6 +32,7 @@ using Quartz.Spi;
 using Xin.Web.Framework.Permission;
 using Xin.Web.Framework.Model;
 using Xin.Service.Repository;
+using Microsoft.Extensions.FileProviders;
 
 namespace Xin.WebApi
 {
@@ -51,6 +52,7 @@ namespace Xin.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDirectoryBrowser();
             services.AddMemoryCache();
             services.AddDbContext<Service.Context.XinDBContext>(options =>
             {
@@ -168,6 +170,18 @@ namespace Xin.WebApi
 
             app.UseMvc();
             app.UseStaticFiles();
+           // app.UseStaticFiles(new StaticFileOptions
+           // {
+           //     FileProvider = new PhysicalFileProvider(
+           //Path.Combine(Directory.GetCurrentDirectory(),"upload")),
+           //     RequestPath = "/images"
+           // });
+           // app.UseDirectoryBrowser(new DirectoryBrowserOptions
+           // {
+           //     FileProvider = new PhysicalFileProvider(
+           // Path.Combine(Directory.GetCurrentDirectory(),"upload")),
+           //     RequestPath = "/images"
+           // });
         }
 
         /// <summary>

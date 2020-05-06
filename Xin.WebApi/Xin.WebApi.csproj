@@ -13,6 +13,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="upload\**" />
+    <Content Remove="upload\**" />
+    <EmbeddedResource Remove="upload\**" />
+    <None Remove="upload\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\PubUserController.cs" />
     <Compile Remove="Model\UserModel.cs" />
   </ItemGroup>
