@@ -36,7 +36,7 @@ namespace Xin.WebApi.Controllers
         /// <param name="picName"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("/picUpload")]
+        [Route("picUpload")]
         public BaseResponse UploadPic([FromForm] IFormFile picName)
         {
             var res = new BaseResponse();
@@ -49,7 +49,7 @@ namespace Xin.WebApi.Controllers
         /// <param name="pageReq"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("/GetTypes")]
+        [Route("GetTypes")]
         public GridPage<List<DingClassify>> GetTypes(DatetimePointPageReq pageReq)
         {
             var res = new GridPage<List<DingClassify>>() { code = ResCode.Success };
@@ -62,8 +62,8 @@ namespace Xin.WebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("/GetNews")]
-        public GridPage<List<DingNew>> GetNews(DatetimePointPageReq pageReq, int id)
+        [Route("GetNews")]
+        public GridPage<List<DingNew>> GetNews(DatetimePointPageReq pageReq, int? id)
         {
             var res = new GridPage<List<DingNew>>() { code = ResCode.Success };
 
@@ -79,13 +79,12 @@ namespace Xin.WebApi.Controllers
                     pageReq = new DatetimePointPageReq();
                 }
                 pageReq.query.Add(node);
-                DingNew dd = new DingNew();
                 res = DataBaseHelper<DingNew>.GetList(_uowProvider, res, pageReq);
             }
             else
             {
-                res.code = ResCode.Error;
-                res.msg = "类型不能为空";
+                //all
+                res = DataBaseHelper<DingNew>.GetList(_uowProvider, res, pageReq);
             }
             return res;
         }
@@ -96,8 +95,8 @@ namespace Xin.WebApi.Controllers
         /// <param name="classifyId"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("/addNews")]
-        public GridPage<DingClassify> UploadPic([FromBody] DingNew newsDetail, int classifyId)
+        [Route("addNews")]
+        public GridPage<DingClassify> addNews([FromBody] DingNew newsDetail, int classifyId)
         {
             var ress = new GridPage<DingClassify>() { code = ResCode.Success };
             using (var mdReader = new StringReader(newsDetail.OriginalContent))
@@ -119,7 +118,7 @@ namespace Xin.WebApi.Controllers
         /// <param name="classify"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("/addTypes")]
+        [Route("addTypes")]
         public GridPage<DingClassify> addTypes([FromBody] DingClassify classify)
         {
             var res = new GridPage<DingClassify>() { code = ResCode.Success };
