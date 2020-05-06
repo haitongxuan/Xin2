@@ -42,7 +42,7 @@
             <param name="pageReq"></param>
             <returns></returns>
         </member>
-        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.GetNews(Xin.Web.Framework.Model.DatetimePointPageReq,System.Int32)">
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.GetNews(Xin.Web.Framework.Model.DatetimePointPageReq,System.Nullable{System.Int32})">
             <summary>
             根据分类ID获取新闻
             </summary>
@@ -50,7 +50,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.UploadPic(Xin.Entities.DingNew,System.Int32)">
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.addNews(Xin.Entities.DingNew,System.Int32)">
             <summary>
             添加新闻
             </summary>
