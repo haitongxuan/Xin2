@@ -11,11 +11,22 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" />
     <PackageReference Include="NPOI" Version="2.5.1" />
     <PackageReference Include="Quartz" Version="3.0.7" />
+    <PackageReference Include="Spire.XLS" Version="10.4.9" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Xin.Job\Xin.Job.csproj" />
     <ProjectReference Include="..\Xin.Service\Xin.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Package\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TopSdk">
+      <HintPath>Package\TopSdk.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

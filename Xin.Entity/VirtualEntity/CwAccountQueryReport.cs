@@ -20,7 +20,7 @@ namespace Xin.Entities.VirtualEntity
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(500)]
-        [Excel(Header = "备注")]
+        [Excel(Header = "备注",Picture = true)]
         public virtual string OrderDesc
         {
             get;

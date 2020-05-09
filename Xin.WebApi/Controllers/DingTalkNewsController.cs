@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using DingTalk.Api.Request;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -109,6 +110,15 @@ namespace Xin.WebApi.Controllers
             }
             ress = DataBaseHelper<DingClassify>.Get(_uowProvider, ress, classifyId, x => x.Include(a => a.DingNews));
             ress.data.DingNews.Add(newsDetail);
+            OapiMessageCorpconversationAsyncsendV2Request.MsgDomain obj1 = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
+            obj1.Msgtype = "link";
+            OapiMessageCorpconversationAsyncsendV2Request.LinkDomain obj2 = new OapiMessageCorpconversationAsyncsendV2Request.LinkDomain();
+            obj2.PicUrl = newsDetail.Image;
+            obj2.MessageUrl = "eapp://page/component/index";
+            obj2.Text = newsDetail.Title;
+            obj2.Title = newsDetail.Title;
+            obj1.Link = obj2;
+            var res = DingTalkHelper.PushMessage("1814645351680963",null,"",obj1);
             ress = DataBaseHelper<DingClassify>.Create(_uowProvider, ress.data, ress, true);
             return ress;
         }

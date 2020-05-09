@@ -4,19 +4,21 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using OfficeOpenXml;
+using Spire.Xls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.XPath;
 using Xin.Common.CustomAttribute;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Xin.Web.Framework.Helper
 {
@@ -242,26 +244,44 @@ namespace Xin.Web.Framework.Helper
                 if (obj != null)
                 {
                     ExcelAttribute head = (ExcelAttribute)obj;
-                    headRow.CreateCell(i).SetCellValue(head.Header);
+                    headRow.CreateCell(i).SetCellValue(head.Header); 
                 }
                 else
                 {
                     headRow.CreateCell(i).SetCellValue(props[i].Name);
                 }
-
             }
             for (var i = 0; i < list.Count; ++i)
             {
                 var row = sheet.CreateRow(i + 1);
                 for (var j = 0; j < props.Length; ++j)
                 {
-                    row.CreateCell(j).SetCellValue(props[j].GetValue(list[i]).ToString());
+                    Object obj = props[j].GetCustomAttribute(typeof(ExcelAttribute));
+                    if (obj != null)
+                    {
+                        ExcelAttribute head = (ExcelAttribute)obj;
+                        if (head.Picture)
+                        {
+                            string url = props[j].GetValue(list[i]).ToString();
+                            row.Height = 80 * 20;
+                            WebClient temp = new WebClient();
+                            byte[] bytes = temp.DownloadData(url);
+                            int pictureIdx = workbook.AddPicture(bytes, PictureType.JPEG);
+                            XSSFDrawing drawing = (XSSFDrawing)sheet.CreateDrawingPatriarch();
+                            XSSFClientAnchor anchor = new XSSFClientAnchor(0, 0, 0, 0,j,i+1,j+1,i+2);
+                            XSSFPicture picture = (XSSFPicture)drawing.CreatePicture(anchor, pictureIdx);
+                            bytes = null;
+                            continue;
+                        }
+                    }
+                    var tt = props[j].GetValue(list[i])==null?"": props[j].GetValue(list[i]);
+                    row.CreateCell(j).SetCellValue(tt.ToString());
+
                 }
             }
             //转为字节数组
             MemoryStream stream = new MemoryStream();
             workbook.Write(stream);
-            stream.Seek(0, SeekOrigin.Begin);
             var buf = stream.ToArray();
             workbook.Close();
             stream.Close();
@@ -283,7 +303,7 @@ namespace Xin.Web.Framework.Helper
                         sheet.Cells[1, i + 1].Value = head.Header;
                         if (!string.IsNullOrWhiteSpace(head.DateTime))
                         {
-                            sheet.Cells[1, i + 1,data.Count+1,i+1].Style.Numberformat.Format = head.DateTime;
+                            sheet.Cells[1, i + 1, data.Count + 1, i + 1].Style.Numberformat.Format = head.DateTime;
                         }
                     }
                     else
@@ -296,6 +316,15 @@ namespace Xin.Web.Framework.Helper
                     for (var j = 0; j < props.Length; ++j)
                     {
                         sheet.Cells[i + 2, j + 1].Value = props[j].GetValue(data[i]);
+                        //WebClient wb = new WebClient();
+                        //byte[] bt = wb.DownloadData("http://8000.bitcoding.top:8888/upload/images/41a38133-559f-43f8-be7d-51e4b11c32fd.png");
+                        //Image photo = null;
+                        //using (MemoryStream ms = new MemoryStream(bt))
+                        //{
+                        //    ms.Write(bt, 0, bt.Length);
+                        //    photo = Image.FromStream(ms, true);
+                        //}
+                        //sheet.Drawings.AddPicture(System.Guid.NewGuid().ToString(), photo);
                     }
                 }
                 MemoryStream stream = new MemoryStream();
@@ -329,6 +358,5 @@ namespace Xin.Web.Framework.Helper
             }
             return dic;
         }
-
     }
 }

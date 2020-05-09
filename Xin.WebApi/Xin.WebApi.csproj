@@ -59,6 +59,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="TopSdk">
+      <HintPath>..\Xin.Web.Framework\Package\TopSdk.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="wwwroot\upload\images\d23104fb-c8f8-4f26-ad73-0dfea7cfa7c0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

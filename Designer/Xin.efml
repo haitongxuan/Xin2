@@ -4909,6 +4909,18 @@
     <property name="UpdateTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="71762bf5-2fee-47fe-9306-5059b7517d70">
       <column name="update_time" not-null="False" sql-type="datetime2" p1:unicode="False" />
     </property>
+    <property name="Image" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="f83c32e9-b2e9-4a78-83fa-223ee307a610">
+      <column name="image" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Title" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e3defaea-f146-4764-b74b-4e94bbf7f302">
+      <column name="title" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="Status" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b6eb2238-9a56-422a-92a3-c43197eb3f21">
+      <Documentation>
+        <Summary>状态: 0:保存 ; 1:发布 ;2:废弃</Summary>
+      </Documentation>
+      <column name="status" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
   </class>
   <class name="OmsOrderList" entity-set="OmsOrderLists" table="Oms_OrderList" schema="dbo" p1:Guid="f03e8603-3ee1-4c65-9dfe-369a8fdc70bd">
     <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="c146c028-db40-415a-8590-e0db7d8203f9">

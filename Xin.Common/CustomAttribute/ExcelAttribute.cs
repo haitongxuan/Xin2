@@ -10,7 +10,7 @@ namespace Xin.Common.CustomAttribute
     {
         private string header;
         private string dateTime;
-        private bool picture;
+        private bool picture =false;
         public string Header
         {
             get { return header; }
