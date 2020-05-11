@@ -90,6 +90,32 @@ namespace Xin.WebApi.Controllers
             return res;
         }
         /// <summary>
+        /// 根据新闻ID获取新闻
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetNew")]
+        public GridPage<DingNew> GetNew(int id)
+        {
+            var res = new GridPage<DingNew>() { code = ResCode.Success };
+            var result = new GridPage<List<DingNew>>() { code = ResCode.Success };
+            FilterNode node = new FilterNode();
+            node.andorop = "and";
+            node.binaryop = "eq";
+            node.key = "Id";
+            node.value = id;
+            var pageReq = new DatetimePointPageReq();
+            pageReq.query.Add(node);
+            result = DataBaseHelper<DingNew>.GetList(_uowProvider, result, pageReq);
+            if (result.data.Count>0)
+            {
+                res.data = result.data[0];
+            }
+            return res;
+        }
+        /// <summary>
         /// 添加新闻
         /// </summary>
         /// <param name="newsDetail"></param>
@@ -118,7 +144,7 @@ namespace Xin.WebApi.Controllers
             obj2.Text = newsDetail.Title;
             obj2.Title = newsDetail.Title;
             obj1.Link = obj2;
-            var res = DingTalkHelper.PushMessage("1814645351680963",null,"",obj1);
+            var res = DingTalkHelper.PushMessage("1814645351680963", null, "", obj1);
             ress = DataBaseHelper<DingClassify>.Create(_uowProvider, ress.data, ress, true);
             return ress;
         }

@@ -50,6 +50,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.GetNew(System.Int32)">
+            <summary>
+            根据新闻ID获取新闻
+            </summary>
+            <param name="pageReq"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.addNews(Xin.Entities.DingNew,System.Int32)">
             <summary>
             添加新闻
