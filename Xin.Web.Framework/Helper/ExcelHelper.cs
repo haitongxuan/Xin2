@@ -263,14 +263,17 @@ namespace Xin.Web.Framework.Helper
                         if (head.Picture)
                         {
                             string url = props[j].GetValue(list[i]).ToString();
-                            row.Height = 80 * 20;
-                            WebClient temp = new WebClient();
-                            byte[] bytes = temp.DownloadData(url);
-                            int pictureIdx = workbook.AddPicture(bytes, PictureType.JPEG);
-                            XSSFDrawing drawing = (XSSFDrawing)sheet.CreateDrawingPatriarch();
-                            XSSFClientAnchor anchor = new XSSFClientAnchor(0, 0, 0, 0,j,i+1,j+1,i+2);
-                            XSSFPicture picture = (XSSFPicture)drawing.CreatePicture(anchor, pictureIdx);
-                            bytes = null;
+                            if (!string.IsNullOrWhiteSpace(url))
+                            {
+                                row.Height = 80 * 20;
+                                WebClient temp = new WebClient();
+                                byte[] bytes = temp.DownloadData(url);
+                                int pictureIdx = workbook.AddPicture(bytes, PictureType.JPEG);
+                                XSSFDrawing drawing = (XSSFDrawing)sheet.CreateDrawingPatriarch();
+                                XSSFClientAnchor anchor = new XSSFClientAnchor(0, 0, 0, 0, j, i + 1, j + 1, i + 2);
+                                XSSFPicture picture = (XSSFPicture)drawing.CreatePicture(anchor, pictureIdx);
+                                bytes = null;
+                            }
                             continue;
                         }
                     }

@@ -436,7 +436,6 @@ namespace Xin.WebApi.Controllers
             var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
             pageReq.query = list;
             res = DataBaseHelper<CwAccountQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, true, "EXECUTE CwAccountQuery_sp @whereSql", whereSql);
-            res.data[0].OrderDesc = "http://8000.bitcoding.top:8888/upload/images/41a38133-559f-43f8-be7d-51e4b11c32fd.png";
             //将已经解码的字符再次进行编码.
             Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("FinancialStatementReport.xlsx"));
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
