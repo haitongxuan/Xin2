@@ -26,7 +26,7 @@ namespace Xin.ExternalService.EC.Job.Init
 
         public override async Task Execute(IJobExecutionContext context)
         {
-            await Job(DateTime.Now);
+            await Job();
         }
 
         public override async Task Job(DateTime? datetime = null)
@@ -35,7 +35,8 @@ namespace Xin.ExternalService.EC.Job.Init
             {
                 var repository = uow.GetRepository<ECInventoryBatch>();
                 await repository.DeleteAll();
-                await uow.SaveChangesAsync(); 
+                await uow.SaveChangesAsync();
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"批次库存开始拉取", null ));
                 WMSInventoryBatchReqModel reqModel = new WMSInventoryBatchReqModel();
                 reqModel.Page = 1;
                 reqModel.PageSize = 10;
@@ -68,9 +69,12 @@ namespace Xin.ExternalService.EC.Job.Init
                     }
                     catch (Exception ex)
                     {
+                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "ERROR", $"批次库存拉取出现异常{ex.Message}", reqModel));
                         throw;
                     }
                 }
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"批次库存拉取完成", reqModel));
+
             }
 
         }
