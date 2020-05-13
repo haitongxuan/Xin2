@@ -13,6 +13,6 @@ namespace Xin.ExternalService.EC.Response
 
         }
 
-        public EC_ShipBatch Body { get; set; }
+        public List<EC_ShipBatch> Body { get; set; }
     }
 }

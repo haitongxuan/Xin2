@@ -751,11 +751,11 @@
       </Documentation>
       <column name="SpUnitPrice" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="ProductImages" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="3b2ee856-0947-4ef2-94c6-4a0e6a002783">
+    <property name="ProductImages" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="3b2ee856-0947-4ef2-94c6-4a0e6a002783">
       <Documentation>
         <Summary>图片链接</Summary>
       </Documentation>
-      <column name="ProductImages" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
+      <column name="ProductImages" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="DefaulBuyWarehouseId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ca4570a4-8d24-4872-9a0f-bed819731a5d">
       <column name="" />
@@ -4920,6 +4920,9 @@
         <Summary>状态: 0:保存 ; 1:发布 ;2:废弃</Summary>
       </Documentation>
       <column name="status" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="SubTitle" type="Clob" p1:nullable="True" p1:ValidateMaxLength="2147483647" p1:ValidateRequired="false" p1:Guid="93801df2-39de-4b09-8b8f-fce68922d138">
+      <column name="sub_title" not-null="False" length="2147483647" sql-type="text" p1:unicode="False" />
     </property>
   </class>
   <class name="OmsOrderList" entity-set="OmsOrderLists" table="Oms_OrderList" schema="dbo" p1:Guid="f03e8603-3ee1-4c65-9dfe-369a8fdc70bd">

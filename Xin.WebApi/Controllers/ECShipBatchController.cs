@@ -83,69 +83,69 @@ namespace Xin.WebApi.Controllers
         }
 
         //[PermissionFilter("ShipBatch.add")]
-        [Route("addShipBatch")]
-        [HttpPost]
-        public GridPage<List<ECShipBatch>> addShipBatch([FromBody]string[] codes)
-        {
-            var res = new GridPage<List<ECShipBatch>>() { code = ResCode.Success };
-            if (codes != null & codes.Length < 1)
-            {
-                res.code = ResCode.Error;
-                res.msg = "code不能为空";
-                return res;
-            }
+        //[Route("addShipBatch")]
+        //[HttpPost]
+        //public GridPage<List<ECShipBatch>> addShipBatch([FromBody]string[] codes)
+        //{
+        //    var res = new GridPage<List<ECShipBatch>>() { code = ResCode.Success };
+        //    if (codes != null & codes.Length < 1)
+        //    {
+        //        res.code = ResCode.Error;
+        //        res.msg = "code不能为空";
+        //        return res;
+        //    }
 
-            try
-            {
-                using (var uow = _uowProvider.CreateUnitOfWork())
-                {
-                    var repository = uow.GetRepository<ECShipBatch>();
-                    List<ECShipBatch> insertList = new List<ECShipBatch>();
-                    List<ECShipBatch> updateList = new List<ECShipBatch>();
-                    foreach (var item in codes)
-                    {
-                        if (string.IsNullOrWhiteSpace(item))
-                        {
-                            res.code = ResCode.Error;
-                            continue;
-                        }
-                        string order = item;
-                        WMSGetShipBatchRequest request = new WMSGetShipBatchRequest(ecLogin.UserName, ecLogin.Password, order);
-                        var re = request.Request().Result;
-                        if (re.Body.OrderCode != null && repository.Get(item) == null)
-                        {
-                            insertList.Add(Mapper<EC_ShipBatch, ECShipBatch>.Map(re.Body));
-                        }
-                        else
-                        {
-                            updateList.Add(Mapper<EC_ShipBatch, ECShipBatch>.Map(re.Body));
-                        }
-                    }
-                    if (insertList.Count > 0||updateList.Count>0)
-                    {
-                        updateList = updateList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
-                        insertList = insertList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
-                        repository.BulkInsert(insertList, X => X.IncludeGraph = true);
-                        repository.BulkUpdate(updateList, X => X.IncludeGraph = true);
-                        uow.SaveChanges();
-                        res.data = insertList;
-                    }
-                    else
-                    {
-                        res.code = ResCode.NotFound;
-                        res.msg = "接口获取数据失败或者单号已存在,请检查单号正确性";
-                    }
+        //    try
+        //    {
+        //        using (var uow = _uowProvider.CreateUnitOfWork())
+        //        {
+        //            var repository = uow.GetRepository<ECShipBatch>();
+        //            List<ECShipBatch> insertList = new List<ECShipBatch>();
+        //            List<ECShipBatch> updateList = new List<ECShipBatch>();
+        //            foreach (var item in codes)
+        //            {
+        //                if (string.IsNullOrWhiteSpace(item))
+        //                {
+        //                    res.code = ResCode.Error;
+        //                    continue;
+        //                }
+        //                string order = item;
+        //                WMSGetShipBatchRequest request = new WMSGetShipBatchRequest(ecLogin.UserName, ecLogin.Password, order);
+        //                var re = request.Request().Result;
+        //                if (re.Body.OrderCode != null && repository.Get(item) == null)
+        //                {
+        //                    insertList.Add(Mapper<EC_ShipBatch, ECShipBatch>.Map(re.Body));
+        //                }
+        //                else
+        //                {
+        //                    updateList.Add(Mapper<EC_ShipBatch, ECShipBatch>.Map(re.Body));
+        //                }
+        //            }
+        //            if (insertList.Count > 0||updateList.Count>0)
+        //            {
+        //                updateList = updateList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
+        //                insertList = insertList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
+        //                repository.BulkInsert(insertList, X => X.IncludeGraph = true);
+        //                repository.BulkUpdate(updateList, X => X.IncludeGraph = true);
+        //                uow.SaveChanges();
+        //                res.data = insertList;
+        //            }
+        //            else
+        //            {
+        //                res.code = ResCode.NotFound;
+        //                res.msg = "接口获取数据失败或者单号已存在,请检查单号正确性";
+        //            }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                res.code = ResCode.ServerError;
-                res.msg = ex.Message;
-            }
-            return res;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        res.code = ResCode.ServerError;
+        //        res.msg = ex.Message;
+        //    }
+        //    return res;
 
 
-        }
+        //}
     }
 }

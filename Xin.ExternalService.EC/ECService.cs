@@ -80,6 +80,10 @@ namespace Xin.ExternalService.EC
             else if (jobject.ContainsKey("count"))
             {
                 data.TotalCount = jobject["count"].ToString();
+            }
+            else if (jobject.ContainsKey("total"))
+            {
+                data.TotalCount = jobject["total"].ToString();
             };
             if (jobject.ContainsKey("service"))
                 data.Service = jobject["service"].ToString();

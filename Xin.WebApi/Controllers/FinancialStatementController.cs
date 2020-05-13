@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -27,10 +28,13 @@ namespace Xin.WebApi.Controllers
     [ApiController]
     public class FinancialStatementController : ControllerBase
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
+
         private IUowProvider _uowProvider;
 
-        public FinancialStatementController(IUowProvider uowProvider)
+        public FinancialStatementController(IHostingEnvironment hostingEnvironment, IUowProvider uowProvider)
         {
+            _hostingEnvironment = hostingEnvironment;
             var config = new AppConfigurationServices().Configuration;
             _uowProvider = uowProvider;
         }
@@ -493,6 +497,46 @@ namespace Xin.WebApi.Controllers
                 res.message = ex.Message;
             }
 
+            return res;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="excelFile"></param>
+        [Route("productTrans")]
+        [HttpPost]
+        public GridPage<List<ProductImportModel>> ProductTrans([FromForm] IFormFile excelFile)
+        {
+            var res = new GridPage<List<ProductImportModel>> { code = ResCode.Success };
+            try
+            {
+                List<ProductImportModel> list = ExcelHelper<ProductImportModel>.ExcelToList(excelFile);
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+                    var repos = uow.GetRepository<ECProduct>();
+                    var products = repos.GetAll();
+                    List<ProductImportModel> lists = (from a in list
+                                                      join d in products on a.sku equals d.ProductSku
+                                                      select new ProductImportModel
+                                                      {
+                                                          sku = a.sku,
+                                                          image = d.ProductImages
+                                                      }).ToList();
+                    BaseResponse resp = new BaseResponse();
+                    Dictionary<string, string>  dic = Web.Framework.Helper.FileHelper.uploadExcel(ExcelHelper<ProductImportModel>.NpoiListToExcel(lists), resp, _hostingEnvironment.ContentRootPath).data;
+                    res.data = lists;
+                    res.totalCount = lists.Count;
+                    string url = "";
+                    dic.TryGetValue("url",out url);
+                    res.url = url;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                res.msg = $"出现异常{ex.Message}";
+                res.code = ResCode.Error;
+            }
             return res;
         }
     }

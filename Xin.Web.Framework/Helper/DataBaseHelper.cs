@@ -149,5 +149,54 @@ namespace Xin.Web.Framework.Helper
             }
             return res;
         }
+
+        public static GridPage<T> Delete(IUowProvider _uowProvider, object id, GridPage<T> res)
+        {
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+                    var repository = uow.GetRepository<T>();
+                    var menu = repository.Get(id);
+                    if (menu != null)
+                    {
+                        repository.Remove(menu);
+                        uow.SaveChanges();
+                        res.data = null;
+                        res.msg = "删除成功";
+                    }
+                    else
+                    {
+                        res.code = ResCode.NotFound;
+                        res.data = null;
+                        res.msg = "未找到该记录";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.code = ResCode.ServerError;
+                res.msg = ex.Message;
+            }
+            return res;
+        }
+        public static GridPage<T> Edit(IUowProvider _uowProvider, T newsDetail, GridPage<T> res)
+        {
+            try
+            {
+                using (var uow = _uowProvider.CreateUnitOfWork())
+                {
+                    var repository = uow.GetRepository<T>();
+                    repository.Update(newsDetail);
+                    uow.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                res.code = ResCode.ServerError;
+                res.msg = ex.Message;
+            }
+            return res;
+        }
     }
 }

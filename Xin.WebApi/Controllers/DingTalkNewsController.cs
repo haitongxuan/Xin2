@@ -41,21 +41,10 @@ namespace Xin.WebApi.Controllers
         public BaseResponse UploadPic([FromForm] IFormFile picName)
         {
             var res = new BaseResponse();
-            res = Web.Framework.Helper.FileHelper.upload(picName, res, _hostingEnvironment.ContentRootPath);
+            res = Web.Framework.Helper.FileHelper.uploadImage(picName, res, _hostingEnvironment.ContentRootPath);
             return res;
         }
-        /// <summary>
-        /// 获取新闻分类
-        /// </summary>
-        /// <param name="pageReq"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("GetTypes")]
-        public GridPage<List<DingClassify>> GetTypes(DatetimePointPageReq pageReq)
-        {
-            var res = new GridPage<List<DingClassify>>() { code = ResCode.Success };
-            return DataBaseHelper<DingClassify>.GetList(_uowProvider, res, pageReq);
-        }
+
         /// <summary>
         /// 根据分类ID获取新闻
         /// </summary>
@@ -109,7 +98,7 @@ namespace Xin.WebApi.Controllers
             var pageReq = new DatetimePointPageReq();
             pageReq.query.Add(node);
             result = DataBaseHelper<DingNew>.GetList(_uowProvider, result, pageReq);
-            if (result.data.Count>0)
+            if (result.data.Count > 0)
             {
                 res.data = result.data[0];
             }
@@ -126,14 +115,14 @@ namespace Xin.WebApi.Controllers
         public GridPage<DingClassify> addNews([FromBody] DingNew newsDetail, int classifyId)
         {
             var ress = new GridPage<DingClassify>() { code = ResCode.Success };
-            using (var mdReader = new StringReader(newsDetail.OriginalContent))
-            {
-                using (var html = new StringWriter())
-                {
-                    CommonMark.CommonMarkConverter.Convert(mdReader, html);
-                    newsDetail.HtmlContent = html.ToString();
-                }
-            }
+            //using (var mdReader = new StringReader(newsDetail.OriginalContent))
+            //{
+            //    using (var html = new StringWriter())
+            //    {
+            //        CommonMark.CommonMarkConverter.Convert(mdReader, html);
+            //        newsDetail.HtmlContent = html.ToString();
+            //    }
+            //}
             ress = DataBaseHelper<DingClassify>.Get(_uowProvider, ress, classifyId, x => x.Include(a => a.DingNews));
             ress.data.DingNews.Add(newsDetail);
             OapiMessageCorpconversationAsyncsendV2Request.MsgDomain obj1 = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
@@ -141,13 +130,61 @@ namespace Xin.WebApi.Controllers
             OapiMessageCorpconversationAsyncsendV2Request.LinkDomain obj2 = new OapiMessageCorpconversationAsyncsendV2Request.LinkDomain();
             obj2.PicUrl = newsDetail.Image;
             obj2.MessageUrl = "eapp://page/component/index";
-            obj2.Text = newsDetail.Title;
+            obj2.Text = newsDetail.SubTitle;
             obj2.Title = newsDetail.Title;
             obj1.Link = obj2;
             var res = DingTalkHelper.PushMessage("1814645351680963", null, "", obj1);
             ress = DataBaseHelper<DingClassify>.Create(_uowProvider, ress.data, ress, true);
             return ress;
         }
+
+        /// <summary>
+        /// 更新新闻
+        /// </summary>
+        /// <param name="newsDetail"></param>
+        /// <param name="classifyId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("editNew")]
+        public GridPage<DingClassify> editNew([FromBody] DingNew newsDetail, int classifyId)
+        {
+            var res = new GridPage<DingClassify>() { code = ResCode.Success };
+            res = DataBaseHelper<DingClassify>.Get(_uowProvider, res, classifyId, x => x.Include(a => a.DingNews));
+            var model = res.data.DingNews.Where(a => a.Id == newsDetail.Id).FirstOrDefault();
+            if (model != null)
+            {
+                model.Image = newsDetail.Image;
+                model.OriginalContent = newsDetail.OriginalContent;
+                model.Status = newsDetail.Status;
+                model.Title = newsDetail.Title;
+                model.UpdateTime = DateTime.Now;
+                model.HtmlContent = newsDetail.HtmlContent;
+                model.Editer = newsDetail.Editer;
+                model.SubTitle = newsDetail.SubTitle;
+                res = DataBaseHelper<DingClassify>.Edit(_uowProvider, res.data, res);
+            }
+            else
+            {
+                res.code = ResCode.Error;
+                res.msg = "记录不存在";
+            }
+
+            return res;
+        }
+
+        /// <summary>
+        /// 获取新闻分类
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetTypes")]
+        public GridPage<List<DingClassify>> GetTypes(DatetimePointPageReq pageReq)
+        {
+            var res = new GridPage<List<DingClassify>>() { code = ResCode.Success };
+            return DataBaseHelper<DingClassify>.GetList(_uowProvider, res, pageReq);
+        }
+
         /// <summary>
         /// 添加分类
         /// </summary>
@@ -159,6 +196,34 @@ namespace Xin.WebApi.Controllers
         {
             var res = new GridPage<DingClassify>() { code = ResCode.Success };
             res = DataBaseHelper<DingClassify>.Create(_uowProvider, classify, res, true);
+            return res;
+        }
+
+        /// <summary>
+        /// 删除分类
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("deleteTypes")]
+        public GridPage<DingClassify> deleteTypes(int id)
+        {
+            var res = new GridPage<DingClassify>() { code = ResCode.Success };
+            res = DataBaseHelper<DingClassify>.Delete(_uowProvider, id, res);
+            return res;
+        }
+
+        /// <summary>
+        /// 更新分类
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("updateTypes")]
+        public GridPage<DingClassify> updateTypes([FromBody] DingClassify id)
+        {
+            var res = new GridPage<DingClassify>() { code = ResCode.Success };
+            res = DataBaseHelper<DingClassify>.Edit(_uowProvider, id, res);
             return res;
         }
     }

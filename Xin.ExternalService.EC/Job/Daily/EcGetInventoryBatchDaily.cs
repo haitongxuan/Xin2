@@ -16,13 +16,10 @@ namespace Xin.ExternalService.EC.Job.Daily
    public class EcGetInventoryBatchDaily : EcBaseJob
     {
         private readonly LogHelper log;
-        private readonly IUowProvider _uowProvider;
-        public EcGetInventoryBatchDaily(IUowProvider uowProvider)
+        public EcGetInventoryBatchDaily()
         {
             log = LogFactory.GetLogger(LogType.QuartzLog);
-            _uowProvider = uowProvider;
         }
-
         public override async Task Execute(IJobExecutionContext context)
         {
             await Job(DateTime.Now);

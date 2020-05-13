@@ -13,15 +13,15 @@ using Xin.Repository;
 
 namespace Xin.ExternalService.EC.Job.Init
 {
+    [DisallowConcurrentExecution]
+
     public class EcGetInventoryBatchInit : EcBaseJob
     {
         private readonly LogHelper log;
-        private readonly IUowProvider _uowProvider;
 
-        public EcGetInventoryBatchInit(IUowProvider uowProvider)
+        public EcGetInventoryBatchInit()
         {
             log = LogFactory.GetLogger(LogType.QuartzLog);
-            _uowProvider = uowProvider;
         }
 
         public override async Task Execute(IJobExecutionContext context)

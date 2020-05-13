@@ -35,13 +35,6 @@
             <param name="picName"></param>
             <returns></returns>
         </member>
-        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.GetTypes(Xin.Web.Framework.Model.DatetimePointPageReq)">
-            <summary>
-            获取新闻分类
-            </summary>
-            <param name="pageReq"></param>
-            <returns></returns>
-        </member>
         <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.GetNews(Xin.Web.Framework.Model.DatetimePointPageReq,System.Nullable{System.Int32})">
             <summary>
             根据分类ID获取新闻
@@ -66,11 +59,40 @@
             <param name="classifyId"></param>
             <returns></returns>
         </member>
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.editNew(Xin.Entities.DingNew,System.Int32)">
+            <summary>
+            更新新闻
+            </summary>
+            <param name="newsDetail"></param>
+            <param name="classifyId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.GetTypes(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            获取新闻分类
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
         <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.addTypes(Xin.Entities.DingClassify)">
             <summary>
             添加分类
             </summary>
             <param name="classify"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.deleteTypes(System.Int32)">
+            <summary>
+            删除分类
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.updateTypes(Xin.Entities.DingClassify)">
+            <summary>
+            更新分类
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="T:Xin.WebApi.Controllers.FinancialStatementController">
@@ -180,6 +202,12 @@
             </summary>
             <param name="data"></param>
             <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.FinancialStatementController.ProductTrans(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            
+            </summary>
+            <param name="excelFile"></param>
         </member>
         <member name="M:Xin.WebApi.Controllers.OmsAnsListController.AddRecivingCode(System.String[])">
             <summary>

@@ -7,6 +7,7 @@ using System.IO;
 using Xin.Common;
 using Xin.ExternalService.EC.Job;
 using Xin.ExternalService.EC.Job.Daily;
+using Xin.ExternalService.EC.Job.Init;
 
 namespace XIn.QuartzService
 {
@@ -21,70 +22,70 @@ namespace XIn.QuartzService
             StdSchedulerFactory factory = new StdSchedulerFactory();
             var _scheduler = await factory.GetScheduler();
             await _scheduler.Start();
-            string quartzStartTime = "0 0 10 * * ? *";
-            #region EcSaleOrderDaily
-            IJobDetail job = JobBuilder.Create<EcSaleOrderDaily>()
-                .WithIdentity("job1", "group1")
-                .Build();
-            //创建触发器
-            ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("trigger1", "group1")
-                .StartNow()
-                .WithCronSchedule(quartzStartTime)//每日3点开始执行
-                .Build();
-            //将任务加入到任务池
-            await _scheduler.ScheduleJob(job, trigger);
-            #endregion
+            string quartzStartTime = "0/2 * * * * ?";
+            //#region EcSaleOrderDaily
+            //IJobDetail job = JobBuilder.Create<EcSaleOrderDaily>()
+            //    .WithIdentity("job1", "group1")
+            //    .Build();
+            ////创建触发器
+            //ITrigger trigger = TriggerBuilder.Create()
+            //    .WithIdentity("trigger1", "group1")
+            //    .StartNow()
+            //    .WithCronSchedule(quartzStartTime)//每日3点开始执行
+            //    .Build();
+            ////将任务加入到任务池
+            //await _scheduler.ScheduleJob(job, trigger);
+            //#endregion
 
-            #region EcGetSkuRelationDaily
-            job = JobBuilder.Create<EcGetSkuRelationDaily>()
-                  .WithIdentity("job2", "group1")
-                  .Build();
-            //创建触发器
-            trigger = TriggerBuilder.Create()
-               .WithIdentity("trigger2", "group1")
-               .StartNow()
-               .WithCronSchedule(quartzStartTime)//每日3点开始执行
-               .Build();
-            //将任务加入到任务池
-            await _scheduler.ScheduleJob(job, trigger);
-            #endregion
+            //#region EcGetSkuRelationDaily
+            //job = JobBuilder.Create<EcGetSkuRelationDaily>()
+            //      .WithIdentity("job2", "group1")
+            //      .Build();
+            ////创建触发器
+            //trigger = TriggerBuilder.Create()
+            //   .WithIdentity("trigger2", "group1")
+            //   .StartNow()
+            //   .WithCronSchedule(quartzStartTime)//每日3点开始执行
+            //   .Build();
+            ////将任务加入到任务池
+            //await _scheduler.ScheduleJob(job, trigger);
+            //#endregion
 
-            #region EcGetRmaRefundDaily
-            job = JobBuilder.Create<EcGetRmaRefundDaily>()
-                  .WithIdentity("job3", "group1")
-                  .Build();
-            //创建触发器
-            trigger = TriggerBuilder.Create()
-               .WithIdentity("trigger3", "group1")
-               .StartNow()
-               .WithCronSchedule(quartzStartTime)//每日3点开始执行
-               .Build();
-            //将任务加入到任务池
-            await _scheduler.ScheduleJob(job, trigger);
-            #endregion
+            //#region EcGetRmaRefundDaily
+            //job = JobBuilder.Create<EcGetRmaRefundDaily>()
+            //      .WithIdentity("job3", "group1")
+            //      .Build();
+            ////创建触发器
+            //trigger = TriggerBuilder.Create()
+            //   .WithIdentity("trigger3", "group1")
+            //   .StartNow()
+            //   .WithCronSchedule(quartzStartTime)//每日3点开始执行
+            //   .Build();
+            ////将任务加入到任务池
+            //await _scheduler.ScheduleJob(job, trigger);
+            //#endregion
 
-            #region EcGetReceivingDetailDaily
-            job = JobBuilder.Create<EcGetReceivingDetailDaily>()
-                  .WithIdentity("job4", "group1")
-                  .Build();
-            //创建触发器
-            trigger = TriggerBuilder.Create()
-               .WithIdentity("trigger4", "group1")
-               .StartNow()
-               .WithCronSchedule(quartzStartTime)//每日3点开始执行
-               .Build();
-            //将任务加入到任务池
-            await _scheduler.ScheduleJob(job, trigger);
+            //#region EcGetReceivingDetailDaily
+            //job = JobBuilder.Create<EcGetReceivingDetailDaily>()
+            //      .WithIdentity("job4", "group1")
+            //      .Build();
+            ////创建触发器
+            //trigger = TriggerBuilder.Create()
+            //   .WithIdentity("trigger4", "group1")
+            //   .StartNow()
+            //   .WithCronSchedule(quartzStartTime)//每日3点开始执行
+            //   .Build();
+            ////将任务加入到任务池
+            //await _scheduler.ScheduleJob(job, trigger);
 
-            #endregion
+            //#endregion
 
             #region EcGetProductDaily
-            job = JobBuilder.Create<EcGetProductDaily>()
+            IJobDetail job = JobBuilder.Create<EcShipBatchInit>()
                   .WithIdentity("job5", "group1")
                   .Build();
             //创建触发器
-            trigger = TriggerBuilder.Create()
+            ITrigger trigger = TriggerBuilder.Create()
                .WithIdentity("trigger5", "group1")
                .StartNow()
                .WithCronSchedule(quartzStartTime)//每日3点开始执行
@@ -93,19 +94,19 @@ namespace XIn.QuartzService
             await _scheduler.ScheduleJob(job, trigger);
             #endregion
 
-            #region EcGetDeliveryDetailDaily
-            job = JobBuilder.Create<EcGetDeliveryDetailDaily>()
-                  .WithIdentity("job6", "group1")
-                  .Build();
-            //创建触发器
-            trigger = TriggerBuilder.Create()
-               .WithIdentity("trigger6", "group1")
-               .StartNow()
-               .WithCronSchedule(quartzStartTime)//每日3点开始执行
-               .Build();
-            //将任务加入到任务池
-            await _scheduler.ScheduleJob(job, trigger);
-            #endregion
+            //#region EcGetDeliveryDetailDaily
+            //job = JobBuilder.Create<EcGetDeliveryDetailDaily>()
+            //      .WithIdentity("job6", "group1")
+            //      .Build();
+            ////创建触发器
+            //trigger = TriggerBuilder.Create()
+            //   .WithIdentity("trigger6", "group1")
+            //   .StartNow()
+            //   .WithCronSchedule(quartzStartTime)//每日3点开始执行
+            //   .Build();
+            ////将任务加入到任务池
+            //await _scheduler.ScheduleJob(job, trigger);
+            //#endregion
 
             Console.ReadKey();
         }
