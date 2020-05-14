@@ -146,30 +146,35 @@ namespace Xin.WebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("editNew")]
-        public GridPage<DingClassify> editNew([FromBody] DingNew newsDetail, int classifyId)
+        public GridPage<DingNew> editNew([FromBody] DingNew newsDetail, int classifyId)
         {
             var res = new GridPage<DingClassify>() { code = ResCode.Success };
+            var ress = new GridPage<DingNew>() { code = ResCode.Success };
+
             res = DataBaseHelper<DingClassify>.Get(_uowProvider, res, classifyId, x => x.Include(a => a.DingNews));
             var model = res.data.DingNews.Where(a => a.Id == newsDetail.Id).FirstOrDefault();
             if (model != null)
             {
-                model.Image = newsDetail.Image;
-                model.OriginalContent = newsDetail.OriginalContent;
-                model.Status = newsDetail.Status;
-                model.Title = newsDetail.Title;
-                model.UpdateTime = DateTime.Now;
-                model.HtmlContent = newsDetail.HtmlContent;
-                model.Editer = newsDetail.Editer;
-                model.SubTitle = newsDetail.SubTitle;
-                res = DataBaseHelper<DingClassify>.Edit(_uowProvider, res.data, res);
+                //model.Image = newsDetail.Image;
+                //model.OriginalContent = newsDetail.OriginalContent;
+                //model.Status = newsDetail.Status;
+                //model.Title = newsDetail.Title;
+                //model.UpdateTime = DateTime.Now;
+                //model.HtmlContent = newsDetail.HtmlContent;
+                //model.Editer = newsDetail.Editer;
+                //model.SubTitle = newsDetail.SubTitle;
+                newsDetail.DingClassify = res.data;
+                newsDetail.CreateTime = model.CreateTime;
+                newsDetail.UpdateTime = DateTime.Now;
+                ress = DataBaseHelper<DingNew>.Edit(_uowProvider, newsDetail, ress);
             }
             else
             {
-                res.code = ResCode.Error;
-                res.msg = "记录不存在";
+                ress.code = ResCode.Error;
+                ress.msg = "记录不存在";
             }
 
-            return res;
+            return ress;
         }
 
         /// <summary>

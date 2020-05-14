@@ -11,7 +11,7 @@ namespace Xin.Web.Framework.Model
 
         public string sku { get; set; }
 
-        [Excel(Header = "行号",Picture =true)]
+        [Excel(Header = "图片",Picture =true)]
         public string image { get; set; }
     }
 }

@@ -30,7 +30,9 @@
 
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="wwwroot\upload\excel\" />
     <Folder Include="wwwroot\upload\images\" />
+    <Folder Include="wwwroot\upload\新文件夹\" />
   </ItemGroup>
 
   <ItemGroup>
