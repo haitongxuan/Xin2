@@ -534,7 +534,7 @@ namespace Xin.WebApi.Controllers
             catch (Exception ex)
             {
 
-                res.msg = $"出现异常{ex.Message}";
+                res.msg = $"出现异常:{ex.Message}";
                 res.code = ResCode.Error;
             }
             return res;

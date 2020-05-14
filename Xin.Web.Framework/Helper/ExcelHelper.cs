@@ -262,7 +262,7 @@ namespace Xin.Web.Framework.Helper
                         ExcelAttribute head = (ExcelAttribute)obj;
                         if (head.Picture)
                         {
-                            string url = props[j].GetValue(list[i]).ToString();
+                            string url = props[j].GetValue(list[i]).ToString().Split(",")[0];
                             if (!string.IsNullOrWhiteSpace(url))
                             {
                                 row.Height = 80 * 20;
