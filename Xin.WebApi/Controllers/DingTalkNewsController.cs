@@ -97,7 +97,7 @@ namespace Xin.WebApi.Controllers
             node.value = id;
             var pageReq = new DatetimePointPageReq();
             pageReq.query.Add(node);
-            result = DataBaseHelper<DingNew>.GetList(_uowProvider, result, pageReq);
+            result = DataBaseHelper<DingNew>.GetList(_uowProvider, result, pageReq,x=>x.Include(a=>a.DingClassify));
             if (result.data.Count > 0)
             {
                 res.data = result.data[0];
