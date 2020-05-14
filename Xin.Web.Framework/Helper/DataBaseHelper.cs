@@ -13,7 +13,7 @@ namespace Xin.Web.Framework.Helper
 {
     public class DataBaseHelper<T> where T : class, new()
     {
-        public static GridPage<List<T>> GetList(IUowProvider _uowProvider, GridPage<List<T>> res, DatetimePointPageReq pageReq, Func<IQueryable<T>, IQueryable<T>> includes = null)
+        public static GridPage<List<T>> GetList(IUowProvider _uowProvider, GridPage<List<T>> res, DatetimePointPageReq pageReq, Func<IQueryable<T>, IQueryable<T>> includes = null,bool getAll = false)
         {
             try
             {
@@ -49,8 +49,16 @@ namespace Xin.Web.Framework.Helper
                     {
                         orderBy = new OrderBy<T>(pageReq.order.columnName, pageReq.order.reverse);
                     }
+                    if (getAll)
+                    {
+                        res.data = repository.Query(filter.Expression, orderBy.Expression).ToList();
+                    }
+                    else
+                    {
+                        res.data = repository.QueryPage(startRow, pageReq.pageSize, filter.Expression, orderBy.Expression, includes).ToList();
+                    }
                     res.totalCount = repository.Query(filter.Expression, orderBy.Expression).Count();
-                    res.data = repository.QueryPage(startRow, pageReq.pageSize, filter.Expression, orderBy.Expression, includes).ToList();
+                    
                 }
             }
             catch (Exception ex)

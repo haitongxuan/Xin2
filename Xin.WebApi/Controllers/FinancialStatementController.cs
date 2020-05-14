@@ -344,6 +344,24 @@ namespace Xin.WebApi.Controllers
 
         }
         /// <summary>
+        /// 导出复购客户
+        /// </summary>
+        /// <param name="excelFile"></param>
+        /// <returns></returns>
+        [Route("ExportRepeatCust")]
+        [HttpPost]
+        public void ExportRepeatCust(DatetimePointPageReq pageReq) {
+            var res = new GridPage<List<ECRepeatCust>>() { code = ResCode.Success };
+            res =  DataBaseHelper<ECRepeatCust>.GetList(_uowProvider, res, pageReq,null,true);
+            Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("RepeatCust.xlsx"));
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
+            Response.Body.Write(ExcelHelper<ECRepeatCust>.NpoiListToExcel(res.data));
+            Response.Body.Flush();
+            Response.Body.Close();
+
+        }
+
+        /// <summary>
         /// 财务报表
         /// </summary>
         /// <param name="pageReq"></param>
@@ -500,7 +518,7 @@ namespace Xin.WebApi.Controllers
             return res;
         }
         /// <summary>
-        /// 
+        /// 产品图片
         /// </summary>
         /// <param name="excelFile"></param>
         [Route("productTrans")]

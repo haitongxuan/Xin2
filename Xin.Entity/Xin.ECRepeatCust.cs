@@ -15,16 +15,18 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Data.Common;
 using System.Collections.Generic;
+using Xin.Common.CustomAttribute;
 
 namespace Xin.Entities
 {
-    public partial class ECRepeatCust {
+    public partial class ECRepeatCust
+    {
 
         public ECRepeatCust()
         {
             OnCreated();
         }
-
+        [Excel(Header = "Id")]
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
         public virtual int Id
@@ -33,13 +35,14 @@ namespace Xin.Entities
             set;
         }
 
+        [Excel(Header = "平台")]
         [System.ComponentModel.DataAnnotations.StringLength(50)]
         public virtual string PlateForm
         {
             get;
             set;
         }
-
+        [Excel(Header = "店铺")]
         [System.ComponentModel.DataAnnotations.StringLength(50)]
         public virtual string StoreName
         {
@@ -47,12 +50,14 @@ namespace Xin.Entities
             set;
         }
 
+        [Excel(Header = "处理月份")]
         [System.ComponentModel.DataAnnotations.StringLength(50)]
         public virtual string DealMonth
         {
             get;
             set;
         }
+        [Excel(Header = "邮箱")]
 
         [System.ComponentModel.DataAnnotations.StringLength(50)]
         public virtual string Email
@@ -61,24 +66,29 @@ namespace Xin.Entities
             set;
         }
 
+        [Excel(Header = "平台编码")]
+
         [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string PlateFormCode
         {
             get;
             set;
         }
+        [Excel(Header = "金额")]
 
         public virtual decimal? Amount
         {
             get;
             set;
         }
+        [Excel(Header = "付款时间")]
 
         public virtual System.DateTime? FkDate
         {
             get;
             set;
         }
+        [Excel(Header = "付款类型")]
 
         [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string FkType
@@ -86,6 +96,7 @@ namespace Xin.Entities
             get;
             set;
         }
+        [Excel(Header = "导入时间")]
 
         public virtual System.DateTime? Enterdate
         {
