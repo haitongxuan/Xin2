@@ -520,7 +520,8 @@ namespace Xin.WebApi.Controllers
                                                       select new ProductImportModel
                                                       {
                                                           sku = a.sku,
-                                                          image = d.ProductImages
+                                                          image = d.ProductImages,
+                                                          imageUrl = d.ProductImages
                                                       }).ToList();
                     BaseResponse resp = new BaseResponse();
                     Dictionary<string, string>  dic = Web.Framework.Helper.FileHelper.uploadExcel(ExcelHelper<ProductImportModel>.NpoiListToExcel(lists), resp, _hostingEnvironment.ContentRootPath).data;

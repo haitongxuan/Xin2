@@ -69,12 +69,12 @@ namespace Xin.WebApi.Controllers
                     pageReq = new DatetimePointPageReq();
                 }
                 pageReq.query.Add(node);
-                res = DataBaseHelper<DingNew>.GetList(_uowProvider, res, pageReq);
+                res = DataBaseHelper<DingNew>.GetList(_uowProvider, res, pageReq, x => x.Include(a => a.DingClassify));
             }
             else
             {
                 //all
-                res = DataBaseHelper<DingNew>.GetList(_uowProvider, res, pageReq);
+                res = DataBaseHelper<DingNew>.GetList(_uowProvider, res, pageReq, x => x.Include(a => a.DingClassify));
             }
             return res;
         }
@@ -125,16 +125,16 @@ namespace Xin.WebApi.Controllers
             //}
             ress = DataBaseHelper<DingClassify>.Get(_uowProvider, ress, classifyId, x => x.Include(a => a.DingNews));
             ress.data.DingNews.Add(newsDetail);
+            ress = DataBaseHelper<DingClassify>.Create(_uowProvider, ress.data, ress, true);
             OapiMessageCorpconversationAsyncsendV2Request.MsgDomain obj1 = new OapiMessageCorpconversationAsyncsendV2Request.MsgDomain();
             obj1.Msgtype = "link";
             OapiMessageCorpconversationAsyncsendV2Request.LinkDomain obj2 = new OapiMessageCorpconversationAsyncsendV2Request.LinkDomain();
             obj2.PicUrl = newsDetail.Image;
-            obj2.MessageUrl = "eapp://page/component/index";
+            obj2.MessageUrl = "eapp://pages/detail/index?id="+ ress.data.Id;
             obj2.Text = newsDetail.SubTitle;
             obj2.Title = newsDetail.Title;
             obj1.Link = obj2;
             var res = DingTalkHelper.PushMessage("1814645351680963", null, "", obj1);
-            ress = DataBaseHelper<DingClassify>.Create(_uowProvider, ress.data, ress, true);
             return ress;
         }
 

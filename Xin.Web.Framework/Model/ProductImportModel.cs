@@ -13,5 +13,8 @@ namespace Xin.Web.Framework.Model
 
         [Excel(Header = "图片",Picture =true)]
         public string image { get; set; }
+
+        [Excel(Header = "图片地址")]
+        public string imageUrl { get; set; }
     }
 }
