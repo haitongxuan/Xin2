@@ -285,7 +285,6 @@ namespace Xin.Web.Framework.Helper
             //转为字节数组
             MemoryStream stream = new MemoryStream();
             workbook.Write(stream);
-            stream.Seek(0, SeekOrigin.Begin);
             var buf = stream.ToArray();
             workbook.Close();
             stream.Close();
