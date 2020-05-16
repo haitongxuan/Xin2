@@ -8,3 +8,8 @@ services:
       dockerfile: Xin.WebApi/Dockerfile
     ports: 
       - "8916:80"
+     volumes:
+      - /data/Xin:/app/wwwroot/upload
+volumes:
+  data:
+    external: true

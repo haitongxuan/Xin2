@@ -38,9 +38,9 @@ namespace Xin.Web.Framework.Helper
                 {
                     throw new Exception("导入文件不能为空");
                 }
-                else if (!Path.GetExtension(excelFile.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+                else if (!Path.GetExtension(excelFile.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase)|| !Path.GetExtension(excelFile.FileName).Equals(".xls", StringComparison.OrdinalIgnoreCase))
                 {
-                    throw new Exception("导入文件格式不是.XLSX,请重新导入");
+                    throw new Exception("导入文件格式不是excel,请重新导入");
                 }
 
                 using (var stream = excelFile.OpenReadStream())
