@@ -47,7 +47,7 @@ namespace Xin.ExternalService.EC.Job
                 int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
                 RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetReceivingDetailDaily", "INFO", $"入库信息,开始拉取,共{pageNum}页", reqModel));
 
-                for (int page = pageNum; page > 0; page--)
+                for (int page = 1; page < pageNum + 1; page++)
                 {
                     reqModel.PageSize = 1000;
                     reqModel.Page = page;

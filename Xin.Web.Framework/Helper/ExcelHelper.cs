@@ -29,12 +29,12 @@ namespace Xin.Web.Framework.Helper
         /// </summary>
         /// <param name="excelFile"></param>
         /// <returns></returns>
-        public static List<T> ExcelToList(IFormFile excelFile, bool isFirstRowColumn = true )
+        public static List<T> ExcelToList(IFormFile excelFile, bool isFirstRowColumn = true)
         {
             List<T> list = new List<T>();
             try
             {
-                var fs = excelFile.OpenReadStream();             
+                var fs = excelFile.OpenReadStream();
                 ISheet sheet = null;
                 IWorkbook workbook = null;
                 DataTable data = new DataTable();
@@ -290,7 +290,7 @@ namespace Xin.Web.Framework.Helper
                 if (obj != null)
                 {
                     ExcelAttribute head = (ExcelAttribute)obj;
-                    headRow.CreateCell(i).SetCellValue(head.Header); 
+                    headRow.CreateCell(i).SetCellValue(head.Header);
                 }
                 else
                 {
@@ -303,6 +303,7 @@ namespace Xin.Web.Framework.Helper
                 for (var j = 0; j < props.Length; ++j)
                 {
                     Object obj = props[j].GetCustomAttribute(typeof(ExcelAttribute));
+                    var key = props[j];
                     if (obj != null)
                     {
                         ExcelAttribute head = (ExcelAttribute)obj;
@@ -322,15 +323,45 @@ namespace Xin.Web.Framework.Helper
                             }
                             continue;
                         }
+                        else
+                        {
+                            var drValue = props[j].GetValue(list[i]) == null ? "" : props[j].GetValue(list[i]).ToString();
+                            var type = props[j].PropertyType;
+                            if (type == typeof(Int32) || type == typeof(Int32?))
+                            {
+                                int intV = 0;
+                                int.TryParse(drValue, out intV);
+                                row.CreateCell(j).SetCellValue(intV);
+                            }
+                            else if (type == typeof(System.Decimal) || type == typeof(System.Decimal?))
+                            {
+                                double doubV = 0;
+                                double.TryParse(drValue, out doubV);
+                                row.CreateCell(j).SetCellValue(doubV);
+                            }
+                            else if (type == typeof(System.Byte) || type == typeof(System.Byte?))
+                            {
+                                Byte doubV = 0;
+                                Byte.TryParse(drValue, out doubV);
+                                row.CreateCell(j).SetCellValue(doubV);
+                            }
+                            else if (type == typeof(System.Boolean) || type == typeof(System.Boolean?))
+                            {
+                                Boolean doubV = false;
+                                Boolean.TryParse(drValue, out doubV);
+                                row.CreateCell(j).SetCellValue(doubV);
+                            }
+                            else
+                            {
+                                row.CreateCell(j).SetCellValue(drValue);
+                            }
+                        }
                     }
-                    var tt = props[j].GetValue(list[i])==null?"": props[j].GetValue(list[i]);
-                    row.CreateCell(j).SetCellValue(tt.ToString());
-
                 }
             }
             //获取当前列的宽度，然后对比本列的长度，取最大值
-            for (int columnNum = 0; columnNum <= props.Length; columnNum++) 
-            { 
+            for (int columnNum = 0; columnNum <= props.Length; columnNum++)
+            {
                 int columnWidth = sheet.GetColumnWidth(columnNum) / 256;
                 for (int rowNum = 1; rowNum <= sheet.LastRowNum; rowNum++)
                 {
@@ -354,8 +385,12 @@ namespace Xin.Web.Framework.Helper
                             columnWidth = length;
                         }
                     }
+                    if (columnWidth > 40)
+                    {
+                        columnWidth = 40;
+                    }
                 }
-            sheet.SetColumnWidth(columnNum, columnWidth * 256);
+                sheet.SetColumnWidth(columnNum, columnWidth * 256);
             }
             //转为字节数组
             MemoryStream stream = new MemoryStream();
@@ -366,6 +401,8 @@ namespace Xin.Web.Framework.Helper
             stream.Dispose();
             return buf;
         }
+
+
         public static byte[] EppListToExcel(List<T> data, string seetName = "Seet1")
         {
             using (ExcelPackage excel = new ExcelPackage())

@@ -1,7 +1,9 @@
-﻿using Quartz;
+﻿using Newtonsoft.Json;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Xin.Common;
@@ -34,9 +36,12 @@ namespace Xin.ExternalService.EC.Job.Init
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ECInventoryBatch>();
+                var warehouse = uow.GetRepository<ECWarehouse>();
+                List<ECWarehouse> warehouseList = warehouse.GetAll().ToList();
+                List<ECInventoryBatch> allList = new List<ECInventoryBatch>();
                 await repository.DeleteAll();
                 await uow.SaveChangesAsync();
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"批次库存开始拉取", null ));
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"批次库存开始拉取", null));
                 WMSInventoryBatchReqModel reqModel = new WMSInventoryBatchReqModel();
                 reqModel.Page = 1;
                 reqModel.PageSize = 10;
@@ -65,6 +70,7 @@ namespace Xin.ExternalService.EC.Job.Init
                         insertList = insertList.GroupBy(item => new { item.RoCode, item.ProductSku }).Select(item => item.First()).ToList();
                         await repository.BulkInsertAsync(insertList, x => x.IncludeGraph = true);
                         uow.BulkSaveChanges();
+                        allList.AddRange(insertList);
                         insertList.Clear();
                     }
                     catch (Exception ex)
@@ -74,6 +80,26 @@ namespace Xin.ExternalService.EC.Job.Init
                     }
                 }
                 RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"批次库存拉取完成", reqModel));
+                WebClient wb = new WebClient();
+                allList = allList.GroupBy(a => new { a.ProductSku, a.WarehouseId })
+                    .Select(b => new ECInventoryBatch {
+                        IbQuantity= b.Sum(c=>c.IbQuantity)
+                    }).ToList();
+                var tt = (from a in allList
+                          join b in warehouseList on a.WarehouseId equals b.WarehouseId
+                          select new
+                          {
+                              warehouse_code = b.WarehouseCode,
+                              sku = a.ProductSku,
+                              qty = a.IbQuantity,
+                              lc_code = a.LcCode
+                          }).ToList();
+                string postString = "data=" + JsonConvert.SerializeObject(tt);
+                wb.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+                byte[] postData = Encoding.UTF8.GetBytes(postString);
+                byte[] responseData = wb.UploadData("http://47.52.170.217:5000/goods_extension/set_goods_qty", "POST", postData);
+                string srcString = Encoding.UTF8.GetString(responseData);
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"数据推送到ERP:{srcString}", null));
 
             }
 
