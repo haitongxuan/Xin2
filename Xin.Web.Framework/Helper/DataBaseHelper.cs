@@ -148,6 +148,7 @@ namespace Xin.Web.Framework.Helper
                     var repository = uow.GetRepository<T>();
                     repository.Attach(newsDetail);
                     uow.SaveChanges();
+                    res.data = newsDetail;
                 }
             }
             catch (Exception ex)
