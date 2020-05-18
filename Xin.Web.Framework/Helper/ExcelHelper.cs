@@ -29,36 +29,82 @@ namespace Xin.Web.Framework.Helper
         /// </summary>
         /// <param name="excelFile"></param>
         /// <returns></returns>
-        public static List<T> ExcelToList(IFormFile excelFile)
+        public static List<T> ExcelToList(IFormFile excelFile, bool isFirstRowColumn = true )
         {
             List<T> list = new List<T>();
             try
             {
+                var fs = excelFile.OpenReadStream();             
+                ISheet sheet = null;
+                IWorkbook workbook = null;
+                DataTable data = new DataTable();
+                int startRow = 0;
                 if (excelFile == null || excelFile.Length <= 0)
                 {
                     throw new Exception("导入文件不能为空");
                 }
-                else if (!Path.GetExtension(excelFile.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase)&&!Path.GetExtension(excelFile.FileName).Equals(".xls", StringComparison.OrdinalIgnoreCase))
+                else if (Path.GetExtension(excelFile.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+                {
+                    workbook = new XSSFWorkbook(fs);
+                }
+                else if (Path.GetExtension(excelFile.FileName).Equals(".xls", StringComparison.OrdinalIgnoreCase))
+                {
+                    workbook = new HSSFWorkbook(fs);
+                }
+                else
                 {
                     throw new Exception("导入文件格式不是excel,请重新导入");
                 }
+                sheet = workbook.GetSheetAt(0);
 
-                using (var stream = excelFile.OpenReadStream())
+                if (sheet != null)
                 {
-                    using (var package = new ExcelPackage(stream))
+                    IRow firstRow = sheet.GetRow(0);
+                    int cellCount = firstRow.LastCellNum; //一行最后一个cell的编号 即总的列数
+
+                    if (isFirstRowColumn)
                     {
-                        try
+                        for (int i = firstRow.FirstCellNum; i < cellCount; ++i)
                         {
-                            StringBuilder sb = new StringBuilder();
-                            ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
-                            DataTable dataTable = WorksheetToTable(worksheet);
-                            list = DataTableToList(dataTable);
+                            ICell cell = firstRow.GetCell(i);
+                            if (cell != null)
+                            {
+                                string cellValue = cell.StringCellValue;
+                                if (cellValue != null)
+                                {
+                                    DataColumn column = new DataColumn(cellValue);
+                                    data.Columns.Add(column);
+                                }
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
+                        startRow = sheet.FirstRowNum + 1;
                     }
+                    else
+                    {
+                        for (int i = firstRow.FirstCellNum; i < cellCount; i++)
+                        {
+                            DataColumn column = new DataColumn(i.ToString());
+                            data.Columns.Add(column);
+                        }
+                        startRow = sheet.FirstRowNum;
+                    }
+
+                    //最后一列的标号
+                    int rowCount = sheet.LastRowNum;
+                    for (int i = startRow; i <= rowCount; ++i)
+                    {
+                        IRow row = sheet.GetRow(i);
+                        if (row == null) continue; //没有数据的行默认是null　　　　　　　
+
+                        DataRow dataRow = data.NewRow();
+                        for (int j = row.FirstCellNum; j < cellCount; ++j)
+                        {
+                            if (row.GetCell(j) != null) //同理，没有数据的单元格都默认是null
+                                dataRow[j] = row.GetCell(j).ToString();
+                        }
+                        data.Rows.Add(dataRow);
+                    }
+                    list = DataTableToList(data);
                 }
             }
             catch (Exception ex)
@@ -281,6 +327,35 @@ namespace Xin.Web.Framework.Helper
                     row.CreateCell(j).SetCellValue(tt.ToString());
 
                 }
+            }
+            //获取当前列的宽度，然后对比本列的长度，取最大值
+            for (int columnNum = 0; columnNum <= props.Length; columnNum++) 
+            { 
+                int columnWidth = sheet.GetColumnWidth(columnNum) / 256;
+                for (int rowNum = 1; rowNum <= sheet.LastRowNum; rowNum++)
+                {
+                    IRow currentRow;
+                    //当前行未被使用过
+                    if (sheet.GetRow(rowNum) == null)
+                    {
+                        currentRow = sheet.CreateRow(rowNum);
+                    }
+                    else
+                    {
+                        currentRow = sheet.GetRow(rowNum);
+                    }
+
+                    if (currentRow.GetCell(columnNum) != null)
+                    {
+                        ICell currentCell = currentRow.GetCell(columnNum);
+                        int length = Encoding.Default.GetBytes(currentCell.ToString()).Length;
+                        if (columnWidth < length)
+                        {
+                            columnWidth = length;
+                        }
+                    }
+                }
+            sheet.SetColumnWidth(columnNum, columnWidth * 256);
             }
             //转为字节数组
             MemoryStream stream = new MemoryStream();
