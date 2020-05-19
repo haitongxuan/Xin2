@@ -1734,8 +1734,8 @@
     <property name="UnitPrice" type="Double" p1:nullable="True" p1:DisplayName="单价" p1:ValidateRequired="false" p1:Guid="84e810d1-14d3-4d6b-90bb-28968231bcb8">
       <column name="" />
     </property>
-    <property name="ShippingFee" type="Int32" p1:nullable="True" p1:DisplayName="头程运费" p1:ValidateRequired="false" p1:Guid="656053dc-7658-46f9-b88e-1c6703a72aa2">
-      <column name="" length="11" />
+    <property name="ShippingFee" type="Decimal" p1:nullable="True" p1:DisplayName="头程运费" p1:ValidateRequired="false" p1:Guid="656053dc-7658-46f9-b88e-1c6703a72aa2">
+      <column name="ShippingFee" not-null="False" length="11" precision="19" scale="4" sql-type="money" p1:unicode="False" />
     </property>
     <property name="Tariff_Fee" type="Double" p1:nullable="True" p1:DisplayName="头程关税" p1:ValidateRequired="false" p1:Guid="1a61ed85-fbb3-4cb5-943e-317437a1c832">
       <column name="" />

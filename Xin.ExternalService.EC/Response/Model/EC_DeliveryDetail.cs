@@ -106,7 +106,7 @@ namespace Xin.ExternalService.EC.Response.Model
         ///头程运费
         /// <summary> 
         [JsonProperty(PropertyName = "shipping_fee", NullValueHandling = NullValueHandling.Ignore)]
-        public int? ShippingFee { get; set; }
+        public decimal? ShippingFee { get; set; }
         /// <summary> 
         ///头程关税
         /// <summary> 

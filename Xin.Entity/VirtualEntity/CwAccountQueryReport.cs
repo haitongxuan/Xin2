@@ -8,7 +8,7 @@ namespace Xin.Entities.VirtualEntity
     /// <summary>
     /// 财务报表
     /// </summary>
-   public class CwAccountQueryReport
+    public class CwAccountQueryReport
     {
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Required()]
@@ -26,13 +26,7 @@ namespace Xin.Entities.VirtualEntity
             get;
             set;
         }
-        [System.ComponentModel.DataAnnotations.StringLength(100)]
-        [Excel(Header = "订单成本占比")]
-        public virtual string OrderCostRatio
-        {
-            get;
-            set;
-        }
+
 
         [Excel(Header = "付款时间", DateTime = "yyyy-MM-dd HH:mm:ss")]
         public virtual System.DateTime? DatePaidPlatform
@@ -225,7 +219,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
-        [Excel(Header = "放款时间",DateTime = "yyyy-MM-dd HH:mm:ss")]
+        [Excel(Header = "放款时间", DateTime = "yyyy-MM-dd HH:mm:ss")]
         public virtual System.DateTime? Loandate
         {
             get;
@@ -602,6 +596,14 @@ namespace Xin.Entities.VirtualEntity
         [Excel(Header = "亚马逊索赔编号")]
         [System.ComponentModel.DataAnnotations.StringLength(100)]
         public virtual string AmazonClaimNo
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(100)]
+        [Excel(Header = "订单成本占比")]
+        public virtual string OrderCostRatio
         {
             get;
             set;

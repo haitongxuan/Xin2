@@ -13,7 +13,7 @@ namespace Xin.ExternalService.EC.Reqeust.Tests
         public async System.Threading.Tasks.Task RequestTestAsync()
         {
             string order = "test ";
-            WMSGetShipBatchRequest req = new WMSGetShipBatchRequest("admin", "eccang123456", order);
+            WMSGetShipBatchRequest req = new WMSGetShipBatchRequest("admin", "eccang123456",null);
             var re = await req.Request();
 
         }

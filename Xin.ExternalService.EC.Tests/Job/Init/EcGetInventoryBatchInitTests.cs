@@ -30,7 +30,7 @@ namespace Xin.ExternalService.EC.Job.Init.Tests
             sp.Setup((o) => o.GetService(typeof(IRepository<ECInventoryBatch>)))
                 .Returns(new GenericEntityRepository<ECInventoryBatch>(logger.Object));
             var provider = new UowProvider(logger.Object, sp.Object);
-            EcGetInventoryBatchInit job = new EcGetInventoryBatchInit(provider);
+            EcGetInventoryBatchInit job = new EcGetInventoryBatchInit();
             await job.Job();
         }
     }
