@@ -48,7 +48,7 @@ namespace Xin.ExternalService.EC.Job.Init
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 50);
                     RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShipBatchInit", "INFO", $"头程出库单开始拉取,共计{pageNum}页", reqModel));
-                    for (int page = 289; page < pageNum + 1; page++)
+                    for (int page = 1; page < pageNum + 1; page++)
                     {
                         reqModel.Page = page.ToString();
                         reqModel.PageSize = "50";
