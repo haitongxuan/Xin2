@@ -80,7 +80,7 @@ namespace Xin.Service.Context
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.LoanType).HasColumnName(@"LoanType").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
             modelBuilder.Entity<CwAccountQueryReport>().Property<System.DateTime?>(x => x.Loandate).HasColumnName(@"Loandate").HasColumnType(@"datetime").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.PaypalType).HasColumnName(@"PaypalType").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
-            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Amountpaid).HasColumnName(@"amountpaid").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Amountpaid).HasColumnName(@"amountpaid").HasColumnType(@"varchar(4000)").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.AmountpaidItem).HasColumnName(@"amountpaidItem").HasColumnType(@"money").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.CompanyAmount).HasColumnName(@"CompanyAmount").HasColumnType(@"money").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.DiscountAmount).HasColumnName(@"DiscountAmount").HasColumnType(@"money").ValueGeneratedNever();
@@ -102,12 +102,12 @@ namespace Xin.Service.Context
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.GiftWrapCredits).HasColumnName(@"GiftWrapCredits").HasColumnType(@"money").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.MarketplaceFacilitatorTax).HasColumnName(@"MarketplaceFacilitatorTax").HasColumnType(@"money").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Other).HasColumnName(@"Other").HasColumnType(@"money").ValueGeneratedNever();
-            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Receamount).HasColumnName(@"Receamount").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.Receamount).HasColumnName(@"Receamount").HasColumnType(@"varchar(4000)").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.Receamountitem).HasColumnName(@"Receamountitem").HasColumnType(@"money").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.AmountRefund).HasColumnName(@"AmountRefund").HasColumnType(@"money").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.MakeAmount).HasColumnName(@"MakeAmount").HasColumnType(@"money").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ShipChannel).HasColumnName(@"ShipChannel").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
-            modelBuilder.Entity<CwAccountQueryReport>().Property<decimal?>(x => x.CostShipFee).HasColumnName(@"CostShipFee").HasColumnType(@"money").ValueGeneratedNever();
+            modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.CostShipFee).HasColumnName(@"CostShipFee").HasColumnType(@"varchar(4000)").ValueGeneratedNever();
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ShipCurrency).HasColumnName(@"ShipCurrency").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.ShippingMethodNo).HasColumnName(@"shippingMethodNo").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.BuyerName).HasColumnName(@"buyerName").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);

@@ -1210,6 +1210,42 @@
       </Documentation>
       <column name="SyncCode" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
     </property>
+    <property name="IsPush" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="3143d993-dd1d-41d1-89e9-c3afd8d2d7f4">
+      <Documentation>
+        <Summary>是否拉取</Summary>
+      </Documentation>
+      <column name="is_push" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CustomOrderType" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4392c70b-f8a6-46b2-99ba-5d72473f3197">
+      <Documentation>
+        <Summary>自定义订单类型
+自定义订单类型
+自定义订单类型
+自定义订单类型
+自定义订单类型
+自定义订单类型
+</Summary>
+      </Documentation>
+      <column name="CustomOrderType" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="IsMark" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="235e2bb7-32bc-48b5-8cd9-9bba9efc6cc5">
+      <Documentation>
+        <Summary>订单标记状态</Summary>
+      </Documentation>
+      <column name="IsMark" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CustomerServiceNote" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="19f7dfdc-5870-4231-99e0-12c003c70b45">
+      <Documentation>
+        <Summary>客服备注</Summary>
+      </Documentation>
+      <column name="CustomerServiceNote" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="DiscountVal" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a739fd5e-ed1b-4c4f-a4f9-8dbfd1d895f6">
+      <Documentation>
+        <Summary>折扣</Summary>
+      </Documentation>
+      <column name="discount_val" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
   </class>
   <class name="ECSalesOrderAddress" entity-set="ECSalesOrderAddresses" table="EC_SalesOrderAddress" schema="dbo" p1:Guid="806c1577-d2fa-4066-8bec-9f7cae962e4b">
     <id name="ShippingAddressId" type="String" p1:ValidateMaxLength="11" p1:ValidateRequired="true" p1:Guid="286b069e-2d5e-405e-862b-1fce34f9638e">

@@ -45,7 +45,7 @@ namespace Xin.ExternalService.EC.Job.Init
                 WMSInventoryBatchReqModel reqModel = new WMSInventoryBatchReqModel();
                 reqModel.Page = 1;
                 reqModel.PageSize = 10;
-                reqModel.FifoTimeFrom = DateTime.Parse("2020-03-16");
+                reqModel.FifoTimeFrom = DateTime.Parse("2016-04-15");
                 reqModel.FifoTimeTo = DateTime.Now;
                 WMSInventoryBatchRequest req = new WMSInventoryBatchRequest(login.Username, login.Password, reqModel);
                 var response = await req.Request();
@@ -79,6 +79,7 @@ namespace Xin.ExternalService.EC.Job.Init
                         throw;
                     }
                 }
+                
                 RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"批次库存拉取完成", reqModel));
                 try
                 {
@@ -88,7 +89,7 @@ namespace Xin.ExternalService.EC.Job.Init
                         {
                             WarehouseId = b.Key.WarehouseId,
                             ProductSku = b.Key.ProductSku,
-                            IbQuantity = b.Sum(c => c.IbQuantity)
+                            IbQuantity = b.Sum(c => c.IbQuantity)-b.Sum(d=>d.OutQuantity)
                         }).ToList();
                     var tt = (from a in allList
                               join b in warehouseList on a.WarehouseId equals b.WarehouseId

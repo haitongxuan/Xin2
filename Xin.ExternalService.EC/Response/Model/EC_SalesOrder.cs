@@ -36,7 +36,7 @@ namespace Xin.ExternalService.EC.Response.Model
         /// <summary>
         /// 订单状态
         /// </summary>
-        [JsonProperty(PropertyName = "status",NullValueHandling =0)]
+        [JsonProperty(PropertyName = "status", NullValueHandling = 0)]
         public int? Status { get; set; }
         /// <summary>
         /// 待发货下的处理状态，1:已处理,2:未处理，3：处理异常
@@ -258,6 +258,30 @@ namespace Xin.ExternalService.EC.Response.Model
         /// </summary>
         [JsonProperty(PropertyName = "orderDetails")]
         public List<EC_SalesOrderDetail> OrderDetails { get; set; }
+
+        /// <summary>
+        /// 自定义订单类型
+        /// </summary>
+        [JsonProperty(PropertyName = "customOrderType")]
+        public string CustomOrderType { get; set; }
+
+        /// <summary>
+        /// 订单标记状态 0：未标记 1：已标记
+        /// </summary>
+        [JsonProperty(PropertyName = "isMark")]
+        public string IsMark { get; set; }
+
+        /// <summary>
+        /// 客服备注
+        /// </summary>
+        [JsonProperty(PropertyName = "customerServiceNote")]
+        public string CustomerServiceNote { get; set; }
+
+        /// <summary>
+        /// 折扣
+        /// </summary>
+        [JsonProperty(PropertyName = "discount_val")]
+        public string DiscountVal { get; set; }
     }
 }
 

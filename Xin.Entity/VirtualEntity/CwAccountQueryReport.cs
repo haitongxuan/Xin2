@@ -235,7 +235,7 @@ namespace Xin.Entities.VirtualEntity
         }
 
         [Excel(Header = "订单总金额")]
-        public virtual decimal? Amountpaid
+        public virtual string Amountpaid
         {
             get;
             set;
@@ -378,7 +378,7 @@ namespace Xin.Entities.VirtualEntity
         }
 
         [Excel(Header = "收款金额")]
-        public virtual decimal? Receamount
+        public virtual string Receamount
         {
             get;
             set;
@@ -414,7 +414,7 @@ namespace Xin.Entities.VirtualEntity
         }
 
         [Excel(Header = "物流费用")]
-        public virtual decimal? CostShipFee
+        public virtual string CostShipFee
         {
             get;
             set;
