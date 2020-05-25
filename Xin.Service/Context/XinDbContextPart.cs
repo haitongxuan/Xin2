@@ -334,21 +334,21 @@ namespace Xin.Service.Context
         private void EcHeadTripLineMapping(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ECHeadTripLine>().HasKey(@"RowNumber");
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Ordercode").HasColumnName(@"Ordercode").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"ReferenceNo").HasColumnName(@"ReferenceNo").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<DateTime>(@"AddTime").HasColumnName(@"AddTime").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<DateTime>(@"ExpectedDate").HasColumnName(@"ExpectedDate").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"OutSku").HasColumnName(@"OutSku").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"ItemSku").HasColumnName(@"ItemSku").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"StoreName").HasColumnName(@"StoreName").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"CompanyName").HasColumnName(@"CompanyName").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Currery").HasColumnName(@"Currery").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Qty").HasColumnName(@"Qty").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<decimal>(@"Price").HasColumnName(@"Price").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<decimal>(@"Cost").HasColumnName(@"Cost").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Warehouse").HasColumnName(@"Warehouse").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"ToWarehouse").HasColumnName(@"ToWarehouse").ValueGeneratedNever();
-            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Remark").HasColumnName(@"Remark").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"Ordercode").HasColumnName(@"Ordercode").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"ReferenceNo").HasColumnName(@"ReferenceNo").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<DateTime>(@"AddTime").HasColumnName(@"AddTime").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<DateTime>(@"ExpectedDate").HasColumnName(@"ExpectedDate").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"OutSku").HasColumnName(@"OutSku").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"ItemSku").HasColumnName(@"ItemSku").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"StoreName").HasColumnName(@"StoreName").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"CompanyName").HasColumnName(@"CompanyName").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"Currery").HasColumnName(@"Currery").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<int?>(@"Qty").HasColumnName(@"Qty").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<decimal?>(@"Price").HasColumnName(@"Price").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<decimal?>(@"Cost").HasColumnName(@"Cost").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"Warehouse").HasColumnName(@"Warehouse").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"ToWarehouse").HasColumnName(@"ToWarehouse").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"Remark").HasColumnName(@"Remark").ValueGeneratedNever();
         }
     }
 }

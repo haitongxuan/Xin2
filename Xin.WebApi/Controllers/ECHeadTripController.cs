@@ -18,7 +18,6 @@ using System.Web;
 namespace Xin.WebApi.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
     [ApiController]
     public class ECHeadTripController : BaseController<ECHeadTripLine>
     {
@@ -48,9 +47,9 @@ namespace Xin.WebApi.Controllers
                     {
                         case "addtime":
                             if (item.binaryop == "gt")
-                                sbCommon.Append($" and t1.AddTime >={item.value}");
+                                sbCommon.Append($" and t1.AddTime >='{item.value}'");
                             if (item.binaryop == "lt")
-                                sbCommon.Append($" and t1.AddTime <={item.value}");
+                                sbCommon.Append($" and t1.AddTime <='{item.value}'");
                             break;
                         case "itemsku":
                             sbCommon.Append($" and t4.PcrProductSku in ({item.value})");
@@ -65,7 +64,7 @@ namespace Xin.WebApi.Controllers
 
             res = DataBaseHelper<ECHeadTripLine>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE ShipBatckQuery_sp @whereSql", whereSql);
 
-            return DataBaseHelper<ECHeadTripLine>.GetList(_uowProvider, res, pageReq);
+            return res;
         }
 
         /// <summary>

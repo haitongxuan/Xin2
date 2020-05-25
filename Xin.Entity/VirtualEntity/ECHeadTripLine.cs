@@ -61,17 +61,17 @@ namespace Xin.Entities.VirtualEntity
         /// 数量
         /// </summary>
         [Excel(Header = "数量")]
-        public int Qty { get; set; }
+        public int? Qty { get; set; }
         /// <summary>
         /// 单价
         /// </summary>
         [Excel(Header = "单价")]
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
         /// <summary>
         /// 总成本
         /// </summary>
         [Excel(Header = "总成本")]
-        public decimal Cost { get; set; }
+        public decimal? Cost { get; set; }
         /// <summary>
         /// 中转仓
         /// </summary>
