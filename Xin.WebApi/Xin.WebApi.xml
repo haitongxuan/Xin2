@@ -95,6 +95,19 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Xin.WebApi.Controllers.ECHeadTripController.GetECHeadTripLinesPage(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            头程商品信息
+            </summary>
+            <param name="pageReq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xin.WebApi.Controllers.ECHeadTripController.ExportECHeadTripLines(Xin.Web.Framework.Model.DatetimePointPageReq)">
+            <summary>
+            头程商品信息导出
+            </summary>
+            <param name="pageReq"></param>
+        </member>
         <member name="T:Xin.WebApi.Controllers.FinancialStatementController">
             <summary>
             财务报表

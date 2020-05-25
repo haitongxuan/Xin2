@@ -26,6 +26,7 @@ namespace Xin.Service.Context
             this.PlateformLevelMapping(modelBuilder);
             this.CwAccountQueryReportMapping(modelBuilder);
             this.ResultTableMapping(modelBuilder);
+            this.EcHeadTripLineMapping(modelBuilder);
 
         }
         private void ResultTableMapping(ModelBuilder modelBuilder)
@@ -49,7 +50,7 @@ namespace Xin.Service.Context
         }
         private void CwAccountQueryReportMapping(ModelBuilder modelBuilder)
         {
-            
+
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.OrderCostRatio).HasColumnName(@"OrderCostRatio").HasColumnType(@"varchar(100)").ValueGeneratedNever().HasMaxLength(100);
             modelBuilder.Entity<CwAccountQueryReport>().Property<int>(x => x.Id).HasColumnName(@"id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
             modelBuilder.Entity<CwAccountQueryReport>().Property<string>(x => x.OrderDesc).HasColumnName(@"orderDesc").HasColumnType(@"varchar(500)").ValueGeneratedNever().HasMaxLength(500);
@@ -167,6 +168,8 @@ namespace Xin.Service.Context
             modelBuilder.Entity<PlateformLevel>().Property<int>(@"ZQty").HasColumnName(@"ZQty").ValueGeneratedNever();
             modelBuilder.Entity<PlateformLevel>().HasKey(@"SaleType");
         }
+
+        public virtual DbSet<ECHeadTripLine> ECHeadTripLines { get; set; }
         public virtual DbSet<CwAccountQueryReport> CwAccountQueryReports
         {
             get;
@@ -326,6 +329,26 @@ namespace Xin.Service.Context
         {
             modelBuilder.Entity<ListStringModel>().Property<string>(p => p.ListItem).HasColumnName(@"ListItem").ValueGeneratedNever();
             modelBuilder.Entity<ListStringModel>().HasKey(@"ListItem");
+        }
+
+        private void EcHeadTripLineMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ECHeadTripLine>().HasKey(@"RowNumber");
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Ordercode").HasColumnName(@"Ordercode").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"ReferenceNo").HasColumnName(@"ReferenceNo").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<DateTime>(@"AddTime").HasColumnName(@"AddTime").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<DateTime>(@"ExpectedDate").HasColumnName(@"ExpectedDate").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"OutSku").HasColumnName(@"OutSku").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"ItemSku").HasColumnName(@"ItemSku").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"StoreName").HasColumnName(@"StoreName").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"CompanyName").HasColumnName(@"CompanyName").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Currery").HasColumnName(@"Currery").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Qty").HasColumnName(@"Qty").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<decimal>(@"Price").HasColumnName(@"Price").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<decimal>(@"Cost").HasColumnName(@"Cost").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Warehouse").HasColumnName(@"Warehouse").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"ToWarehouse").HasColumnName(@"ToWarehouse").ValueGeneratedNever();
+            modelBuilder.Entity<SaleOrderDetail>().Property<string>(@"Remark").HasColumnName(@"Remark").ValueGeneratedNever();
         }
     }
 }
