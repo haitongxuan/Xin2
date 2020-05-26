@@ -81,37 +81,37 @@ namespace Xin.ExternalService.EC.Job.Init
                 }
                 
                 RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"批次库存拉取完成", reqModel));
-                try
-                {
-                    WebClient wb = new WebClient();
-                    allList = allList.GroupBy(a => new { a.ProductSku, a.WarehouseId })
-                        .Select(b => new ECInventoryBatch
-                        {
-                            WarehouseId = b.Key.WarehouseId,
-                            ProductSku = b.Key.ProductSku,
-                            IbQuantity = b.Sum(c => c.IbQuantity)-b.Sum(d=>d.OutQuantity)
-                        }).ToList();
-                    var tt = (from a in allList
-                              join b in warehouseList on a.WarehouseId equals b.WarehouseId
-                              select new
-                              {
-                                  warehouse_code = b.WarehouseCode,
-                                  sku = a.ProductSku,
-                                  qty = a.IbQuantity
-                              }).ToList();
-                    string postString = "data=" + JsonConvert.SerializeObject(tt);
-                    wb.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-                    byte[] postData = Encoding.UTF8.GetBytes(postString);
-                    byte[] responseData = wb.UploadData("http://47.52.170.217:5000/goods_extension/set_goods_qty/", "POST", postData);
-                    string srcString = Encoding.UTF8.GetString(responseData);
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"数据推送到ERP:{srcString}", null));
+                //try
+                //{
+                //    WebClient wb = new WebClient();
+                //    allList = allList.GroupBy(a => new { a.ProductSku, a.WarehouseId })
+                //        .Select(b => new ECInventoryBatch
+                //        {
+                //            WarehouseId = b.Key.WarehouseId,
+                //            ProductSku = b.Key.ProductSku,
+                //            IbQuantity = b.Sum(c => c.IbQuantity)-b.Sum(d=>d.OutQuantity)
+                //        }).ToList();
+                //    var tt = (from a in allList
+                //              join b in warehouseList on a.WarehouseId equals b.WarehouseId
+                //              select new
+                //              {
+                //                  warehouse_code = b.WarehouseCode,
+                //                  sku = a.ProductSku,
+                //                  qty = a.IbQuantity
+                //              }).ToList();
+                //    string postString = "data=" + JsonConvert.SerializeObject(tt);
+                //    wb.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+                //    byte[] postData = Encoding.UTF8.GetBytes(postString);
+                //    byte[] responseData = wb.UploadData("http://47.52.170.217:5000/goods_extension/set_goods_qty/", "POST", postData);
+                //    string srcString = Encoding.UTF8.GetString(responseData);
+                //    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"数据推送到ERP:{srcString}", null));
 
-                }
-                catch (Exception ex)
-                {
+                //}
+                //catch (Exception ex)
+                //{
 
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"数据推送到ERP出现异常:{ex.Message}", null));
-                }
+                //    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"数据推送到ERP出现异常:{ex.Message}", null));
+                //}
 
             }
 
