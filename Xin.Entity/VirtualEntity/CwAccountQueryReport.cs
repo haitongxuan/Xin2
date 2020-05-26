@@ -234,7 +234,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
-        [Excel(Header = "订单总金额",Obj =0.01)]
+        [Excel(Header = "订单总金额",Obj = 0.01)]
         public virtual string Amountpaid
         {
             get;

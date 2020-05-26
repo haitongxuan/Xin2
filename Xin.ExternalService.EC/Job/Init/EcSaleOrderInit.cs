@@ -37,24 +37,24 @@ namespace Xin.ExternalService.EC.Job
             reqModel.GetAddress = IsOrNotEnum.Yes;
             Conditions conditions = new Conditions();
             conditions.CreatedDateAfter = DateTime.Parse("2020-03-15");
-            conditions.CreatedDateBefore = DateTime.Now;
+            conditions.CreatedDateBefore = DateTime.Parse("2020/5/26 12:40:04");
             reqModel.Condition = conditions;
 
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ECSalesOrder>();
                 var addRepository = uow.GetRepository<ECSalesOrderAddress>();
-                try
-                {
-                    await repository.DeleteAll();
-                    await addRepository.DeleteAll();
-                    await uow.SaveChangesAsync();
-                }
-                catch (Exception ex)
-                {
-                    log.Error($"初始化产品信息,删除产品信息异常:{ex.Message}");
-                    throw ex;
-                }
+                //try
+                //{
+                //    await repository.DeleteAll();
+                //    await addRepository.DeleteAll();
+                //    await uow.SaveChangesAsync();
+                //}
+                //catch (Exception ex)
+                //{
+                //    log.Error($"初始化产品信息,删除产品信息异常:{ex.Message}");
+                //    throw ex;
+                //}
                 EBGetOrderListRequest req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                 try
                 {

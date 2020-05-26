@@ -32,7 +32,7 @@ namespace Xin.ExternalService.EC.Job
         public override async Task Job(DateTime? datetime = null)
         {
             bool finish = true;
-            int page = 1;
+            int page = 31;
             List<ECSkuRelation> skuRelation = new List<ECSkuRelation>();
             using (var uow = _uowProvider.CreateUnitOfWork())
             {

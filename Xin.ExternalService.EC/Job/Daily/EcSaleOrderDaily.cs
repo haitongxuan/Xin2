@@ -67,6 +67,9 @@ namespace Xin.ExternalService.EC.Job
                             log.Info($"日订单开始拉取:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
+                            string rr = JsonConvert.SerializeObject(response.Body);
+                            log.Info(JsonConvert.SerializeObject(rr));
+
                         }
                         catch (Exception ex)
                         {
@@ -80,7 +83,6 @@ namespace Xin.ExternalService.EC.Job
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
                                 var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
-                                log.Info(JsonConvert.SerializeObject(m));
                                 if (had != null)
                                 {
                                     List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();
@@ -150,7 +152,8 @@ namespace Xin.ExternalService.EC.Job
                             log.Info($"日订单开始更新:更新时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
-                            log.Info(response.Body);
+                            string rr = JsonConvert.SerializeObject(response.Body);
+                            log.Info(JsonConvert.SerializeObject(rr));
                         }
                         catch (Exception ex)
                         {
@@ -164,6 +167,7 @@ namespace Xin.ExternalService.EC.Job
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
                                 var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
+                                log.Info(JsonConvert.SerializeObject(m));
                                 if (had != null)
                                 {
                                     List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();

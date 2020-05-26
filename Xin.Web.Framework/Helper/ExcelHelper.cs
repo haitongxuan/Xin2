@@ -342,7 +342,7 @@ namespace Xin.Web.Framework.Helper
                             {
                                 double doubV = 0;
                                 double.TryParse(drValue, out doubV);
-                                if (doubV == 0)
+                                if ( string.IsNullOrWhiteSpace(drValue))
                                 {
                                     row.CreateCell(j).SetCellValue("");
                                 }
