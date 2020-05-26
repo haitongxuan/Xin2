@@ -54,22 +54,22 @@ namespace Xin.WebApi.Controllers
                                 sbCommon.Append($" and t1.AddTime <= '{item.value}'");
                             break;
                         case "itemsku":
-                            sbCommon.Append($" and t4.PcrProductSku {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and t4.PcrProductSku {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "storename":
-                            sbCommon.Append($" and t1.useraccount {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and t1.useraccount {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "towarehouse":
-                            sbCommon.Append($" and ToWarehouse {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and ToWarehouse {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "warehouse":
-                            sbCommon.Append($" and Warehouse {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and Warehouse {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "ordercode":
-                            sbCommon.Append($" and t1.Ordercode {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and t1.Ordercode {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "companyname":
-                            sbCommon.Append($" and company {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and company {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                     }
                 }
@@ -106,22 +106,22 @@ namespace Xin.WebApi.Controllers
                                 sbCommon.Append($" and t1.AddTime <= '{item.value}'");
                             break;
                         case "itemsku":
-                            sbCommon.Append($" and t4.PcrProductSku {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and t4.PcrProductSku {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "storename":
-                            sbCommon.Append($" and t1.useraccount {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and t1.useraccount {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "towarehouse":
-                            sbCommon.Append($" and ToWarehouse {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and ToWarehouse {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "warehouse":
-                            sbCommon.Append($" and Warehouse {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and Warehouse {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "ordercode":
-                            sbCommon.Append($" and t1.Ordercode {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and t1.Ordercode {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "companyname":
-                            sbCommon.Append($" and company {Operate.GetSqlOperate(item.binaryop)} '{item.value}' )");
+                            sbCommon.Append($" and company {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                     }
                 }
