@@ -234,7 +234,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
-        [Excel(Header = "订单总金额")]
+        [Excel(Header = "订单总金额",Obj =0.01)]
         public virtual string Amountpaid
         {
             get;
@@ -377,7 +377,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
-        [Excel(Header = "收款金额")]
+        [Excel(Header = "收款金额",Obj = 0.01)]
         public virtual string Receamount
         {
             get;
@@ -413,7 +413,7 @@ namespace Xin.Entities.VirtualEntity
             set;
         }
 
-        [Excel(Header = "物流费用")]
+        [Excel(Header = "物流费用", Obj = 0.01)]
         public virtual string CostShipFee
         {
             get;

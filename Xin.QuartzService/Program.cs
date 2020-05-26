@@ -81,7 +81,7 @@ namespace XIn.QuartzService
             //#endregion
 
             #region EcGetProductDaily
-            IJobDetail job = JobBuilder.Create<EcShipBatchInit>()
+            IJobDetail job = JobBuilder.Create<EcGetSkuRelationInit>()
                   .WithIdentity("job5", "group1")
                   .Build();
             //创建触发器

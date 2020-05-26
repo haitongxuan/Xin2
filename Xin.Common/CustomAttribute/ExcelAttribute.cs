@@ -11,10 +11,16 @@ namespace Xin.Common.CustomAttribute
         private string header;
         private string dateTime;
         private bool picture =false;
+        private object obj;
         public string Header
         {
             get { return header; }
             set { header = value; }
+        }
+        public object Obj
+        {
+            get { return obj; }
+            set { obj = value; }
         }
         public bool Picture
         {

@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Data.SqlClient;
 using System.Web;
+using Xin.Entities;
 
 namespace Xin.WebApi.Controllers
 {
@@ -21,6 +22,7 @@ namespace Xin.WebApi.Controllers
     [ApiController]
     public class ECHeadTripController : BaseController<ECHeadTripLine>
     {
+
         public ECHeadTripController(IUowProvider uowProvider) : base(uowProvider)
         {
         }
@@ -110,6 +112,26 @@ namespace Xin.WebApi.Controllers
             Response.Body.Write(ExcelHelper<ECHeadTripLine>.NpoiListToExcel(res.data.OrderBy(a => a.AddTime).ThenByDescending(a => a.AddTime).ToList()));
             Response.Body.Flush();
             Response.Body.Close();
+        }
+        /// <summary>
+        /// 获取店铺数据
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetShop")]
+        [HttpGet]
+        public string[] GetShop()
+        {
+            using (var uow = _uowProvider.CreateUnitOfWork())
+            {
+                var reps = uow.GetRepository<ECShipBatch>();
+                var sql = reps.GetAll().GroupBy(item => new { item.UserAccount}).ToList();
+                string[] shops = new string[sql.Count];
+                for (int i = 0; i < sql.Count; i++)
+                {
+                    shops[i] = sql[i].Key.UserAccount;
+                }
+                return shops;
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Xin.ExternalService.EC.Job
         public override async Task Job(DateTime? datetime = null)
         {
             bool finish = true;
-            int page = 801;
+            int page = 1;
             List<ECSkuRelation> skuRelation = new List<ECSkuRelation>();
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
@@ -50,7 +50,7 @@ namespace Xin.ExternalService.EC.Job
                 EBGetSkuRelationReqModel reqModel = new EBGetSkuRelationReqModel();
                 RelationCondition condition = new RelationCondition();
                 condition.AddTimeStart = "2018-01-01";
-                condition.AddTimeEnd = "2020-05-02";
+                condition.AddTimeEnd = "2020-05-26";
                 while (finish)
                 {
                     reqModel.Page = page;
