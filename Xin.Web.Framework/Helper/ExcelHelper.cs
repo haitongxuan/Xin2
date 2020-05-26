@@ -327,7 +327,7 @@ namespace Xin.Web.Framework.Helper
                         {
                             var drValue = props[j].GetValue(list[i]) == null ? "" : props[j].GetValue(list[i]).ToString();
                             var type = props[j].PropertyType;
-                            if (head.Obj!=null)
+                            if (head.Obj != null)
                             {
                                 type = head.Obj.GetType();
                             }
@@ -337,11 +337,19 @@ namespace Xin.Web.Framework.Helper
                                 int.TryParse(drValue, out intV);
                                 row.CreateCell(j).SetCellValue(intV);
                             }
-                            else if (type == typeof(System.Decimal) || type == typeof(System.Decimal?))
+                            else if (type == typeof(System.Decimal) || type == typeof(System.Decimal?)
+                                || type == typeof(System.Double) || type == typeof(System.Double?))
                             {
                                 double doubV = 0;
                                 double.TryParse(drValue, out doubV);
-                                row.CreateCell(j).SetCellValue(doubV);
+                                if (doubV == 0)
+                                {
+                                    row.CreateCell(j).SetCellValue("");
+                                }
+                                else
+                                {
+                                    row.CreateCell(j).SetCellValue(doubV);
+                                }
                             }
                             else if (type == typeof(System.Byte) || type == typeof(System.Byte?))
                             {
@@ -386,7 +394,7 @@ namespace Xin.Web.Framework.Helper
                         int length = Encoding.Default.GetBytes(currentCell.ToString()).Length;
                         if (columnWidth < length)
                         {
-                            columnWidth = length;
+                            columnWidth = length + 1;
                         }
                     }
                     if (columnWidth > 40)

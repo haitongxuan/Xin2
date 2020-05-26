@@ -105,7 +105,7 @@ namespace Xin.WebApi.Controllers
             var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
 
             pageReq.query = list;
-            res = DataBaseHelper<ECHeadTripLine>.GetFromProcedure(_uowProvider, res, pageReq, true, "EXECUTE CwAccountQuery_sp @whereSql", whereSql);
+            res = DataBaseHelper<ECHeadTripLine>.GetFromProcedure(_uowProvider, res, pageReq, true, "EXECUTE ShipBatckQuery_sp @whereSql", whereSql);
             //将已经解码的字符再次进行编码.
             Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("FinancialStatementReport.xlsx"));
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";

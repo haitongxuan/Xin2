@@ -108,6 +108,12 @@
             </summary>
             <param name="pageReq"></param>
         </member>
+        <member name="M:Xin.WebApi.Controllers.ECHeadTripController.GetShop">
+            <summary>
+            获取店铺数据
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Xin.WebApi.Controllers.FinancialStatementController">
             <summary>
             财务报表

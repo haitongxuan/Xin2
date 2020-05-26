@@ -533,13 +533,15 @@ namespace Xin.WebApi.Controllers
                 {
                     var repos = uow.GetRepository<ECProduct>();
                     var products = repos.GetAll();
-                    List<ProductImportModel> lists = (from a in list
-                                                      join d in products on a.sku equals d.ProductSku
+                    List<ProductImportModel> lists = (from a in products
+                                                      from d in list
+                                                      where a.ProductSku.Contains(d.sku)
                                                       select new ProductImportModel
                                                       {
-                                                          sku = a.sku,
-                                                          image = d.ProductImages,
-                                                          imageUrl = d.ProductImages
+                                                          sku = d.sku,
+                                                          outPutSku = a.ProductSku,
+                                                          image = a.ProductImages,
+                                                          imageUrl = a.ProductImages
                                                       }).ToList();
                     BaseResponse resp = new BaseResponse();
                     Dictionary<string, string>  dic = Web.Framework.Helper.FileHelper.uploadExcel(ExcelHelper<ProductImportModel>.NpoiListToExcel(lists), resp, _hostingEnvironment.ContentRootPath).data;

@@ -7,9 +7,13 @@ namespace Xin.Web.Framework.Model
 {
    public class ProductImportModel
     {
-        [Excel(Header = "产品名称")]
+        [Excel(Header = "原始Sku")]
 
         public string sku { get; set; }
+
+        [Excel(Header = "产品名称")]
+
+        public string outPutSku { get; set; }
 
         [Excel(Header = "图片",Picture =true)]
         public string image { get; set; }
