@@ -327,6 +327,10 @@ namespace Xin.Web.Framework.Helper
                         {
                             var drValue = props[j].GetValue(list[i]) == null ? "" : props[j].GetValue(list[i]).ToString();
                             var type = props[j].PropertyType;
+                            if (head.Obj!=null)
+                            {
+                                type = head.Obj.GetType();
+                            }
                             if (type == typeof(Int32) || type == typeof(Int32?))
                             {
                                 int intV = 0;
