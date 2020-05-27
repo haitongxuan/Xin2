@@ -350,9 +350,10 @@ namespace Xin.WebApi.Controllers
         /// <returns></returns>
         [Route("ExportRepeatCust")]
         [HttpPost]
-        public void ExportRepeatCust(DatetimePointPageReq pageReq) {
+        public void ExportRepeatCust(DatetimePointPageReq pageReq)
+        {
             var res = new GridPage<List<ECRepeatCust>>() { code = ResCode.Success };
-            res =  DataBaseHelper<ECRepeatCust>.GetList(_uowProvider, res, pageReq,null,true);
+            res = DataBaseHelper<ECRepeatCust>.GetList(_uowProvider, res, pageReq, null, true);
             Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("RepeatCust.xlsx"));
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
             Response.Body.Write(ExcelHelper<ECRepeatCust>.NpoiListToExcel(res.data));
@@ -544,11 +545,11 @@ namespace Xin.WebApi.Controllers
                                                           imageUrl = a.ProductImages
                                                       }).ToList();
                     BaseResponse resp = new BaseResponse();
-                    Dictionary<string, string>  dic = Web.Framework.Helper.FileHelper.uploadExcel(ExcelHelper<ProductImportModel>.NpoiListToExcel(lists), resp, _hostingEnvironment.ContentRootPath).data;
+                    Dictionary<string, string> dic = Web.Framework.Helper.FileHelper.uploadExcel(ExcelHelper<ProductImportModel>.NpoiListToExcel(lists), resp, _hostingEnvironment.ContentRootPath).data;
                     res.data = lists;
                     res.totalCount = lists.Count;
                     string url = "";
-                    dic.TryGetValue("url",out url);
+                    dic.TryGetValue("url", out url);
                     res.url = url;
                 }
             }
@@ -559,6 +560,154 @@ namespace Xin.WebApi.Controllers
                 res.code = ResCode.Error;
             }
             return res;
+        }
+
+        /// <summary>
+        /// 财务订单合计报表
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("OrderCostTotal")]
+        public GridPage<List<OrderCostTotalReport>> OrderCostTotal(DatetimePointPageReq pageReq)
+        {
+
+            var res = new GridPage<List<OrderCostTotalReport>> { code = ResCode.Success };
+            StringBuilder sbCommon = new StringBuilder();
+            List<FilterNode> list = new List<FilterNode>();
+            foreach (var item in pageReq.query)
+            {
+                if (item.value != null)
+                {
+                    switch (item.key.ToLower())
+                    {
+                        case "storename":
+                            sbCommon.Append($" {item.andorop} UserAccount {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                        default:
+                            sbCommon.Append($" {item.andorop} {item.key} {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                    }
+                }
+            }
+            var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
+            pageReq.query = list;
+            res = DataBaseHelper<OrderCostTotalReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE OrderCost_sp @whereSql", whereSql);
+            return res;
+        }
+        /// <summary>
+        /// 导出财务订单合计报表
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("ExportOrderCostTotal")]
+        public void ExportOrderCostTotal(DatetimePointPageReq pageReq)
+        {
+
+            var res = new GridPage<List<OrderCostTotalReport>> { code = ResCode.Success };
+            StringBuilder sbCommon = new StringBuilder();
+            List<FilterNode> list = new List<FilterNode>();
+            foreach (var item in pageReq.query)
+            {
+                if (item.value != null)
+                {
+                    switch (item.key.ToLower())
+                    {
+                        case "storename":
+                            sbCommon.Append($" {item.andorop} UserAccount {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                        default:
+                            sbCommon.Append($" {item.andorop} {item.key} {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                    }
+                }
+            }
+            var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
+            pageReq.query = list;
+            res = DataBaseHelper<OrderCostTotalReport>.GetFromProcedure(_uowProvider, res, pageReq, true, "EXECUTE OrderCost_sp @whereSql", whereSql);
+            Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("OrderCostTotalReport.xlsx"));
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
+            Response.Body.Write(ExcelHelper<OrderCostTotalReport>.NpoiListToExcel(res.data));
+            Response.Body.Flush();
+            Response.Body.Close();
+        }
+        /// <summary>
+        /// SKU销量明细报表
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("SkuSaleQuery")]
+        public GridPage<List<SkuSaleQueryReport>> SkuSaleQuery(DatetimePointPageReq pageReq)
+        {
+
+            var res = new GridPage<List<SkuSaleQueryReport>> { code = ResCode.Success };
+            StringBuilder sbCommon = new StringBuilder();
+            List<FilterNode> list = new List<FilterNode>();
+            foreach (var item in pageReq.query)
+            {
+                if (item.value != null)
+                {
+                    switch (item.key.ToLower())
+                    {
+                        case "storename":
+                            sbCommon.Append($" {item.andorop} UserAccount in ({item.value}) ");
+                            break;
+                        case "sku":
+                            sbCommon.Append($" {item.andorop} PcrProductSku {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                        default:
+                            sbCommon.Append($" {item.andorop} {item.key} {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                    }
+                }
+            }
+            var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
+            pageReq.query = list;
+            res = DataBaseHelper<SkuSaleQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE SkuSaleQuery_sp @whereSql", whereSql);
+            return res;
+        }
+
+        /// <summary>
+        /// 导出SKU销量明细报表
+        /// </summary>
+        /// <param name="pageReq"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("ExportSkuSaleQuery")]
+        public void ExportSkuSaleQuery(DatetimePointPageReq pageReq)
+        {
+
+            var res = new GridPage<List<SkuSaleQueryReport>> { code = ResCode.Success };
+            StringBuilder sbCommon = new StringBuilder();
+            List<FilterNode> list = new List<FilterNode>();
+            foreach (var item in pageReq.query)
+            {
+                if (item.value != null)
+                {
+                    switch (item.key.ToLower())
+                    {
+                        case "storename":
+                            sbCommon.Append($" {item.andorop} UserAccount in ({item.value}) ");
+                            break;
+                        case "sku":
+                            sbCommon.Append($" {item.andorop} PcrProductSku {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                        default:
+                            sbCommon.Append($" {item.andorop} {item.key} {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            break;
+                    }
+                }
+            }
+            var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
+            pageReq.query = list;
+            res = DataBaseHelper<SkuSaleQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE SkuSaleQuery_sp @whereSql", whereSql);
+            Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("OrderCostTotalReport.xlsx"));
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
+            Response.Body.Write(ExcelHelper<SkuSaleQueryReport>.NpoiListToExcel(res.data));
+            Response.Body.Flush();
+            Response.Body.Close();
         }
     }
 }

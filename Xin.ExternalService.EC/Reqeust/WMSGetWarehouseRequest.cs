@@ -24,7 +24,7 @@ namespace Xin.ExternalService.EC.Reqeust
             {
                 var body = await service.ResponseServiceAsync();
                 WMSGetWarehouseResponse response = new WMSGetWarehouseResponse(body);
-
+                body.Data = body.Data.Replace("0000-00-00 00:00:00", "");
                 JObject j = (JObject)JsonConvert.DeserializeObject(body.Data);
                 IEnumerable<JProperty> properties = j.Properties();
                 foreach (JProperty p in properties)

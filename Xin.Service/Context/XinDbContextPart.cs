@@ -27,8 +27,36 @@ namespace Xin.Service.Context
             this.CwAccountQueryReportMapping(modelBuilder);
             this.ResultTableMapping(modelBuilder);
             this.EcHeadTripLineMapping(modelBuilder);
+            this.OrderCostTotalMapping(modelBuilder);
+            this.SkuSaleQueryMapping(modelBuilder);
 
         }
+
+        private void SkuSaleQueryMapping(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SkuSaleQueryReport>().Property<string>(@"storeName").HasColumnName(@"storeName").ValueGeneratedNever();
+            modelBuilder.Entity<SkuSaleQueryReport>().Property<string>(@"sku").HasColumnName(@"sku").ValueGeneratedNever();
+            modelBuilder.Entity<SkuSaleQueryReport>().Property<int?>(@"qty").HasColumnName(@"qty").ValueGeneratedNever();
+            modelBuilder.Entity<SkuSaleQueryReport>().HasKey(@"id");
+        }
+
+        private void OrderCostTotalMapping(ModelBuilder modelBuilder)
+
+        {
+            modelBuilder.Entity<OrderCostTotalReport>().Property<string>(@"storeName").HasColumnName(@"storeName").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().Property<string>(@"currency").HasColumnName(@"currency").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().Property<int?>(@"orderQty").HasColumnName(@"orderQty").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().Property<int>(@"status").HasColumnName(@"status").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().Property<int?>(@"productQty").HasColumnName(@"productQty").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().Property<decimal?>(@"shipFee").HasColumnName(@"shipFee").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().Property<decimal?>(@"total").HasColumnName(@"total").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().Property<decimal?>(@"cost").HasColumnName(@"cost").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().Property<string>(@"warehouseCode").HasColumnName(@"warehouseCode").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().Property<string>(@"plateform").HasColumnName(@"plateform").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().Property<string>(@"grossmargin").HasColumnName(@"grossmargin").ValueGeneratedNever();
+            modelBuilder.Entity<OrderCostTotalReport>().HasKey(@"id");
+        }
+
         private void ResultTableMapping(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UsUiceNomalSkuQtyReport>().Property<int>(x => x.Id).HasColumnName(@"Id").HasColumnType(@"int").IsRequired().ValueGeneratedOnAdd();
@@ -177,7 +205,9 @@ namespace Xin.Service.Context
         }
         public virtual DbSet<PlateformLevel> PlateformLevels { get; set; }
         public virtual DbSet<UsUiceNomalSkuQtyReport> UsUiceNomalSkuQtyReports { get; set; }
+        public virtual DbSet<OrderCostTotalReport> OrderCostTotalReports { get; set; }
 
+        public virtual DbSet<SkuSaleQueryReport> SkuSaleQueryReports { get; set; }
         public virtual DbSet<WavingBlock> WavingBlocks { get; set; }
         public virtual DbSet<HeadgearDensity> HeadgearDensitys { get; set; }
         public virtual DbSet<SingleProductSell> SingleProductSells { get; set; }
