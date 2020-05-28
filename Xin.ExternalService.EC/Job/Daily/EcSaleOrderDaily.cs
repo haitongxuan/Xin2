@@ -171,7 +171,6 @@ namespace Xin.ExternalService.EC.Job
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
                                 var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
-                                log.Info(JsonConvert.SerializeObject(m));
                                 if (had != null)
                                 {
                                     List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();

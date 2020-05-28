@@ -27,13 +27,12 @@ namespace Xin.ExternalService.EC.Reqeust.Tests
             reqModel.GetDetail = IsOrNotEnum.Yes;
             reqModel.Page = 1;
             reqModel.PageSize = 100;
-            //Conditions c = new Conditions();
-            //c.Platform = "aliexpress";
-            //List<string> list = new List<string>();
-            //list.Add("8011740556136553");
-            //c.RefNos = list;
-            //reqModel.Condition = c;
-            EBGetOrderListRequest req = new EBGetOrderListRequest("admin", "eccang123456", reqModel);
+            Conditions c = new Conditions();
+            List<string> list = new List<string>();
+            list.Add("600153656");
+            c.RefNos = list;
+            reqModel.Condition = c;
+            EBGetOrderListRequest req = new EBGetOrderListRequest("admin", "longqi123456", reqModel);
             var rr = await req.Request();
 
             var repository = LogManager.CreateRepository(Common.LogFactory.repositoryName);
@@ -60,11 +59,6 @@ namespace Xin.ExternalService.EC.Reqeust.Tests
                     var had = repos.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
                     if (had != null)
                     {
-                        List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();
-                        had.BnsSendDeliverdToEcs[0].ShippingMethodNo = m.ShippingMethodNo;
-                        had.BnsSendDeliverdToEcs[0].PlatformShipTime = m.PlatformShipTime;
-                        templist.Add(had.BnsSendDeliverdToEcs[0]);
-                        m.BnsSendDeliverdToEcs = templist;
                         updateList.Add(m);
                     }
                     else

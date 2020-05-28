@@ -19,5 +19,8 @@ namespace Xin.Entities.VirtualEntity
         [Excel(Header = "商品数量")]
 
         public int? qty { get; set; }
+        [Excel(Header = "参考单号")]
+
+        public string refNo { get; set; }
     }
 }

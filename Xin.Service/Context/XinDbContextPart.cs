@@ -35,7 +35,8 @@ namespace Xin.Service.Context
         private void SkuSaleQueryMapping(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SkuSaleQueryReport>().Property<string>(@"storeName").HasColumnName(@"storeName").ValueGeneratedNever();
-            modelBuilder.Entity<SkuSaleQueryReport>().Property<string>(@"sku").HasColumnName(@"sku").ValueGeneratedNever();
+            modelBuilder.Entity<SkuSaleQueryReport>().Property<string>(@"refNo").HasColumnName(@"refNo").ValueGeneratedNever();
+            modelBuilder.Entity<SkuSaleQueryReport>().Property<string>(@"sku").HasColumnName(@"sku").ValueGeneratedNever(); 
             modelBuilder.Entity<SkuSaleQueryReport>().Property<int?>(@"qty").HasColumnName(@"qty").ValueGeneratedNever();
             modelBuilder.Entity<SkuSaleQueryReport>().HasKey(@"id");
         }
