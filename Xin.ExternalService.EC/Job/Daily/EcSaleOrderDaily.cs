@@ -100,6 +100,10 @@ namespace Xin.ExternalService.EC.Job
                                     temp.PlatformShipTime = m.PlatformShipTime;
                                     templist.Add(temp);
                                     m.BnsSendDeliverdToEcs = templist;
+                                    if (m.PlatformShipTime!=null)
+                                    {
+                                        m.DeliverEmail = true;
+                                    }
                                     insertList.Add(m);
                                 }
                             }

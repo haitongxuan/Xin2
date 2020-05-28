@@ -702,7 +702,7 @@ namespace Xin.WebApi.Controllers
             }
             var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
             pageReq.query = list;
-            res = DataBaseHelper<SkuSaleQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE SkuSaleQuery_sp @whereSql", whereSql);
+            res = DataBaseHelper<SkuSaleQueryReport>.GetFromProcedure(_uowProvider, res, pageReq, true, "EXECUTE SkuSaleQuery_sp @whereSql", whereSql);
             Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("OrderCostTotalReport.xlsx"));
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
             Response.Body.Write(ExcelHelper<SkuSaleQueryReport>.NpoiListToExcel(res.data));

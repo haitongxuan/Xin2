@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,12 +12,13 @@ namespace Xin.ExternalService.EC.Reqeust
 {
     public class WMSGetShipBatchRequest : BaseRequest<WMSGetShipBatchResponse>
     {
-        public WMSGetShipBatchRequest(string username, string password, WMSShipBatchReqModel orderCode) : base(username, password)
+        public WMSGetShipBatchRequest(string username, string password, WMSShipBatchReqModel reqModel) : base(username, password)
         {
             service.Service = "getShipBatch";
             service.Plateform = "WMS";
-            service.ParamsJson = JsonConvert.SerializeObject(orderCode);
-
+            IsoDateTimeConverter timeFormat = new IsoDateTimeConverter();
+            timeFormat.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            service.ParamsJson = JsonConvert.SerializeObject(reqModel, timeFormat);
         }
         public override async Task<WMSGetShipBatchResponse> Request()
         {

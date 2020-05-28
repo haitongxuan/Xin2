@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,8 +16,9 @@ namespace Xin.ExternalService.EC.Reqeust
         {
             service.Service = "getTransitBatchNumber";
             service.Plateform = "WMS";
-            service.ParamsJson = JsonConvert.SerializeObject(reqModel);
-
+            IsoDateTimeConverter timeFormat = new IsoDateTimeConverter();
+            timeFormat.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            service.ParamsJson = JsonConvert.SerializeObject(reqModel, timeFormat);
         }
         public override async Task<WMSTransitBatchNumberResponse> Request()
         {
