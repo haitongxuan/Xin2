@@ -68,6 +68,12 @@ namespace Xin.ExternalService.EC.Job
             sp.Setup((o) => o.GetService(typeof(IRepository<ECWarehouse>)))
                 .Returns(new GenericEntityRepository<ECWarehouse>(logger.Object));
 
+            sp.Setup((o) => o.GetService(typeof(IRepository<ECCurrency>)))
+                .Returns(new GenericEntityRepository<ECCurrency>(logger.Object));
+
+            sp.Setup((o) => o.GetService(typeof(IRepository<ECShippingMethod>)))
+                .Returns(new GenericEntityRepository<ECShippingMethod>(logger.Object));
+
             _uowProvider = new UowProvider(logger.Object, sp.Object);
             var config = new AppConfigurationServices().Configuration;
 

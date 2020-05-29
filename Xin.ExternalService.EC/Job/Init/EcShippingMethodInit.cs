@@ -10,10 +10,10 @@ using Xin.ExternalService.EC.Response.Model;
 
 namespace Xin.ExternalService.EC.Job.Init
 {
-    public class EcCurrencyInit : EcBaseJob
+    public class EcShippingMethodInit : EcBaseJob
     {
         private readonly LogHelper log;
-        public EcCurrencyInit()
+        public EcShippingMethodInit()
         {
             log = LogFactory.GetLogger(LogType.QuartzLog);
         }
@@ -24,12 +24,12 @@ namespace Xin.ExternalService.EC.Job.Init
 
         public override async Task Job(DateTime? datetime = null)
         {
-            List<ECCurrency> insertList = new List<ECCurrency>();
+            List<ECShippingMethod> insertList = new List<ECShippingMethod>();
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcCurrencyInit", "INFO", "开始拉取新增数据",null));
+                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShippingMethodInit", "INFO", "开始拉取数据", null));
 
-                var repository = uow.GetRepository<ECCurrency>();
+                var repository = uow.GetRepository<ECShippingMethod>();
                 try
                 {
                     await repository.DeleteAll();
@@ -37,29 +37,29 @@ namespace Xin.ExternalService.EC.Job.Init
                 }
                 catch (Exception ex)
                 {
-                    log.Error($"货币对应拉取出现异常,清空出现异常:{ex.Message}");
+                    log.Error($"物流承运拉取出现异常,清空出现异常:{ex.Message}");
                     throw ex;
                 }
 
                 try
                 {
-                    WMSGetCurrencyRequest req = new WMSGetCurrencyRequest(login.Username, login.Password);
+                    WMSGetShippingMethodRequest req = new WMSGetShippingMethodRequest(login.Username, login.Password);
                     var response = await req.Request();
                     foreach (var item in response.Body)
                     {
-                        var m = Mapper<EC_Currency, ECCurrency>.Map(item);
+                        var m = Mapper<EC_ShippingMethod, ECShippingMethod>.Map(item);
                         insertList.Add(m);
                     }
                     repository.BulkInsert(insertList, x => x.IncludeGraph = true);
                     uow.SaveChanges();
-                    log.Info("货币对应拉取完成");
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcCurrencyInit", "INFO", "货币对应拉取完成", null));
+                    log.Info("物流承运拉取完成");
+                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShippingMethodInit", "INFO", "物流承运拉取完成", null));
 
                 }
-                catch (Exception ex )
+                catch (Exception ex)
                 {
-                    log.Error($"货币对应拉取出现异常:{ex.Message}");
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcCurrencyInit", "ERROOR", $"货币对应拉取出现异常:{ex.Message}", null));
+                    log.Error($"物流承运拉取出现异常:{ex.Message}");
+                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShippingMethodInit", "ERROOR", $"物流承运拉取出现异常:{ex.Message}", null));
                     throw;
                 }
             }

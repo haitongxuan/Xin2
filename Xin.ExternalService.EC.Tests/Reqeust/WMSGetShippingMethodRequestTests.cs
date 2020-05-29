@@ -17,31 +17,31 @@ namespace Xin.ExternalService.EC.Reqeust.Tests
         [TestMethod()]
         public async System.Threading.Tasks.Task RequestTestAsync()
         {
-            WMSGetShippingMethodRequest req = new WMSGetShippingMethodRequest("admin", "eccang123456");
+            WMSGetShippingMethodRequest req = new WMSGetShippingMethodRequest("admin", "longqi123456");
             var res = await req.Request();
-            //var logger = new Moq.Mock<ILogger<DataAccess>>();
-            //var sp = new Moq.Mock<IServiceProvider>();
-            //var myContext = new Service.Context.XinDBContext(new Microsoft.EntityFrameworkCore.DbContextOptions<Service.Context.XinDBContext>());
+            var logger = new Moq.Mock<ILogger<DataAccess>>();
+            var sp = new Moq.Mock<IServiceProvider>();
+            var myContext = new Service.Context.XinDBContext(new Microsoft.EntityFrameworkCore.DbContextOptions<Service.Context.XinDBContext>());
 
-            //sp.Setup((o) => o.GetService(typeof(IEntityContext))).Returns(myContext);
+            sp.Setup((o) => o.GetService(typeof(IEntityContext))).Returns(myContext);
 
-            //sp.Setup((o) => o.GetService(typeof(IRepository<ECShippingMethod>)))
-            //    .Returns(new GenericEntityRepository<ECShippingMethod>(logger.Object));
-            //var _uowProvider = new UowProvider(logger.Object, sp.Object);
+            sp.Setup((o) => o.GetService(typeof(IRepository<ECShippingMethod>)))
+                .Returns(new GenericEntityRepository<ECShippingMethod>(logger.Object));
+            var _uowProvider = new UowProvider(logger.Object, sp.Object);
 
-            //List<ECShippingMethod> list = new List<ECShippingMethod>();
-            //using (var uow = _uowProvider.CreateUnitOfWork())
-            //{
-            //    var repository = uow.GetRepository<ECShippingMethod>();
-            //    foreach (var item in res.Body)
-            //    {
-            //        var m = Mapper<EC_ShippingMethod, ECShippingMethod>.Map(item);
-            //        list.Add(m);
-            //    }
-            //    repository.BulkInsert(list, x => x.IncludeGraph = true);
-            //    uow.SaveChanges();
+            List<ECShippingMethod> list = new List<ECShippingMethod>();
+            using (var uow = _uowProvider.CreateUnitOfWork())
+            {
+                var repository = uow.GetRepository<ECShippingMethod>();
+                foreach (var item in res.Body)
+                {
+                    var m = Mapper<EC_ShippingMethod, ECShippingMethod>.Map(item);
+                    list.Add(m);
+                }
+                repository.BulkInsert(list, x => x.IncludeGraph = true);
+                uow.SaveChanges();
 
-            //}
+            }
         }
     }
 }

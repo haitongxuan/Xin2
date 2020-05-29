@@ -211,6 +211,78 @@
       <Exclude Name="states" Table="dbo.Bns_SendDeliverdToEc" Type="Column" />
       <Exclude Name="PK__EC_Send___3213E83FA21C04C9" Table="dbo.Bns_SendDeliverdToEc" Type="Constraint" />
       <Exclude Name="FK__Bns_SendD__Order__2042BE37" Table="dbo.Bns_SendDeliverdToEc" Type="Constraint" />
+      <Exclude Name="id" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="classify_id" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="original_content" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="html_content" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="editer" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="create_time" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="update_time" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="image" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="title" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="status" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="sub_title" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="PK__Ding_New__3213E83F140B40F0" Table="dbo.Ding_News" Type="Constraint" />
+      <Exclude Name="FK__Ding_News__class__6521F869" Table="dbo.Ding_News" Type="Constraint" />
+      <Exclude Name="OrderId" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="Plateform" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="OrderType" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="Status" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="ProcessAgain" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="RefNo" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="SaleOrderCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="SysOrderCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="WarehouseOrderCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="CompanyCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="UserAccount" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="PlatformUserName" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="OldShippingMethod" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="OldShippingMethodNo" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="ShippingMethod" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="ShippingMethodNo" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="ShippingMethodPlatform" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="WarehouseId" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="WarehouseCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="CreatedDate" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="UpdateDate" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="DatePaidPlatform" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="PlatformShipStatus" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="PlatformShipTime" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="DateWarehouseShipping" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="DateLatestShip" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="Currency" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="Amountpaid" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="Subtotal" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="ShipFee" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="PlatformFeeTotal" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="FinalvaluefeeTotal" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="OtherFee" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="CostShipFee" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="BuyerId" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="BuyerName" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="BuyerMail" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="Site" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="CountryCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="ProductCount" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="OrderWeight" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="OrderDesc" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="PaypalTransactionId" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="PaymentMethod" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="AbnormalType" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="AbnormalReason" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="ShippingAddressId" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="OriginalOrderId" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="SyncCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="is_push" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="CustomOrderType" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="IsMark" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="CustomerServiceNote" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="discount_val" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="needSendEmail" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="deliverEmail" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="PK_EC_SALESORDER" Table="dbo.EC_SalesOrder" Type="Constraint" />
+      <Exclude Name="FK_EC_SALES_REF_EC_SA_EC_SALES" Table="dbo.EC_SalesOrder" Type="Constraint" />
+      <Exclude Name="FK_EC_SALES_REFERENCE_EC_ORDER" Table="dbo.EC_SalesOrder" Type="Constraint" />
       <Exclude Name="ShippingAddressId" Table="dbo.EC_SalesOrderAddress" Type="Column" />
       <Exclude Name="Name" Table="dbo.EC_SalesOrderAddress" Type="Column" />
       <Exclude Name="CompanyName" Table="dbo.EC_SalesOrderAddress" Type="Column" />
@@ -247,6 +319,31 @@
       <Exclude Name="PK_EC_SALESORDERDETAIL" Table="dbo.EC_SalesOrderDetail" Type="Constraint" />
       <Exclude Name="FK_EC_SalesOrderDetail_EC_SalesOrder_0" Table="dbo.EC_SalesOrderDetail" Type="Constraint" />
       <Exclude Name="states" Table="dbo.Bns_SendDeliverdToEc" Type="Column" />
+      <Exclude Name="status" Table="dbo.Ding_News" Type="Column" />
+      <Exclude Name="OrderType" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="RefNo" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="SaleOrderCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="SysOrderCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="WarehouseOrderCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="CompanyCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="ShippingMethod" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="ShippingMethodNo" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="ShippingMethodPlatform" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="WarehouseCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="BuyerId" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="BuyerName" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="BuyerMail" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="Site" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="CountryCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="OrderDesc" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="PaypalTransactionId" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="PaymentMethod" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="SyncCode" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="is_push" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="CustomOrderType" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="IsMark" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="CustomerServiceNote" Table="dbo.EC_SalesOrder" Type="Column" />
+      <Exclude Name="discount_val" Table="dbo.EC_SalesOrder" Type="Column" />
       <Exclude Name="Name" Table="dbo.EC_SalesOrderAddress" Type="Column" />
       <Exclude Name="CompanyName" Table="dbo.EC_SalesOrderAddress" Type="Column" />
       <Exclude Name="CountryCode" Table="dbo.EC_SalesOrderAddress" Type="Column" />

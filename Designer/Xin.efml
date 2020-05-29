@@ -5364,6 +5364,23 @@
       <column name="order_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
   </class>
+  <class name="ECCurrency" entity-set="ECCurrencies" table="EC_Currency" schema="dbo" p1:Guid="f513cbd1-cde3-444b-b450-8da648823ba9">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="dacca808-2575-4b85-8314-f50fbf6a584c">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="CurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fa381e27-1e9b-4c15-89a5-cd4b8cc09bef">
+      <column name="currency_code" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CurrencyName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="565f1492-86e9-4285-a3e3-149c46756b75">
+      <column name="currency_name" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CurrencyNameEn" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d0bfa5c5-2c20-4f81-9b2d-f7f3774e366f">
+      <column name="currency_name_en" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
+    </property>
+    <property name="CurrencyRate" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="53963822-37ff-4f23-944e-2df003a9ae75">
+      <column name="currency_rate" not-null="False" precision="19" scale="4" sql-type="money" p1:unicode="False" />
+    </property>
+  </class>
   <associations>
     <association name="ResResource_ResPermission" cardinality="OneToMany" p1:Guid="ae321057-7df8-4fe3-b29a-f2fc7d120b3c">
       <end1 multiplicity="One" name="ResResource" class="ResPermission" relation-class="ResResource" constrained="True" lazy="False" p1:Guid="0cc8a9e9-bb24-4692-b8bb-f0b3242e0d8b">

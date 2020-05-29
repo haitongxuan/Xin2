@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,10 +7,21 @@ namespace Xin.ExternalService.EC.Response.Model
 {
     public class EC_Currency
     {
-        public string currency_code { get;set;}
-        public string currency_name { get; set; }
-        public string currency_name_en { get; set; }
-        public string currency_rate { get; set; }
+        [JsonProperty(PropertyName = "currency_code", NullValueHandling = NullValueHandling.Ignore)]
+
+        public string CurrencyCode { get; set; }
+
+        [JsonProperty(PropertyName = "currency_name", NullValueHandling = NullValueHandling.Ignore)]
+
+        public string CurrencyName { get; set; }
+
+        [JsonProperty(PropertyName = "currency_name_en", NullValueHandling = NullValueHandling.Ignore)]
+
+        public string CurrencyNameEn { get; set; }
+
+        [JsonProperty(PropertyName = "currency_rate", NullValueHandling = NullValueHandling.Ignore)]
+
+        public decimal? CurrencyRate { get; set; }
 
     }
 }

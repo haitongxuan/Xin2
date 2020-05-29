@@ -18,11 +18,10 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECOrderInfoShip {
+    public partial class ECCurrency {
 
-        public ECOrderInfoShip()
+        public ECCurrency()
         {
-            this.ECOrderInfoOrders = new List<ECOrderInfoOrder>();
             OnCreated();
         }
 
@@ -35,48 +34,27 @@ namespace Xin.Entities
         }
 
         [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string TrackingNumber
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ServiceNumberConvert
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string ServiceNumber
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string SoWeight
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
-        public virtual string SoShippingFee
-        {
-            get;
-            set;
-        }
-
-        [System.ComponentModel.DataAnnotations.StringLength(255)]
         public virtual string CurrencyCode
         {
             get;
             set;
         }
 
-        public virtual IList<ECOrderInfoOrder> ECOrderInfoOrders
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CurrencyName
+        {
+            get;
+            set;
+        }
+
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string CurrencyNameEn
+        {
+            get;
+            set;
+        }
+
+        public virtual decimal? CurrencyRate
         {
             get;
             set;
