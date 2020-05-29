@@ -47,12 +47,10 @@ namespace Xin.Service.Context
             modelBuilder.Entity<OrderCostTotalReport>().Property<string>(@"storeName").HasColumnName(@"storeName").ValueGeneratedNever();
             modelBuilder.Entity<OrderCostTotalReport>().Property<string>(@"currency").HasColumnName(@"currency").ValueGeneratedNever();
             modelBuilder.Entity<OrderCostTotalReport>().Property<int?>(@"orderQty").HasColumnName(@"orderQty").ValueGeneratedNever();
-            modelBuilder.Entity<OrderCostTotalReport>().Property<int>(@"status").HasColumnName(@"status").ValueGeneratedNever();
             modelBuilder.Entity<OrderCostTotalReport>().Property<int?>(@"productQty").HasColumnName(@"productQty").ValueGeneratedNever();
             modelBuilder.Entity<OrderCostTotalReport>().Property<decimal?>(@"shipFee").HasColumnName(@"shipFee").ValueGeneratedNever();
             modelBuilder.Entity<OrderCostTotalReport>().Property<decimal?>(@"total").HasColumnName(@"total").ValueGeneratedNever();
             modelBuilder.Entity<OrderCostTotalReport>().Property<decimal?>(@"cost").HasColumnName(@"cost").ValueGeneratedNever();
-            modelBuilder.Entity<OrderCostTotalReport>().Property<string>(@"warehouseCode").HasColumnName(@"warehouseCode").ValueGeneratedNever();
             modelBuilder.Entity<OrderCostTotalReport>().Property<string>(@"plateform").HasColumnName(@"plateform").ValueGeneratedNever();
             modelBuilder.Entity<OrderCostTotalReport>().Property<string>(@"grossmargin").HasColumnName(@"grossmargin").ValueGeneratedNever();
             modelBuilder.Entity<OrderCostTotalReport>().HasKey(@"id");

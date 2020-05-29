@@ -569,7 +569,7 @@ namespace Xin.WebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("OrderCostTotal")]
-        public GridPage<List<OrderCostTotalReport>> OrderCostTotal(DatetimePointPageReq pageReq)
+        public GridPage<List<OrderCostTotalReport>> OrderCostTotal(DatetimePointPageReq pageReq,bool total = false)
         {
 
             var res = new GridPage<List<OrderCostTotalReport>> { code = ResCode.Success };
@@ -592,7 +592,16 @@ namespace Xin.WebApi.Controllers
             }
             var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
             pageReq.query = list;
-            res = DataBaseHelper<OrderCostTotalReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE OrderCost_sp @whereSql", whereSql);
+            if (total)
+            {
+                res = DataBaseHelper<OrderCostTotalReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE OrderCostPlateform_sp @whereSql", whereSql);
+
+            }
+            else
+            {
+                res = DataBaseHelper<OrderCostTotalReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE OrderCostStore_sp @whereSql", whereSql);
+
+            }
             return res;
         }
         /// <summary>
@@ -625,7 +634,7 @@ namespace Xin.WebApi.Controllers
             }
             var whereSql = new SqlParameter("@whereSql", sbCommon.ToString());
             pageReq.query = list;
-            res = DataBaseHelper<OrderCostTotalReport>.GetFromProcedure(_uowProvider, res, pageReq, true, "EXECUTE OrderCost_sp @whereSql", whereSql);
+            res = DataBaseHelper<OrderCostTotalReport>.GetFromProcedure(_uowProvider, res, pageReq, true, "EXECUTE OrderCostStore_sp @whereSql", whereSql);
             Response.Headers.Add("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode("OrderCostTotalReport.xlsx"));
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8";
             Response.Body.Write(ExcelHelper<OrderCostTotalReport>.NpoiListToExcel(res.data));

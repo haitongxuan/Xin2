@@ -53,17 +53,7 @@ namespace Xin.Entities.VirtualEntity
         /// </summary>
         [Excel(Header = "订单总成本")]
         public decimal? cost { get; set; }
-        /// <summary>
-        /// 订单状态
-        /// </summary>
-        [Excel(Header = "订单状态")]
-        public int status { get; set; }
 
-        /// <summary>
-        /// 发货仓库
-        /// </summary>
-        [Excel(Header = "发货仓库")]
-        public string warehouseCode { get; set; }
         /// <summary>
         /// 订单毛利率
         /// </summary>

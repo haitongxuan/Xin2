@@ -49,8 +49,8 @@ namespace Xin.ExternalService.EC.Job
                 {
                     var repository = uow.GetRepository<ECSalesOrder>();
                     //reqCondition.CreatedDateAfter = DateTime.Parse("2020-03-12T10:50:09");
-                    reqCondition.CreatedDateAfter = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreatedDate)).FirstOrDefault().CreatedDate).AddDays(-1);
-                    var updateTime = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.UpdateDate)).FirstOrDefault().UpdateDate).AddDays(-1);
+                    reqCondition.CreatedDateAfter = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreatedDate)).FirstOrDefault().CreatedDate).AddHours(-3);
+                    var updateTime = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.UpdateDate)).FirstOrDefault().UpdateDate).AddHours(-3);
                     //新增
                     Reqeust.EBGetOrderListRequest req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                     var response = await req.Request();
@@ -100,7 +100,7 @@ namespace Xin.ExternalService.EC.Job
                                     temp.PlatformShipTime = m.PlatformShipTime;
                                     templist.Add(temp);
                                     m.BnsSendDeliverdToEcs = templist;
-                                    if (m.PlatformShipTime!=null)
+                                    if (m.PlatformShipTime != null)
                                     {
                                         m.DeliverEmail = true;
                                     }
@@ -170,6 +170,10 @@ namespace Xin.ExternalService.EC.Job
                             try
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
+                                if (m.RefNo == "600153656")
+                                {
+                                    string sss = "sdsdsd";
+                                }
                                 var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
                                 if (had != null)
                                 {

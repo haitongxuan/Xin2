@@ -38,8 +38,6 @@ namespace Xin.ExternalService.EC.Job.Init
                     await repository.DeleteAll();
                     await uow.SaveChangesAsync();
                     List<ECShipBatch> insertList = new List<ECShipBatch>();
-                    List<ECShipBatch> updateList = new List<ECShipBatch>();
-
                     WMSShipBatchReqModel reqModel = new WMSShipBatchReqModel();
                     reqModel.Page = "1";
                     reqModel.PageSize = "50";
@@ -57,26 +55,15 @@ namespace Xin.ExternalService.EC.Job.Init
                         foreach (var item in response.Body)
                         {
                             var m = Mapper<EC_ShipBatch, ECShipBatch>.Map(item);
-                            if (repository.Get(m.OrderCode)!=null)
-                            {
-                                updateList.Add(m);
-                            }
-                            else
-                            {
                                 insertList.Add(m);
-
-                            }
                         }
                         try
                         {
-                            updateList = updateList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
-
                             insertList = insertList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
                             await repository.BulkInsertAsync(insertList, x => x.IncludeGraph = true);
-                            await repository.BulkUpdateAsync(updateList, x => x.IncludeGraph = true);
 
                             uow.BulkSaveChanges();
-                            insertList.Clear(); updateList.Clear();
+                            insertList.Clear();
                         }
                         catch (Exception ex)
                         {
