@@ -39,7 +39,7 @@ namespace Xin.ExternalService.EC.Job
             reqModel.GetProductCustomCategory = IsOrNotEnum.Yes;
             reqModel.GetProperty = IsOrNotEnum.Yes;
             reqModel.ProductAddTimeFrom = DateTime.Parse("2018-03-04");
-            reqModel.ProductAddTimeTo = DateTime.Now;
+            reqModel.ProductAddTimeTo = DateTime.Parse("2020/5/30 10:14:10");
             bool finish = true;
             int pageIndex = 1;
             var addList = new List<ECProduct>();
@@ -47,44 +47,52 @@ namespace Xin.ExternalService.EC.Job
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
                 var repository = uow.GetRepository<ECProduct>();
+                //try
+                //{
+                //    await repository.DeleteAll();
+                //    await uow.SaveChangesAsync();
+                //}
+                //catch (Exception ex)
+                //{
+                //    log.Error($"初始化产品信息,删除产品信息异常:{ex.Message}");
+                //    throw ex;
+                //}
                 try
                 {
-                    await repository.DeleteAll();
-                    await uow.SaveChangesAsync();
+                    while (finish)
+                    {
+                        reqModel.Page = pageIndex;
+                        reqModel.PageSize = 1000;
+                        var req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
+                        var resp = await req.Request();
+                        foreach (var i in resp.Body)
+                        {
+                            addList.Add(Mapper<Response.Model.EC_Product, ECProduct>.Map(i));
+                        }
+                        if (resp.Body.Count != 1000)
+                        {
+                            finish = false;
+                        }
+                        try
+                        {
+                            addList = addList.GroupBy(item => item.ProductSku).Select(item => item.First()).ToList();
+                            await repository.BulkInsertAsync(addList, x => x.IncludeGraph = true);
+                            uow.BulkSaveChanges();
+                            addList.Clear();
+                        }
+                        catch (Exception ex)
+                        {
+                            log.Error($"产品信息,新增出现错误:{ex.Message}");
+
+                            throw ex;
+                        }
+                        pageIndex++;
+                    }
                 }
                 catch (Exception ex)
                 {
-                    log.Error($"初始化产品信息,删除产品信息异常:{ex.Message}");
-                    throw ex;
-                }
-                while (finish)
-                {
-                    reqModel.Page = pageIndex;
-                    reqModel.PageSize = 1000;
-                    var req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
-                    var resp = await req.Request();
-                    foreach (var i in resp.Body)
-                    {
-                       addList.Add(Mapper<Response.Model.EC_Product, ECProduct>.Map(i));
-                    }
-                    if (resp.Body.Count != 1000)
-                    {
-                        finish = false;
-                    }
-                    try
-                    {
-                        addList = addList.GroupBy(item => item.ProductSku).Select(item => item.First()).ToList();
-                        await repository.BulkInsertAsync(addList,x=>x.IncludeGraph = true);
-                        uow.BulkSaveChanges();
-                        addList.Clear();
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Error($"产品信息,新增出现错误:{ex.Message}");
 
-                        throw ex;
-                    }
-                    pageIndex++;
+                    throw;
                 }
             }
         }

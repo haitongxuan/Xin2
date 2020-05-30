@@ -35,8 +35,6 @@ namespace Xin.ExternalService.EC.Job.Init
                 using (var uow = _uowProvider.CreateUnitOfWork())
                 {
                     var repository = uow.GetRepository<ECShipBatch>();
-                    await repository.DeleteAll();
-                    await uow.SaveChangesAsync();
                     List<ECShipBatch> insertList = new List<ECShipBatch>();
                     WMSShipBatchReqModel reqModel = new WMSShipBatchReqModel();
                     reqModel.Page = "1";
@@ -57,19 +55,23 @@ namespace Xin.ExternalService.EC.Job.Init
                             var m = Mapper<EC_ShipBatch, ECShipBatch>.Map(item);
                                 insertList.Add(m);
                         }
-                        try
+                    }
+                    try
+                    {
+                        insertList = insertList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
+                        if (insertList.Count>0)
                         {
-                            insertList = insertList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
-                            await repository.BulkInsertAsync(insertList, x => x.IncludeGraph = true);
-
-                            uow.BulkSaveChanges();
-                            insertList.Clear();
+                            await repository.DeleteAll();
+                            await uow.SaveChangesAsync();
                         }
-                        catch (Exception ex)
-                        {
-                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShipBatchInit", "ERROR", $"头程出库单拉取出现异常{ex.Message}", reqModel));
-                            throw;
-                        }
+                        await repository.BulkInsertAsync(insertList, x => x.IncludeGraph = true);
+                        uow.BulkSaveChanges();
+                        insertList.Clear();
+                    }
+                    catch (Exception ex)
+                    {
+                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShipBatchInit", "ERROR", $"头程出库单拉取出现异常{ex.Message}", reqModel));
+                        throw;
                     }
                 }
                 RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShipBatchInit", "INFO", $"头程出库单拉取完成", null));

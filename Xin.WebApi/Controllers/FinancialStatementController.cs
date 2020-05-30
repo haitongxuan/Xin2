@@ -595,12 +595,10 @@ namespace Xin.WebApi.Controllers
             if (total)
             {
                 res = DataBaseHelper<OrderCostTotalReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE OrderCostPlateform_sp @whereSql", whereSql);
-
             }
             else
             {
                 res = DataBaseHelper<OrderCostTotalReport>.GetFromProcedure(_uowProvider, res, pageReq, false, "EXECUTE OrderCostStore_sp @whereSql", whereSql);
-
             }
             return res;
         }
