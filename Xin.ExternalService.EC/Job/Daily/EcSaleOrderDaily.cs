@@ -56,10 +56,11 @@ namespace Xin.ExternalService.EC.Job
                     var response = await req.Request();
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", "开始拉取新增数据", reqModel));
+                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", $"开始拉取新增数据,共{pageNum}页", reqModel));
 
                     for (int page = 1; page < pageNum + 1; page++)
                     {
+                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", $"开始拉取新增数据,第{page}页", reqModel));
                         reqModel.PageSize = 1000;
                         reqModel.Page = page;
                         try
@@ -144,10 +145,11 @@ namespace Xin.ExternalService.EC.Job
                     response = await req.Request();
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", "开始拉取更新数据", reqModel));
+                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", $"开始拉取更新数据,共{pageNum}页", reqModel));
 
                     for (int page = pageNum; page > 0; page--)
                     {
+                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", $"开始拉取更新数据,第{page}页", reqModel));
                         reqModel.PageSize = 1000;
                         reqModel.Page = page;
 
