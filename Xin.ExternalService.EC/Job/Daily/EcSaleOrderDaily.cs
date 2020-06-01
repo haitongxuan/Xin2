@@ -49,8 +49,8 @@ namespace Xin.ExternalService.EC.Job
                 using (var uow = _uowProvider.CreateUnitOfWork(false, false))
                 {
                     var repository = uow.GetRepository<ECSalesOrder>();
-                    reqCondition.CreatedDateAfter = DateTime.Parse("2020-05-26");
-                    //reqCondition.CreatedDateAfter = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreatedDate)).FirstOrDefault().CreatedDate).AddHours(-3);
+                    //reqCondition.CreatedDateAfter = DateTime.Parse("2020-05-26");
+                    reqCondition.CreatedDateAfter = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreatedDate)).FirstOrDefault().CreatedDate).AddHours(-3);
                     var updateTime = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.UpdateDate)).FirstOrDefault().UpdateDate).AddHours(-3);
                     //新增
                     Reqeust.EBGetOrderListRequest req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
