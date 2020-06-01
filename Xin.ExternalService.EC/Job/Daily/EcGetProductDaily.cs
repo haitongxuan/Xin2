@@ -10,6 +10,8 @@ using Xin.ExternalService.EC.Reqeust;
 using Xin.Common;
 using System.Linq;
 using Xin.ExternalService.EC.Reqeust.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Xin.ExternalService.EC.Job
 {
@@ -46,7 +48,7 @@ namespace Xin.ExternalService.EC.Job
                 using (var uow = _uowProvider.CreateUnitOfWork(false, false))
                 {
                     var repository = uow.GetRepository<ECProduct>();
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "INFO", $"产品信息新增,开始拉取", reqModel));
+                    log.Info($"产品信息 - 开始拉取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy - MM - dd HH: mm:ss" })}");
                     DateTime? lastAddTime = repository.QueryPage(0, 1, null, x => x.OrderByDescending(a => a.ProductAddTime)).FirstOrDefault().ProductAddTime;
                     DateTime? lastUpdateTime = repository.QueryPage(0, 1, null, x => x.OrderByDescending(a => a.ProductUpdateTime)).FirstOrDefault().ProductUpdateTime;
 
@@ -56,6 +58,7 @@ namespace Xin.ExternalService.EC.Job
                         reqModel.Page = pageIndex;
                         reqModel.ProductAddTimeFrom = lastAddTime;
                         reqModel.ProductAddTimeTo = now;
+                        log.Info($"产品信息 - 正在拉取第{pageIndex} 页");
                         var req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
                         var resp = await req.Request();
                         foreach (var i in resp.Body)
@@ -85,16 +88,16 @@ namespace Xin.ExternalService.EC.Job
                         }
                         catch (Exception ex)
                         {
-                            log.Error($"日产品信息,新增出现错误:{ex.Message}");
-
+                            log.Error($"产品信息 - 写入数据库出现异常:{ex.Message}");
                             throw ex;
                         }
                         pageIndex++;
                     }
+                    log.Info("产品信息 - 拉取完成");
+
                     //修改
                     pageIndex = 1;
                     finish = true;
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "INFO", $"产品信息更新,开始拉取", reqModel));
                     while (finish)
                     {
                         reqModel.Page = pageIndex;
@@ -103,6 +106,7 @@ namespace Xin.ExternalService.EC.Job
                         reqModel.ProductUpdateTimeFrom = lastUpdateTime;
                         reqModel.ProductUpdateTimeTo = now;
                         var req = new WMSGetProductListRequest(login.Username, login.Password, reqModel);
+                        log.Info($"产品信息 - 开始更新拉取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy - MM - dd HH: mm:ss" })}");
                         var resp = await req.Request();
                         foreach (var i in resp.Body)
                         {
@@ -124,22 +128,19 @@ namespace Xin.ExternalService.EC.Job
                         }
                         catch (Exception ex)
                         {
-                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "ERROR", $"产品信息更新,写入数据库出现异常:{ex.Message}", reqModel));
-                            log.Error($"日产品信息,更新出现错误:{ex.Message}");
+                            log.Error($"产品信息 - 写入数据库出现错误:{ex.Message}");
                             throw ex;
                         }
                         pageIndex++;
                     }
-                }
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "INFO", $"产品信息,拉取完成", reqModel));
+                    log.Info("产品信息 - 更新完成");
 
+                }
+                log.Info("产品信息 - 任务完成");
             }
             catch (Exception ex)
             {
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetProductDaily", "ERROR", $"产品信息,出现异常:{ex.Message}", reqModel));
-
-                log.Error($"日产品信息,出现错误:{ex.Message}");
-
+                log.Error($"产品信息 - 出现错误:{ex.Message}");
                 throw ex;
             }
         }

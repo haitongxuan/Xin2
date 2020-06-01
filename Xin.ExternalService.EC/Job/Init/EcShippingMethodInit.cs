@@ -27,8 +27,6 @@ namespace Xin.ExternalService.EC.Job.Init
             List<ECShippingMethod> insertList = new List<ECShippingMethod>();
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShippingMethodInit", "INFO", "开始拉取数据", null));
-
                 var repository = uow.GetRepository<ECShippingMethod>();
                 try
                 {
@@ -37,13 +35,15 @@ namespace Xin.ExternalService.EC.Job.Init
                 }
                 catch (Exception ex)
                 {
-                    log.Error($"物流承运拉取出现异常,清空出现异常:{ex.Message}");
+                    log.Error($"物流承运商信息 - 出现异常:{ex.Message}");
                     throw ex;
                 }
 
                 try
                 {
                     WMSGetShippingMethodRequest req = new WMSGetShippingMethodRequest(login.Username, login.Password);
+                    log.Info($"物流承运商信息 - 开始拉取");
+
                     var response = await req.Request();
                     foreach (var item in response.Body)
                     {
@@ -52,14 +52,11 @@ namespace Xin.ExternalService.EC.Job.Init
                     }
                     repository.BulkInsert(insertList, x => x.IncludeGraph = true);
                     uow.SaveChanges();
-                    log.Info("物流承运拉取完成");
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShippingMethodInit", "INFO", "物流承运拉取完成", null));
-
+                    log.Info("物流承运商信息 - 拉取完成");
                 }
                 catch (Exception ex)
                 {
-                    log.Error($"物流承运拉取出现异常:{ex.Message}");
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShippingMethodInit", "ERROOR", $"物流承运拉取出现异常:{ex.Message}", null));
+                    log.Error($"物流承运商信息 - 出现异常:{ex.Message}");
                     throw;
                 }
             }

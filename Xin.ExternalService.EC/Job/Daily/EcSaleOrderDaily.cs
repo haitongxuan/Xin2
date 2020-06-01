@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Quartz;
 using Xin.Common;
 using Xin.Entities;
@@ -48,34 +49,29 @@ namespace Xin.ExternalService.EC.Job
                 using (var uow = _uowProvider.CreateUnitOfWork(false, false))
                 {
                     var repository = uow.GetRepository<ECSalesOrder>();
-                    //reqCondition.CreatedDateAfter = DateTime.Parse("2020-03-12T10:50:09");
-                    reqCondition.CreatedDateAfter = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreatedDate)).FirstOrDefault().CreatedDate).AddHours(-3);
+                    reqCondition.CreatedDateAfter = DateTime.Parse("2020-05-26");
+                    //reqCondition.CreatedDateAfter = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreatedDate)).FirstOrDefault().CreatedDate).AddHours(-3);
                     var updateTime = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.UpdateDate)).FirstOrDefault().UpdateDate).AddHours(-3);
                     //新增
                     Reqeust.EBGetOrderListRequest req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
+                    log.Info($"订单新增数据 - 开始获取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" })}");
                     var response = await req.Request();
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", $"开始拉取新增数据,共{pageNum}页", reqModel));
-
+                    log.Info($" 订单新增数据 - 共计{pageNum}页");
                     for (int page = 1; page < pageNum + 1; page++)
                     {
-                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", $"开始拉取新增数据,第{page}页", reqModel));
                         reqModel.PageSize = 1000;
                         reqModel.Page = page;
                         try
                         {
-                            log.Info($"日订单开始拉取:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
+                            log.Info($"订单新增数据 - 正在拉取第{page}页");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
-                            string rr = JsonConvert.SerializeObject(response.Body);
-                            log.Info(JsonConvert.SerializeObject(rr));
-
                         }
                         catch (Exception ex)
                         {
-                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,接口调用出现异常:{ex.Message},第{page}页", reqModel));
-                            log.Error($"日订单信息,接口调用出现异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;异常信息:{ex.Message}");
+                            log.Error($"订单新增数据 - 接口调用出现异常:{ex.Message}");
                             throw ex;
                         }
                         foreach (var item in response.Body)
@@ -83,6 +79,7 @@ namespace Xin.ExternalService.EC.Job
                             try
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
+                                log.Debug($"订单新增数据 - 接口接收到数据:{JsonConvert.SerializeObject(m, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" })}");
                                 var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
                                 if (had != null)
                                 {
@@ -110,8 +107,7 @@ namespace Xin.ExternalService.EC.Job
                             }
                             catch (Exception ex)
                             {
-                                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,转换实体类出现异常:{ex.Message},第{page}页", reqModel));
-                                log.Error($"日订单信息,转换实体类出现异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;异常信息:{ex.Message}");
+                                log.Debug($"订单新增数据 - 转换实体类出现异常:{ex.Message}");
                                 throw ex;
                             }
                         }
@@ -129,12 +125,11 @@ namespace Xin.ExternalService.EC.Job
                         }
                         catch (Exception ex)
                         {
-                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,写入数据库异常:{ex.Message},第{page}页", reqModel));
-                            log.Error($"订单信息,写入数据库异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()};异常信息:{ex.Message}");
+                            log.Debug($"订单新增数据 - 写入数据库出现异常:{ex.Message}");
                             throw ex;
                         }
                     }
-
+                    log.Info($"订单新增数据 - 拉取完成");
                     reqCondition.CreatedDateBefore = null;
                     reqCondition.CreatedDateAfter = null;
                     reqCondition.UpdateDateBefore = DateTime.Now;
@@ -142,29 +137,26 @@ namespace Xin.ExternalService.EC.Job
                     reqModel.Page = 1;
                     reqModel.PageSize = 10;
                     req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
+                    log.Info($"订单更新数据 - 开始获取 请求参数{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" })}");
+
                     response = await req.Request();
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", $"开始拉取更新数据,共{pageNum}页", reqModel));
-
+                    log.Info($"订单更新数据 - 开始获取 共计{pageNum}页");
                     for (int page = pageNum; page > 0; page--)
                     {
-                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", $"开始拉取更新数据,第{page}页", reqModel));
                         reqModel.PageSize = 1000;
                         reqModel.Page = page;
 
                         try
                         {
-                            log.Info($"日订单开始更新:更新时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()}第{page}页;");
+                            log.Info($"订单更新数据 - 第{page}页;");
                             req = new EBGetOrderListRequest(login.Username, login.Password, reqModel);
                             response = await req.Request();
-                            string rr = JsonConvert.SerializeObject(response.Body);
-                            log.Info(JsonConvert.SerializeObject(rr));
                         }
                         catch (Exception ex)
                         {
-                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,接口调用出现异常:{ex.Message},第{page}页", reqModel));
-                            log.Error($"订单更新信息,接口调用出现异常:时间区间{reqModel.Condition.UpdateDateBefore.ToString()}TO{reqModel.Condition.UpdateDateAfter.ToString()}第{page}页;异常信息:{ex.Message}");
+                            log.Error($"订单更新数据 - 接口调用出现异常:{ex.Message}");
                             throw ex;
                         }
                         foreach (var item in response.Body)
@@ -172,13 +164,11 @@ namespace Xin.ExternalService.EC.Job
                             try
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
-                                if (m.RefNo == "600153656")
-                                {
-                                    string sss = "sdsdsd";
-                                }
+
                                 var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
                                 if (had != null)
                                 {
+                                    log.Debug($"订单更新数据 - 接口接收到数据:{JsonConvert.SerializeObject(m, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" })}");
                                     List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();
                                     had.BnsSendDeliverdToEcs[0].ShippingMethodNo = m.ShippingMethodNo;
                                     had.BnsSendDeliverdToEcs[0].PlatformShipTime = m.PlatformShipTime;
@@ -186,11 +176,14 @@ namespace Xin.ExternalService.EC.Job
                                     m.BnsSendDeliverdToEcs = templist;
                                     updateList.Add(m);
                                 }
+                                else
+                                {
+                                    log.Debug($"订单更新数据 - 还未插入表忽略,接口接收到数据:{JsonConvert.SerializeObject(m, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" })}");
+                                }
                             }
                             catch (Exception ex)
                             {
-                                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,转换实体类出现异常:{ex.Message},第{page}页", null));
-                                log.Error($"订单信息,转换实体类出现异常:时间区间{reqModel.Condition.UpdateDateAfter.ToString()}TO{reqModel.Condition.UpdateDateBefore.ToString()}第{page}页;异常信息:{ex.Message}");
+                                log.Error($"订单更新数据 - 转换实体类出现异常:{ex.Message}");
                                 throw ex;
                             }
 
@@ -202,26 +195,22 @@ namespace Xin.ExternalService.EC.Job
                             await repository.BulkUpdateAsync(updateList, x => x.IncludeGraph = true);
                             uow.BulkSaveChanges();
                             updateList.Clear();
-
                         }
                         catch (Exception ex)
                         {
-                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,出现异常:{ex.Message},第{page}页", reqModel));
-                            log.Error($"订单信息,写入数据库异常:时间区间{reqModel.Condition.CreatedDateBefore.ToString()}TO{reqModel.Condition.CreatedDateAfter.ToString()};异常信息:{ex.Message}");
+                            log.Error($"订单更新数据 - 写入数据库异常:{ex.Message}");
                             throw ex;
                         }
                     }
+                    log.Info("订单更新数据 - 拉取完成");
                 }
-
             }
             catch (Exception ex)
             {
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "ERROR", $"订单信息,出现异常:{ex.Message}", null));
+                log.Error($"订单更新数据 - 出现异常:{ex.Message}");
                 throw ex;
             }
-            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcSaleOrderDaily", "INFO", "订单信息更新成功", null));
-
-            log.Info($"订单信息更新成功");
+            log.Info($"订单数据 - 任务拉取完成");
         }
     }
 }

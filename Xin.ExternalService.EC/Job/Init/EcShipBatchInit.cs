@@ -1,4 +1,6 @@
-﻿using Quartz;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,26 +42,28 @@ namespace Xin.ExternalService.EC.Job.Init
                     reqModel.Page = "1";
                     reqModel.PageSize = "50";
                     WMSGetShipBatchRequest req = new WMSGetShipBatchRequest(login.Username, login.Password, reqModel);
+                    log.Info($"头程出库单 - 开始拉取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy - MM - dd HH: mm:ss" })}");
                     var response = await req.Request();
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 50);
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShipBatchInit", "INFO", $"头程出库单开始拉取,共计{pageNum}页", reqModel));
+                    log.Info($"头程出库单 - 共计{pageNum}页");
                     for (int page = 1; page < pageNum + 1; page++)
                     {
                         reqModel.Page = page.ToString();
                         reqModel.PageSize = "50";
+                        log.Info($"头程出库单 - 正在拉取{page}页");
                         req = new WMSGetShipBatchRequest(login.Username, login.Password, reqModel);
                         response = await req.Request();
                         foreach (var item in response.Body)
                         {
                             var m = Mapper<EC_ShipBatch, ECShipBatch>.Map(item);
-                                insertList.Add(m);
+                            insertList.Add(m);
                         }
                     }
                     try
                     {
                         insertList = insertList.GroupBy(item => item.OrderCode).Select(item => item.First()).ToList();
-                        if (insertList.Count>0)
+                        if (insertList.Count > 0)
                         {
                             await repository.DeleteAll();
                             await uow.SaveChangesAsync();
@@ -67,19 +71,19 @@ namespace Xin.ExternalService.EC.Job.Init
                         await repository.BulkInsertAsync(insertList, x => x.IncludeGraph = true);
                         uow.BulkSaveChanges();
                         insertList.Clear();
+                        log.Info($"头程出库单 - 拉取完成");
                     }
                     catch (Exception ex)
                     {
-                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShipBatchInit", "ERROR", $"头程出库单拉取出现异常{ex.Message}", reqModel));
+                        log.Error($"头程出库单 - 拉取出现异常:{ex.Message}");
                         throw;
                     }
                 }
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcShipBatchInit", "INFO", $"头程出库单拉取完成", null));
-
+                log.Info($"头程出库单 - 任务完成");
             }
             catch (Exception ex)
             {
-
+                log.Error($"头程出库单 - 拉取出现异常:{ex.Message}");
                 throw;
             }
         }

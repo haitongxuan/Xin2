@@ -1,4 +1,6 @@
-﻿using Quartz;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,24 +42,24 @@ namespace Xin.ExternalService.EC.Job
                 reqModel.PageSize = 5;
                 reqModel.Page = 1;
                 WMSGetDeliveryDetailListRequest req = new WMSGetDeliveryDetailListRequest(login.Username, login.Password, reqModel);
+                log.Info($"出库单 - 开始拉取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy - MM - dd HH: mm:ss" })}");
                 var response = await req.Request();
                 response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                 int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetDeliveryDetailDaily", "INFO", $"出库单,开始拉取,共{pageNum}页", reqModel));
+                log.Info($"出库单 - 共计{pageNum}页");
                 for (int page = 1; page < pageNum + 1; page++)
                 {
                     reqModel.PageSize = 1000;
                     reqModel.Page = page;
                     try
                     {
-                        log.Info($"出库单信息,开始拉取:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;");
+                        log.Info($"出库单 - 正在拉取第{page}页;");
                         req = new WMSGetDeliveryDetailListRequest(login.Username, login.Password, reqModel);
                         response = await req.Request();
                     }
                     catch (Exception ex)
                     {
-                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetDeliveryDetailDaily", "ERROR", $"出库单,接口调用出现异常:{ex.Message},第{page}页", reqModel));
-                        log.Error($"出库单信息,接口调用出现异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
+                        log.Error($"出库单 - 接口调用出现异常:{ex.Message}");
                         throw;
                     }
                     foreach (var item in response.Body)
@@ -78,8 +80,7 @@ namespace Xin.ExternalService.EC.Job
                         }
                         catch (Exception ex)
                         {
-                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetDeliveryDetailDaily", "ERROR", $"出库单,转换实体类出现异常:{ex.Message},第{page}页", reqModel));
-                            log.Error($"出库单信息,转换实体类出现异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
+                            log.Error($"出库单 - 转换实体类出现异常:{ex.Message}");
                             throw ex;
                         }
                     }
@@ -96,15 +97,14 @@ namespace Xin.ExternalService.EC.Job
                     }
                     catch (Exception ex)
                     {
-                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetDeliveryDetailDaily", "ERROR", $"出库单,写入数据库异常:{ex.Message},第{page}页", reqModel));
-                        log.Error($"出库单信息,写入数据库异常:时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}第{page}页;异常信息:{ex.Message}");
+                        log.Error($"出库单 - 写入数据库异常:{ex.Message}");
                         throw ex;
                     }
                 }
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetDeliveryDetailDaily", "INFO", $"出库单,拉取写入完成", reqModel));
-
-                log.Info($"出库单信息拉取写入完成,时间区间{reqModel.DateFor.ToString()}TO{reqModel.DateTo.ToString()}");
+                log.Info($"出库单 - 写入完成");
             }
+            log.Info($"出库单 - 任务完成");
+
         }
     }
 }

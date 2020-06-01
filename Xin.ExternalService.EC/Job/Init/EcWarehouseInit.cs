@@ -31,6 +31,7 @@ namespace Xin.ExternalService.EC.Job
         {
 
             var request = new Reqeust.WMSGetWarehouseRequest(login.Username, login.Password);
+            log.Info("仓库数据 - 开始拉取");
             try
             {
                 var response = await request.Request();
@@ -53,17 +54,18 @@ namespace Xin.ExternalService.EC.Job
                         }
                         await repository.BulkInsertAsync(entities, x => x.IncludeGraph = true);
                         await uow.BulkSaveChangesAsync();
+                        log.Info("仓库数据 - 拉取完成");
                     }
                 }
                 else
                 {
-                    log.Error($"{response.GetType().Name}:服务器返回异常:{response.GetErrorString()}");
+                    log.Error($"仓库数据 - 返回异常:{response.GetErrorString()}");
                     throw new ECExceptoin("仓库信息初始化错误", response.Error);
                 }
             }
             catch (Exception ex)
             {
-                log.Error($"{request.GetType().Name}请求异常:{ex.Message}");
+                log.Error($"仓库数据 - 请求异常:{ex.Message}");
                 throw ex;
             }
         }

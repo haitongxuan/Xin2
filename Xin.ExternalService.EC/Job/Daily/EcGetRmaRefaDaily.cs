@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Quartz;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace Xin.ExternalService.EC.Job.Daily
                 reqModel.PageSize = 10;
                 reqModel.CreateDateFrom = DateTime.Parse(repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreateDate)).FirstOrDefault().CreateDate);
                 reqModel.CreateDateEnd = DateTime.Now;
+                log.Info($"退货重发 - 开始拉取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy - MM - dd HH: mm:ss" })}");
                 EBRmaRefaRequest req = new EBRmaRefaRequest(login.Username, login.Password, reqModel);
                 var response = await req.Request();
                 List<ECRmaRefa> insertList = new List<ECRmaRefa>();
@@ -45,11 +47,12 @@ namespace Xin.ExternalService.EC.Job.Daily
                 {
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefaDaily", "INFO", $"开始拉取退货重发新增数据,共{pageNum}页", reqModel));
+                    log.Info($"退货重发 - 共计{pageNum}页");
                     for (int page = 1; page < pageNum + 1; page++)
                     {
                         reqModel.PageSize = 1000;
                         reqModel.Page = page;
+                        log.Info($"退货重发 - 正在拉取{page}页");
                         req = new EBRmaRefaRequest(login.Username, login.Password, reqModel);
                         response = await req.Request();
                         foreach (var item in response.Body)
@@ -77,8 +80,7 @@ namespace Xin.ExternalService.EC.Job.Daily
                     }
                     catch (Exception ex)
                     {
-                        log.Error($"退货重发保存到数据库出现异常:{ex.Message};参数:{JsonConvert.SerializeObject(reqModel)}");
-
+                        log.Error($"退货重发 - 写入到数据库出现异常:{ex.Message}");
                         throw;
                     }
                 }
@@ -96,12 +98,13 @@ namespace Xin.ExternalService.EC.Job.Daily
                 reqModel.Page = 1;
                 reqModel.PageSize = 10;
                 req = new EBRmaRefaRequest(login.Username, login.Password, reqModel);
+                log.Info($"退货重发 - 开始根据审核时间拉取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy - MM - dd HH: mm:ss" })}");
                 response = await req.Request();
                 try
                 {
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefaDaily", "INFO", $"开始拉取退货重发审核更新数据,共{pageNum}页", reqModel));
+                    log.Info($"退货重发 - 共计{pageNum}页");
                     for (int page = 1; page < pageNum + 1; page++)
                     {
                         reqModel.PageSize = 1000;
@@ -123,13 +126,13 @@ namespace Xin.ExternalService.EC.Job.Daily
                     }
                     catch (Exception ex)
                     {
-                        log.Error($"退货重发保存到数据库出现异常:{ex.Message};参数:{JsonConvert.SerializeObject(reqModel)}");
+                        log.Error($"退货重发 - 写入到数据库出现异常:{ex.Message}");
                         throw;
                     }
                 }
                 catch (Exception ex)
                 {
-                    log.Error($"退货重发审核更新出现异常:{ex.Message};参数:{JsonConvert.SerializeObject(reqModel)}");
+                    log.Error($"退货重发 - 出现异常:{ex.Message}");
                     throw;
                 }
                 //重发单发货时间
@@ -141,12 +144,15 @@ namespace Xin.ExternalService.EC.Job.Daily
                 reqModel.Page = 1;
                 reqModel.PageSize = 10;
                 req = new EBRmaRefaRequest(login.Username, login.Password, reqModel);
+                log.Info($"退货重发 - 开始根据重发单发货时间拉取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy - MM - dd HH: mm:ss" })}");
+
                 response = await req.Request();
                 try
                 {
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefaDaily", "INFO", $"开始拉取退货重发重发时间更新数据,共{pageNum}页", reqModel));
+                    log.Info($"退货重发 - 共计{pageNum}页");
+
                     for (int page = 1; page < pageNum + 1; page++)
                     {
                         reqModel.PageSize = 1000;
@@ -168,16 +174,17 @@ namespace Xin.ExternalService.EC.Job.Daily
                     }
                     catch (Exception ex)
                     {
-                        log.Error($"退货重发保存到数据库出现异常:{ex.Message};参数:{JsonConvert.SerializeObject(reqModel)}");
+                        log.Error($"退货重发 - 写入到数据库出现异常:{ex.Message};");
                         throw;
                     }
                 }
                 catch (Exception ex)
                 {
-                    log.Error($"退货重发审核更新出现异常:{ex.Message};参数:{JsonConvert.SerializeObject(reqModel)}");
+                    log.Error($"退货重发 - 出现异常:{ex.Message};");
                     throw;
                 }
             }
+            log.Info($"退货重发 - 任务拉取完成");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Quartz;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,15 +38,18 @@ namespace Xin.ExternalService.EC.Job.Daily
                 reqModel.PageSize = 10;
                 DateTime? fifoTime = repository.QueryPage(0, 1, null, x => x.OrderByDescending(a => a.FifoTime)).FirstOrDefault().FifoTime;
                 WMSInventoryBatchRequest req = new WMSInventoryBatchRequest(login.Username, login.Password, reqModel);
+                log.Info($"批次入库单 - 开始拉取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy - MM - dd HH: mm:ss" })}");
                 var response = await req.Request();
                 response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                 int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
                 List<ECInventoryBatch> insertList = new List<ECInventoryBatch>();
-
+                log.Info($"批次入库单 - 共计{pageNum} 页");
                 for (int page = 1; page < pageNum + 1; page++)
                 {
                     reqModel.Page = page;
                     reqModel.PageSize = 1000;
+                    log.Info($"批次入库单 - 正在拉取{page} 页");
+
                     req = new WMSInventoryBatchRequest(login.Username, login.Password, reqModel);
                     response = await req.Request();
                     foreach (var item in response.Body)
@@ -62,9 +67,12 @@ namespace Xin.ExternalService.EC.Job.Daily
                     }
                     catch (Exception ex)
                     {
+                        log.Error($"批次入库单 - 写入数据库出现异常:{ex.Message}");
+
                         throw;
                     }
                 }
+                log.Info("批次入库单 - 任务完成");
             }
         }
     }

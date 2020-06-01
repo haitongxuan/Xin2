@@ -1,4 +1,6 @@
-﻿using Quartz;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,90 +41,36 @@ namespace Xin.ExternalService.EC.Job.Daily
                 RelationCondition condition = new RelationCondition();
                 condition.AddTimeStart = datetime.ToString();
                 condition.AddTimeEnd = DateTime.Now.ToString();
+                log.Info($"SKU映射信息 - 开始拉取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" })}");
                 while (finish)
                 {
                     reqModel.Page = page;
                     reqModel.PageSize = 1000;
                     reqModel.Condition = condition;
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetSkuRelationDaily", "INFO", $"SKU映射信息开始拉取,第{page}页", reqModel));
-                    log.Info($"SKU映射信息开始拉取,第{page}页");
+                    log.Info($"SKU映射信息 - 正在拉取第{page}页");
                     EBGetSkuRelationRequest request = new EBGetSkuRelationRequest(login.Username, login.Password, reqModel);
                     var response = await request.Request();
-                    if (response.Body.Count == 1000)
-                    {
-                        foreach (var item in response.Body)
-                        {
-                            try
-                            {
-                                var m = Mapper<EC_SkuRelation, ECSkuRelation>.Map(item);
-                                if (repository.Query(a => a.ProductSku == m.ProductSku && a.WarehouseId == m.WarehouseId).FirstOrDefault() == null)
-                                {
-                                    m.CreateTime = DateTime.Parse(reqModel.Condition.AddTimeEnd);
-                                    skuRelation.Add(m);
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "ERROR", $"Sku映射转换实体类出现异常:{ex.Message},第{page}页", reqModel));
-                                log.Error($"Sku映射转换实体类出现异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
-                                throw ex;
-                            }
-                        }
-                    }
-                    else
+                    if (response.Body.Count != 1000)
                     {
                         finish = false;
-                        foreach (var item in response.Body)
-                        {
-                            try
-                            {
-                                var m = Mapper<EC_SkuRelation, ECSkuRelation>.Map(item);
-                                if (repository.Query(a => a.ProductSku == m.ProductSku && a.WarehouseId == m.WarehouseId).FirstOrDefault() == null)
-                                {
-                                    m.CreateTime = DateTime.Parse(reqModel.Condition.AddTimeEnd);
-                                    skuRelation.Add(m);
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "ERROR", $"Sku映射转换实体类出现异常:{ex.Message},第{page}页", reqModel));
-                                log.Error($"Sku映射转换实体类出现异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
-                                throw ex;
-                            }
-                        }
-                        try
-                        {
-                            await repository.BulkInsertAsync(skuRelation, x => x.IncludeGraph = true);
-                            uow.BulkSaveChanges();
-                            skuRelation.Clear();
-                        }
-                        catch (Exception ex)
-                        {
-                            RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "ERROR", $"入库单信息,写入数据库异常:{ex.Message},第{page}页", reqModel));
-                            log.Error($"SKU映射信息,写入数据库异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
-                            throw ex;
-                        }
                     }
-                    if (page % 5 == 0 && skuRelation.Count > 0)
+                    try
                     {
-                        try
-                        {
-                            skuRelation = skuRelation.GroupBy(a => a.ProductSku).Select(a => a.First()).ToList();
-                            await repository.BulkInsertAsync(skuRelation, x => x.IncludeGraph = true);
-                            uow.BulkSaveChanges();
-                            skuRelation.Clear();
-                        }
-                        catch (Exception ex)
-                        {
-                            RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "ERROR", $"入库单信息,写入数据库异常:{ex.Message},第{page}页" + ex.Message, reqModel));
-                            log.Error($"SKU映射信息,写入数据库异常:时间区间{reqModel.Condition.AddTimeStart.ToString()}TO{reqModel.Condition.AddTimeEnd.ToString()}第{reqModel.Page}页;异常信息:{ex.Message}");
-                            throw ex;
-                        }
+                        skuRelation = skuRelation.GroupBy(a => a.ProductSku).Select(a => a.First()).ToList();
+                        await repository.BulkInsertAsync(skuRelation, x => x.IncludeGraph = true);
+                        uow.BulkSaveChanges();
+                        skuRelation.Clear();
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Error($"SKU映射信息 - 写入数据库异常:{ex.Message}");
+                        throw ex;
                     }
                     page++;
                 }
+                log.Info($"SKU映射信息 - 任务拉取完成");
+
             }
-            RabbitMqUtils.pushMessage(new LogPushModel("Xin", "EcGetSkuRelationDaily", "INFO", $"SKU映射信息,写入完成", null));
         }
     }
 }

@@ -27,8 +27,6 @@ namespace Xin.ExternalService.EC.Job.Init
             List<ECCurrency> insertList = new List<ECCurrency>();
             using (var uow = _uowProvider.CreateUnitOfWork())
             {
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcCurrencyInit", "INFO", "开始拉取新增数据",null));
-
                 var repository = uow.GetRepository<ECCurrency>();
                 try
                 {
@@ -37,13 +35,14 @@ namespace Xin.ExternalService.EC.Job.Init
                 }
                 catch (Exception ex)
                 {
-                    log.Error($"货币对应拉取出现异常,清空出现异常:{ex.Message}");
+                    log.Error($"货币对应 - 出现异常{ex.Message}");
                     throw ex;
                 }
 
                 try
                 {
                     WMSGetCurrencyRequest req = new WMSGetCurrencyRequest(login.Username, login.Password);
+                    log.Info($"货币对应 - 开始拉取");
                     var response = await req.Request();
                     foreach (var item in response.Body)
                     {
@@ -52,14 +51,11 @@ namespace Xin.ExternalService.EC.Job.Init
                     }
                     repository.BulkInsert(insertList, x => x.IncludeGraph = true);
                     uow.SaveChanges();
-                    log.Info("货币对应拉取完成");
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcCurrencyInit", "INFO", "货币对应拉取完成", null));
-
+                    log.Info($"货币对应 - 拉取完成");
                 }
                 catch (Exception ex )
                 {
-                    log.Error($"货币对应拉取出现异常:{ex.Message}");
-                    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcCurrencyInit", "ERROOR", $"货币对应拉取出现异常:{ex.Message}", null));
+                    log.Error($"货币对应 - 出现异常:{ex.Message}");
                     throw;
                 }
             }

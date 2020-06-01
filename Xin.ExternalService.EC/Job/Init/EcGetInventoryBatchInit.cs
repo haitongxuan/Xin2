@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Quartz;
 using System;
 using System.Collections.Generic;
@@ -41,13 +42,13 @@ namespace Xin.ExternalService.EC.Job.Init
                 List<ECInventoryBatch> allList = new List<ECInventoryBatch>();
                 await repository.DeleteAll();
                 await uow.SaveChangesAsync();
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"批次库存开始拉取", null));
                 WMSInventoryBatchReqModel reqModel = new WMSInventoryBatchReqModel();
                 reqModel.Page = 1;
                 reqModel.PageSize = 10;
                 reqModel.FifoTimeFrom = DateTime.Parse("2016-04-15");
                 reqModel.FifoTimeTo = DateTime.Now;
                 WMSInventoryBatchRequest req = new WMSInventoryBatchRequest(login.Username, login.Password, reqModel);
+                log.Info($"批次入库单 - 开始获取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" })}");
                 var response = await req.Request();
                 response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                 int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
@@ -57,6 +58,7 @@ namespace Xin.ExternalService.EC.Job.Init
                 {
                     reqModel.Page = page;
                     reqModel.PageSize = 1000;
+                    log.Info($"批次入库单 - 正在获取{page}页");
                     req = new WMSInventoryBatchRequest(login.Username, login.Password, reqModel);
                     response = await req.Request();
                     foreach (var item in response.Body)
@@ -75,44 +77,11 @@ namespace Xin.ExternalService.EC.Job.Init
                     }
                     catch (Exception ex)
                     {
-                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "ERROR", $"批次库存拉取出现异常{ex.Message}", reqModel));
+                        log.Error($"批次入库单 - 写入数据库出现异常:{ex.Message}");
                         throw;
                     }
                 }
-                
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"批次库存拉取完成", reqModel));
-                //try
-                //{
-                //    WebClient wb = new WebClient();
-                //    allList = allList.GroupBy(a => new { a.ProductSku, a.WarehouseId })
-                //        .Select(b => new ECInventoryBatch
-                //        {
-                //            WarehouseId = b.Key.WarehouseId,
-                //            ProductSku = b.Key.ProductSku,
-                //            IbQuantity = b.Sum(c => c.IbQuantity)-b.Sum(d=>d.OutQuantity)
-                //        }).ToList();
-                //    var tt = (from a in allList
-                //              join b in warehouseList on a.WarehouseId equals b.WarehouseId
-                //              select new
-                //              {
-                //                  warehouse_code = b.WarehouseCode,
-                //                  sku = a.ProductSku,
-                //                  qty = a.IbQuantity
-                //              }).ToList();
-                //    string postString = "data=" + JsonConvert.SerializeObject(tt);
-                //    wb.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-                //    byte[] postData = Encoding.UTF8.GetBytes(postString);
-                //    byte[] responseData = wb.UploadData("http://47.52.170.217:5000/goods_extension/set_goods_qty/", "POST", postData);
-                //    string srcString = Encoding.UTF8.GetString(responseData);
-                //    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"数据推送到ERP:{srcString}", null));
-
-                //}
-                //catch (Exception ex)
-                //{
-
-                //    RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetInventoryBatchInit", "INFO", $"数据推送到ERP出现异常:{ex.Message}", null));
-                //}
-
+                log.Info("批次入库单 - 任务完成");
             }
 
         }

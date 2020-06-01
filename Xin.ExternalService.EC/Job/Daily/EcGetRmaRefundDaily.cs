@@ -1,4 +1,6 @@
-﻿using Quartz;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,27 +40,26 @@ namespace Xin.ExternalService.EC.Job
                 reqModel.PageSize = 50;
                 reqModel.CreateDateForm = DateTime.Parse(repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreateDate)).FirstOrDefault().CreateDate);
                 reqModel.CreateDateTo = DateTime.Now;
-
                 EBGetRmaRefundListRequest req = new EBGetRmaRefundListRequest(login.Username, login.Password, reqModel);
+                log.Info($"退货订单 - 开始拉取,请求参数:{JsonConvert.SerializeObject(reqModel, new IsoDateTimeConverter { DateTimeFormat = "yyyy - MM - dd HH: mm:ss" })}");
                 var response = await req.Request();
-                response.TotalCount = response.TotalCount ==null ? "1" : response.TotalCount;
+                response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                 int pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
                 List<ECRMARefund> rmaRefunds = new List<ECRMARefund>();
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefundDaily", "INFO", $"开始拉取退货信息数据,共{pageNum}页", reqModel));
+                log.Info($"退货订单 - 共计{pageNum}页");
                 for (int page = 1; page < pageNum + 1; page++)
                 {
                     reqModel.PageSize = 1000;
                     reqModel.Page = page;
                     try
                     {
-                        log.Info($"退货信息,开始拉取:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;");
+                        log.Info($"退货订单 - 正在拉取第{page}页");
                         req = new EBGetRmaRefundListRequest(login.Username, login.Password, reqModel);
                         response = await req.Request();
                     }
                     catch (Exception ex)
                     {
-                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefundDaily", "ERROR", $"拉取退货信息数据异常:{ex.Message},第{page}页", reqModel));
-                        log.Error($"退货信息,接口调用出现异常:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;异常信息:{ex.Message}");
+                        log.Error($"退货订单 - 接口调用出现异常:{ex.Message}");
                         throw ex;
                     }
                     foreach (var item in response.Body)
@@ -66,20 +67,17 @@ namespace Xin.ExternalService.EC.Job
                         try
                         {
                             var m = Mapper<EC_RmaRefund, ECRMARefund>.Map(item);
-                            if (repository.Query(a=>a.RefNo == m.RefNo &&a.ProductSku == m.ProductSku).FirstOrDefault()==null)
+                            if (repository.Query(a => a.RefNo == m.RefNo && a.ProductSku == m.ProductSku).FirstOrDefault() == null)
                             {
                                 rmaRefunds.Add(m);
                             }
                         }
                         catch (Exception ex)
                         {
-                            RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefundDaily", "ERROR", $"拉取退货信息转换实体类出现异常:{ex.Message},第{page}页", reqModel));
-
-                            log.Error($"退货信息,转换实体类出现异常:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;异常信息:{ex.Message}");
+                            log.Error($"退货订单 - 转换实体类出现异常:{ex.Message}");
                             throw ex;
                         }
                     }
-
                     try
                     {
                         rmaRefunds = rmaRefunds.GroupBy(item => new { item.RefNo, item.ProductSku }).Select(item => item.First()).ToList();
@@ -89,16 +87,15 @@ namespace Xin.ExternalService.EC.Job
                     }
                     catch (Exception ex)
                     {
-                        RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefundDaily", "ERROR", $"拉取退货信息写入数据库异常:{ex.Message},第{page}页", reqModel));
-
-                        log.Error($"退货信息,写入数据库异常:时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}第{page}页;异常信息:{ex.Message}");
+                        log.Error($"退货订单 - 写入数据库异常:{ex.Message}");
                         throw ex;
                     }
                 }
                 //更新
-                RabbitMqUtils.pushMessage(new LogPushModel("XIN", "EcGetRmaRefundDaily", "INFO", $"拉取退货信息写入数据库完成", null));
-                log.Info($"退货信息拉取写入完成,时间区间{reqModel.CreateDateForm.ToString()}TO{reqModel.CreateDateTo.ToString()}");
+                log.Info($"退货订单 - 拉取完成");
             }
+            log.Info($"退货订单 - 任务拉取完成");
+
         }
     }
 }

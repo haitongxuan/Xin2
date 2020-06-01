@@ -18,6 +18,11 @@ namespace Xin.Entities.VirtualEntity
         [Excel(Header = "订单号")]
         public string Ordercode { get; set; }
         /// <summary>
+        /// 入库单号
+        /// </summary>
+        [Excel(Header = "入库单号")]
+        public string InNo { get; set; }
+        /// <summary>
         /// 服务商单号
         /// </summary>
         [Excel(Header = "服务商单号")]
@@ -26,12 +31,12 @@ namespace Xin.Entities.VirtualEntity
         /// 制单日期
         /// </summary>
         [Excel(Header = "制单日期")]
-        public DateTime AddTime { get; set; }
+        public DateTime? AddTime { get; set; }
         /// <summary>
         /// 预计到货日期
         /// </summary>
         [Excel(Header = "预计到货日期")]
-        public DateTime ExpectedDate { get; set; }
+        public DateTime? ExpectedDate { get; set; }
         /// <summary>
         /// 外部SKU
         /// </summary>
