@@ -18,7 +18,7 @@ namespace Xin.Common
 
         protected override void Append(LoggingEvent loggingEvent)
         {
-            ConnectionFactory factory = new ConnectionFactory() { HostName = _HostName, UserName = _UserName, Password = _Password, Port = _Port,VirtualHost= };
+            ConnectionFactory factory = new ConnectionFactory() { HostName = _HostName, UserName = _UserName, Password = _Password, Port = _Port,VirtualHost= _Vhost };
             using (var connect = factory.CreateConnection())
             {
                 using (var channel = connect.CreateModel())
