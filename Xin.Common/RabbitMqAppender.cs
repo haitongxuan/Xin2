@@ -12,12 +12,13 @@ namespace Xin.Common
         private string _UserName { get; set; }
         private string _Password { get; set; }
         private string _Queue { get; set; }
+        private string _Vhost { get; set; }
         private int _Port { get; set; } = 5672;
 
 
         protected override void Append(LoggingEvent loggingEvent)
         {
-            ConnectionFactory factory = new ConnectionFactory() { HostName = _HostName, UserName = _UserName, Password = _Password, Port = _Port };
+            ConnectionFactory factory = new ConnectionFactory() { HostName = _HostName, UserName = _UserName, Password = _Password, Port = _Port,VirtualHost= };
             using (var connect = factory.CreateConnection())
             {
                 using (var channel = connect.CreateModel())
