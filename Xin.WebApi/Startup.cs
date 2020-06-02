@@ -148,12 +148,12 @@ namespace Xin.WebApi
             });
 
             ////跨域
-            //app.UseCors(builder =>
-            //{
-            //    builder.AllowAnyHeader();
-            //    builder.AllowAnyMethod();
-            //    builder.AllowAnyOrigin();
-            //});
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+                builder.AllowAnyOrigin();
+            });
             app.UseSignalR(routes =>
             {
                 routes.MapHub<ChatHub>("/chathub");
