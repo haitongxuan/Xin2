@@ -10,6 +10,10 @@ namespace Xin.ExternalService.EC.Job.Daily
 
     public class JobTest : EcBaseJob
     {
+        public JobTest()
+        {
+
+        }
 
         public override async Task Execute(IJobExecutionContext context)
         {

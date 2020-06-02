@@ -67,14 +67,14 @@
             <param name="classifyId"></param>
             <returns></returns>
         </member>
-        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.GetTypes(Xin.Web.Framework.Model.DatetimePointPageReq)">
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.GetTypes(Xin.Web.Framework.Model.DatetimePointPageReq,System.Int32)">
             <summary>
             获取新闻分类
             </summary>
             <param name="pageReq"></param>
             <returns></returns>
         </member>
-        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.addTypes(Xin.Entities.DingClassify)">
+        <member name="M:Xin.WebApi.Controllers.DingTalkNewsController.addTypes(Xin.Entities.DingClassify,System.Int32)">
             <summary>
             添加分类
             </summary>

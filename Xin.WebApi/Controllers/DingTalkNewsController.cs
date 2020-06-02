@@ -199,8 +199,14 @@ namespace Xin.WebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("GetTypes")]
-        public GridPage<List<DingClassify>> GetTypes(DatetimePointPageReq pageReq)
+        public GridPage<List<DingClassify>> GetTypes(DatetimePointPageReq pageReq,int classId)
         {
+            FilterNode node = new FilterNode();
+            node.andorop = "and";
+            node.binaryop = "eq";
+            node.key = "DingClass.Id";
+            node.value = classId;
+            pageReq.query.Add(node);
             var res = new GridPage<List<DingClassify>>() { code = ResCode.Success };
             return DataBaseHelper<DingClassify>.GetList(_uowProvider, res, pageReq);
         }
@@ -212,9 +218,16 @@ namespace Xin.WebApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("addTypes")]
-        public GridPage<DingClassify> addTypes([FromBody] DingClassify classify)
+        public GridPage<DingClassify> addTypes([FromBody] DingClassify classify,int classId)
         {
             var res = new GridPage<DingClassify>() { code = ResCode.Success };
+            var ress = new GridPage<DingClass>() { code = ResCode.Success };
+
+            ress = DataBaseHelper<DingClass>.Get(_uowProvider, ress, classId);
+            if (ress.data!=null)
+            {
+                classify.DingClass = ress.data;
+            }
             res = DataBaseHelper<DingClassify>.Create(_uowProvider, classify, res, true);
             return res;
         }

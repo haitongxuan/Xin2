@@ -508,7 +508,7 @@
       <Documentation>
         <Summary>申报价值</Summary>
       </Documentation>
-      <column name="ProductDeclaredValue" not-null="False" precision="12" scale="2" sql-type="decimal" p1:unicode="False" />
+      <column name="ProductDeclaredValue" not-null="False" precision="18" scale="4" sql-type="decimal" p1:unicode="False" />
     </property>
     <property name="PdDeclareCurrencyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="12898552-ef61-4f5e-81d8-6589a9896719">
       <Documentation>
@@ -520,13 +520,13 @@
       <Documentation>
         <Summary>重量，单位Kg</Summary>
       </Documentation>
-      <column name="ProductWeight" not-null="False" precision="12" scale="2" sql-type="decimal" p1:unicode="False" />
+      <column name="ProductWeight" not-null="False" precision="18" scale="4" sql-type="decimal" p1:unicode="False" />
     </property>
     <property name="ProductNetWeight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f1eee389-cc87-4024-9a2e-4250c1165e73">
       <Documentation>
         <Summary>净重，单位Kg</Summary>
       </Documentation>
-      <column name="ProductNetWeight" not-null="False" precision="12" scale="2" sql-type="decimal" p1:unicode="False" />
+      <column name="ProductNetWeight" not-null="False" precision="18" scale="4" sql-type="decimal" p1:unicode="False" />
     </property>
     <property name="DefaultSupplierCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="9c2b5a3a-e140-495f-b691-cca48ecdc8db">
       <Documentation>
@@ -575,19 +575,19 @@
       <Documentation>
         <Summary>产品长度，单位CM</Summary>
       </Documentation>
-      <column name="ProductLength" not-null="False" precision="12" scale="2" sql-type="decimal" p1:unicode="False" />
+      <column name="ProductLength" not-null="False" precision="18" scale="4" sql-type="decimal" p1:unicode="False" />
     </property>
     <property name="ProductWidth" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9a2f4621-f23a-4bf1-aa89-0818c2189cb2">
       <Documentation>
         <Summary>产品宽度，单位CM</Summary>
       </Documentation>
-      <column name="ProductWidth" not-null="False" precision="12" scale="2" sql-type="decimal" p1:unicode="False" />
+      <column name="ProductWidth" not-null="False" precision="18" scale="4" sql-type="decimal" p1:unicode="False" />
     </property>
     <property name="ProductHeight" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="517799a8-ff25-4695-aa11-28296eb30360">
       <Documentation>
         <Summary>产品高度，单位CM</Summary>
       </Documentation>
-      <column name="ProductHeight" not-null="False" precision="12" scale="2" sql-type="decimal" p1:unicode="False" />
+      <column name="ProductHeight" not-null="False" precision="18" scale="4" sql-type="decimal" p1:unicode="False" />
     </property>
     <property name="DesignerId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4d826ee2-c169-40a8-9442-370d97a2d118">
       <Documentation>
@@ -764,7 +764,7 @@
       <column name="" />
     </property>
     <property name="SuggestPrice" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ce601667-8e03-4bce-b507-231a30286eaf">
-      <column name="" />
+      <column name="SuggestPrice" not-null="False" precision="18" scale="4" sql-type="decimal" p1:unicode="False" />
     </property>
     <property name="SuggestPriceCurrencyCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5bb1d175-58e6-4d0c-bd5a-f3b6251ea73c">
       <column name="" />
@@ -4940,6 +4940,9 @@
       </Documentation>
       <column name="remark" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
     </property>
+    <property name="ClassId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="9c508e92-0cf4-4885-a790-7cd7f49fb9b6">
+      <column name="class_id" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
   </class>
   <class name="DingNew" entity-set="DingNews" table="Ding_News" schema="dbo" p1:Guid="b7d1cb95-0599-4d40-b710-cd02e566ef57">
     <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="08caa8ec-3605-4483-8670-2c76e4db300f">
@@ -4973,7 +4976,7 @@
       <Documentation>
         <Summary>状态: 0:保存 ; 1:发布 ;2:废弃</Summary>
       </Documentation>
-      <column name="status" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+      <column name="status" default="0" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
     <property name="SubTitle" type="Clob" p1:nullable="True" p1:ValidateMaxLength="2147483647" p1:ValidateRequired="false" p1:Guid="93801df2-39de-4b09-8b8f-fce68922d138">
       <column name="sub_title" not-null="False" length="2147483647" sql-type="text" p1:unicode="False" />
@@ -5379,6 +5382,17 @@
     </property>
     <property name="CurrencyRate" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="53963822-37ff-4f23-944e-2df003a9ae75">
       <column name="currency_rate" not-null="False" precision="19" scale="4" sql-type="money" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="DingClass" entity-set="DingClasses" table="Ding_Class" schema="dbo" p1:Guid="28bf0f35-d84d-4455-b4a1-2ed82d2d0b94">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="c76d1c86-f9e8-4615-b705-cb13bfa0f6a7">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="Class" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="972a464d-9b43-4864-8e29-86be03685edd">
+      <Documentation>
+        <Summary>新闻/文化</Summary>
+      </Documentation>
+      <column name="class" not-null="False" length="255" sql-type="varchar" p1:unicode="False" />
     </property>
   </class>
   <associations>
@@ -5812,6 +5826,14 @@
       </end1>
       <end2 multiplicity="Many" name="OrderFee" class="OmsOrderList" relation-class="OmsOrderListOrderFee" lazy="False" p1:Guid="e4d91044-0927-4fdb-91fe-b2a76450b4d1">
         <property name="OrderId" />
+      </end2>
+    </association>
+    <association name="DingClass_DingClassify" cardinality="OneToMany" on-delete="Cascade" p1:Guid="058de720-a328-4591-9264-def6f0a45f0c">
+      <end1 multiplicity="ZeroOrOne" name="DingClass" class="DingClassify" relation-class="DingClass" constrained="True" lazy="False" p1:Guid="5b28287b-0fb7-41fc-a5de-97b2a5e20eb0">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="DingClassifies" class="DingClass" relation-class="DingClassify" lazy="False" p1:Guid="de9bdd8d-9936-47dd-93ae-c0a6c5e9345a">
+        <property name="ClassId" />
       </end2>
     </association>
   </associations>

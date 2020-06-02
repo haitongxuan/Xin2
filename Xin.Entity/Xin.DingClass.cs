@@ -18,10 +18,11 @@ using System.Collections.Generic;
 
 namespace Xin.Entities
 {
-    public partial class ECAsnWarehouseAttr {
+    public partial class DingClass {
 
-        public ECAsnWarehouseAttr()
+        public DingClass()
         {
+            this.DingClassifies = new List<DingClassify>();
             OnCreated();
         }
 
@@ -33,31 +34,17 @@ namespace Xin.Entities
             set;
         }
 
-        public virtual decimal? ProductLength
+        /// <summary>
+        /// 新闻/文化
+        /// </summary>
+        [System.ComponentModel.DataAnnotations.StringLength(255)]
+        public virtual string Class
         {
             get;
             set;
         }
 
-        public virtual decimal? ProductWidth
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? ProductHeight
-        {
-            get;
-            set;
-        }
-
-        public virtual decimal? ProductWeight
-        {
-            get;
-            set;
-        }
-
-        public virtual ECAsnItem ECAsnItem
+        public virtual IList<DingClassify> DingClassifies
         {
             get;
             set;

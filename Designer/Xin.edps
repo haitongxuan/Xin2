@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityDeveloper Version="6.5.823.0">
   <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" AppConnectionStringName="XinConnectionString" ConnectionStringInAppConfig="True" RegenareteConnectionStringInAppConfig="False" DetectManyToManyAssociations="False" DetectTPTInheritance="False" ShadowForeignKeyProperties="True" DetectFunctionBasedColumnDefault="True">
-    <Connection ConnectionString="Data Source=192.168.1.21;Initial Catalog=XinDB;Integrated Security=False;Persist Security Info=True;User ID=sa;Password=longqi.123" Provider="System.Data.SqlClient" />
+    <Connection ConnectionString="Data Source=192.168.1.235;Initial Catalog=XinDB;Integrated Security=False;Persist Security Info=True;User ID=sa;Password=longqi.123" Provider="System.Data.SqlClient" />
     <Generation>
       <GeneratedFiles>
         <File Name="Xin.XinDBContext.cs" DestinationFolder="E:\LQAPP\XIN\Xin.Service\Context" />
@@ -211,19 +211,6 @@
       <Exclude Name="states" Table="dbo.Bns_SendDeliverdToEc" Type="Column" />
       <Exclude Name="PK__EC_Send___3213E83FA21C04C9" Table="dbo.Bns_SendDeliverdToEc" Type="Constraint" />
       <Exclude Name="FK__Bns_SendD__Order__2042BE37" Table="dbo.Bns_SendDeliverdToEc" Type="Constraint" />
-      <Exclude Name="id" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="classify_id" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="original_content" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="html_content" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="editer" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="create_time" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="update_time" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="image" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="title" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="status" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="sub_title" Table="dbo.Ding_News" Type="Column" />
-      <Exclude Name="PK__Ding_New__3213E83F140B40F0" Table="dbo.Ding_News" Type="Constraint" />
-      <Exclude Name="FK__Ding_News__class__6521F869" Table="dbo.Ding_News" Type="Constraint" />
       <Exclude Name="OrderId" Table="dbo.EC_SalesOrder" Type="Column" />
       <Exclude Name="Plateform" Table="dbo.EC_SalesOrder" Type="Column" />
       <Exclude Name="OrderType" Table="dbo.EC_SalesOrder" Type="Column" />
@@ -319,7 +306,6 @@
       <Exclude Name="PK_EC_SALESORDERDETAIL" Table="dbo.EC_SalesOrderDetail" Type="Constraint" />
       <Exclude Name="FK_EC_SalesOrderDetail_EC_SalesOrder_0" Table="dbo.EC_SalesOrderDetail" Type="Constraint" />
       <Exclude Name="states" Table="dbo.Bns_SendDeliverdToEc" Type="Column" />
-      <Exclude Name="status" Table="dbo.Ding_News" Type="Column" />
       <Exclude Name="OrderType" Table="dbo.EC_SalesOrder" Type="Column" />
       <Exclude Name="RefNo" Table="dbo.EC_SalesOrder" Type="Column" />
       <Exclude Name="SaleOrderCode" Table="dbo.EC_SalesOrder" Type="Column" />
