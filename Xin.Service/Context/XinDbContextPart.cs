@@ -369,7 +369,7 @@ namespace Xin.Service.Context
             modelBuilder.Entity<ECHeadTripLine>().Property<DateTime?>(@"ExpectedDate").HasColumnName(@"ExpectedDate").ValueGeneratedNever();
             modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"OutSku").HasColumnName(@"OutSku").ValueGeneratedNever();
             modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"ItemSku").HasColumnName(@"ItemSku").ValueGeneratedNever();
-            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"InNo").HasColumnName(@"ItemSku").ValueGeneratedNever();
+            modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"InNo").HasColumnName(@"InNo").ValueGeneratedNever();
             modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"StoreName").HasColumnName(@"StoreName").ValueGeneratedNever();
             modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"CompanyName").HasColumnName(@"CompanyName").ValueGeneratedNever();
             modelBuilder.Entity<ECHeadTripLine>().Property<string>(@"Currery").HasColumnName(@"Currery").ValueGeneratedNever();
