@@ -11,7 +11,7 @@ namespace Xin.Entities.VirtualEntity
     public class OrderCostTotalReport
     {
         [Excel(Header ="主键")]
-        public Guid id { get; set; }
+        public int id { get; set; }
         /// <summary>
         /// 平台
         /// </summary>
