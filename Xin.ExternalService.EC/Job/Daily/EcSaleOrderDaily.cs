@@ -38,6 +38,7 @@ namespace Xin.ExternalService.EC.Job
             {
                 List<ECSalesOrder> insertList = new List<ECSalesOrder>();
                 List<ECSalesOrder> updateList = new List<ECSalesOrder>();
+                List<ECSalesOrder> tempList = new List<ECSalesOrder>();
                 EBGetOrderListReqModel reqModel = new EBGetOrderListReqModel();
                 Conditions reqCondition = new Conditions();
                 reqModel.Page = 1;
@@ -45,11 +46,15 @@ namespace Xin.ExternalService.EC.Job
                 reqModel.GetDetail = IsOrNotEnum.Yes;
                 reqModel.GetAddress = IsOrNotEnum.Yes;
                 reqCondition.CreatedDateBefore = DateTime.Now;
+                //List<string> list = new List<string>();
+                //list.Add("8014690641387899");
+                //reqCondition.RefNos = list;
                 reqModel.Condition = reqCondition;
                 using (var uow = _uowProvider.CreateUnitOfWork(false, false))
                 {
                     var repository = uow.GetRepository<ECSalesOrder>();
-                    //reqCondition.CreatedDateAfter = DateTime.Parse("2020-05-26");
+                    var rep = uow.GetRepository<ECSalesOrderAddress>();
+                    //reqCondition.CreatedDateAfter = DateTime.Parse("2020-05-24");
                     reqCondition.CreatedDateAfter = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.CreatedDate)).FirstOrDefault().CreatedDate).AddHours(-3);
                     var updateTime = ((DateTime)repository.GetPage(0, 1, x => x.OrderByDescending(c => c.UpdateDate)).FirstOrDefault().UpdateDate).AddHours(-3);
                     //新增
@@ -80,7 +85,8 @@ namespace Xin.ExternalService.EC.Job
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
                                 log.Debug($"订单新增数据 - 接口接收到数据:orderId:{m.OrderId},refno:{m.RefNo},SaleOrderCode:{m.SaleOrderCode},SysOrderCode:{m.SysOrderCode}");
-                                var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
+
+                                var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs).Include(a => a.SalesOrderAddress).Include(a => a.OrderDetails));
                                 if (had != null)
                                 {
                                     List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();
@@ -88,6 +94,8 @@ namespace Xin.ExternalService.EC.Job
                                     had.BnsSendDeliverdToEcs[0].PlatformShipTime = m.PlatformShipTime;
                                     templist.Add(had.BnsSendDeliverdToEcs[0]);
                                     m.BnsSendDeliverdToEcs = templist;
+                                    m.SalesOrderAddress.Id = had.SalesOrderAddress.Id;
+
                                     updateList.Add(m);
                                 }
                                 else
@@ -165,7 +173,7 @@ namespace Xin.ExternalService.EC.Job
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
 
-                                var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
+                                var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs).Include(a => a.SalesOrderAddress).Include(a => a.OrderDetails));
                                 if (had != null)
                                 {
                                     log.Debug($"订单更新数据 - 接口接收到数据:orderId:{m.OrderId},refno:{m.RefNo},SaleOrderCode:{m.SaleOrderCode},SysOrderCode:{m.SysOrderCode}");
@@ -174,6 +182,7 @@ namespace Xin.ExternalService.EC.Job
                                     had.BnsSendDeliverdToEcs[0].PlatformShipTime = m.PlatformShipTime;
                                     templist.Add(had.BnsSendDeliverdToEcs[0]);
                                     m.BnsSendDeliverdToEcs = templist;
+                                    m.SalesOrderAddress.Id = had.SalesOrderAddress.Id;
                                     updateList.Add(m);
                                 }
                                 else

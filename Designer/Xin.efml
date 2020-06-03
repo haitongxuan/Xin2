@@ -940,11 +940,11 @@
       </Documentation>
       <column name="Plateform" not-null="False" length="1500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="OrderType" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="33c53f31-4c67-43ae-b56f-9f92fb6e0104">
+    <property name="OrderType" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="33c53f31-4c67-43ae-b56f-9f92fb6e0104">
       <Documentation>
         <Summary>订单类型，sale：正常销售订单，resend：重发订单，line：线下订单</Summary>
       </Documentation>
-      <column name="OrderType" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="OrderType" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="Status" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4c873bd3-9d79-4270-a8a0-33c3a376ef35">
       <Documentation>
@@ -958,35 +958,35 @@
       </Documentation>
       <column name="ProcessAgain" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="RefNo" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bf31160b-f518-4ee4-8ee8-09964875fb72">
+    <property name="RefNo" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="bf31160b-f518-4ee4-8ee8-09964875fb72">
       <Documentation>
         <Summary>参考单号</Summary>
       </Documentation>
-      <column name="RefNo" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="RefNo" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="SaleOrderCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="47a8fc46-1368-4465-9466-ef75117f140d">
+    <property name="SaleOrderCode" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="47a8fc46-1368-4465-9466-ef75117f140d">
       <Documentation>
         <Summary>销售单号</Summary>
       </Documentation>
-      <column name="SaleOrderCode" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="SaleOrderCode" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="SysOrderCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8285789c-b62c-4a75-b3f9-c46308ee465b">
+    <property name="SysOrderCode" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="8285789c-b62c-4a75-b3f9-c46308ee465b">
       <Documentation>
         <Summary>系统单号</Summary>
       </Documentation>
-      <column name="SysOrderCode" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="SysOrderCode" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="WarehouseOrderCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="050b51af-0734-49c3-a3ee-87965bae1415">
+    <property name="WarehouseOrderCode" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="050b51af-0734-49c3-a3ee-87965bae1415">
       <Documentation>
         <Summary>仓库单号</Summary>
       </Documentation>
-      <column name="WarehouseOrderCode" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="WarehouseOrderCode" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="CompanyCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6d93849b-e58d-44b8-8f80-346c0191720b">
+    <property name="CompanyCode" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="6d93849b-e58d-44b8-8f80-346c0191720b">
       <Documentation>
         <Summary>公司代码</Summary>
       </Documentation>
-      <column name="CompanyCode" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+      <column name="CompanyCode" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="UserAccount" type="String" p1:nullable="True" p1:ValidateMaxLength="1500" p1:ValidateRequired="false" p1:Guid="33b27bee-514a-4db4-a8df-0133fb899914">
       <Documentation>
@@ -1000,29 +1000,29 @@
       </Documentation>
       <column name="PlatformUserName" not-null="False" length="1500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="OldShippingMethod" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1af9b837-b665-4832-a5b5-d91d9194422e">
-      <column name="OldShippingMethod" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    <property name="OldShippingMethod" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="1af9b837-b665-4832-a5b5-d91d9194422e">
+      <column name="OldShippingMethod" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="OldShippingMethodNo" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ff11e09e-dfc6-4ca7-95d7-6d2520ea1639">
-      <column name="OldShippingMethodNo" not-null="False" sql-type="nvarchar(max)" p1:unicode="True" />
+    <property name="OldShippingMethodNo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ff11e09e-dfc6-4ca7-95d7-6d2520ea1639">
+      <column name="OldShippingMethodNo" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="ShippingMethod" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="81346347-6d34-40e2-8715-5977469ae160">
+    <property name="ShippingMethod" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="81346347-6d34-40e2-8715-5977469ae160">
       <Documentation>
         <Summary>仓库运输方式代码</Summary>
       </Documentation>
-      <column name="ShippingMethod" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="ShippingMethod" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="ShippingMethodNo" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7e63bddb-481d-4cea-b139-d0aa8c3d82ed">
+    <property name="ShippingMethodNo" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7e63bddb-481d-4cea-b139-d0aa8c3d82ed">
       <Documentation>
         <Summary>跟踪号</Summary>
       </Documentation>
-      <column name="ShippingMethodNo" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="ShippingMethodNo" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="ShippingMethodPlatform" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a98be629-e865-441b-849e-3c9b29e353da">
+    <property name="ShippingMethodPlatform" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="a98be629-e865-441b-849e-3c9b29e353da">
       <Documentation>
         <Summary>平台运输方式代码</Summary>
       </Documentation>
-      <column name="ShippingMethodPlatform" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="ShippingMethodPlatform" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="WarehouseId" type="String" p1:nullable="True" p1:ValidateMaxLength="1500" p1:ValidateRequired="false" p1:Guid="f0f1597d-94e5-49d4-b1fb-6f7c17a91b3b">
       <Documentation>
@@ -1030,11 +1030,11 @@
       </Documentation>
       <column name="WarehouseId" not-null="False" length="1500" precision="10" scale="0" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="WarehouseCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="06babe6b-301a-423a-a1cb-e68c44703558">
+    <property name="WarehouseCode" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="06babe6b-301a-423a-a1cb-e68c44703558">
       <Documentation>
         <Summary>仓库代码</Summary>
       </Documentation>
-      <column name="WarehouseCode" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="WarehouseCode" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="CreatedDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0ee0230f-b3c4-4bdf-9d92-9f8267c46977">
       <Documentation>
@@ -1126,35 +1126,35 @@
       </Documentation>
       <column name="CostShipFee" not-null="False" precision="12" scale="2" sql-type="decimal" p1:unicode="False" />
     </property>
-    <property name="BuyerId" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="d5cdcd77-1326-4843-92cd-e9e2abcd4e43">
+    <property name="BuyerId" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="d5cdcd77-1326-4843-92cd-e9e2abcd4e43">
       <Documentation>
         <Summary>买家ID</Summary>
       </Documentation>
-      <column name="BuyerId" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+      <column name="BuyerId" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="BuyerName" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="08c8019a-cd3c-4049-b911-d2cdac805513">
+    <property name="BuyerName" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="08c8019a-cd3c-4049-b911-d2cdac805513">
       <Documentation>
         <Summary>买家名称</Summary>
       </Documentation>
-      <column name="BuyerName" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+      <column name="BuyerName" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="BuyerMail" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9f8d5f87-cf14-48c9-9b75-aa77fbdda400">
+    <property name="BuyerMail" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="9f8d5f87-cf14-48c9-9b75-aa77fbdda400">
       <Documentation>
         <Summary>买家邮箱</Summary>
       </Documentation>
-      <column name="BuyerMail" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+      <column name="BuyerMail" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="Site" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="18530871-ef73-41a6-9b9d-811a3cab6a33">
+    <property name="Site" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="18530871-ef73-41a6-9b9d-811a3cab6a33">
       <Documentation>
         <Summary>订单站点</Summary>
       </Documentation>
-      <column name="Site" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="Site" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="CountryCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5138278f-bfe0-4c23-92e1-17c4e9343403">
+    <property name="CountryCode" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="5138278f-bfe0-4c23-92e1-17c4e9343403">
       <Documentation>
         <Summary>收件人国家二字码</Summary>
       </Documentation>
-      <column name="CountryCode" not-null="False" length="10" sql-type="nvarchar" p1:unicode="True" />
+      <column name="CountryCode" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="ProductCount" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5a0fcb33-9bcd-458e-8b10-fafde7697093">
       <Documentation>
@@ -1168,23 +1168,23 @@
       </Documentation>
       <column name="OrderWeight" not-null="False" precision="12" scale="2" sql-type="decimal" p1:unicode="False" />
     </property>
-    <property name="OrderDesc" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e2a4dd4e-e186-481c-ab04-887797ca2826">
+    <property name="OrderDesc" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="e2a4dd4e-e186-481c-ab04-887797ca2826">
       <Documentation>
         <Summary>买家留言</Summary>
       </Documentation>
-      <column name="OrderDesc" not-null="False" length="1500" sql-type="nvarchar" p1:unicode="True" />
+      <column name="OrderDesc" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="PaypalTransactionId" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0400353e-4b9f-446f-a528-577738cc486b">
+    <property name="PaypalTransactionId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="0400353e-4b9f-446f-a528-577738cc486b">
       <Documentation>
         <Summary>paypal交易号</Summary>
       </Documentation>
-      <column name="PaypalTransactionId" not-null="False" length="200" sql-type="nvarchar" p1:unicode="True" />
+      <column name="PaypalTransactionId" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="PaymentMethod" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="985486f2-6813-4015-a976-12af60e3b30b">
+    <property name="PaymentMethod" type="String" p1:nullable="True" p1:ValidateMaxLength="25" p1:ValidateRequired="false" p1:Guid="985486f2-6813-4015-a976-12af60e3b30b">
       <Documentation>
         <Summary>付款方式/支付方式（仅Shopee平台可用）</Summary>
       </Documentation>
-      <column name="PaymentMethod" not-null="False" length="200" sql-type="nvarchar" p1:unicode="True" />
+      <column name="PaymentMethod" not-null="False" length="25" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="AbnormalType" type="Byte" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b2468ee3-b1e9-44d0-9fc3-abb3601995b4">
       <Documentation>
@@ -1192,17 +1192,17 @@
       </Documentation>
       <column name="AbnormalType" not-null="False" precision="3" scale="0" sql-type="tinyint" p1:unicode="False" />
     </property>
-    <property name="AbnormalReason" type="String" p1:nullable="True" p1:ValidateMaxLength="1000" p1:ValidateRequired="false" p1:Guid="718192f8-bad5-4791-928f-80ffad85b720">
+    <property name="AbnormalReason" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="718192f8-bad5-4791-928f-80ffad85b720">
       <Documentation>
         <Summary>异常信息</Summary>
       </Documentation>
-      <column name="AbnormalReason" not-null="False" length="1000" sql-type="nvarchar" p1:unicode="True" />
+      <column name="AbnormalReason" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="ShippingAddressId" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="11" p1:ValidateRequired="false" p1:Guid="596d8034-162d-453c-8d15-d51f2ba91b4c">
+    <property name="AddressId" type="Int32" p1:nullable="True" shadow="True" p1:ValidateRequired="false" p1:Guid="40dd1d1f-4c44-45dc-835f-e525f2d0a528">
       <Documentation>
         <Summary>订单地址</Summary>
       </Documentation>
-      <column name="ShippingAddressId" not-null="False" length="11" sql-type="nvarchar" p1:unicode="True" />
+      <column name="AddressId" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
     <property name="OriginalOrderId" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="39e88991-83c7-4322-a1f1-0a2916b856fc">
       <Documentation>
@@ -1210,11 +1210,11 @@
       </Documentation>
       <column name="OriginalOrderId" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="SyncCode" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="eb30c062-0a2d-48c7-8dd4-c2041ce44354">
+    <property name="SyncCode" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="eb30c062-0a2d-48c7-8dd4-c2041ce44354">
       <Documentation>
         <Summary>同步代码</Summary>
       </Documentation>
-      <column name="SyncCode" not-null="False" length="20" sql-type="nvarchar" p1:unicode="True" />
+      <column name="SyncCode" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="IsPush" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3143d993-dd1d-41d1-89e9-c3afd8d2d7f4">
       <Documentation>
@@ -1222,7 +1222,7 @@
       </Documentation>
       <column name="is_push" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="CustomOrderType" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4392c70b-f8a6-46b2-99ba-5d72473f3197">
+    <property name="CustomOrderType" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="4392c70b-f8a6-46b2-99ba-5d72473f3197">
       <Documentation>
         <Summary>自定义订单类型
 自定义订单类型
@@ -1232,7 +1232,7 @@
 自定义订单类型
 </Summary>
       </Documentation>
-      <column name="CustomOrderType" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+      <column name="CustomOrderType" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="IsMark" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="235e2bb7-32bc-48b5-8cd9-9bba9efc6cc5">
       <Documentation>
@@ -1240,11 +1240,11 @@
       </Documentation>
       <column name="IsMark" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="CustomerServiceNote" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="19f7dfdc-5870-4231-99e0-12c003c70b45">
+    <property name="CustomerServiceNote" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="19f7dfdc-5870-4231-99e0-12c003c70b45">
       <Documentation>
         <Summary>客服备注</Summary>
       </Documentation>
-      <column name="CustomerServiceNote" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
+      <column name="CustomerServiceNote" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="DiscountVal" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a739fd5e-ed1b-4c4f-a4f9-8dbfd1d895f6">
       <Documentation>
@@ -1266,89 +1266,92 @@
     </property>
   </class>
   <class name="ECSalesOrderAddress" entity-set="ECSalesOrderAddresses" table="EC_SalesOrderAddress" schema="dbo" p1:Guid="806c1577-d2fa-4066-8bec-9f7cae962e4b">
-    <id name="ShippingAddressId" type="String" p1:ValidateMaxLength="11" p1:ValidateRequired="true" p1:Guid="286b069e-2d5e-405e-862b-1fce34f9638e">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="3b8e217d-eebf-4a83-8978-ef23a84bfad3">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="ShippingAddressId" type="String" p1:ValidateMaxLength="11" p1:ValidateRequired="true" p1:Guid="286b069e-2d5e-405e-862b-1fce34f9638e">
       <Documentation>
         <Summary>主键</Summary>
       </Documentation>
       <column name="ShippingAddressId" not-null="True" length="11" sql-type="nvarchar" p1:unicode="True" />
-    </id>
-    <property name="Name" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="fa1e4b81-d303-471b-9dc2-6f998085ea8d">
+    </property>
+    <property name="Name" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fa1e4b81-d303-471b-9dc2-6f998085ea8d">
       <Documentation>
         <Summary>收件人名称</Summary>
       </Documentation>
-      <column name="Name" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+      <column name="Name" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="CompanyName" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="d8cb22c0-e32d-40d1-b32b-a6e4aae904f6">
+    <property name="CompanyName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="d8cb22c0-e32d-40d1-b32b-a6e4aae904f6">
       <Documentation>
         <Summary>公司名称</Summary>
       </Documentation>
-      <column name="CompanyName" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+      <column name="CompanyName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="CountryCode" type="String" p1:nullable="True" p1:ValidateMaxLength="2" p1:ValidateRequired="false" p1:Guid="ec4307e1-0d7f-412e-9fd9-b74e843e29c9">
+    <property name="CountryCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="ec4307e1-0d7f-412e-9fd9-b74e843e29c9">
       <Documentation>
         <Summary>国家二字码</Summary>
       </Documentation>
-      <column name="CountryCode" not-null="False" length="2" sql-type="nvarchar" p1:unicode="True" />
+      <column name="CountryCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="CountryName" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="96a66bf8-dd09-47c6-a38d-6b9d69da7ed2">
+    <property name="CountryName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="96a66bf8-dd09-47c6-a38d-6b9d69da7ed2">
       <Documentation>
         <Summary>国家名称</Summary>
       </Documentation>
-      <column name="CountryName" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+      <column name="CountryName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="CityName" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="8f2d09ca-b153-43f1-bc4d-a338b442b3aa">
+    <property name="CityName" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8f2d09ca-b153-43f1-bc4d-a338b442b3aa">
       <Documentation>
         <Summary>城市名称</Summary>
       </Documentation>
-      <column name="CityName" not-null="False" length="200" sql-type="nvarchar" p1:unicode="True" />
+      <column name="CityName" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="PostalCode" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="dc1dad34-29a2-426e-8aeb-7c4610b97bd8">
+    <property name="PostalCode" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="dc1dad34-29a2-426e-8aeb-7c4610b97bd8">
       <Documentation>
         <Summary>邮编</Summary>
       </Documentation>
-      <column name="PostalCode" not-null="False" length="200" sql-type="nvarchar" p1:unicode="True" />
+      <column name="PostalCode" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="Line1" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="31a02312-1750-4190-aed9-58e3cb56b88e">
+    <property name="Line1" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="31a02312-1750-4190-aed9-58e3cb56b88e">
       <Documentation>
         <Summary>地址第一行</Summary>
       </Documentation>
-      <column name="Line1" not-null="False" length="200" sql-type="nvarchar" p1:unicode="True" />
+      <column name="Line1" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="Line2" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="d1573cab-109e-43df-9234-bc6c73add4bc">
+    <property name="Line2" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="d1573cab-109e-43df-9234-bc6c73add4bc">
       <Documentation>
         <Summary>地址第二行</Summary>
       </Documentation>
-      <column name="Line2" not-null="False" length="200" sql-type="nvarchar" p1:unicode="True" />
+      <column name="Line2" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="Line3" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="3baa6783-6a39-4a08-947a-4e8e85ad003c">
+    <property name="Line3" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="3baa6783-6a39-4a08-947a-4e8e85ad003c">
       <Documentation>
         <Summary>地址第三行</Summary>
       </Documentation>
-      <column name="Line3" not-null="False" length="200" sql-type="nvarchar" p1:unicode="True" />
+      <column name="Line3" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="District" type="String" p1:nullable="True" p1:ValidateMaxLength="60" p1:ValidateRequired="false" p1:Guid="4bf0acc3-b93a-4b80-b6e4-9fa1f9111f62">
+    <property name="District" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4bf0acc3-b93a-4b80-b6e4-9fa1f9111f62">
       <Documentation>
         <Summary>区</Summary>
       </Documentation>
-      <column name="District" not-null="False" length="60" sql-type="nvarchar" p1:unicode="True" />
+      <column name="District" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="State" type="String" p1:nullable="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="424c3562-0f47-435c-a307-b30f0ac04ac3">
+    <property name="State" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="424c3562-0f47-435c-a307-b30f0ac04ac3">
       <Documentation>
         <Summary>州或省</Summary>
       </Documentation>
-      <column name="State" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="State" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="Doorplate" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="2ccab60a-f450-4a30-9bcb-b768f6839e43">
+    <property name="Doorplate" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="2ccab60a-f450-4a30-9bcb-b768f6839e43">
       <Documentation>
         <Summary>门牌号</Summary>
       </Documentation>
-      <column name="Doorplate" not-null="False" length="200" sql-type="nvarchar" p1:unicode="True" />
+      <column name="Doorplate" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="Phone" type="String" p1:nullable="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="7fb6bbc5-5327-4ec9-9063-8edf317a03f6">
+    <property name="Phone" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7fb6bbc5-5327-4ec9-9063-8edf317a03f6">
       <Documentation>
         <Summary>电话</Summary>
       </Documentation>
-      <column name="Phone" not-null="False" length="64" sql-type="nvarchar" p1:unicode="True" />
+      <column name="Phone" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="CreatedDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f4bc893a-aa30-4039-926e-077a492f1ffe">
       <Documentation>
@@ -1520,12 +1523,15 @@
     </property>
   </class>
   <class name="ECSalesOrderDetail" entity-set="ECSalesOrderDetails" table="EC_SalesOrderDetail" schema="dbo" p1:Guid="71e01694-fa0f-47c7-b3b1-9f2e420deeb8">
-    <id name="OpId" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="true" p1:Guid="3265adc8-b42b-4914-bddd-7ec7ccecd996">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="a2a0c3fb-ce3c-44bd-b802-caa5316bdd23">
+      <column name="id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="OpId" type="String" p1:ValidateMaxLength="20" p1:ValidateRequired="true" p1:Guid="3265adc8-b42b-4914-bddd-7ec7ccecd996">
       <Documentation>
         <Summary>原系统主键</Summary>
       </Documentation>
       <column name="OpId" not-null="True" length="20" sql-type="nvarchar" p1:unicode="True" />
-    </id>
+    </property>
     <property name="OrderId" type="String" p1:nullable="True" shadow="True" p1:ValidateMaxLength="64" p1:ValidateRequired="false" p1:Guid="fa5e69c2-ef53-4026-aeb2-535fd1ddf705">
       <Documentation>
         <Summary>易仓订单主键</Summary>
@@ -1538,17 +1544,17 @@
       </Documentation>
       <column name="ProductSku" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="Sku" type="String" p1:nullable="True" p1:ValidateMaxLength="400" p1:ValidateRequired="false" p1:Guid="59875510-4d0e-499e-ac8a-b041ed0f42f5">
+    <property name="Sku" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="59875510-4d0e-499e-ac8a-b041ed0f42f5">
       <Documentation>
         <Summary>仓库sku对应关系 ：sku数量费用比例</Summary>
       </Documentation>
-      <column name="Sku" not-null="False" length="400" sql-type="nvarchar" p1:unicode="True" />
+      <column name="Sku" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="WarehouseSku" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="abe440e3-dcee-4631-9431-7248de32d7b3">
+    <property name="WarehouseSku" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="abe440e3-dcee-4631-9431-7248de32d7b3">
       <Documentation>
         <Summary>仓库sku</Summary>
       </Documentation>
-      <column name="WarehouseSku" not-null="False" length="100" sql-type="nvarchar" p1:unicode="True" />
+      <column name="WarehouseSku" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="UnitPrice" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="074492ce-3d25-4d1d-9c64-ab4e1799bf78">
       <Documentation>
@@ -1562,47 +1568,47 @@
       </Documentation>
       <column name="Qty" not-null="False" precision="10" scale="0" sql-type="int" p1:unicode="False" />
     </property>
-    <property name="ProductTitle" type="String" p1:nullable="True" p1:ValidateMaxLength="512" p1:ValidateRequired="false" p1:Guid="1f60ae61-8758-492c-af11-d84c52149696">
+    <property name="ProductTitle" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="1f60ae61-8758-492c-af11-d84c52149696">
       <Documentation>
         <Summary>产品名称</Summary>
       </Documentation>
-      <column name="ProductTitle" not-null="False" length="512" sql-type="nvarchar" p1:unicode="True" />
+      <column name="ProductTitle" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="Pic" type="String" p1:nullable="True" p1:ValidateMaxLength="512" p1:ValidateRequired="false" p1:Guid="4183400c-97be-4f21-a0b9-3e366867174b">
+    <property name="Pic" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="4183400c-97be-4f21-a0b9-3e366867174b">
       <Documentation>
         <Summary>产品封面图片</Summary>
       </Documentation>
-      <column name="Pic" not-null="False" length="512" sql-type="nvarchar" p1:unicode="True" />
+      <column name="Pic" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="OpSite" type="String" p1:nullable="True" p1:ValidateMaxLength="200" p1:ValidateRequired="false" p1:Guid="ffde33f1-94d8-4228-86ba-16025b7089cc">
+    <property name="OpSite" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="ffde33f1-94d8-4228-86ba-16025b7089cc">
       <Documentation>
         <Summary>产品站点</Summary>
       </Documentation>
-      <column name="OpSite" not-null="False" length="200" sql-type="nvarchar" p1:unicode="True" />
+      <column name="OpSite" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="ProductUrl" type="String" p1:nullable="True" p1:ValidateMaxLength="512" p1:ValidateRequired="false" p1:Guid="ec8548ef-0378-4b49-bd91-fc85b244512d">
+    <property name="ProductUrl" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="ec8548ef-0378-4b49-bd91-fc85b244512d">
       <Documentation>
         <Summary>产品url</Summary>
       </Documentation>
-      <column name="ProductUrl" not-null="False" length="512" sql-type="nvarchar" p1:unicode="True" />
+      <column name="ProductUrl" not-null="False" length="4000" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="RefItemId" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="2a362349-88d2-4b1f-93fd-a26c67ec8268">
+    <property name="RefItemId" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="2a362349-88d2-4b1f-93fd-a26c67ec8268">
       <Documentation>
         <Summary>跟踪明细id，产品明细唯一标识</Summary>
       </Documentation>
-      <column name="RefItemId" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+      <column name="RefItemId" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="OpRefItemLocation" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="7ab21f90-5545-42d7-9b4c-741202f871d3">
+    <property name="OpRefItemLocation" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="7ab21f90-5545-42d7-9b4c-741202f871d3">
       <Documentation>
         <Summary>ebay Item产地,Amazon商品ASIN值</Summary>
       </Documentation>
-      <column name="OpRefItemLocation" not-null="False" length="128" sql-type="nvarchar" p1:unicode="True" />
+      <column name="OpRefItemLocation" not-null="False" length="255" sql-type="nvarchar" p1:unicode="True" />
     </property>
-    <property name="UnitFinalValueFee" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="fc54fe03-c1a0-4e1d-9109-88a122bba337">
+    <property name="UnitFinalValueFee" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="fc54fe03-c1a0-4e1d-9109-88a122bba337">
       <Documentation>
         <Summary>单个交易费</Summary>
       </Documentation>
-      <column name="UnitFinalValueFee" not-null="False" precision="12" scale="2" sql-type="decimal" p1:unicode="False" />
+      <column name="UnitFinalValueFee" not-null="False" length="255" precision="12" scale="2" sql-type="nvarchar" p1:unicode="True" />
     </property>
     <property name="TransactionPrice" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="77d62d0e-7d81-487b-8b7f-79d0ce14e0fa">
       <Documentation>
@@ -5500,14 +5506,6 @@
         <property name="ProductSku" />
       </end2>
     </association>
-    <association name="ECSalesOrderAddress_ECSalesOrder" cardinality="OneToMany" p1:Guid="b5e725db-b792-41ad-9411-545e1e3dacb0">
-      <end1 multiplicity="ZeroOrOne" name="SalesOrderAddress" class="ECSalesOrder" relation-class="ECSalesOrderAddress" constrained="True" lazy="False" p1:Guid="55e1ce30-ad1a-4b61-b2ac-39d3785bb856">
-        <property name="ShippingAddressId" />
-      </end1>
-      <end2 multiplicity="Many" name="ECSalesOrders" class="ECSalesOrderAddress" relation-class="ECSalesOrder" lazy="False" p1:Guid="1e04a3da-fffd-4615-b75e-b3c4d22caa7b">
-        <property name="ShippingAddressId" />
-      </end2>
-    </association>
     <association name="ECOrderConfigData_ECSalesOrder" cardinality="OneToMany" p1:Guid="41f5769a-d2ec-4bf1-8794-63c7d9d46d52">
       <end1 multiplicity="ZeroOrOne" name="OrderConfigData" class="ECSalesOrder" relation-class="ECOrderConfigData" constrained="True" lazy="False" p1:Guid="482e9ea1-4e71-40e5-a355-db5abac1ca14">
         <property name="OriginalOrderId" />
@@ -5834,6 +5832,14 @@
       </end1>
       <end2 multiplicity="Many" name="DingClassifies" class="DingClass" relation-class="DingClassify" lazy="False" p1:Guid="de9bdd8d-9936-47dd-93ae-c0a6c5e9345a">
         <property name="ClassId" />
+      </end2>
+    </association>
+    <association name="ECSalesOrderAddress_ECSalesOrder" cardinality="OneToMany" on-delete="Cascade" p1:Guid="e2d23507-0c0b-44a0-93ed-9ebb97aaaf24">
+      <end1 multiplicity="ZeroOrOne" name="SalesOrderAddress" class="ECSalesOrder" relation-class="ECSalesOrderAddress" constrained="True" lazy="False" p1:Guid="a0515513-7172-4749-a225-913e0a377d5b">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="ECSalesOrders" class="ECSalesOrderAddress" relation-class="ECSalesOrder" lazy="False" p1:Guid="ab19f1b5-3765-4d0d-ba65-3f7d50d10b03">
+        <property name="AddressId" />
       </end2>
     </association>
   </associations>

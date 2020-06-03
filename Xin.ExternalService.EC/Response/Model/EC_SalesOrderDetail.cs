@@ -84,7 +84,7 @@ namespace Xin.ExternalService.EC.Response.Model
         /// 单个交易费
         /// </summary>
         [JsonProperty(PropertyName = "unitFinalValueFee", NullValueHandling = NullValueHandling.Ignore)]
-        public decimal? UnitFinalValueFee { get; set; } = 0;
+        public string UnitFinalValueFee { get; set; }
         /// <summary>
         /// 单个手续费
         /// </summary>
