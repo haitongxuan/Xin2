@@ -79,7 +79,7 @@ namespace Xin.ExternalService.EC.Job
                             try
                             {
                                 var m = Mapper<EC_SalesOrder, ECSalesOrder>.Map(item);
-                                log.Debug($"订单新增数据 - 接口接收到数据:{JsonConvert.SerializeObject(m, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" })}");
+                                log.Debug($"订单新增数据 - 接口接收到数据:orderId:{m.OrderId},refno:{m.RefNo},SaleOrderCode:{m.SaleOrderCode},SysOrderCode:{m.SysOrderCode}");
                                 var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
                                 if (had != null)
                                 {
@@ -143,7 +143,7 @@ namespace Xin.ExternalService.EC.Job
                     response.TotalCount = response.TotalCount == null ? "1" : response.TotalCount;
                     pageNum = (int)Math.Ceiling(long.Parse(response.TotalCount) * 1.0 / 1000);
                     log.Info($"订单更新数据 - 开始获取 共计{pageNum}页");
-                    for (int page = pageNum; page > 0; page--)
+                    for (int page = 1; page < pageNum + 1; page++)
                     {
                         reqModel.PageSize = 1000;
                         reqModel.Page = page;
@@ -168,7 +168,7 @@ namespace Xin.ExternalService.EC.Job
                                 var had = repository.Get(m.OrderId, x => x.Include(a => a.BnsSendDeliverdToEcs));
                                 if (had != null)
                                 {
-                                    log.Debug($"订单更新数据 - 接口接收到数据:{JsonConvert.SerializeObject(m, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" })}");
+                                    log.Debug($"订单更新数据 - 接口接收到数据:orderId:{m.OrderId},refno:{m.RefNo},SaleOrderCode:{m.SaleOrderCode},SysOrderCode:{m.SysOrderCode}");
                                     List<BnsSendDeliverdToEc> templist = new List<BnsSendDeliverdToEc>();
                                     had.BnsSendDeliverdToEcs[0].ShippingMethodNo = m.ShippingMethodNo;
                                     had.BnsSendDeliverdToEcs[0].PlatformShipTime = m.PlatformShipTime;
@@ -178,7 +178,7 @@ namespace Xin.ExternalService.EC.Job
                                 }
                                 else
                                 {
-                                    log.Debug($"订单更新数据 - 还未插入表忽略,接口接收到数据:{JsonConvert.SerializeObject(m, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" })}");
+                                    log.Debug($"订单更新数据 - 还未插入表忽略,接口接收到数据:orderId:{m.OrderId},refno:{m.RefNo},SaleOrderCode:{m.SaleOrderCode},SysOrderCode:{m.SysOrderCode}");
                                 }
                             }
                             catch (Exception ex)

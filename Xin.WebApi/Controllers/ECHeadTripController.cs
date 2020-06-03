@@ -57,7 +57,7 @@ namespace Xin.WebApi.Controllers
                             sbCommon.Append($" and t4.PcrProductSku {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "storename":
-                            sbCommon.Append($" and t1.useraccount {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
+                            sbCommon.Append($" and t1.PlatformUserName {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "towarehouse":
                             sbCommon.Append($" and ToWarehouse {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
@@ -109,7 +109,7 @@ namespace Xin.WebApi.Controllers
                             sbCommon.Append($" and t4.PcrProductSku {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "storename":
-                            sbCommon.Append($" and t1.useraccount {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
+                            sbCommon.Append($" and t1.PlatformUserName {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");
                             break;
                         case "towarehouse":
                             sbCommon.Append($" and ToWarehouse {Operate.GetSqlOperate(item.binaryop)} '{item.value}'");

@@ -582,7 +582,7 @@ namespace Xin.WebApi.Controllers
                     switch (item.key.ToLower())
                     {
                         case "storename":
-                            sbCommon.Append($" {item.andorop} UserAccount {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            sbCommon.Append($" {item.andorop} PlatformUserName {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
                             break;
                         default:
                             sbCommon.Append($" {item.andorop} {item.key} {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
@@ -622,7 +622,7 @@ namespace Xin.WebApi.Controllers
                     switch (item.key.ToLower())
                     {
                         case "storename":
-                            sbCommon.Append($" {item.andorop} UserAccount {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
+                            sbCommon.Append($" {item.andorop} PlatformUserName {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
                             break;
                         default:
                             sbCommon.Append($" {item.andorop} {item.key} {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
@@ -659,7 +659,7 @@ namespace Xin.WebApi.Controllers
                     switch (item.key.ToLower())
                     {
                         case "storename":
-                            sbCommon.Append($" {item.andorop} UserAccount in ({item.value}) ");
+                            sbCommon.Append($" {item.andorop} PlatformUserName in ({item.value}) ");
                             break;
                         case "sku":
                             sbCommon.Append($" {item.andorop} PcrProductSku {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
@@ -696,7 +696,7 @@ namespace Xin.WebApi.Controllers
                     switch (item.key.ToLower())
                     {
                         case "storename":
-                            sbCommon.Append($" {item.andorop} UserAccount in ({item.value}) ");
+                            sbCommon.Append($" {item.andorop} PlatformUserName in ({item.value}) ");
                             break;
                         case "sku":
                             sbCommon.Append($" {item.andorop} PcrProductSku {Operate.GetSqlOperate(item.binaryop)} '{item.value}' ");
